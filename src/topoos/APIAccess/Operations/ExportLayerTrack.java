@@ -9,7 +9,7 @@ public class ExportLayerTrack extends APIOperation{
 	private String	TYPE=null; //  (obligatorio) este fragmento determina el tipo de recurso que se desea generar. Por ejemplo para generar un recurso de tipo capa KML, su valor es layer. Valores permitidos: layer.
 	private String	DATA=null; //  (obligatorio) este fragmento especifica los datos que se almacenarán en el recurso exportado. Por ejemplo, es posible almacenar un Track. Valores permitidos: Track.
 	private String	FORMAT2; // (obligatorio) este fragmento establece el formato de la respuesta de esta operación (no el formato del recurso). Valores disponibles: json.
-asdf
+//asdf
 	public ExportLayerTrack(String operationName, String method, String format,
 			Integer version, String oauth_token, String tYPE, String dATA,
 			String fORMAT2) {

@@ -16,7 +16,7 @@ public class ResourceTypeId extends APIOperation{
 		TYPE = tYPE;
 		DATA = dATA;
 	}
-	asdfaasdf
+//	asdfaasdf
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
