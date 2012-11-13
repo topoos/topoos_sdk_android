@@ -1,7 +1,7 @@
 package topoos.APIAccess.Results.Objects;
 
 public class POICategory {
-	private String id=null;
+	private Integer id=null;
 	private String description=null;
 	private Boolean isSystem=null;
 	/**
@@ -9,7 +9,7 @@ public class POICategory {
 	 * @param description
 	 * @param isSystem
 	 */
-	public POICategory(String id, String description, Boolean isSystem) {
+	public POICategory(Integer id, String description, Boolean isSystem) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -18,13 +18,13 @@ public class POICategory {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	/**

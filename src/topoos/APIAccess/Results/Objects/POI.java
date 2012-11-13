@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class POI {
 
-	private String id = null;
+	private Integer id = null;
 	private String name = null;
 	private String description = null;
 	private Double latitude = null;
@@ -47,7 +47,7 @@ public class POI {
 	 * @param lastUpdate
 	 * @param warningcount
 	 */
-	public POI(String id, String name,
+	public POI(Integer id, String name,
 			String description, Double latitude, Double longitude,
 			Double elevation, Double accuracy, Double vaccuracy,
 			Date registertime, ArrayList<POICategory> categories,
@@ -80,7 +80,7 @@ public class POI {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -89,7 +89,7 @@ public class POI {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

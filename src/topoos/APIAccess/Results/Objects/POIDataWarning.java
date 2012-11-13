@@ -1,16 +1,18 @@
 package topoos.APIAccess.Results.Objects;
 
+import java.util.ArrayList;
+
 public class POIDataWarning {
 	private POI poi=null;
-	private POIDataWarning poiDataWarning=null;
+	private ArrayList<POIWarning> poiWarnings=null;
 	/**
 	 * @param poi
-	 * @param poiDataWarning
+	 * @param poiWarnings
 	 */
-	public POIDataWarning(POI poi, POIDataWarning poiDataWarning) {
+	public POIDataWarning(POI poi, ArrayList<POIWarning> poiWarnings) {
 		super();
 		this.poi = poi;
-		this.poiDataWarning = poiDataWarning;
+		this.poiWarnings = poiWarnings;
 	}
 	/**
 	 * @return the poi
@@ -25,17 +27,16 @@ public class POIDataWarning {
 		this.poi = poi;
 	}
 	/**
-	 * @return the poiDataWarning
+	 * @return the poiWarnings
 	 */
-	public POIDataWarning getPoiDataWarning() {
-		return poiDataWarning;
+	public ArrayList<POIWarning> getPoiWarnings() {
+		return poiWarnings;
 	}
 	/**
-	 * @param poiDataWarning the poiDataWarning to set
+	 * @param poiWarnings the poiWarnings to set
 	 */
-	public void setPoiDataWarning(POIDataWarning poiDataWarning) {
-		this.poiDataWarning = poiDataWarning;
+	public void setPoiWarnings(ArrayList<POIWarning> poiWarnings) {
+		this.poiWarnings = poiWarnings;
 	}
-	
-	
+
 }

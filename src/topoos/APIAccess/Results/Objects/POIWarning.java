@@ -1,5 +1,6 @@
 package topoos.APIAccess.Results.Objects;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class POIWarning {
@@ -10,6 +11,7 @@ public class POIWarning {
 	private String user_id=null;
 	private Date timestamp=null;
 	private POIWarningData data=null;
+	
 	
 	/**
 	 * @param id
