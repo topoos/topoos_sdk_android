@@ -1,4 +1,4 @@
-package topoos.APIAccess.Results;
+package topoos.APIAccess.Results.Objects;
 
 public class POICategory {
 	private String id=null;

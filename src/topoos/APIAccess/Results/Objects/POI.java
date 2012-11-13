@@ -1,13 +1,9 @@
-package topoos.APIAccess.Results;
+package topoos.APIAccess.Results.Objects;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-public class POI extends APICallResult {
+public class POI {
 
 	private String id = null;
 	private String name = null;
@@ -31,8 +27,6 @@ public class POI extends APICallResult {
 
 
 	/**
-	 * @param error
-	 * @param result
 	 * @param id
 	 * @param name
 	 * @param description
@@ -53,14 +47,13 @@ public class POI extends APICallResult {
 	 * @param lastUpdate
 	 * @param warningcount
 	 */
-	public POI(String error, String result, String id, String name,
+	public POI(String id, String name,
 			String description, Double latitude, Double longitude,
 			Double elevation, Double accuracy, Double vaccuracy,
 			Date registertime, ArrayList<POICategory> categories,
 			String address, String crossStreet, String city, String country,
 			String postalCode, String phone, String twitter, Date lastUpdate,
 			POIWarningCount warningcount) {
-		super(error, result);
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -83,50 +76,6 @@ public class POI extends APICallResult {
 	}
 
 
-
-	@Override
-	public void setParameters() {
-		// TODO Auto-generated method stub
-		try {
-			JSONObject jObject = (JSONObject) new JSONTokener(this.Result)
-					.nextValue();
-			// Extracting content
-			this.id = jObject.getString("id");
-			this.name = jObject.getString("name");
-			this.description = jObject.getString("description");
-			this.latitude = jObject.getDouble("latitude");
-			this.longitude = jObject.getDouble("longitude");
-			this.elevation = jObject.getDouble("elevation");
-			this.accuracy = jObject.getDouble("accuracy");
-			this.vaccuracy = jObject.getDouble("vaccuracy");
-			this.address = jObject.getString("address");
-			this.crossStreet = jObject.getString("cross_street");
-			this.city = jObject.getString("city");
-			this.country = jObject.getString("country");
-			this.registertime = APIUtils.toDateString(jObject
-					.getString("registertime"));
-			this.lastUpdate = APIUtils.toDateString(jObject
-					.getString("last_update"));
-			this.postalCode = jObject.getString("postal_code");
-			this.phone = jObject.getString("phone");
-			this.twitter = jObject.getString("twitter");
-			this.categories=new ArrayList<POICategory>();
-			JSONArray jArray=jObject.getJSONArray("categories");
-			for(int i=0;i<jArray.length();i++){
-				JSONObject job=jArray.getJSONObject(i);
-				categories.add(new POICategory(job.getString("Id"),job.getString("Description"),job.getBoolean("is_system_category")));
-			}
-			JSONObject jObj=jObject.getJSONObject("warnings");
-			this.warningcount=new POIWarningCount(jObj.getInt("closed"), jObj.getInt("duplicated"),
-					jObj.getInt("wrong_indicator"), jObj.getInt("wrong_info"));
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-
-	
 	
 	/**
 	 * @return the id
@@ -468,76 +417,4 @@ public class POI extends APICallResult {
 		this.warningcount = warningcount;
 	}
 
-
-
-	public class POIWarningCount{
-		Integer closed=null;
-		Integer duplicated=null;
-		Integer wrongIndicator=null;
-		Integer wrongInfo=null;
-		/**
-		 * @param closed
-		 * @param duplicated
-		 * @param wrongIndicator
-		 * @param wrongInfo
-		 */
-		public POIWarningCount(Integer closed, Integer duplicated,
-				Integer wrongIndicator, Integer wrongInfo) {
-			super();
-			this.closed = closed;
-			this.duplicated = duplicated;
-			this.wrongIndicator = wrongIndicator;
-			this.wrongInfo = wrongInfo;
-		}
-		/**
-		 * @return the closed
-		 */
-		public Integer getClosed() {
-			return closed;
-		}
-		/**
-		 * @param closed the closed to set
-		 */
-		public void setClosed(Integer closed) {
-			this.closed = closed;
-		}
-		/**
-		 * @return the duplicated
-		 */
-		public Integer getDuplicated() {
-			return duplicated;
-		}
-		/**
-		 * @param duplicated the duplicated to set
-		 */
-		public void setDuplicated(Integer duplicated) {
-			this.duplicated = duplicated;
-		}
-		/**
-		 * @return the wrongIndicator
-		 */
-		public Integer getWrongIndicator() {
-			return wrongIndicator;
-		}
-		/**
-		 * @param wrongIndicator the wrongIndicator to set
-		 */
-		public void setWrongIndicator(Integer wrongIndicator) {
-			this.wrongIndicator = wrongIndicator;
-		}
-		/**
-		 * @return the wrongInfo
-		 */
-		public Integer getWrongInfo() {
-			return wrongInfo;
-		}
-		/**
-		 * @param wrongInfo the wrongInfo to set
-		 */
-		public void setWrongInfo(Integer wrongInfo) {
-			this.wrongInfo = wrongInfo;
-		}
-		
-		
-	}
 }
