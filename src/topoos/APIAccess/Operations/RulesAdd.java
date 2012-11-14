@@ -14,13 +14,24 @@ public class RulesAdd extends APIOperation{
 	private String oauth_token=null; // (obligatorio)access_token de Acceso a recursos
 	private Double	lat=null; // (obligatorio) latitud del centro del círculo del área permitida, en grados decimales
 	private Double	lng=null; // (obligatorio) longitud del centro del círculo del área permitida, en grados decimales
-	private Double 	radius=null; //(obligatorio) radio del círculo del área permitida, en grados decimales.
+	private Integer 	radius=null; //(obligatorio) radio del círculo del área permitida, en grados decimales.
 	private String	type=null; //TRACK_OUT_OF_BOUNDS
 
-
+	
+	/**
+	 * @param operationName
+	 * @param method
+	 * @param format
+	 * @param version
+	 * @param oauth_token
+	 * @param lat
+	 * @param lng
+	 * @param radius
+	 * @param type
+	 */
 	public RulesAdd(String operationName, String method, String format,
-			Integer version, String oauth_token, String device, Double lat,
-			Double lng, Double radius, String type) {
+			Integer version, String oauth_token, Double lat, Double lng,
+			Integer radius, String type) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.lat = lat;
@@ -28,7 +39,7 @@ public class RulesAdd extends APIOperation{
 		this.radius = radius;
 		this.type = type;
 	}
-	
+
 	@Override
 	public boolean ValidateParams() {
 
@@ -36,7 +47,7 @@ public class RulesAdd extends APIOperation{
 		validate = validate && isValid(APIUtils.toStringDouble(lat));
 		validate = validate && isValid(APIUtils.toStringDouble(lng));
 		validate = validate && isValid(oauth_token);
-		validate = validate && isValid(APIUtils.toStringDouble(radius));
+		validate = validate && isValid(APIUtils.toStringInteger(radius));
 		validate = validate && isValid(type);
 		return validate;
 	}
@@ -50,7 +61,7 @@ public class RulesAdd extends APIOperation{
 					+ "?oauth_token=" + this.oauth_token
 					+ "&lat="+APIUtils.toStringDouble(lat)
 					+ "&lng="+APIUtils.toStringDouble(lng)
-					+ "&radius="+APIUtils.toStringDouble(radius)
+					+ "&radius="+APIUtils.toStringInteger(radius)
 					+ "&type="+type
 					;
 		}

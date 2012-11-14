@@ -10,6 +10,23 @@ public class RuleResult extends APICallResult{
 	private Rule rule =null;
 	
 	/**
+	 * 
+	 */
+	public RuleResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public RuleResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @param error
 	 * @param result
 	 * @param rule

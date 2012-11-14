@@ -25,6 +25,17 @@ public class AccessTokenOAuth implements Serializable {
 	private String KEY_REFRESHTOKEN="";
 	private String KEY_TOKENTYPE="";
 	
+	
+	
+	
+	/**
+	 * 
+	 */
+	public AccessTokenOAuth() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	/*private static final String ParamKey_AccessToken = "access_token";
 	private static final String ParamKey_ExpiresIn = "expires_in";
 	private static final String ParamKey_TokenType = "token_type";

@@ -1,7 +1,6 @@
 package topoos.APIAccess.Results;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -1,6 +1,6 @@
 package topoos.APIAccess.Operations;
 /**
- * Obtiene información del usuario. Permite verificar el oauth_token.000000000000
+ * Obtiene información del usuario. Permite verificar el oauth_token.
  * @author MAJS
  *
  */

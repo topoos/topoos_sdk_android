@@ -15,6 +15,34 @@ public class UsersNearResult extends APICallResult {
 
 	private UsersNear usersnear = null;
 
+	
+	/**
+	 * 
+	 */
+	public UsersNearResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public UsersNearResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 * @param usersnear
+	 */
+	public UsersNearResult(String error, String result, UsersNear usersnear) {
+		super(error, result);
+		this.usersnear = usersnear;
+	}
+
 	@Override
 	public void setParameters() {
 		ArrayList<UserIdPosition> userPositions = null;
@@ -39,6 +67,20 @@ public class UsersNearResult extends APICallResult {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+
+	/**
+	 * @return the usersnear
+	 */
+	public UsersNear getUsersnear() {
+		return usersnear;
+	}
+
+	/**
+	 * @param usersnear the usersnear to set
+	 */
+	public void setUsersnear(UsersNear usersnear) {
+		this.usersnear = usersnear;
 	}
 
 }

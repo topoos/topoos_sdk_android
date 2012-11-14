@@ -14,6 +14,23 @@ public class TrackResult extends APICallResult {
 	private Track track = null;
 
 	/**
+	 * 
+	 */
+	public TrackResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public TrackResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @param error
 	 * @param result
 	 * @param track

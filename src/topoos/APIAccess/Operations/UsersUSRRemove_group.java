@@ -1,12 +1,6 @@
 package topoos.APIAccess.Operations;
-/**
- * Permite establecer el grupo al que pertenece el usuario.
- * @author MAJS
- *
- */
-public class UsersUSRAdd_group extends APIOperation {
 
-
+public class UsersUSRRemove_group  extends APIOperation{
 	private String oauth_token;
 	private String USR;
 	private Integer ugroup;
@@ -21,7 +15,7 @@ public class UsersUSRAdd_group extends APIOperation {
 	 * @param uSR
 	 * @param ugroup
 	 */
-	public UsersUSRAdd_group(String operationName, String method,
+	public UsersUSRRemove_group(String operationName, String method,
 			String format, Integer version, String oauth_token, String uSR,
 			Integer ugroup) {
 		super(operationName, method, format, version);
@@ -45,11 +39,10 @@ public class UsersUSRAdd_group extends APIOperation {
 		// TODO Auto-generated method stub
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/users/" + this.USR + "/add_group."
+			params = "/" + this.Version + "/users/" + this.USR + "/remove_group."
 					+ this.Format + "?ugroup="+ugroup+"&oauth_token=" + this.oauth_token;
 
 		}
 		return params;
 	}
-
 }

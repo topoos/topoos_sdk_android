@@ -5,11 +5,33 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import topoos.APIAccess.Results.Objects.*;
-
+/**
+ * 
+ * @author MAJS
+ *
+ */
 public class UserResult extends APICallResult {
 
 
 	private User user=null;
+
+
+	/**
+	 * 
+	 */
+	public UserResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public UserResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @param error

@@ -6,7 +6,7 @@ import org.json.JSONTokener;
 
 public class GenericResult extends APICallResult {
 
-	private String code=null;
+	private Integer code=null;
 	private String description=null;
 
 	public GenericResult() {
@@ -17,7 +17,7 @@ public class GenericResult extends APICallResult {
 		super(error, result);
 	}
 
-	public GenericResult(String error, String result, String code,
+	public GenericResult(String error, String result, Integer code,
 			String description) {
 		super(error, result);
 		this.code = code;
@@ -30,7 +30,7 @@ public class GenericResult extends APICallResult {
 				try {
 					JSONObject jObject = (JSONObject) new JSONTokener(this.Result)
 							.nextValue();
-					this.code=jObject.getString("code");
+					this.code=jObject.getInt("code");
 					this.description=jObject.getString("description");
 				}catch (Exception e) {
 					// TODO: handle exception
@@ -40,14 +40,14 @@ public class GenericResult extends APICallResult {
 	/**
 	 * @return the code
 	 */
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
 	/**
 	 * @param code the code to set
 	 */
-	public void setCode(String code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 
