@@ -11,10 +11,6 @@ public class User   {
 	private ArrayList<Integer> Ugroup = null;
 	private Acreditation Acreditation = null;
 
-	public User() {
-		super();
-	}
-
 	public User(String id, String name,
 			String email, Profile profile,
 			ArrayList<Integer> ugroup,

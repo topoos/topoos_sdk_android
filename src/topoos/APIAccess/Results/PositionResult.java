@@ -23,7 +23,7 @@ public class PositionResult extends APICallResult {
 	@Override
 	public void setParameters() {
 		// TODO Auto-generated method stub
-		String id = null;
+		Integer id = null;
 		String device = null;
 		Date timestamp = null;
 		Date registerTime = null;
@@ -40,7 +40,7 @@ public class PositionResult extends APICallResult {
 			JSONObject jObject = (JSONObject) new JSONTokener(Result)
 					.nextValue();
 			// Extracting content
-			id = jObject.getString("id");
+			id = jObject.getInt("id");
 			device = jObject.getString("device");
 			latitude = jObject.getDouble("latitude");
 			longitude = jObject.getDouble("longitude");

@@ -5,34 +5,28 @@ import java.util.ArrayList;
 
 public class UsersNear  {
 
-	private ArrayList<UserPosition> userPositions=null;
-	/**
-	 * 
-	 */
-	public UsersNear() {
-		super();
-	}
+	private ArrayList<UserIdPosition> useridPositions=null;
 	
 	/**
 	 * @param userPositions
 	 */
 	public UsersNear(
-			ArrayList<UserPosition> userPositions) {
-		this.userPositions = userPositions;
+			ArrayList<UserIdPosition> userPositions) {
+		this.useridPositions = userPositions;
 	}
 
 	/**
 	 * @return the userPositions
 	 */
-	public ArrayList<UserPosition> getUserPositions() {
-		return userPositions;
+	public ArrayList<UserIdPosition> getUserPositions() {
+		return useridPositions;
 	}
 
 	/**
 	 * @param userPositions the userPositions to set
 	 */
-	public void setUserPositions(ArrayList<UserPosition> userPositions) {
-		this.userPositions = userPositions;
+	public void setUserPositions(ArrayList<UserIdPosition> userPositions) {
+		this.useridPositions = userPositions;
 	}
 
 

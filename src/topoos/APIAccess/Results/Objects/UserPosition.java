@@ -1,112 +1,65 @@
 package topoos.APIAccess.Results.Objects;
 
-
 public class UserPosition {
-
-	private String userid = null;
-	private Position position = null;
+	private Double latitude = null;
+	private Double longitude = null;
+	private Double accuracy = null;
 
 	/**
-	 * @param userid
-	 * @param position
+	 * @param latitude
+	 * @param longitude
+	 * @param accuracy
 	 */
-	public UserPosition(String userid, Position position) {
+	public UserPosition(Double latitude, Double longitude, Double accuracy) {
 		super();
-		this.userid = userid;
-		this.position = position;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.accuracy = accuracy;
 	}
 
 	/**
-	 * @return the userid
+	 * @return the latitude
 	 */
-	public String getUserid() {
-		return userid;
+	public Double getLatitude() {
+		return latitude;
 	}
 
 	/**
-	 * @param userid
-	 *            the userid to set
+	 * @param latitude
+	 *            the latitude to set
 	 */
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
 	}
 
 	/**
-	 * @return the position
+	 * @return the longitude
 	 */
-	public Position getPosition() {
-		return position;
+	public Double getLongitude() {
+		return longitude;
 	}
 
 	/**
-	 * @param position
-	 *            the position to set
+	 * @param longitude
+	 *            the longitude to set
 	 */
-	public void setPosition(Position position) {
-		this.position = position;
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
-	public class Position {
-		private Double latitude = null;
-		private Double longitude = null;
-		private Double accuracy = null;
-
-		/**
-		 * @param latitude
-		 * @param longitude
-		 * @param accuracy
-		 */
-		public Position(Double latitude, Double longitude, Double accuracy) {
-			super();
-			this.latitude = latitude;
-			this.longitude = longitude;
-			this.accuracy = accuracy;
-		}
-
-		/**
-		 * @return the latitude
-		 */
-		public Double getLatitude() {
-			return latitude;
-		}
-
-		/**
-		 * @param latitude
-		 *            the latitude to set
-		 */
-		public void setLatitude(Double latitude) {
-			this.latitude = latitude;
-		}
-
-		/**
-		 * @return the longitude
-		 */
-		public Double getLongitude() {
-			return longitude;
-		}
-
-		/**
-		 * @param longitude
-		 *            the longitude to set
-		 */
-		public void setLongitude(Double longitude) {
-			this.longitude = longitude;
-		}
-
-		/**
-		 * @return the accuracy
-		 */
-		public Double getAccuracy() {
-			return accuracy;
-		}
-
-		/**
-		 * @param accuracy
-		 *            the accuracy to set
-		 */
-		public void setAccuracy(Double accuracy) {
-			this.accuracy = accuracy;
-		}
-
+	/**
+	 * @return the accuracy
+	 */
+	public Double getAccuracy() {
+		return accuracy;
 	}
+
+	/**
+	 * @param accuracy
+	 *            the accuracy to set
+	 */
+	public void setAccuracy(Double accuracy) {
+		this.accuracy = accuracy;
+	}
+
 }

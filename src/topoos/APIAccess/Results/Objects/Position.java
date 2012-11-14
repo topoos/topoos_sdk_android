@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Position {
 
-	String id = null;
+	Integer id = null;
 	String device = null;
 	Date timestamp = null;
 	Date registerTime = null;
@@ -33,7 +33,7 @@ public class Position {
 	 * @param velocity
 	 * @param track_id
 	 */
-	public Position(String id, String device,
+	public Position(Integer id, String device,
 			Date timestamp, Date registerTime, Double latitude,
 			Double longitude, Double elevation, PositionType positionType,
 			Double accuracy, Double vaccuracy, Double bearing, Double velocity,
@@ -57,7 +57,7 @@ public class Position {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -65,7 +65,7 @@ public class Position {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
