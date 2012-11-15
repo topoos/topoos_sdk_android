@@ -11,6 +11,23 @@ public class POICategoryResult extends APICallResult {
 	private POICategory poiCategory = null;
 
 	/**
+	 * 
+	 */
+	public POICategoryResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public POICategoryResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @param error
 	 * @param result
 	 * @param poiCategory

@@ -5,14 +5,14 @@ public class PositionsGet extends APIOperation{
 
 
 	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private String	posid=null; // (obligatorio) identificador de una posición concreta.
+	private Integer	posid=null; // (obligatorio) identificador de una posición concreta.
 	private String	usr=null; // (opcional) identificador del usuario, si no se indica se obtendrá la última posición del usuario actual
 	private String	device=null; // (obligatorio) identificador del dispositivo del cual vamos a obtener la última posición.
 	
 
 	
 	public PositionsGet(String operationName, String method, String format,
-			Integer version, String oauth_token, String posid, String usr, String device
+			Integer version, String oauth_token, Integer posid, String usr, String device
 			) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
@@ -25,7 +25,7 @@ public class PositionsGet extends APIOperation{
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
 		boolean validate = true;
-		validate = validate &&(isValid(posid)||isValid(usr)||isValid(device));
+		validate = validate &&(isValid(APIUtils.toStringInteger(posid))||isValid(usr)||isValid(device));
 		validate = validate && isValid(oauth_token);
 		return validate;
 	}
@@ -36,9 +36,9 @@ public class PositionsGet extends APIOperation{
 
 		String params = null;
 		if (this.ValidateParams()) {
-			if(isValid(posid)){
+			if(isValid(APIUtils.toStringInteger(posid))){
 				params = "/" + this.Version + "/positions/get."
-					+ this.Format + "?oauth_token=" + this.oauth_token+"&posid="+posid;
+					+ this.Format + "?oauth_token=" + this.oauth_token+"&posid="+APIUtils.toStringInteger(posid);
 			}else if (isValid(usr)){
 				params = "/" + this.Version + "/positions/get."
 						+ this.Format + "?oauth_token=" + this.oauth_token+"&usr="+usr;				

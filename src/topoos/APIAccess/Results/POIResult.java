@@ -13,6 +13,23 @@ public class POIResult extends APICallResult {
 	private POI poi = null;
 
 	/**
+	 * 
+	 */
+	public POIResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public POIResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @param error
 	 * @param result
 	 * @param poi

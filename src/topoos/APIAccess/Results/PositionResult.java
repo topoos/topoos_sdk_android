@@ -11,6 +11,23 @@ public class PositionResult extends APICallResult {
 	private Position position=null;
 	
 	/**
+	 * 
+	 */
+	public PositionResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public PositionResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @param error
 	 * @param result
 	 * @param position

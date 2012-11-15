@@ -13,12 +13,12 @@ public class POISCategoriesDelete extends APIOperation {
 
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
-	private String category = null; // (obligatorio) identificador de la
+	private Integer category = null; // (obligatorio) identificador de la
 									// categoría a modificar
 
 	public POISCategoriesDelete(String operationName, String method,
 			String format, Integer version, String oauth_token, 
-			String category) {
+			Integer category) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.category = category;
@@ -28,7 +28,7 @@ public class POISCategoriesDelete extends APIOperation {
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
 		boolean validate = super.ValidateParams();
-		validate = validate && isValid(APIUtils.toStringUrlEncoded(category));
+		validate = validate && isValid(APIUtils.toStringInteger(category));
 		validate = validate && isValid(oauth_token);
 
 		return validate;
@@ -40,7 +40,7 @@ public class POISCategoriesDelete extends APIOperation {
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/categories/delete."
 					+ this.Format + "?oauth_token=" + this.oauth_token
-					+ "&category=" + APIUtils.toStringUrlEncoded(category);
+					+ "&category=" + APIUtils.toStringInteger(category);
 		}
 		return params;
 	}

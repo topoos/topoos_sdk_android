@@ -1,20 +1,20 @@
 package topoos.APIAccess.Results;
 
 public abstract class APICallResult {
-	
-	protected String Format=null;
-	protected String Error=null;
-	protected String Result=null;
-	
-	public APICallResult(String error,String result){
-		this.Error=error;
-		this.Result=result;
+
+	protected String Format = null;
+	protected String Error = null;
+	protected String Result = null;
+
+	public APICallResult(String error, String result) {
+		this.Error = error;
+		this.Result = result;
 	}
-	
-	public APICallResult(){
-		
+
+	public APICallResult() {
+
 	}
-	
+
 	public abstract void setParameters();
 
 	/**
@@ -25,7 +25,8 @@ public abstract class APICallResult {
 	}
 
 	/**
-	 * @param format the format to set
+	 * @param format
+	 *            the format to set
 	 */
 	public void setFormat(String format) {
 		Format = format;
@@ -39,7 +40,8 @@ public abstract class APICallResult {
 	}
 
 	/**
-	 * @param error the error to set
+	 * @param error
+	 *            the error to set
 	 */
 	public void setError(String error) {
 		Error = error;
@@ -53,11 +55,11 @@ public abstract class APICallResult {
 	}
 
 	/**
-	 * @param result the result to set
+	 * @param result
+	 *            the result to set
 	 */
 	public void setResult(String result) {
 		Result = result;
 	}
-	
-	
+
 }

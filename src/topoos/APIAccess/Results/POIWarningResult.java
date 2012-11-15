@@ -14,6 +14,23 @@ public class POIWarningResult extends APICallResult {
 	POIWarning poiWarning = null;
 
 	/**
+	 * 
+	 */
+	public POIWarningResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public POIWarningResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @param error
 	 * @param result
 	 * @param poiWarning
