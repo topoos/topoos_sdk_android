@@ -14,13 +14,13 @@ public class TracksGet extends APIOperation{
 	public static final String LAYER_BEARING="bearing";
 	public static final String LAYER_TRACKLINE="trackline";
 	
-	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private Integer  	track=null; // (obligatorio) identificador del Track solicitado
-	private Integer  	total=null; // (opcional) si se especifica un valor N, se obtendrán las últimas N posiciones del Track
-	private Date initdate=null;
-	private Date endate=null;
+	protected String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
+	protected Integer  	track=null; // (obligatorio) identificador del Track solicitado
+	protected Integer  	total=null; // (opcional) si se especifica un valor N, se obtendrán las últimas N posiciones del Track
+	protected Date initdate=null;
+	protected Date endate=null;
 	//: (opcional) fechas en formato UTC que permiten filtrar posiciones registradas dentro del rango especificado, según el estándar ISO 8601. No se incluyen las posiciones registradas en la fecha indicada.
-	private String[]  	layer=null; // :(opcional) capas KML solicitadas, separadas por comas
+	protected String[]  	layer=null; // :(opcional) capas KML solicitadas, separadas por comas
 		//default (valor por defecto) marcadores de posición
 	  	//bearing flechas de rumbo
 	 	//trackline  línea de trayectoria

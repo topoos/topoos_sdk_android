@@ -9,10 +9,10 @@ package topoos.APIAccess.Operations;
 public class CheckinGet extends APIOperation{
 
 	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private String	checkin=null; // (obligatorio) identificador del CheckIn que se desea recuperar
+	private Integer	checkin=null; // (obligatorio) identificador del CheckIn que se desea recuperar
 
 	public CheckinGet(String operationName, String method, String format,
-			Integer version, String oauth_token, String checkin) {
+			Integer version, String oauth_token, Integer checkin) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.checkin = checkin;
@@ -21,7 +21,7 @@ public class CheckinGet extends APIOperation{
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = true;
-		validate = validate && isValid(checkin);
+		validate = validate && isValid(APIUtils.toStringInteger(checkin));
 		validate = validate && isValid(oauth_token);
 		return validate;
 	}
@@ -33,7 +33,7 @@ public class CheckinGet extends APIOperation{
 			params = "/" + this.Version + "/checkin/get."
 					+ this.Format 
 					+ "?oauth_token=" + this.oauth_token
-					+"&poi="+ this.checkin
+					+"&checkin="+ APIUtils.toStringInteger(checkin)
 					;
 
 		}

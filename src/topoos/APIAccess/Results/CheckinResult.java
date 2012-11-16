@@ -10,6 +10,23 @@ public class CheckinResult extends APICallResult {
 	private Checkin checkin = null;
 
 	/**
+	 * 
+	 */
+	public CheckinResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public CheckinResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @param error
 	 * @param result
 	 * @param checkin

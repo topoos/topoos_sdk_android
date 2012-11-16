@@ -3,11 +3,17 @@ package topoos.POICategories;
 import java.util.List;
 
 import topoos.AccessTokenOAuth;
+import topoos.APIAccess.Operations.POISWarning;
 import topoos.APIAccess.Results.Objects.POICategory;
 import android.content.Context;
 
 public class Operations {
-
+	
+	public static final String	TYPE_CLOSED=POISWarning.TYPE_CLOSED;
+	public static final String	TYPE_DUPLICATED=POISWarning.TYPE_DUPLICATED;
+	public static final String	TYPE_WRONG_INDICATOR=POISWarning.TYPE_WRONG_INDICATOR;
+	public static final String	TYPE_WRONG_INFO=POISWarning.TYPE_WRONG_INFO;
+	
 	public static	List<POICategory> GetAll (AccessTokenOAuth accessTokenPregenerated){
 		return Translator.GetAll(accessTokenPregenerated);
 	}

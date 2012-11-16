@@ -12,6 +12,23 @@ public class CheckinCollectionResult extends APICallResult {
 	private CheckinCollection checkinCollection = null;
 
 	/**
+	 * 
+	 */
+	public CheckinCollectionResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param error
+	 * @param result
+	 */
+	public CheckinCollectionResult(String error, String result) {
+		super(error, result);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * @param error
 	 * @param result
 	 * @param checkinCollection

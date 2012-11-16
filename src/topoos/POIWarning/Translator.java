@@ -14,16 +14,16 @@ class Translator {
 	private static String format = "json";
 	private static Integer version = topoos.Constants.APIVERSION;
 
-	public static List<POIDataWarning> Get(Integer[] POIID, String type,
+	public static List<POIDataWarning> Get(Integer[] POISID, String type,
 			AccessTokenOAuth accessTokenPregenerated) {
 		List<POIDataWarning> pOIWarning = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strPOIID = "";
-			for (int i = 0; i < POIID.length; i++) {
-				if (i < POIID.length - 1) {
-					strPOIID = strPOIID + POIID[i] + ",";
+			for (int i = 0; i < POISID.length; i++) {
+				if (i < POISID.length - 1) {
+					strPOIID = strPOIID + POISID[i] + ",";
 				} else {
-					strPOIID = strPOIID + POIID[i];
+					strPOIID = strPOIID + POISID[i];
 				}
 			}
 			POISWarning pOISWarning = new POISWarning("Get", method, format,
@@ -125,14 +125,42 @@ class Translator {
 		return pOIWarning;
 	}
 
-	public static Boolean Delete(Integer POIID, String type,
+	public static Boolean Delete(Integer[] POISID, String type,
 			AccessTokenOAuth accessTokenPregenerated) {
-
+		Boolean delete = null;
+		if (accessTokenPregenerated.isValid()) {
+			String strPOIID = "";
+			for (int i = 0; i < POISID.length; i++) {
+				if (i < POISID.length - 1) {
+					strPOIID = strPOIID + POISID[i] + ",";
+				} else {
+					strPOIID = strPOIID + POISID[i];
+				}
+			}
+			POISWarningDelete pOISWarningDelete = new POISWarningDelete("Delete",
+					method, format, version,
+					accessTokenPregenerated.getAccessToken(), strPOIID,
+					type);
+			GenericResult genenicResult = new GenericResult();
+			APICaller.ExecuteOperation(pOISWarningDelete, genenicResult);
+			delete = genenicResult.getCode().equals(200);
+		}
+		return delete;
 	}
 
 	public static Boolean DeleteAll(String type,
 			AccessTokenOAuth accessTokenPregenerated) {
-
+		Boolean delete = null;
+		if (accessTokenPregenerated.isValid()) {
+			POISWarningDelete pOISWarningDelete = new POISWarningDelete("DeleteAll",
+					method, format, version,
+					accessTokenPregenerated.getAccessToken(), null,
+					type);
+			GenericResult genenicResult = new GenericResult();
+			APICaller.ExecuteOperation(pOISWarningDelete, genenicResult);
+			delete = genenicResult.getCode().equals(200);
+		}
+		return delete;
 	}
 
 	public static List<POIDataWarning> Get(Context context, Integer[] POIID,
@@ -180,7 +208,7 @@ class Translator {
 				accessTokenPregenerated);
 	}
 
-	public static Boolean Delete(Context context, Integer POIID, String type) {
+	public static Boolean Delete(Context context, Integer[] POIID, String type) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Delete(POIID, type, accessTokenPregenerated);
