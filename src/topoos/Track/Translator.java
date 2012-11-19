@@ -92,15 +92,7 @@ class Translator {
 	public static Track Add(Context context, String name) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		Track track = null;
-		if (accessTokenPregenerated.isValid()) {
-			TracksAdd tracksAdd = new TracksAdd("Add", method, format, version,
-					accessTokenPregenerated.getAccessToken(), null, name);
-			TrackResult trackResult = new TrackResult();
-			APICaller.ExecuteOperation(tracksAdd, trackResult);
-			track = trackResult.getTrack();
-		}
-		return track;
+		return Add(name, accessTokenPregenerated);
 
 	}
 	
@@ -116,16 +108,7 @@ class Translator {
 			String[] layers) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		Track track = null;
-		if (accessTokenPregenerated.isValid()) {
-			TracksGet tracksGet = new TracksGet("Get", method, format, version,
-					accessTokenPregenerated.getAccessToken(), trackID,
-					numberPositions, null, null, layers);
-			TrackResult trackResult = new TrackResult();
-			APICaller.ExecuteOperation(tracksGet, trackResult);
-			track = trackResult.getTrack();
-		}
-		return track;
+		return Get(trackID, numberPositions, layers, accessTokenPregenerated);
 
 	}
 	
@@ -139,16 +122,7 @@ class Translator {
 	public static Track GetLast(Context context, Integer numberPOIS, String[] layers) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		Track track = null;
-		if (accessTokenPregenerated.isValid()) {
-			TracksGet_last tracksGet_last = new TracksGet_last("GetLast", method, format,
-					version, accessTokenPregenerated.getAccessToken(), null,
-					numberPOIS, layers);
-			TrackResult trackResult = new TrackResult();
-			APICaller.ExecuteOperation(tracksGet_last, trackResult);
-			track = trackResult.getTrack();
-		}
-		return track;
+		return GetLast(numberPOIS, layers, accessTokenPregenerated);
 
 	}
 	

@@ -6,6 +6,7 @@ public class ExportLayerTrack extends APIOperation{
 
 	public static final String DATA_TRACK= "Track";
 	public static final String TYPE_LAYER= "layer";
+	public static final String EXPORT_FORMAT="kml";
 	
 	private String	oauth_token=null; // (obligatorio) access_token a los recursos del usuario
 	private String	type=null; //  (obligatorio) este fragmento determina el tipo de recurso que se desea generar. Por ejemplo para generar un recurso de tipo capa KML, su valor es layer. Valores permitidos: layer.
@@ -17,7 +18,7 @@ public class ExportLayerTrack extends APIOperation{
 	protected Integer  	track=null; // (obligatorio) identificador del Track solicitado
 	protected Integer  	total=null; // (opcional) si se especifica un valor N, se obtendrán las últimas N posiciones del Track
 	protected Date initdate=null;
-	protected Date endate=null;
+	protected Date enddate=null;
 		//: (opcional) fechas en formato UTC que permiten filtrar posiciones registradas dentro del rango especificado, según el estándar ISO 8601. No se incluyen las posiciones registradas en la fecha indicada.
 
 
@@ -47,7 +48,7 @@ public class ExportLayerTrack extends APIOperation{
 		this.track = track;
 		this.total = total;
 		this.initdate = initdate;
-		this.endate = endate;
+		this.enddate = endate;
 	}
 	
 	
@@ -58,8 +59,10 @@ public class ExportLayerTrack extends APIOperation{
 		validate = validate && isValid(data);
 		validate = validate && isValid(type);
 		validate = validate && isValid(export_format);
-		validate = validate && isValidorNull(APIUtils.toStringInteger(track));
-		validate = validate && isValidorNull();
+		validate = validate && isValid(APIUtils.toStringInteger(track));
+		validate = validate && isValidorNull(APIUtils.toStringInteger(total));
+		validate = validate && isValidorNull(APIUtils.toStringDate(initdate));
+		validate = validate && isValidorNull(APIUtils.toStringDate(enddate));
 		return validate;
 	}
 
@@ -71,7 +74,11 @@ public class ExportLayerTrack extends APIOperation{
 			params = "/" + this.Version + "/export/"+ExportLayerTrack.TYPE_LAYER+"/"+ExportLayerTrack.DATA_TRACK+"."
 					+ this.Format 
 					+ "?oauth_token=" + this.oauth_token
-					+ "&FORMAT=" + this.oauth_token
+					+(track == null? "" : "&track="+APIUtils.toStringInteger(track))
+					+(export_format == null? "" : "&format="+APIUtils.toStringUrlEncoded(export_format))
+					+(total == null? "" : "&total="+APIUtils.toStringInteger(total))
+					+(initdate == null? "" : "&initdate="+APIUtils.toStringDate(initdate))
+					+(enddate == null? "" : "&endate="+APIUtils.toStringDate(enddate))
 					;
 		}
 		return params;

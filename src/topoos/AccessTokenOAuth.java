@@ -20,10 +20,10 @@ public class AccessTokenOAuth implements Serializable {
 	String RefreshToken;
 	String TokenType;
 	
-	private String KEY_ACCESS_TOKEN="";
-	private String KEY_EXPIREIN="";
-	private String KEY_REFRESHTOKEN="";
-	private String KEY_TOKENTYPE="";
+	private String KEY_ACCESS_TOKEN="KEY_ACCESS_TOKEN";
+	private String KEY_EXPIREIN="KEY_EXPIREIN";
+	private String KEY_REFRESHTOKEN="KEY_REFRESHTOKEN";
+	private String KEY_TOKENTYPE="KEY_TOKENTYPE";
 	
 	
 	
@@ -35,12 +35,8 @@ public class AccessTokenOAuth implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	/*private static final String ParamKey_AccessToken = "access_token";
-	private static final String ParamKey_ExpiresIn = "expires_in";
-	private static final String ParamKey_TokenType = "token_type";
-	private static final String ParamKey_RefrestToken = "refresh_token";
-	 */
+	
+	
 	public AccessTokenOAuth(String token, Long expiresIn, String refreshToken, String tokenType) {
 		super();
 		AccessToken=token;
@@ -51,14 +47,71 @@ public class AccessTokenOAuth implements Serializable {
 	
 
 	
+	/**
+	 * @return the expiresIn
+	 */
+	public Long getExpiresIn() {
+		return ExpiresIn;
+	}
+
+
+	/**
+	 * @param expiresIn the expiresIn to set
+	 */
+	public void setExpiresIn(Long expiresIn) {
+		ExpiresIn = expiresIn;
+	}
+
+
+	/**
+	 * @return the refreshToken
+	 */
+	public String getRefreshToken() {
+		return RefreshToken;
+	}
+
+
+	/**
+	 * @param refreshToken the refreshToken to set
+	 */
+	public void setRefreshToken(String refreshToken) {
+		RefreshToken = refreshToken;
+	}
+
+
+	/**
+	 * @return the tokenType
+	 */
+	public String getTokenType() {
+		return TokenType;
+	}
+
+
+	/**
+	 * @param tokenType the tokenType to set
+	 */
+	public void setTokenType(String tokenType) {
+		TokenType = tokenType;
+	}
+
+
+	
+	/**
+	 * @return the accessToken
+	 */
 	public String getAccessToken() {
 		return AccessToken;
 	}
 
-	public void setAccessToken(String token) {
-		AccessToken = token;
+
+	/**
+	 * @param accessToken the accessToken to set
+	 */
+	public void setAccessToken(String accessToken) {
+		AccessToken = accessToken;
 	}
-	
+
+
 	public synchronized void Save_Token(Context context){
 		SharedPreferences settings = context.getSharedPreferences(
 				"PREFER", Context.MODE_PRIVATE);
@@ -89,54 +142,4 @@ public class AccessTokenOAuth implements Serializable {
 		return isvalid;
 	}
 
-	/*private static void SavePreferences_Token(Context cntx, AccessTokenOAuth access) {
-		SharedPreferences settings = cntx.getSharedPreferences(
-				"PREFER", Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = settings.edit();
-		try {
-			editor.putString("AccessToken", AccessTokenOAuth.toString(access));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		editor.commit();
-	}
-
-	private static AccessTokenOAuth LoadPreferences_Token(Context cntx) {
-		AccessTokenOAuth access=null;
-		SharedPreferences settings = cntx.getSharedPreferences(
-				"PREFER", Context.MODE_PRIVATE);
-		String str_access=settings.getString("AccessToken","");
-		if(str_access!=null && !str_access.equals("")){
-			try {
-				access= (AccessTokenOAuth) AccessTokenOAuth.fromString(str_access);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return access;
-	}*/
-	
-    /** Read the object from Base64 string. */
-    /*private static Object fromString( String s ) throws IOException ,
-                                                        ClassNotFoundException {
-        byte [] data = Base64Coder.decode( s );
-        ObjectInputStream ois = new ObjectInputStream( 
-                                        new ByteArrayInputStream(  data ) );
-        Object o  = ois.readObject();
-        ois.close();
-        return o;
-    }*/
-
-    /** Write the object to a Base64 string. */
-    /*private static String toString( Serializable o ) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( baos );
-        oos.writeObject( o );
-        oos.close();
-        return new String( Base64Coder.encode( baos.toByteArray() ) );
-    }*/
 }

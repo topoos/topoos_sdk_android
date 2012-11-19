@@ -14,140 +14,43 @@ class Translator {
 	private static String format = "json";
 	private static Integer version = topoos.Constants.APIVERSION;
 	
-	//Las operaciones que acceden a contenidos privados de topoos deben tener siempre un parámetro opcional AccessTokenPregenerated
-	
-	
-	//Existe un grupo de operaciones que no utiliza token de acceso de ningún tipo. 
-
-
-	//Existe otro grupo de operaciones que en lugar de token de acceso, utiliza una clave API_Key (que deberá proporcionar el desarrollador) que no requiere ningún tratamiento especial. Estas operaciones son las que acceden o consumen contenidos públicos de topoos. 
-
-	public static 	Position Add (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
+	private static Position AddPrivate(Integer Type,Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
 		Position position = null;
 		if (accessTokenPregenerated.isValid()) {
 			PositionsAdd positionsAdd = new PositionsAdd("Add",
 					method, format, version,
 					accessTokenPregenerated.getAccessToken(),null, lat,
 					lng,  accuracy, vaccuracy, elevation,
-					timestamp, velocity, PositionsAdd.POS, bearing,
+					timestamp, velocity, Type, bearing,
 					trackID);
 			PositionResult positionResult = new PositionResult();
 			APICaller.ExecuteOperation(positionsAdd, positionResult);
 			position = positionResult.getPosition();
 		}
 		return position;
+	}
+	public static 	Position Add (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
+		return AddPrivate(PositionsAdd.POS, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
 	}
 	
 	public static	Position AddAlarmEnd(Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
-		Position position = null;
-		if (accessTokenPregenerated.isValid()) {
-			PositionsAdd positionsAdd = new PositionsAdd("AddAlarmEnd",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(),null, lat,
-					lng,  accuracy, vaccuracy, elevation,
-					timestamp, velocity, PositionsAdd.ALARM_END, bearing,
-					trackID);
-			PositionResult positionResult = new PositionResult();
-			APICaller.ExecuteOperation(positionsAdd, positionResult);
-			position = positionResult.getPosition();
-		}
-		return position;
+		return AddPrivate(PositionsAdd.ALARM_END, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
 	}
 	
 	public static	Position AddAlarmInit (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
-		Position position = null;
-		if (accessTokenPregenerated.isValid()) {
-			PositionsAdd positionsAdd = new PositionsAdd("AddAlarmInit",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(),null, lat,
-					lng,  accuracy, vaccuracy, elevation,
-					timestamp, velocity, PositionsAdd.ALARM_INIT, bearing,
-					trackID);
-			PositionResult positionResult = new PositionResult();
-			APICaller.ExecuteOperation(positionsAdd, positionResult);
-			position = positionResult.getPosition();
-		}
-		return position;
-	}
-	
-	public static	Position AddGSMNo (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
-		Position position = null;
-		if (accessTokenPregenerated.isValid()) {
-			PositionsAdd positionsAdd = new PositionsAdd("AddGSMNo",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(),null, lat,
-					lng,  accuracy, vaccuracy, elevation,
-					timestamp, velocity, PositionsAdd.GPS_NO, bearing,
-					trackID);
-			PositionResult positionResult = new PositionResult();
-			APICaller.ExecuteOperation(positionsAdd, positionResult);
-			position = positionResult.getPosition();
-		}
-		return position;
-	}
-	
-	public static	Position AddGSMOk (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
-		Position position = null;
-		if (accessTokenPregenerated.isValid()) {
-			PositionsAdd positionsAdd = new PositionsAdd("AddGSMOk",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(),null, lat,
-					lng,  accuracy, vaccuracy, elevation,
-					timestamp, velocity, PositionsAdd.GPS_OK, bearing,
-					trackID);
-			PositionResult positionResult = new PositionResult();
-			APICaller.ExecuteOperation(positionsAdd, positionResult);
-			position = positionResult.getPosition();
-		}
-		return position;
+		return AddPrivate(PositionsAdd.ALARM_INIT, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
 	}
 	
 	public static	Position AddGPSNo (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
-		Position position = null;
-		if (accessTokenPregenerated.isValid()) {
-			PositionsAdd positionsAdd = new PositionsAdd("AddGPSNo",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(),null, lat,
-					lng,  accuracy, vaccuracy, elevation,
-					timestamp, velocity, PositionsAdd.GPS_NO, bearing,
-					trackID);
-			PositionResult positionResult = new PositionResult();
-			APICaller.ExecuteOperation(positionsAdd, positionResult);
-			position = positionResult.getPosition();
-		}
-		return position;
+		return AddPrivate(PositionsAdd.GPS_NO, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
 	}
 	
 	public static	Position AddGPSOk (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
-		Position position = null;
-		if (accessTokenPregenerated.isValid()) {
-			PositionsAdd positionsAdd = new PositionsAdd("AddGPSOk",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(),null, lat,
-					lng,  accuracy, vaccuracy, elevation,
-					timestamp, velocity, PositionsAdd.GPS_OK, bearing,
-					trackID);
-			PositionResult positionResult = new PositionResult();
-			APICaller.ExecuteOperation(positionsAdd, positionResult);
-			position = positionResult.getPosition();
-		}
-		return position;
+		return AddPrivate(PositionsAdd.GPS_OK, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
 	}
 	
 	public static	Position AddTrackEnd (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated){
-		Position position = null;
-		if (accessTokenPregenerated.isValid()) {
-			PositionsAdd positionsAdd = new PositionsAdd("AddTrackEnd",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(),null, lat,
-					lng,  accuracy, vaccuracy, elevation,
-					timestamp, velocity, PositionsAdd.TRACK_END, bearing,
-					trackID);
-			PositionResult positionResult = new PositionResult();
-			APICaller.ExecuteOperation(positionsAdd, positionResult);
-			position = positionResult.getPosition();
-		}
-		return position;
+		return AddPrivate(PositionsAdd.TRACK_END, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
 	}
 	
 	public static	Position Get (Integer posID, AccessTokenOAuth accessTokenPregenerated){
@@ -176,17 +79,74 @@ class Translator {
 		return position;
 	}
 	
-	/*public static	List<Position> GetBetweenDays (Date initDate, Date endDate, AccessTokenOAuth accessTokenPregenerated){
-		Position position = null;
-		if (accessTokenPregenerated.isValid()) {
+	public static	List<Position> GetBetweenDays (Date initDate, Date endDate, AccessTokenOAuth accessTokenPregenerated){
+		List<Position> positions = null;
+		/*if (accessTokenPregenerated.isValid()) {
 			PositionsGet_between positionsGet_between = new PositionsGet_between("AddTrackEnd",
 					method, format, version,
 					accessTokenPregenerated.getAccessToken(),initDate,endDate,null);
 			PositionResult positionResult = new PositionResult();
 			APICaller.ExecuteOperation(positionsGet_between, positionResult);
 			position = positionResult.getPosition();
-		}
-		return position;		
+		}*/
+		return positions;		
 	}
-	 */
+	
+	public static 	Position Add (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return Add(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	}
+	
+	public static	Position AddAlarmEnd(Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return AddAlarmEnd(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	}
+	
+	public static	Position AddAlarmInit (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return AddAlarmInit(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	}
+	
+	public static	Position AddGPSNo (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return AddGPSNo(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	}
+	
+	public static	Position AddGPSOk (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return AddGPSOk(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	}
+	
+	public static	Position AddTrackEnd (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return AddTrackEnd(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	}
+	
+	public static	Position Get (Context context, Integer posID){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return Get(posID, accessTokenPregenerated);
+	}
+	
+	public static	Position GetLastUser (Context context, String userID){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return GetLastUser(userID, accessTokenPregenerated);
+
+	}
+	
+	public static	List<Position> GetBetweenDays (Context context, Date initDate, Date endDate){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return GetBetweenDays(initDate, endDate, accessTokenPregenerated);
+	}
+	
+	
+	
 }

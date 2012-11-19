@@ -1,11 +1,42 @@
 package topoos.Export;
 
-public class Operations {
-	//public	trackResource ExportTrack (trackID, numberPositions, layer es Type, accessTokenPregenerated)
-	
-	/**
-	 * Cuando DATA es TRACK, se admiten una serie de parámetros adicionales, algunos de los cuales pueden ser de carácter obligatorio:
-Acepta todos los parámetros que acepta la operación GetTrack. La obligatoriedad de los parámetros coincide igualmente con los establecidos en dicha operación.
+import java.util.Date;
 
+import android.content.Context;
+import topoos.AccessTokenOAuth;
+import topoos.APIAccess.Results.Objects.*;
+
+/**
+ * 
+ * @author MAJS
+ *
+ */
+public class Operations {
+	/**
+	 * 
+	 * @param trackID
+	 * @param export_format
+	 * @param total
+	 * @param initDate
+	 * @param endDate
+	 * @param accessTokenPregenerated
+	 * @return
 	 */
+	public static TrackResource ExportTrack (Integer trackID, String export_format, Integer total,Date initDate,Date endDate,  AccessTokenOAuth  accessTokenPregenerated){
+		return Translator.ExportTrack(trackID, export_format, total, initDate, endDate, accessTokenPregenerated);
+	}
+	/**
+	 * 
+	 * @param context
+	 * @param trackID
+	 * @param export_format
+	 * @param total
+	 * @param initDate
+	 * @param endDate
+	 * @return
+	 */
+	public static TrackResource ExportTrack (Context context,Integer trackID, String export_format, Integer total,Date initDate,Date endDate){
+		return Translator.ExportTrack(context, trackID, export_format, total, initDate, endDate);
+	}
+	
 }

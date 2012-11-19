@@ -1,18 +1,84 @@
 package topoos.Resources;
 
-public class Translator {
+import java.util.List;
+
+import android.content.Context;
+import topoos.AccessTokenOAuth;
+import topoos.APIAccess.APICaller;
+import topoos.APIAccess.Operations.*;
+import topoos.APIAccess.Results.*;
+import topoos.APIAccess.Results.Objects.*;
+
+/**
+ * 
+ * @author MAJS
+ *
+ */
+class Translator {
+	private static String method = "GET";
+	private static String format = "json";
+	private static Integer version = topoos.Constants.APIVERSION;
+
+	public static	List<Location> GetCircle (Integer resolution,Double latCenter,Double lngCenter,Double radius, AccessTokenOAuth accessTokenPregenerated){
+		List<Location> list = null;
+		if (accessTokenPregenerated.isValid()) {
+			ResourcesGet_polygon Get_polygon = new ResourcesGet_polygon("GetCircle", method, format,
+					version, accessTokenPregenerated.getAccessToken(), ResourcesGet_polygon.SHAPE_CIRCLE,resolution,
+					latCenter, lngCenter, radius);		
+			
+			PolygonResult polygonResult = new PolygonResult();
+			APICaller.ExecuteOperation(Get_polygon, polygonResult);
+			list = polygonResult.getPolygon();
+		}
+		return list;
+	}
+
+	public static	List<GeocodingData> GetGeocode (Double lat, Double lng, AccessTokenOAuth accessTokenPregenerated){
+		List<GeocodingData> Geocoding = null;
+		if (accessTokenPregenerated.isValid()) {
+			ResourcesGeocode resourcesGeocode = new ResourcesGeocode("GetGeocode", method, format,
+					version, accessTokenPregenerated.getAccessToken(), lat,
+					lng);
+			GeocodingResult geocodingResult = new GeocodingResult();
+			APICaller.ExecuteOperation(resourcesGeocode, geocodingResult);
+			Geocoding = geocodingResult.getGeocoding();
+		}
+		return Geocoding;
+	}
 	
-	/*public static	List<Position> GetCircle (resolution, latCenter, lngCenter, radius, accessTokenPregenerated)
-	 * Lista SimpleLocation
-	 * [{
-	 * 	latitude double?,
-	 *  longitude double?
-	 * },...]
-	public static	Direction GetGeocode (lat, lng, accessTokenPregenerated)
-	 * 
-	public static	Track GetTrackExported (resourceID, type, format, apiKey)
+	public static Track GetTrackExported (Integer resourceID,String type, String format,String apiKey){
+		Track track=null;
+		return track;
+	}
 	
 	
-	public static	String GetTrackExportedWebMapURI (resourceID, type, apiKey)
-	*/
+	public static String GetTrackExportedWebMapURI (String resourceID,String type,String apiKey){
+		String GetTrackExportedWebMapURI = null;
+		if (apiKey!=null) {
+			ResourceWebmap resourceWebmap = new ResourceWebmap("GetTrackExportedWebMapURI", method, format,
+					version, apiKey, type,
+					resourceID);
+			APICallResult aPICallResult = new APICallResult();
+			APICaller.ExecuteOperation(resourceWebmap, aPICallResult);
+			GetTrackExportedWebMapURI = aPICallResult.getResult();
+		}
+		return GetTrackExportedWebMapURI;
+	}
+	
+	
+	public static	List<Location> GetCircle (Context context, Integer resolution,Double latCenter,Double lngCenter,Double radius){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return GetCircle(resolution, latCenter, lngCenter, radius, accessTokenPregenerated);
+	
+	}
+
+	public static	List<GeocodingData> GetGeocode (Context context, Double lat, Double lng){
+		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
+		accessTokenPregenerated.Load_Token(context);
+		return GetGeocode(lat, lng, accessTokenPregenerated);
+	}
+	
+	
+	
 }

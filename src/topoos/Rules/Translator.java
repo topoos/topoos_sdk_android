@@ -34,16 +34,7 @@ class Translator {
 	public static Rule AddTrackOutOfBounds (Context context, Double lat, Double lng, Integer radius){
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		Rule Rule = null;
-		if (accessTokenPregenerated.isValid()) {
-			RulesAdd rulesAdd = new RulesAdd("Get",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(),lat,lng,radius,RulesAdd.TYPE_TRACK_OUT_OF_BOUNDS);
-			RuleResult ruleResult = new RuleResult();
-			APICaller.ExecuteOperation(rulesAdd, ruleResult);
-			Rule = ruleResult.getRule();
-		}
-		return Rule;
+		return AddTrackOutOfBounds(lat, lng, radius, accessTokenPregenerated);
 		
 	}
 }

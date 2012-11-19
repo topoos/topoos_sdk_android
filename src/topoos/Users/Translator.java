@@ -155,16 +155,7 @@ class Translator {
 	public static User Get(Context context, String userID) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		User user = null;
-		if (accessTokenPregenerated.isValid()) {
-			UsersUSRShow usersUSRShow = new UsersUSRShow("Get",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(), userID);
-			UserResult userResult = new UserResult();
-			APICaller.ExecuteOperation(usersUSRShow, userResult);
-			user = userResult.getUser();
-		}
-		return user;
+		return Get(userID, accessTokenPregenerated);
 	}
 
 	/**
@@ -177,17 +168,7 @@ class Translator {
 	public static boolean GroupSet(Context context, String userID, Integer groupID) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		boolean groupSet = false;
-		if (accessTokenPregenerated.isValid()) {
-			UsersUSRAdd_group usersUSRAdd_group = new UsersUSRAdd_group(
-					"GroupSet", method, format, version,
-					accessTokenPregenerated.getAccessToken(), userID, groupID);
-			GenericResult genericResult = new GenericResult();
-			APICaller.ExecuteOperation(usersUSRAdd_group, genericResult);
-			groupSet = genericResult.getCode() != null
-					&& genericResult.getCode().equals(200);
-		}
-		return groupSet;
+		return GroupSet(userID, groupID, accessTokenPregenerated);
 	}
 
 	/**
@@ -200,17 +181,7 @@ class Translator {
 	public static boolean GroupRemove(Context context, String userID, Integer groupID) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		boolean groupRemove = false;
-		if (accessTokenPregenerated.isValid()) {
-			UsersUSRRemove_group usersUSRRemove_group = new UsersUSRRemove_group(
-					"GroupRemove", method, format, version,
-					accessTokenPregenerated.getAccessToken(), userID, groupID);
-			GenericResult genericResult = new GenericResult();
-			APICaller.ExecuteOperation(usersUSRRemove_group, genericResult);
-			groupRemove = genericResult.getCode() != null
-					&& genericResult.getCode().equals(200);
-		}
-		return groupRemove;
+		return GroupRemove(userID, groupID, accessTokenPregenerated);
 	}
 
 	/**
@@ -228,21 +199,7 @@ class Translator {
 			Boolean activeTrack) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		List<UserIdPosition> list = null;
-		UsersNear usersNear = null;
-		if (accessTokenPregenerated.isValid()) {
-			UsersGet_near usersGet_near = new UsersGet_near(
-					"NearPOIGet", method, format, version,
-					accessTokenPregenerated.getAccessToken(), POIID, radius,
-					activeTrack, groupID, usersCount);
-			UsersNearResult usersNearResult = new UsersNearResult();
-			APICaller.ExecuteOperation(usersGet_near, usersNearResult);
-			if (usersNearResult.getUsersnear() != null) {
-				usersNear = usersNearResult.getUsersnear();
-				list = usersNear.getUserPositions();
-			}
-		}
-		return list;
+		return NearPOIGet(POIID, radius, groupID, usersCount, activeTrack, accessTokenPregenerated);
 	}
 
 	/**
@@ -261,21 +218,7 @@ class Translator {
 			Boolean activeTrack) {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		List<UserIdPosition> list = null;
-		UsersNear usersNear = null;
-		if (accessTokenPregenerated.isValid()) {
-			UsersGet_near usersGet_near = new UsersGet_near(
-					"NearPOIGet", method, format, version,
-					accessTokenPregenerated.getAccessToken(), lat, lng, radius,
-					activeTrack, groupID, usersCount);
-			UsersNearResult usersNearResult = new UsersNearResult();
-			APICaller.ExecuteOperation(usersGet_near, usersNearResult);
-			if (usersNearResult.getUsersnear() != null) {
-				usersNear = usersNearResult.getUsersnear();
-				list = usersNear.getUserPositions();
-			}
-		}
-		return list;
+		return NearPositionGet(lat, lng, radius, groupID, usersCount, activeTrack, accessTokenPregenerated);
 	}
 
 }

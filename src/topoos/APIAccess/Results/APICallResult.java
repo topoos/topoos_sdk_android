@@ -1,6 +1,6 @@
 package topoos.APIAccess.Results;
 
-public abstract class APICallResult {
+public class APICallResult {
 
 	protected String Format = null;
 	protected String Error = null;
@@ -15,7 +15,8 @@ public abstract class APICallResult {
 
 	}
 
-	public abstract void setParameters();
+	public void setParameters() {
+	}
 
 	/**
 	 * @return the format

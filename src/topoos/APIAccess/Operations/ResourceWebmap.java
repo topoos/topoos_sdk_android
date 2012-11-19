@@ -10,6 +10,23 @@ public class ResourceWebmap extends APIOperation{
 
 	
 	
+	/**
+	 * @param operationName
+	 * @param method
+	 * @param format
+	 * @param version
+	 * @param api_key
+	 * @param type
+	 * @param id
+	 */
+	public ResourceWebmap(String operationName, String method, String format,
+			Integer version, String api_key, String type, String id) {
+		super(operationName, method, format, version);
+		this.api_key = api_key;
+		this.type = type;
+		this.id = id;
+	}
+
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
