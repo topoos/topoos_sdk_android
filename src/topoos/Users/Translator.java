@@ -41,7 +41,7 @@ class Translator {
 			APICaller.ExecuteOperation(usersUSRShow, userResult);
 			user = userResult.getUser();
 		}
-		return user;
+		return user; 
 	}
 
 	/**

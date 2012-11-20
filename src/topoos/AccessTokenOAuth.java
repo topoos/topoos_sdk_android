@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class AccessTokenOAuth implements Serializable {
 
@@ -24,10 +25,7 @@ public class AccessTokenOAuth implements Serializable {
 	private String KEY_EXPIREIN="KEY_EXPIREIN";
 	private String KEY_REFRESHTOKEN="KEY_REFRESHTOKEN";
 	private String KEY_TOKENTYPE="KEY_TOKENTYPE";
-	
-	
-	
-	
+
 	/**
 	 * 
 	 */
@@ -42,7 +40,10 @@ public class AccessTokenOAuth implements Serializable {
 		AccessToken=token;
 		ExpiresIn=expiresIn;
 		RefreshToken=refreshToken;
-		TokenType=tokenType;		
+		TokenType=tokenType;	
+		if(Constants.DEBUG){
+			Log.i(Constants.TAG, this.toStringToken());
+		}
 	}
 	
 
@@ -121,6 +122,9 @@ public class AccessTokenOAuth implements Serializable {
 		editor.putString(KEY_REFRESHTOKEN,this.RefreshToken );
 		editor.putString(KEY_TOKENTYPE,this.TokenType );
 		editor.commit();	
+		if(Constants.DEBUG){
+			Log.i(Constants.TAG, this.toStringToken());
+		}
 	}
 	
 	public synchronized void Load_Token(Context context){
@@ -128,8 +132,11 @@ public class AccessTokenOAuth implements Serializable {
 				"PREFER", Context.MODE_PRIVATE);
 		this.AccessToken=settings.getString(KEY_ACCESS_TOKEN,"");
 		this.ExpiresIn=settings.getLong(KEY_EXPIREIN,-1);
-		this.RefreshToken=settings.getString(KEY_REFRESHTOKEN,"");
+		//this.RefreshToken=settings.getString(KEY_REFRESHTOKEN,"");
 		this.TokenType=settings.getString(KEY_TOKENTYPE,"");
+		if(Constants.DEBUG){
+			Log.i(Constants.TAG, this.toStringToken());
+		}
 	}	
 	
 	public boolean isValid(){
@@ -137,9 +144,22 @@ public class AccessTokenOAuth implements Serializable {
 		Calendar cal=Calendar.getInstance();
 		isvalid=cal.getTimeInMillis()<ExpiresIn;
 		isvalid=isvalid&&(AccessToken!=null &&!AccessToken.equals(""));
-		isvalid=isvalid&&(RefreshToken!=null &&!RefreshToken.equals(""));
+		//isvalid=isvalid&&(RefreshToken!=null &&!RefreshToken.equals(""));
 		isvalid=isvalid&&(TokenType!=null &&!TokenType.equals(""));
 		return isvalid;
 	}
-
+	
+	
+	public static AccessTokenOAuth GetAccessToken(Context context){
+		AccessTokenOAuth access=new AccessTokenOAuth();
+		access.Load_Token(context);
+		if(Constants.DEBUG){
+			Log.i(Constants.TAG, access.toStringToken());
+		}
+		return access;
+	}
+	
+	private String toStringToken(){
+		return "Token: "+this.AccessToken+" Time: "+this.ExpiresIn+" TokenType: "+this.TokenType+" RefreshToken "+ this.RefreshToken;
+	}
 }

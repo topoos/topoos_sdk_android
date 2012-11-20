@@ -52,11 +52,11 @@ class WebInterface {
     				}
     				else if (key.equalsIgnoreCase(ParamKey_RefreshToken))
     				{
-    					AuxExpiresIn = value;
+    					AuxRefreshToken = value;
     				}
     				else if (key.equalsIgnoreCase(ParamKey_TokenType))
     				{
-    					AuxExpiresIn = value;
+    					AuxTokenType = value;
     				}
     			}
     		}

@@ -1,5 +1,6 @@
 package topoos.APIAccess.Operations;
 
+
 public class POISAdd extends APIOperation{
 
 	private String	oauth_token=null; // (obligatorio) access_token a los recursos del usuario
@@ -55,7 +56,7 @@ public class POISAdd extends APIOperation{
 		validate = validate && isValidorNull(APIUtils.toStringDouble(vaccuracy));
 		validate = validate && isValidorNull(APIUtils.toStringDouble(elevation));
 		validate = validate && isValidorNull(categories);
-		validate = validate && isValidorNull(name);
+		validate = validate && isValid(name);
 		validate = validate && isValidorNull(desc);
 		validate = validate && isValidorNull(address);
 		validate = validate && isValidorNull(cross_street);

@@ -20,7 +20,7 @@ import topoos.Exception.TopoosException;
 public class APICaller {
 
 	public static String GetUriOperation(APIOperation operation) {
-		return Constants.TOPOOSURI + operation.ConcatParams();
+		return Constants.TOPOOSURIAPI + operation.ConcatParams();
 	}
 
 	public static void ExecuteOperation(APIOperation operation,
@@ -28,7 +28,7 @@ public class APICaller {
 		HttpClient hc = new DefaultHttpClient();
 		if(!operation.ValidateParams())
 			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
-		String OpURI = Constants.TOPOOSURI + operation.ConcatParams();
+		String OpURI = Constants.TOPOOSURIAPI + operation.ConcatParams();
 		if (Constants.DEBUG)
 			Log.d(Constants.TAG, OpURI);
 		HttpPost post = new HttpPost(OpURI);
@@ -42,10 +42,18 @@ public class APICaller {
 				Constants.HTTP_WAITING_MILISECONDS);
 		if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 			result.setResult(EntityUtils.toString(rp.getEntity()));
+			if (Constants.DEBUG)
+				Log.d(Constants.TAG, result.getResult());
 			result.setError(null);
 			result.setParameters();
 		} else {
-			throw new TopoosException("" + rp.getStatusLine().getStatusCode());
+			switch (rp.getStatusLine().getStatusCode()) {
+			case 400:
+				throw new TopoosException(TopoosException.ERROR400);
+			default:
+				throw new TopoosException("¿Error?");
+			}
+			
 		}
 	}
 

@@ -21,23 +21,27 @@ class Translator {
 			Integer[] categories, Double accuracy, Double vaccuracy,
 			Double elevation, String desc, String address, String cross_street,
 			String city, String country, String postal_code, String phone,
-			String twitter, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			String twitter, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
 		POI poi = null;
 		if (accessTokenPregenerated.isValid()) {
 
 			String strcategories = "";
-			for (int i = 0; i < categories.length; i++) {
-				if (i < categories.length - 1) {
-					strcategories = strcategories + categories[i] + ",";
-				} else {
-					strcategories = strcategories + categories[i];
+			if (categories != null) {
+				for (int i = 0; i < categories.length; i++) {
+					if (i < categories.length - 1) {
+						strcategories = strcategories + categories[i] + ",";
+					} else {
+						strcategories = strcategories + categories[i];
+					}
 				}
 			}
 			POISAdd pOISAdd = new POISAdd("Add", method, format, version,
 					accessTokenPregenerated.getAccessToken(), lat, lng,
-					accuracy, vaccuracy, elevation, strcategories, name, desc,
-					address, cross_street, city, country, postal_code, phone,
-					twitter);
+					accuracy, vaccuracy, elevation,
+					!strcategories.equals("") ? strcategories : null, name,
+					desc, address, cross_street, city, country, postal_code,
+					phone, twitter);
 			POIResult poiResult = new POIResult();
 			APICaller.ExecuteOperation(pOISAdd, poiResult);
 			poi = poiResult.getPoi();
@@ -46,7 +50,8 @@ class Translator {
 	}
 
 	public static POI Get(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		POI poi = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISGet pOISGet = new POISGet("Get", method, format, version,
@@ -59,7 +64,8 @@ class Translator {
 	}
 
 	public static List<POI> GetNear(Double lat, Double lng, Integer radius,
-			Integer[] categories, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			Integer[] categories, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
 		List<POI> poilist = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strcategories = "";
@@ -80,9 +86,10 @@ class Translator {
 		return poilist;
 	}
 
-	public static List<POI> GetWhere(Integer[] categories, Integer[] POIS, String city,
-			String country, String postal_code, String q,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+	public static List<POI> GetWhere(Integer[] categories, Integer[] POIS,
+			String city, String country, String postal_code, String q,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		List<POI> poilist = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strcategories = "";
@@ -112,10 +119,12 @@ class Translator {
 	}
 
 	public static Boolean Update(Integer POIID, String name, Double lat,
-			Double lng, Integer[] categories, Double accuracy, Double vaccuracy,
-			Double elevation, String desc, String address, String cross_stret,
-			String city, String country, String postal_code, String phone,
-			String twitter, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			Double lng, Integer[] categories, Double accuracy,
+			Double vaccuracy, Double elevation, String desc, String address,
+			String cross_stret, String city, String country,
+			String postal_code, String phone, String twitter,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		POI poi = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strcategories = "";
@@ -137,7 +146,8 @@ class Translator {
 	}
 
 	public static Boolean Delete(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		boolean delete = false;
 		if (accessTokenPregenerated.isValid()) {
 			POISDelete pOISDelete = new POISDelete("Delete", method, format,
@@ -161,14 +171,16 @@ class Translator {
 				twitter, accessTokenPregenerated);
 	}
 
-	public static POI Get(Context context, Integer POIID) throws IOException, TopoosException {
+	public static POI Get(Context context, Integer POIID) throws IOException,
+			TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Get(POIID, accessTokenPregenerated);
 	}
 
 	public static List<POI> GetNear(Context context, Double lat, Double lng,
-			Integer radius, Integer[] categories) throws IOException, TopoosException {
+			Integer radius, Integer[] categories) throws IOException,
+			TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetNear(lat, lng, radius, categories, accessTokenPregenerated);
@@ -188,7 +200,8 @@ class Translator {
 			Double lat, Double lng, Integer[] categories, Double accuracy,
 			Double vaccuracy, Double elevation, String desc, String address,
 			String cross_stret, String city, String country,
-			String postal_code, String phone, String twitter) throws IOException, TopoosException {
+			String postal_code, String phone, String twitter)
+			throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Update(POIID, name, lat, lng, categories, accuracy, vaccuracy,
@@ -196,7 +209,8 @@ class Translator {
 				postal_code, phone, twitter, accessTokenPregenerated);
 	}
 
-	public static Boolean Delete(Context context, Integer POIID) throws IOException, TopoosException {
+	public static Boolean Delete(Context context, Integer POIID)
+			throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Delete(POIID, accessTokenPregenerated);

@@ -5,12 +5,16 @@ import java.util.List;
 
 import android.content.Context;
 import topoos.AccessTokenOAuth;
+import topoos.APIAccess.Operations.POISWarningAdd;
 import topoos.APIAccess.Results.Objects.*;
 import topoos.Exception.TopoosException;
 
 public class Operations {
 	
-		
+		public static final String	TYPE_CLOSED=POISWarningAdd.TYPE_CLOSED;
+		public static final String	TYPE_DUPLICATED=POISWarningAdd.TYPE_DUPLICATED;
+		public static final String	TYPE_WRONG_INDICATOR=POISWarningAdd.TYPE_WRONG_INDICATOR;
+		public static final String	TYPE_WRONG_INFO=POISWarningAdd.TYPE_WRONG_INFO;
 
 		public static List<POIDataWarning> Get(Integer[] POISID, String type,
 				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
