@@ -1,5 +1,6 @@
 package topoos.Users;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.content.Context;
@@ -8,6 +9,7 @@ import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 /**
  * 
@@ -25,9 +27,11 @@ class Translator {
 	 * @param userID
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static User Get(String userID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		User user = null;
 		if (accessTokenPregenerated.isValid()) {
 			UsersUSRShow usersUSRShow = new UsersUSRShow("Get",
@@ -46,9 +50,11 @@ class Translator {
 	 * @param groupID
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static boolean GroupSet(String userID, Integer groupID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		boolean groupSet = false;
 		if (accessTokenPregenerated.isValid()) {
 			UsersUSRAdd_group usersUSRAdd_group = new UsersUSRAdd_group(
@@ -68,9 +74,11 @@ class Translator {
 	 * @param groupID
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static boolean GroupRemove(String userID, Integer groupID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		boolean groupRemove = false;
 		if (accessTokenPregenerated.isValid()) {
 			UsersUSRRemove_group usersUSRRemove_group = new UsersUSRRemove_group(
@@ -94,10 +102,12 @@ class Translator {
 	 * @param activeTrack
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<UserIdPosition> NearPOIGet(Integer POIID,
 			Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated) {
+			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<UserIdPosition> list = null;
 		UsersNear usersNear = null;
 		if (accessTokenPregenerated.isValid()) {
@@ -125,10 +135,12 @@ class Translator {
 	 * @param activeTrack
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<UserIdPosition> NearPositionGet(Double lat,
 			Double lng, Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated) {
+			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<UserIdPosition> list = null;
 		UsersNear usersNear = null;
 		if (accessTokenPregenerated.isValid()) {
@@ -151,8 +163,10 @@ class Translator {
 	 * @param context
 	 * @param userID
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
-	public static User Get(Context context, String userID) {
+	public static User Get(Context context, String userID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Get(userID, accessTokenPregenerated);
@@ -164,8 +178,10 @@ class Translator {
 	 * @param userID
 	 * @param groupID
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
-	public static boolean GroupSet(Context context, String userID, Integer groupID) {
+	public static boolean GroupSet(Context context, String userID, Integer groupID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GroupSet(userID, groupID, accessTokenPregenerated);
@@ -177,8 +193,10 @@ class Translator {
 	 * @param userID
 	 * @param groupID
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
-	public static boolean GroupRemove(Context context, String userID, Integer groupID) {
+	public static boolean GroupRemove(Context context, String userID, Integer groupID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GroupRemove(userID, groupID, accessTokenPregenerated);
@@ -193,10 +211,12 @@ class Translator {
 	 * @param usersCount
 	 * @param activeTrack
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<UserIdPosition> NearPOIGet(Context context, Integer POIID,
 			Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack) {
+			Boolean activeTrack) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return NearPOIGet(POIID, radius, groupID, usersCount, activeTrack, accessTokenPregenerated);
@@ -212,10 +232,12 @@ class Translator {
 	 * @param numberUsers
 	 * @param activeTrack
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<UserIdPosition> NearPositionGet(Context context, Double lat,
 			Double lng, Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack) {
+			Boolean activeTrack) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return NearPositionGet(lat, lng, radius, groupID, usersCount, activeTrack, accessTokenPregenerated);

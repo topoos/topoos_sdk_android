@@ -1,5 +1,6 @@
 package topoos.Resources;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.content.Context;
@@ -8,6 +9,7 @@ import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 /**
  * 
@@ -19,7 +21,7 @@ class Translator {
 	private static String format = "json";
 	private static Integer version = topoos.Constants.APIVERSION;
 
-	public static	List<Location> GetCircle (Integer resolution,Double latCenter,Double lngCenter,Double radius, AccessTokenOAuth accessTokenPregenerated){
+	public static	List<Location> GetCircle (Integer resolution,Double latCenter,Double lngCenter,Double radius, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
 		List<Location> list = null;
 		if (accessTokenPregenerated.isValid()) {
 			ResourcesGet_polygon Get_polygon = new ResourcesGet_polygon("GetCircle", method, format,
@@ -33,7 +35,7 @@ class Translator {
 		return list;
 	}
 
-	public static	List<GeocodingData> GetGeocode (Double lat, Double lng, AccessTokenOAuth accessTokenPregenerated){
+	public static	List<GeocodingData> GetGeocode (Double lat, Double lng, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
 		List<GeocodingData> Geocoding = null;
 		if (accessTokenPregenerated.isValid()) {
 			ResourcesGeocode resourcesGeocode = new ResourcesGeocode("GetGeocode", method, format,
@@ -52,7 +54,7 @@ class Translator {
 	}
 	
 	
-	public static String GetTrackExportedWebMapURI (String resourceID,String type,String apiKey){
+	public static String GetTrackExportedWebMapURI (String resourceID,String type,String apiKey) throws IOException, TopoosException{
 		String GetTrackExportedWebMapURI = null;
 		if (apiKey!=null) {
 			ResourceWebmap resourceWebmap = new ResourceWebmap("GetTrackExportedWebMapURI", method, format,
@@ -66,14 +68,14 @@ class Translator {
 	}
 	
 	
-	public static	List<Location> GetCircle (Context context, Integer resolution,Double latCenter,Double lngCenter,Double radius){
+	public static	List<Location> GetCircle (Context context, Integer resolution,Double latCenter,Double lngCenter,Double radius) throws IOException, TopoosException{
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetCircle(resolution, latCenter, lngCenter, radius, accessTokenPregenerated);
 	
 	}
 
-	public static	List<GeocodingData> GetGeocode (Context context, Double lat, Double lng){
+	public static	List<GeocodingData> GetGeocode (Context context, Double lat, Double lng) throws IOException, TopoosException{
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetGeocode(lat, lng, accessTokenPregenerated);

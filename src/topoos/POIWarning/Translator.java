@@ -1,5 +1,6 @@
 package topoos.POIWarning;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.content.Context;
@@ -8,6 +9,7 @@ import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 class Translator {
 	private static String method = "GET";
@@ -15,7 +17,7 @@ class Translator {
 	private static Integer version = topoos.Constants.APIVERSION;
 
 	public static List<POIDataWarning> Get(Integer[] POISID, String type,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<POIDataWarning> pOIWarning = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strPOIID = "";
@@ -37,7 +39,7 @@ class Translator {
 	}
 
 	public static List<POIDataWarning> GetAll(String type,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<POIDataWarning> pOIWarning = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISWarning pOISWarning = new POISWarning("GetAll", method, format,
@@ -51,7 +53,7 @@ class Translator {
 	}
 
 	public static POIWarning AddClosed(Integer POI_ID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		POIWarning pOIWarning = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISWarningAdd pOISWarningAdd = new POISWarningAdd("AddClosed",
@@ -66,7 +68,7 @@ class Translator {
 	}
 
 	public static POIWarning AddDuplicated(Integer POI_ID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		POIWarning pOIWarning = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISWarningAdd pOISWarningAdd = new POISWarningAdd("GetAll",
@@ -82,7 +84,7 @@ class Translator {
 
 	public static POIWarning AddWrongIndicator(Integer POI_ID, Double lat,
 			Double lng, Double accuracy, Double vaccuracy, Double elevation,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		POIWarning pOIWarning = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISWarningAdd pOISWarningAdd = new POISWarningAdd("AddWrongIndicator",
@@ -101,7 +103,7 @@ class Translator {
 			Integer[] categories, String desc, String address,
 			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		POIWarning pOIWarning = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strcategories = "";
@@ -126,7 +128,7 @@ class Translator {
 	}
 
 	public static Boolean Delete(Integer[] POISID, String type,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Boolean delete = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strPOIID = "";
@@ -149,7 +151,7 @@ class Translator {
 	}
 
 	public static Boolean DeleteAll(String type,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Boolean delete = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISWarningDelete pOISWarningDelete = new POISWarningDelete("DeleteAll",
@@ -164,25 +166,25 @@ class Translator {
 	}
 
 	public static List<POIDataWarning> Get(Context context, Integer[] POIID,
-			String type) {
+			String type) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Get(POIID, type, accessTokenPregenerated);
 	}
 
-	public static List<POIDataWarning> GetAll(Context context, String type) {
+	public static List<POIDataWarning> GetAll(Context context, String type) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetAll(type, accessTokenPregenerated);
 	}
 
-	public static POIWarning AddClosed(Context context, Integer POI_ID) {
+	public static POIWarning AddClosed(Context context, Integer POI_ID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return AddClosed(POI_ID, accessTokenPregenerated);
 	}
 
-	public static POIWarning AddDuplicated(Context context, Integer POI_ID) {
+	public static POIWarning AddDuplicated(Context context, Integer POI_ID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return AddDuplicated(POI_ID, accessTokenPregenerated);
@@ -190,7 +192,7 @@ class Translator {
 
 	public static POIWarning AddWrongIndicator(Context context, Integer POI_ID,
 			Double lat, Double lng, Double accuracy, Double vaccuracy,
-			Double elevation) {
+			Double elevation) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return AddWrongIndicator(POI_ID, lat, lng, accuracy, vaccuracy,
@@ -200,7 +202,7 @@ class Translator {
 	public static POIWarning AddWrongInfo(Context context, Integer POI_ID,
 			String name, Integer[] categories, String desc, String address,
 			String cross_street, String city, String country,
-			String postal_code, String phone, String twitter) {
+			String postal_code, String phone, String twitter) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return AddWrongInfo(POI_ID, name, categories, desc, address,
@@ -208,13 +210,13 @@ class Translator {
 				accessTokenPregenerated);
 	}
 
-	public static Boolean Delete(Context context, Integer[] POIID, String type) {
+	public static Boolean Delete(Context context, Integer[] POIID, String type) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Delete(POIID, type, accessTokenPregenerated);
 	}
 
-	public static Boolean DeleteAll(Context context, String type) {
+	public static Boolean DeleteAll(Context context, String type) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return DeleteAll(type, accessTokenPregenerated);

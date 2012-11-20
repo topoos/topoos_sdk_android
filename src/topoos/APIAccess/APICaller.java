@@ -15,6 +15,7 @@ import android.util.Log;
 import topoos.Constants;
 import topoos.APIAccess.Operations.APIOperation;
 import topoos.APIAccess.Results.APICallResult;
+import topoos.Exception.TopoosException;
 
 public class APICaller {
 
@@ -23,8 +24,10 @@ public class APICaller {
 	}
 
 	public static void ExecuteOperation(APIOperation operation,
-			APICallResult result) throws IOException {
+			APICallResult result) throws IOException, TopoosException {
 		HttpClient hc = new DefaultHttpClient();
+		if(!operation.ValidateParams())
+			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
 		String OpURI = Constants.TOPOOSURI + operation.ConcatParams();
 		if (Constants.DEBUG)
 			Log.d(Constants.TAG, OpURI);
@@ -42,8 +45,7 @@ public class APICaller {
 			result.setError(null);
 			result.setParameters();
 		} else {
-			result.setResult(null);
-			result.setError("" + rp.getStatusLine().getStatusCode());
+			throw new TopoosException("" + rp.getStatusLine().getStatusCode());
 		}
 	}
 

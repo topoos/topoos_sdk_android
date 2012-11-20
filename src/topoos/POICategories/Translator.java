@@ -1,5 +1,6 @@
 package topoos.POICategories;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.content.Context;
@@ -8,6 +9,7 @@ import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 /**
  * 
@@ -21,7 +23,7 @@ class Translator {
 	private static Integer version = topoos.Constants.APIVERSION;
 
 	public static List<POICategory> GetAll(
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<POICategory> GetAll = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISCategories pOISCategories = new POISCategories("GetAll",
@@ -37,7 +39,7 @@ class Translator {
 	}
 
 	public static POICategory Add(String name,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		POICategory pOICategory = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISCategoriesAdd pOISCategoriesAdd = new POISCategoriesAdd("Add",
@@ -51,7 +53,7 @@ class Translator {
 	}
 
 	public static Boolean Update(Integer categoryID, String name,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		POICategory pOICategory = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISCategoriesAdd pOISCategoriesAdd = new POISCategoriesAdd("Add",
@@ -65,7 +67,7 @@ class Translator {
 	}
 
 	public static Boolean Delete(Integer categoryID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		boolean delete = false;
 		if (accessTokenPregenerated.isValid()) {
 			POISCategoriesDelete pOISCategoriesDelete = new POISCategoriesDelete(
@@ -78,26 +80,26 @@ class Translator {
 		return delete;
 	}
 
-	public static List<POICategory> GetAll(Context context) {
+	public static List<POICategory> GetAll(Context context) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetAll(accessTokenPregenerated);
 	}
 
-	public static POICategory Add(Context context, String name) {
+	public static POICategory Add(Context context, String name) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Add(name, accessTokenPregenerated);
 	}
 
 	public static Boolean Update(Context context, Integer categoryID,
-			String name) {
+			String name) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Update(categoryID, name, accessTokenPregenerated);
 	}
 
-	public static Boolean Delete(Context context, Integer categoryID) {
+	public static Boolean Delete(Context context, Integer categoryID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Delete(categoryID, accessTokenPregenerated);

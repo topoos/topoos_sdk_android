@@ -1,11 +1,14 @@
  package topoos.Track;
 
+import java.io.IOException;
+
 import android.content.Context;
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 /**
  * 
  * @author MAJS
@@ -22,9 +25,11 @@ class Translator {
 	 * @param name
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static Track Add(String name,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 
 		Track track = null;
 		if (accessTokenPregenerated.isValid()) {
@@ -45,9 +50,11 @@ class Translator {
 	 * @param layers
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static Track Get(Integer trackID, Integer numberPositions,
-			String[] layers, AccessTokenOAuth accessTokenPregenerated) {
+			String[] layers, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Track track = null;
 		if (accessTokenPregenerated.isValid()) {
 			TracksGet tracksGet = new TracksGet("Get", method, format, version,
@@ -67,9 +74,11 @@ class Translator {
 	 * @param layers
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static Track GetLast(Integer numberPOIS, String[] layers,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Track track = null;
 		if (accessTokenPregenerated.isValid()) {
 			TracksGet_last tracksGet_last = new TracksGet_last("GetLast", method, format,
@@ -88,8 +97,10 @@ class Translator {
 	 * @param context
 	 * @param name
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
-	public static Track Add(Context context, String name) {
+	public static Track Add(Context context, String name) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Add(name, accessTokenPregenerated);
@@ -103,9 +114,11 @@ class Translator {
 	 * @param numberPositions
 	 * @param layers
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static Track Get(Context context, Integer trackID, Integer numberPositions,
-			String[] layers) {
+			String[] layers) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Get(trackID, numberPositions, layers, accessTokenPregenerated);
@@ -118,8 +131,10 @@ class Translator {
 	 * @param numberPOIS
 	 * @param layers
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
-	public static Track GetLast(Context context, Integer numberPOIS, String[] layers) {
+	public static Track GetLast(Context context, Integer numberPOIS, String[] layers) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetLast(numberPOIS, layers, accessTokenPregenerated);

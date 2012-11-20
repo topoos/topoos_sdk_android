@@ -1,11 +1,14 @@
 package topoos.Rules;
 
+import java.io.IOException;
+
 import android.content.Context;
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 /**
  * 
  * @author MAJS
@@ -17,7 +20,7 @@ class Translator {
 	private static Integer version = topoos.Constants.APIVERSION;
 
 	
-	public static Rule AddTrackOutOfBounds (Double lat, Double lng, Integer radius, AccessTokenOAuth accessTokenPregenerated){
+	public static Rule AddTrackOutOfBounds (Double lat, Double lng, Integer radius, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
 		Rule Rule = null;
 		if (accessTokenPregenerated.isValid()) {
 			RulesAdd rulesAdd = new RulesAdd("Get",
@@ -31,7 +34,7 @@ class Translator {
 		
 	}
 	
-	public static Rule AddTrackOutOfBounds (Context context, Double lat, Double lng, Integer radius){
+	public static Rule AddTrackOutOfBounds (Context context, Double lat, Double lng, Integer radius) throws IOException, TopoosException{
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return AddTrackOutOfBounds(lat, lng, radius, accessTokenPregenerated);

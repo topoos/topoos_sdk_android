@@ -1,10 +1,12 @@
 package topoos.Resources;
 
+import java.io.IOException;
 import java.util.List;
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.Results.Objects.GeocodingData;
 import topoos.APIAccess.Results.Objects.Location;
 import topoos.APIAccess.Results.Objects.Track;
+import topoos.Exception.TopoosException;
 import android.content.Context;
 
 /**
@@ -21,10 +23,12 @@ public class Operations {
 	 * @param radius
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<Location> GetCircle(Integer resolution,
 			Double latCenter, Double lngCenter, Double radius,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		return Translator.GetCircle(resolution, latCenter, lngCenter, radius,
 				accessTokenPregenerated);
 	}
@@ -35,9 +39,11 @@ public class Operations {
 	 * @param lng
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<GeocodingData> GetGeocode(Double lat, Double lng,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		return Translator.GetGeocode(lat, lng, accessTokenPregenerated);
 	}
 
@@ -60,9 +66,11 @@ public class Operations {
 	 * @param type
 	 * @param apiKey
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static String GetTrackExportedWebMapURI(String resourceID,
-			String type, String apiKey) {
+			String type, String apiKey) throws IOException, TopoosException {
 		return Translator.GetTrackExportedWebMapURI(resourceID, type, apiKey);
 	}
 
@@ -74,9 +82,11 @@ public class Operations {
 	 * @param lngCenter
 	 * @param radius
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<Location> GetCircle(Context context, Integer resolution,
-			Double latCenter, Double lngCenter, Double radius) {
+			Double latCenter, Double lngCenter, Double radius) throws IOException, TopoosException {
 		return Translator.GetCircle(context, resolution, latCenter, lngCenter,
 				radius);
 
@@ -88,9 +98,11 @@ public class Operations {
 	 * @param lat
 	 * @param lng
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<GeocodingData> GetGeocode(Context context, Double lat,
-			Double lng) {
+			Double lng) throws IOException, TopoosException {
 		return Translator.GetGeocode(context, lat, lng);
 	}
 }

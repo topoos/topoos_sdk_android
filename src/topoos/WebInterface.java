@@ -68,6 +68,5 @@ class WebInterface {
     	}
     	
     	return Access;
-    	
 	}
 }

@@ -165,10 +165,8 @@ public class PositionKMLCollection extends APICallResult {
 								}
 							}
 						}
-						PositionKML position=new PositionKML(timestamp,
-								name, description, point,
-								extendedData);
-						
+						PositionKML position=new PositionKML(timestamp,name, description, point,extendedData);
+						position.equals("");//Cambiar
 						
 					}
 				}

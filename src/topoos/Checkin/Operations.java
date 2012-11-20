@@ -1,10 +1,12 @@
 package topoos.Checkin;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.Results.Objects.Checkin;
+import topoos.Exception.TopoosException;
 import android.content.Context;
 
 /**
@@ -19,9 +21,11 @@ public class Operations {
 	 * @param timestamp
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static Checkin Add(Integer POIID, Date timestamp,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		return Translator.Add(POIID, timestamp, accessTokenPregenerated);
 	}
 
@@ -30,9 +34,11 @@ public class Operations {
 	 * @param checkinID
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static Checkin Get(Integer checkinID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		return Translator.Get(checkinID, accessTokenPregenerated);
 	}
 
@@ -41,9 +47,11 @@ public class Operations {
 	 * @param userID
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static Checkin GetLast(String userID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		return Translator.GetLast(userID, accessTokenPregenerated);
 	}
 
@@ -52,9 +60,11 @@ public class Operations {
 	 * @param POIID
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
 	public static List<Checkin> GetPOI(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		return Translator.GetPOI(POIID, accessTokenPregenerated);
 	}
 
@@ -64,12 +74,14 @@ public class Operations {
 	 * @param POIID
 	 * @param timestamp
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
-	public static Checkin Add(Context context, Integer POIID, Date timestamp) {
+	public static Checkin Add(Context context, Integer POIID, Date timestamp) throws IOException, TopoosException {
 		return Translator.Add(context, POIID, timestamp);
 	}
 
-	public static Checkin Get(Context context, Integer checkinID) {
+	public static Checkin Get(Context context, Integer checkinID) throws IOException, TopoosException {
 		return Translator.Get(context, checkinID);
 	}
 
@@ -78,8 +90,10 @@ public class Operations {
 	 * @param context
 	 * @param userID
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
-	public static Checkin GetLast(Context context, String userID) {
+	public static Checkin GetLast(Context context, String userID) throws IOException, TopoosException {
 		return Translator.GetLast(context, userID);
 	}
 
@@ -88,8 +102,10 @@ public class Operations {
 	 * @param context
 	 * @param POIID
 	 * @return
+	 * @throws IOException 
+	 * @throws TopoosException 
 	 */
-	public static List<Checkin> GetPOI(Context context, Integer POIID) {
+	public static List<Checkin> GetPOI(Context context, Integer POIID) throws IOException, TopoosException {
 		return Translator.GetPOI(context, POIID);
 	}
 }

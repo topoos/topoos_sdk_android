@@ -1,4 +1,5 @@
 package topoos.Checkin;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class Translator {
 	
@@ -16,7 +18,7 @@ public class Translator {
 	private static Integer version = topoos.Constants.APIVERSION;
 	
 	public static Checkin Add(Integer POIID, Date timestamp,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Checkin checkin = null;
 		if (accessTokenPregenerated.isValid()) {
 			CheckinAdd checkinAdd = new CheckinAdd("Add", method, format,
@@ -30,7 +32,7 @@ public class Translator {
 	}
 
 	public static Checkin Get(Integer checkinID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Checkin checkin = null;
 		if (accessTokenPregenerated.isValid()) {
 			CheckinGet checkinGet = new CheckinGet("Get", method, format,
@@ -44,7 +46,7 @@ public class Translator {
 	}
 
 	public static Checkin GetLast(String userID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Checkin checkin = null;
 		if (accessTokenPregenerated.isValid()) {
 			CheckinGet_last checkinGet_last = new CheckinGet_last("GetLast",
@@ -58,7 +60,7 @@ public class Translator {
 	}
 
 	public static List<Checkin> GetPOI(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<Checkin> checkin = null;
 		if (accessTokenPregenerated.isValid()) {
 			CheckinGet_where checkinGet_where = new CheckinGet_where("GetPOI",
@@ -71,25 +73,25 @@ public class Translator {
 		return checkin;
 	}
 
-	public static Checkin Add(Context context, Integer POIID, Date timestamp) {
+	public static Checkin Add(Context context, Integer POIID, Date timestamp) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Add(POIID, timestamp, accessTokenPregenerated);
 	}
 
-	public static Checkin Get(Context context, Integer checkinID) {
+	public static Checkin Get(Context context, Integer checkinID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Get(checkinID, accessTokenPregenerated);
 	}
 
-	public static Checkin GetLast(Context context, String userID) {
+	public static Checkin GetLast(Context context, String userID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetLast(userID, accessTokenPregenerated);
 	}
 
-	public static List<Checkin> GetPOI(Context context, Integer POIID) {
+	public static List<Checkin> GetPOI(Context context, Integer POIID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetPOI(POIID, accessTokenPregenerated);

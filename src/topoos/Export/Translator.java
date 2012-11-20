@@ -1,4 +1,5 @@
 package topoos.Export;
+import java.io.IOException;
 import java.util.Date;
 
 import android.content.Context;
@@ -7,6 +8,7 @@ import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class Translator {
 	
@@ -14,7 +16,7 @@ public class Translator {
 	private static String format = "json";
 	private static Integer version = topoos.Constants.APIVERSION;
 	
-	public static TrackResource ExportTrack (Integer trackID, String export_format, Integer total,Date initDate,Date endDate,  AccessTokenOAuth  accessTokenPregenerated){
+	public static TrackResource ExportTrack (Integer trackID, String export_format, Integer total,Date initDate,Date endDate,  AccessTokenOAuth  accessTokenPregenerated) throws IOException, TopoosException{
 		TrackResource trackResource = null;
 		if (accessTokenPregenerated.isValid()) {
 			ExportLayerTrack exportLayerTrack = new ExportLayerTrack("ExportTrack", method, format,
@@ -33,7 +35,7 @@ public class Translator {
 		return trackResource;
 	}
 	
-	public static TrackResource ExportTrack (Context context,Integer trackID, String export_format, Integer total,Date initDate,Date endDate){
+	public static TrackResource ExportTrack (Context context,Integer trackID, String export_format, Integer total,Date initDate,Date endDate) throws IOException, TopoosException{
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return ExportTrack(trackID, export_format, total, initDate, endDate, accessTokenPregenerated);
