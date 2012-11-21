@@ -4,7 +4,10 @@ import java.util.Date;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class PositionResult extends APICallResult {
 
@@ -38,7 +41,7 @@ public class PositionResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		Integer id = null;
 		String device = null;
@@ -81,7 +84,10 @@ public class PositionResult extends APICallResult {
 					 accuracy,  vaccuracy,  bearing,  velocity,
 					 track_id);
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

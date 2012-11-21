@@ -39,6 +39,7 @@ public class POISGet_near extends APIOperation{
 			params = "/" + this.Version + "/pois/get_near." + this.Format 
 					+ "?oauth_token=" + this.oauth_token
 					+ "&lat="+APIUtils.toStringDouble(lat)
+					+ "&lng="+APIUtils.toStringDouble(lng)
 					+ "&radius="+APIUtils.toStringInteger(radius)
 					+ "&categories="+APIUtils.toStringUrlEncoded(categories)
 					;

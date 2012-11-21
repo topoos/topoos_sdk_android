@@ -10,6 +10,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import topoos.Constants;
+import topoos.Exception.TopoosException;
+
 public class PositionKMLCollection extends APICallResult {
 
 	String name = null;
@@ -17,7 +20,7 @@ public class PositionKMLCollection extends APICallResult {
 	ArrayList<PositionKML> Placemarks = null;
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		if (this.Result != null) {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -171,7 +174,10 @@ public class PositionKMLCollection extends APICallResult {
 					}
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				if (Constants.DEBUG){
+					e.printStackTrace();
+				}
+				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
 
 		}

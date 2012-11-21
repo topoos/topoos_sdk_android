@@ -3,11 +3,12 @@ package topoos.APIAccess.Results;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class POICategoryCollectionResult extends APICallResult 
 {
@@ -42,7 +43,7 @@ public class POICategoryCollectionResult extends APICallResult
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		Integer id = null;
 		String description = null;
@@ -62,9 +63,11 @@ public class POICategoryCollectionResult extends APICallResult
 				arraylist.add(poiCategory);
 			}
 			this.poiCategoryCollection=new POICategoryCollection(arraylist);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

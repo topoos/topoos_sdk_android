@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
+
 /**
  * 
  * @author MAJS
- *
+ * 
  */
 public class UserResult extends APICallResult {
 
-
-	private User user=null;
-
+	private User user = null;
 
 	/**
 	 * 
@@ -44,13 +46,13 @@ public class UserResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
-		 String Id = null;
-		 String Name = null;
-		 String Email = null;
-		 Profile Profile = null;
-		 ArrayList<Integer> Ugroup = null;
-		 Acreditation Acreditation = null;
+	public void setParameters() throws TopoosException {
+		String Id = null;
+		String Name = null;
+		String Email = null;
+		Profile Profile = null;
+		ArrayList<Integer> Ugroup = null;
+		Acreditation Acreditation = null;
 		// Processing result
 		try {
 			JSONObject jObject = (JSONObject) new JSONTokener(Result)
@@ -58,10 +60,13 @@ public class UserResult extends APICallResult {
 			// Extracting content
 			Id = jObject.getString("id");
 			Name = jObject.getString("name");
-			Profile = new Profile(APIUtils.toDateString(jObject
-					.getJSONObject("profile").getString("birthday")), jObject
-					.getJSONObject("profile").getString("gender"));
-			Email= jObject.getString("email");
+			if (jObject.optJSONObject("profile") != null) {
+				Profile = new Profile(APIUtils.toDateString(jObject
+						.getJSONObject("profile").getString("birthday")),
+						jObject.getJSONObject("profile").getString("gender"));
+			} else
+				Profile = null;
+			Email = jObject.getString("email");
 			JSONArray jarray = jObject.getJSONArray("ugroup");
 			if (Ugroup == null)
 				Ugroup = new ArrayList<Integer>();
@@ -81,13 +86,14 @@ public class UserResult extends APICallResult {
 					"accreditation").getString("expirationtime"), jObject
 					.getJSONObject("accreditation").getString("client_id"),
 					arrayV);
+			this.user = new User(Id, Name, Email, Profile, Ugroup, Acreditation);
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (Constants.DEBUG) {
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
-		this.user=new User(Id, Name,
-				Email, Profile,
-				Ugroup,
-				Acreditation);
+
 	}
 
 	/**
@@ -98,12 +104,11 @@ public class UserResult extends APICallResult {
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param user
+	 *            the user to set
 	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	
-	
 }

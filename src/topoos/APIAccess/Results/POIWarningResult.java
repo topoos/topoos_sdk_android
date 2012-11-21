@@ -7,7 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class POIWarningResult extends APICallResult {
 
@@ -41,7 +43,7 @@ public class POIWarningResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		Integer id = null;
 		Integer poi_id = null;
@@ -79,27 +81,29 @@ public class POIWarningResult extends APICallResult {
 			JSONObject jObjectData = jObject.optJSONObject("data");
 			if (jObjectData != null) {
 				id_warningdata = jObjectData.getInt("id");
-				latitude = jObjectData.getDouble("latitude");
-				longitude = jObjectData.getDouble("longitude");
-				elevation = jObjectData.getDouble("elevation");
-				name = jObjectData.getString("name");
-				accuracy = jObjectData.getDouble("accuracy");
-				vaccuracy = jObjectData.getDouble("vaccuracy");
-				address = jObjectData.getString("address");
-				cross_street = jObjectData.getString("cross_street");
-				city = jObjectData.getString("city");
-				country = jObjectData.getString("country");
-				postal_code = jObjectData.getString("postal_code");
-				phone = jObjectData.getString("phone");
-				twitter = jObjectData.getString("twitter");
-				description = jObjectData.getString("description");
+				latitude = jObjectData.optDouble("latitude");
+				longitude = jObjectData.optDouble("longitude");
+				elevation = jObjectData.optDouble("elevation");
+				name = jObjectData.optString("name");
+				accuracy = jObjectData.optDouble("accuracy");
+				vaccuracy = jObjectData.optDouble("vaccuracy");
+				address = jObjectData.optString("address");
+				cross_street = jObjectData.optString("cross_street");
+				city = jObjectData.optString("city");
+				country = jObjectData.optString("country");
+				postal_code = jObjectData.optString("postal_code");
+				phone = jObjectData.optString("phone");
+				twitter = jObjectData.optString("twitter");
+				description = jObjectData.optString("description");
 				categories = new ArrayList<POICategory>();
-				JSONArray jArray = jObjectData.getJSONArray("categories");
-				for (int i = 0; i < jArray.length(); i++) {
-					JSONObject job = jArray.getJSONObject(i);
-					categories.add(new POICategory(job.getInt("Id"), job
-							.getString("Description"), job
-							.getBoolean("is_system_category")));
+				JSONArray jArray = jObjectData.optJSONArray("categories");
+				if (jArray != null) {
+					for (int i = 0; i < jArray.length(); i++) {
+						JSONObject job = jArray.getJSONObject(i);
+						categories.add(new POICategory(job.getInt("Id"), job
+								.getString("Description"), job
+								.getBoolean("is_system_category")));
+					}
 				}
 				data = new POIWarningData(id_warningdata, latitude, longitude,
 						accuracy, vaccuracy, elevation, name, address,
@@ -109,7 +113,10 @@ public class POIWarningResult extends APICallResult {
 			this.poiWarning = new POIWarning(id, poi_id, type, user_id,
 					timestamp, data);
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (Constants.DEBUG) {
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

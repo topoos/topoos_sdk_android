@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONTokener;
+
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 /**
  * 
@@ -44,7 +47,7 @@ public class UsersNearResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		ArrayList<UserIdPosition> userPositions = null;
 		// Processing result
 		try {
@@ -65,7 +68,10 @@ public class UsersNearResult extends APICallResult {
 			}
 			this.usersnear= new UsersNear(userPositions);
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

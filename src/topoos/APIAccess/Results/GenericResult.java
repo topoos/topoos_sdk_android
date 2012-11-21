@@ -3,6 +3,9 @@ package topoos.APIAccess.Results;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
+import topoos.Exception.TopoosException;
+
 
 public class GenericResult extends APICallResult {
 
@@ -25,7 +28,7 @@ public class GenericResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// Processing result
 				try {
 					JSONObject jObject = (JSONObject) new JSONTokener(this.Result)
@@ -33,7 +36,10 @@ public class GenericResult extends APICallResult {
 					this.code=jObject.getInt("code");
 					this.description=jObject.getString("description");
 				}catch (Exception e) {
-					// TODO: handle exception
+					if (Constants.DEBUG){
+						e.printStackTrace();
+					}
+					throw new TopoosException(TopoosException.ERROR_PARSE);
 				}
 	}
 

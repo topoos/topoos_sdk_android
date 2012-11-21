@@ -23,7 +23,8 @@ class Translator {
 	private static Integer version = topoos.Constants.APIVERSION;
 
 	public static List<POICategory> GetAll(
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		List<POICategory> GetAll = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISCategories pOISCategories = new POISCategories("GetAll",
@@ -34,12 +35,15 @@ class Translator {
 					pOICategoryCollectionResult);
 			GetAll = pOICategoryCollectionResult.getPoiCategoryCollection()
 					.getCategories();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return GetAll;
 	}
 
 	public static POICategory Add(String name,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		POICategory pOICategory = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISCategoriesAdd pOISCategoriesAdd = new POISCategoriesAdd("Add",
@@ -48,26 +52,32 @@ class Translator {
 			POICategoryResult pOICategoryResult = new POICategoryResult();
 			APICaller.ExecuteOperation(pOISCategoriesAdd, pOICategoryResult);
 			pOICategory = pOICategoryResult.getPoiCategory();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return pOICategory;
 	}
 
 	public static Boolean Update(Integer categoryID, String name,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		POICategory pOICategory = null;
 		if (accessTokenPregenerated.isValid()) {
-			POISCategoriesAdd pOISCategoriesAdd = new POISCategoriesAdd("Add",
-					method, format, version,
+			POISCategoriesAdd pOISCategoriesAdd = new POISCategoriesAdd(
+					"Update", method, format, version,
 					accessTokenPregenerated.getAccessToken(), name);
 			POICategoryResult pOICategoryResult = new POICategoryResult();
 			APICaller.ExecuteOperation(pOISCategoriesAdd, pOICategoryResult);
 			pOICategory = pOICategoryResult.getPoiCategory();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return pOICategory != null;
 	}
 
 	public static Boolean Delete(Integer categoryID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		boolean delete = false;
 		if (accessTokenPregenerated.isValid()) {
 			POISCategoriesDelete pOISCategoriesDelete = new POISCategoriesDelete(
@@ -76,17 +86,21 @@ class Translator {
 			GenericResult genericResult = new GenericResult();
 			APICaller.ExecuteOperation(pOISCategoriesDelete, genericResult);
 			delete = genericResult.getCode() == 200;
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return delete;
 	}
 
-	public static List<POICategory> GetAll(Context context) throws IOException, TopoosException {
+	public static List<POICategory> GetAll(Context context) throws IOException,
+			TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetAll(accessTokenPregenerated);
 	}
 
-	public static POICategory Add(Context context, String name) throws IOException, TopoosException {
+	public static POICategory Add(Context context, String name)
+			throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Add(name, accessTokenPregenerated);
@@ -99,7 +113,8 @@ class Translator {
 		return Update(categoryID, name, accessTokenPregenerated);
 	}
 
-	public static Boolean Delete(Context context, Integer categoryID) throws IOException, TopoosException {
+	public static Boolean Delete(Context context, Integer categoryID)
+			throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Delete(categoryID, accessTokenPregenerated);

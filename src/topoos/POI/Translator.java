@@ -45,6 +45,8 @@ class Translator {
 			POIResult poiResult = new POIResult();
 			APICaller.ExecuteOperation(pOISAdd, poiResult);
 			poi = poiResult.getPoi();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return poi;
 	}
@@ -59,6 +61,8 @@ class Translator {
 			POIResult poiResult = new POIResult();
 			APICaller.ExecuteOperation(pOISGet, poiResult);
 			poi = poiResult.getPoi();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return poi;
 	}
@@ -69,19 +73,24 @@ class Translator {
 		List<POI> poilist = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strcategories = "";
-			for (int i = 0; i < categories.length; i++) {
-				if (i < categories.length - 1) {
-					strcategories = strcategories + categories[i] + ",";
-				} else {
-					strcategories = strcategories + categories[i];
+			if (categories != null) {
+				for (int i = 0; i < categories.length; i++) {
+					if (i < categories.length - 1) {
+						strcategories = strcategories + categories[i] + ",";
+					} else {
+						strcategories = strcategories + categories[i];
+					}
 				}
 			}
 			POISGet_near pOISGet_near = new POISGet_near("GetNear", method,
 					format, version, accessTokenPregenerated.getAccessToken(),
-					lat, lng, radius, strcategories);
+					lat, lng, radius, !strcategories.equals("") ? strcategories
+							: null);
 			POICollectionResult pOICollectionResult = new POICollectionResult();
 			APICaller.ExecuteOperation(pOISGet_near, pOICollectionResult);
 			poilist = pOICollectionResult.getPoicollection().getPoiList();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return poilist;
 	}
@@ -93,27 +102,35 @@ class Translator {
 		List<POI> poilist = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strcategories = "";
-			for (int i = 0; i < categories.length; i++) {
-				if (i < categories.length - 1) {
-					strcategories = strcategories + categories[i] + ",";
-				} else {
-					strcategories = strcategories + categories[i];
+			if (categories != null) {
+				for (int i = 0; i < categories.length; i++) {
+					if (i < categories.length - 1) {
+						strcategories = strcategories + categories[i] + ",";
+					} else {
+						strcategories = strcategories + categories[i];
+					}
 				}
 			}
 			String strpois = "";
-			for (int i = 0; i < POIS.length; i++) {
-				if (i < POIS.length - 1) {
-					strpois = strpois + POIS[i] + ",";
-				} else {
-					strpois = strpois + POIS[i];
+			if (POIS != null) {
+				for (int i = 0; i < POIS.length; i++) {
+					if (i < POIS.length - 1) {
+						strpois = strpois + POIS[i] + ",";
+					} else {
+						strpois = strpois + POIS[i];
+					}
 				}
 			}
 			POISGet_where pOISGet_where = new POISGet_where("GetWhere", method,
 					format, version, accessTokenPregenerated.getAccessToken(),
-					strpois, strcategories, city, country, postal_code, q);
+					!strpois.equals("") ? strpois : null,
+					!strcategories.equals("") ? strcategories : null, city,
+					country, postal_code, q);
 			POICollectionResult pOICollectionResult = new POICollectionResult();
 			APICaller.ExecuteOperation(pOISGet_where, pOICollectionResult);
 			poilist = pOICollectionResult.getPoicollection().getPoiList();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return poilist;
 	}
@@ -128,19 +145,23 @@ class Translator {
 		POI poi = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strcategories = "";
-			for (int i = 0; i < categories.length; i++) {
-				if (i < categories.length - 1) {
-					strcategories = strcategories + categories[i] + ",";
-				} else {
-					strcategories = strcategories + categories[i];
+			if (categories != null) {
+				for (int i = 0; i < categories.length; i++) {
+					if (i < categories.length - 1) {
+						strcategories = strcategories + categories[i] + ",";
+					} else {
+						strcategories = strcategories + categories[i];
+					}
 				}
 			}
 			POISUpdate pOISUpdate = new POISUpdate("Update", method, format,
 					version, accessTokenPregenerated.getAccessToken(), POIID,
-					lat, lng, accuracy, vaccuracy, elevation, strcategories);
+					lat, lng, accuracy, vaccuracy, elevation, !strcategories.equals("") ? strcategories : null);
 			POIResult poiResult = new POIResult();
 			APICaller.ExecuteOperation(pOISUpdate, poiResult);
 			poi = poiResult.getPoi();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return poi != null;
 	}
@@ -155,6 +176,8 @@ class Translator {
 			GenericResult genericResult = new GenericResult();
 			APICaller.ExecuteOperation(pOISDelete, genericResult);
 			delete = genericResult.getCode() == 200;
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return delete;
 	}

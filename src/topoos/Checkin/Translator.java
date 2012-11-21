@@ -27,7 +27,7 @@ public class Translator {
 			CheckinResult checkinResult = new CheckinResult();
 			APICaller.ExecuteOperation(checkinAdd, checkinResult);
 			checkin = checkinResult.getCheckin();
-		}
+		} else { throw new TopoosException(TopoosException.NOT_VALID_TOKEN); }
 		return checkin;
 	}
 
@@ -41,7 +41,7 @@ public class Translator {
 			CheckinResult checkinResult = new CheckinResult();
 			APICaller.ExecuteOperation(checkinGet, checkinResult);
 			checkin = checkinResult.getCheckin();
-		}
+		} else { throw new TopoosException(TopoosException.NOT_VALID_TOKEN); }
 		return checkin;
 	}
 
@@ -55,7 +55,7 @@ public class Translator {
 			CheckinResult checkinResult = new CheckinResult();
 			APICaller.ExecuteOperation(checkinGet_last, checkinResult);
 			checkin = checkinResult.getCheckin();
-		}
+		} else { throw new TopoosException(TopoosException.NOT_VALID_TOKEN); }
 		return checkin;
 	}
 
@@ -69,7 +69,7 @@ public class Translator {
 			CheckinCollectionResult checkinResult = new CheckinCollectionResult();
 			APICaller.ExecuteOperation(checkinGet_where, checkinResult);
 			checkin = checkinResult.getCheckinCollection().getCheckIns();
-		}
+		} else { throw new TopoosException(TopoosException.NOT_VALID_TOKEN); }
 		return checkin;
 	}
 

@@ -1,5 +1,7 @@
 package topoos.APIAccess.Results;
 
+import topoos.Exception.TopoosException;
+
 public class APICallResult {
 
 	protected String Format = null;
@@ -15,7 +17,7 @@ public class APICallResult {
 
 	}
 
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 	}
 
 	/**

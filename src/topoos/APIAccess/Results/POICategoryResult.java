@@ -1,10 +1,11 @@
 package topoos.APIAccess.Results;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class POICategoryResult extends APICallResult {
 
@@ -39,7 +40,7 @@ public class POICategoryResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		Integer id = null;
 		String description = null;
@@ -49,12 +50,15 @@ public class POICategoryResult extends APICallResult {
 			JSONObject jObject = (JSONObject) new JSONTokener(Result).nextValue();
 			// Extracting content
 			id = jObject.getInt("Id");
+			
 			description = jObject.getString("Description");
 			isSystem = jObject.getBoolean("is_system_category");
 			this.poiCategory=new POICategory(id,description,isSystem);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 		
 		

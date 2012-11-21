@@ -29,7 +29,7 @@ class Translator {
 			RuleResult ruleResult = new RuleResult();
 			APICaller.ExecuteOperation(rulesAdd, ruleResult);
 			Rule = ruleResult.getRule();
-		}
+		} else { throw new TopoosException(TopoosException.NOT_VALID_TOKEN); }
 		return Rule;
 		
 	}

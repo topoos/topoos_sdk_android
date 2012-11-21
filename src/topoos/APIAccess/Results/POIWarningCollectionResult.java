@@ -6,14 +6,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class POIWarningCollectionResult extends APICallResult {
 
 	private ArrayList<POIDataWarning> POIDataWarnings = null;
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		try {
 			JSONArray jArray = (JSONArray) new JSONTokener(this.Result)
 					.nextValue();
@@ -115,7 +117,10 @@ public class POIWarningCollectionResult extends APICallResult {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

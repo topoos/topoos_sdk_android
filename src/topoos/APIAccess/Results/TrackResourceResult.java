@@ -3,7 +3,9 @@ package topoos.APIAccess.Results;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class TrackResourceResult extends APICallResult {
 
@@ -38,7 +40,7 @@ public class TrackResourceResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		try {
 			JSONObject jObject = (JSONObject) new JSONTokener(Result)
@@ -53,7 +55,10 @@ public class TrackResourceResult extends APICallResult {
 			this.trackResource=new TrackResource(id,type,format);
 
 		} catch (Exception e) {
-
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

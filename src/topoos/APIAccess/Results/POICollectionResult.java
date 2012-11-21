@@ -7,7 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class POICollectionResult extends APICallResult {
 
@@ -42,7 +44,7 @@ public class POICollectionResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		Integer id = null;
@@ -113,7 +115,10 @@ public class POICollectionResult extends APICallResult {
 			}
 			this.poicollection=new POICollection(poicollec);
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

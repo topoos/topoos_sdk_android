@@ -14,7 +14,7 @@ import topoos.Exception.TopoosException;
 /**
  * 
  * @author MAJS
- *
+ * 
  */
 class Translator {
 
@@ -27,21 +27,23 @@ class Translator {
 	 * @param userID
 	 * @param accessTokenPregenerated
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
 	public static User Get(String userID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		User user = null;
 		if (accessTokenPregenerated.isValid()) {
-			UsersUSRShow usersUSRShow = new UsersUSRShow("Get",
-					method, format, version,
-					accessTokenPregenerated.getAccessToken(), userID);
+			UsersUSRShow usersUSRShow = new UsersUSRShow("Get", method, format,
+					version, accessTokenPregenerated.getAccessToken(), userID);
 			UserResult userResult = new UserResult();
 			APICaller.ExecuteOperation(usersUSRShow, userResult);
 			user = userResult.getUser();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
-		return user; 
+		return user;
 	}
 
 	/**
@@ -50,11 +52,12 @@ class Translator {
 	 * @param groupID
 	 * @param accessTokenPregenerated
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
 	public static boolean GroupSet(String userID, Integer groupID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		boolean groupSet = false;
 		if (accessTokenPregenerated.isValid()) {
 			UsersUSRAdd_group usersUSRAdd_group = new UsersUSRAdd_group(
@@ -64,6 +67,8 @@ class Translator {
 			APICaller.ExecuteOperation(usersUSRAdd_group, genericResult);
 			groupSet = genericResult.getCode() != null
 					&& genericResult.getCode().equals(200);
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return groupSet;
 	}
@@ -74,11 +79,12 @@ class Translator {
 	 * @param groupID
 	 * @param accessTokenPregenerated
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
 	public static boolean GroupRemove(String userID, Integer groupID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		boolean groupRemove = false;
 		if (accessTokenPregenerated.isValid()) {
 			UsersUSRRemove_group usersUSRRemove_group = new UsersUSRRemove_group(
@@ -88,6 +94,8 @@ class Translator {
 			APICaller.ExecuteOperation(usersUSRRemove_group, genericResult);
 			groupRemove = genericResult.getCode() != null
 					&& genericResult.getCode().equals(200);
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return groupRemove;
 
@@ -102,17 +110,18 @@ class Translator {
 	 * @param activeTrack
 	 * @param accessTokenPregenerated
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
 	public static List<UserIdPosition> NearPOIGet(Integer POIID,
 			Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
 		List<UserIdPosition> list = null;
 		UsersNear usersNear = null;
 		if (accessTokenPregenerated.isValid()) {
-			UsersGet_near usersGet_near = new UsersGet_near(
-					"NearPOIGet", method, format, version,
+			UsersGet_near usersGet_near = new UsersGet_near("NearPOIGet",
+					method, format, version,
 					accessTokenPregenerated.getAccessToken(), POIID, radius,
 					activeTrack, groupID, usersCount);
 			UsersNearResult usersNearResult = new UsersNearResult();
@@ -121,6 +130,8 @@ class Translator {
 				usersNear = usersNearResult.getUsersnear();
 				list = usersNear.getUserPositions();
 			}
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return list;
 	}
@@ -135,17 +146,18 @@ class Translator {
 	 * @param activeTrack
 	 * @param accessTokenPregenerated
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static List<UserIdPosition> NearPositionGet(Double lat,
-			Double lng, Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+	public static List<UserIdPosition> NearPositionGet(Double lat, Double lng,
+			Integer radius, Integer groupID, Integer usersCount,
+			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
 		List<UserIdPosition> list = null;
 		UsersNear usersNear = null;
 		if (accessTokenPregenerated.isValid()) {
-			UsersGet_near usersGet_near = new UsersGet_near(
-					"NearPOIGet", method, format, version,
+			UsersGet_near usersGet_near = new UsersGet_near("NearPOIGet",
+					method, format, version,
 					accessTokenPregenerated.getAccessToken(), lat, lng, radius,
 					activeTrack, groupID, usersCount);
 			UsersNearResult usersNearResult = new UsersNearResult();
@@ -154,6 +166,8 @@ class Translator {
 				usersNear = usersNearResult.getUsersnear();
 				list = usersNear.getUserPositions();
 			}
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
 		return list;
 	}
@@ -163,10 +177,11 @@ class Translator {
 	 * @param context
 	 * @param userID
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static User Get(Context context, String userID) throws IOException, TopoosException {
+	public static User Get(Context context, String userID) throws IOException,
+			TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return Get(userID, accessTokenPregenerated);
@@ -178,10 +193,11 @@ class Translator {
 	 * @param userID
 	 * @param groupID
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static boolean GroupSet(Context context, String userID, Integer groupID) throws IOException, TopoosException {
+	public static boolean GroupSet(Context context, String userID,
+			Integer groupID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GroupSet(userID, groupID, accessTokenPregenerated);
@@ -193,10 +209,11 @@ class Translator {
 	 * @param userID
 	 * @param groupID
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static boolean GroupRemove(Context context, String userID, Integer groupID) throws IOException, TopoosException {
+	public static boolean GroupRemove(Context context, String userID,
+			Integer groupID) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GroupRemove(userID, groupID, accessTokenPregenerated);
@@ -211,15 +228,16 @@ class Translator {
 	 * @param usersCount
 	 * @param activeTrack
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static List<UserIdPosition> NearPOIGet(Context context, Integer POIID,
-			Integer radius, Integer groupID, Integer usersCount,
+	public static List<UserIdPosition> NearPOIGet(Context context,
+			Integer POIID, Integer radius, Integer groupID, Integer usersCount,
 			Boolean activeTrack) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		return NearPOIGet(POIID, radius, groupID, usersCount, activeTrack, accessTokenPregenerated);
+		return NearPOIGet(POIID, radius, groupID, usersCount, activeTrack,
+				accessTokenPregenerated);
 	}
 
 	/**
@@ -232,15 +250,17 @@ class Translator {
 	 * @param numberUsers
 	 * @param activeTrack
 	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static List<UserIdPosition> NearPositionGet(Context context, Double lat,
-			Double lng, Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack) throws IOException, TopoosException {
+	public static List<UserIdPosition> NearPositionGet(Context context,
+			Double lat, Double lng, Integer radius, Integer groupID,
+			Integer usersCount, Boolean activeTrack) throws IOException,
+			TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
-		return NearPositionGet(lat, lng, radius, groupID, usersCount, activeTrack, accessTokenPregenerated);
+		return NearPositionGet(lat, lng, radius, groupID, usersCount,
+				activeTrack, accessTokenPregenerated);
 	}
 
 }

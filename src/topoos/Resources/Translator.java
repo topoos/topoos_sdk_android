@@ -31,7 +31,7 @@ class Translator {
 			PolygonResult polygonResult = new PolygonResult();
 			APICaller.ExecuteOperation(Get_polygon, polygonResult);
 			list = polygonResult.getPolygon();
-		}
+		} else { throw new TopoosException(TopoosException.NOT_VALID_TOKEN); }
 		return list;
 	}
 
@@ -44,7 +44,7 @@ class Translator {
 			GeocodingResult geocodingResult = new GeocodingResult();
 			APICaller.ExecuteOperation(resourcesGeocode, geocodingResult);
 			Geocoding = geocodingResult.getGeocoding();
-		}
+		} else { throw new TopoosException(TopoosException.NOT_VALID_TOKEN); }
 		return Geocoding;
 	}
 	

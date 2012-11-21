@@ -26,6 +26,8 @@ public class AccessTokenOAuth implements Serializable {
 	private String KEY_REFRESHTOKEN="KEY_REFRESHTOKEN";
 	private String KEY_TOKENTYPE="KEY_TOKENTYPE";
 
+	private String TOKEN_TYPE_ADMIN="Admin";
+	
 	/**
 	 * 
 	 */
@@ -35,6 +37,17 @@ public class AccessTokenOAuth implements Serializable {
 	}
 	
 	
+	public AccessTokenOAuth(String token) {
+		super();
+		AccessToken=token;
+		ExpiresIn=(long) 0;
+		RefreshToken=null;
+		TokenType=TOKEN_TYPE_ADMIN;	
+		if(Constants.DEBUG){
+			//Log.i(Constants.TAG, this.toStringToken());
+		}
+	}
+	
 	public AccessTokenOAuth(String token, Long expiresIn, String refreshToken, String tokenType) {
 		super();
 		AccessToken=token;
@@ -42,10 +55,10 @@ public class AccessTokenOAuth implements Serializable {
 		RefreshToken=refreshToken;
 		TokenType=tokenType;	
 		if(Constants.DEBUG){
-			Log.i(Constants.TAG, this.toStringToken());
+			//Log.i(Constants.TAG, this.toStringToken());
 		}
 	}
-	
+
 
 	
 	/**
@@ -135,17 +148,32 @@ public class AccessTokenOAuth implements Serializable {
 		//this.RefreshToken=settings.getString(KEY_REFRESHTOKEN,"");
 		this.TokenType=settings.getString(KEY_TOKENTYPE,"");
 		if(Constants.DEBUG){
-			Log.i(Constants.TAG, this.toStringToken());
+			//Log.i(Constants.TAG, this.toStringToken());
 		}
 	}	
+	
+	public synchronized void Delete_Token(Context context){
+		SharedPreferences settings = context.getSharedPreferences(
+				"PREFER", Context.MODE_PRIVATE);
+		this.AccessToken=settings.getString(KEY_ACCESS_TOKEN,"");
+		this.ExpiresIn=settings.getLong(KEY_EXPIREIN,-1);
+		//this.RefreshToken=settings.getString(KEY_REFRESHTOKEN,"");
+		this.TokenType=settings.getString(KEY_TOKENTYPE,"");
+		if(Constants.DEBUG){
+			//Log.i(Constants.TAG, this.toStringToken());
+		}		
+	}
 	
 	public boolean isValid(){
 		boolean isvalid=true;
 		Calendar cal=Calendar.getInstance();
-		isvalid=cal.getTimeInMillis()<ExpiresIn;
+		isvalid=cal.getTimeInMillis()<ExpiresIn || ExpiresIn==0;
 		isvalid=isvalid&&(AccessToken!=null &&!AccessToken.equals(""));
 		//isvalid=isvalid&&(RefreshToken!=null &&!RefreshToken.equals(""));
 		isvalid=isvalid&&(TokenType!=null &&!TokenType.equals(""));
+		if(Constants.DEBUG){
+			//Log.i(Constants.TAG, "Valido: "+isvalid);
+		}	
 		return isvalid;
 	}
 	
@@ -154,7 +182,7 @@ public class AccessTokenOAuth implements Serializable {
 		AccessTokenOAuth access=new AccessTokenOAuth();
 		access.Load_Token(context);
 		if(Constants.DEBUG){
-			Log.i(Constants.TAG, access.toStringToken());
+			//Log.i(Constants.TAG, access.toStringToken());
 		}
 		return access;
 	}

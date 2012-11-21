@@ -50,8 +50,10 @@ public class APICaller {
 			switch (rp.getStatusLine().getStatusCode()) {
 			case 400:
 				throw new TopoosException(TopoosException.ERROR400);
+			case 405:
+				throw new TopoosException(TopoosException.ERROR405);
 			default:
-				throw new TopoosException("¿Error?");
+				throw new TopoosException("¿Error: "+rp.getStatusLine().getStatusCode()+"?");
 			}
 			
 		}

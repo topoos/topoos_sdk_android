@@ -6,7 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 /**
  * 
  * @author MAJS
@@ -51,7 +53,7 @@ public class GeocodingResult extends APICallResult{
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		try {
 			JSONArray jArray = (JSONArray) new JSONTokener(Result)
@@ -82,7 +84,10 @@ public class GeocodingResult extends APICallResult{
 			}
 
 		} catch (Exception e) {
-
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

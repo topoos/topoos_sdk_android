@@ -31,7 +31,7 @@ public class Translator {
 			TrackResourceResult trackResourceResult = new TrackResourceResult();
 			APICaller.ExecuteOperation(exportLayerTrack, trackResourceResult);
 			trackResource = trackResourceResult.getTrackResource();
-		}
+		} else { throw new TopoosException(TopoosException.NOT_VALID_TOKEN); }
 		return trackResource;
 	}
 	

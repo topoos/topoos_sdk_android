@@ -1,19 +1,18 @@
 package topoos.APIAccess.Results;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
-import topoos.APIAccess.Results.Objects.*;
+import topoos.Constants;
+import topoos.APIAccess.Results.Objects.Location;
+import topoos.Exception.TopoosException;
 
 
 public class PolygonResult extends APICallResult{
@@ -47,7 +46,7 @@ public class PolygonResult extends APICallResult{
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		/* Get a SAXParser from the SAXPArserFactory. */
 		if (this.Result != null) {
@@ -68,15 +67,11 @@ public class PolygonResult extends APICallResult{
 						polygon.add(new Location(lat,lng));
 					}
 				}
-			} catch (ParserConfigurationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SAXException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e) {
+				if (Constants.DEBUG){
+					e.printStackTrace();
+				}
+				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
 		}
 

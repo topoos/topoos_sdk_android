@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class CheckinCollectionResult extends APICallResult {
 
@@ -40,7 +42,7 @@ public class CheckinCollectionResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		try {
 			JSONArray jArray = (JSONArray) new JSONTokener(this.Result)
@@ -58,7 +60,10 @@ public class CheckinCollectionResult extends APICallResult {
 			}
 			this.checkinCollection=new CheckinCollection(array);
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 

@@ -7,7 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class TrackResult extends APICallResult {
 
@@ -41,7 +43,7 @@ public class TrackResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		Integer id = null;
 		String name = null;
@@ -105,7 +107,10 @@ public class TrackResult extends APICallResult {
 			this.track = new Track(id, name, device, positions);
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 
 	}

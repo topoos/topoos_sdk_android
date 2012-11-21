@@ -3,7 +3,9 @@ package topoos.APIAccess.Results;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
+import topoos.Exception.TopoosException;
 
 public class CheckinResult extends APICallResult {
 
@@ -37,7 +39,7 @@ public class CheckinResult extends APICallResult {
 	}
 
 	@Override
-	public void setParameters() {
+	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
 		try {
 			JSONObject jObject = (JSONObject) new JSONTokener(this.Result)
@@ -47,8 +49,11 @@ public class CheckinResult extends APICallResult {
 					jObject.getInt("device_id"), jObject.getInt("poi_id"),
 					APIUtils.toDateString(jObject.getString("register_time")),
 					APIUtils.toDateString(jObject.getString("timestamp")));
-		} catch (Exception e) {
-			e.printStackTrace();
+		}catch (Exception e) {
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 
