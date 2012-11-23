@@ -60,7 +60,7 @@ public class TracksGet extends APIOperation{
 			params = "/" + this.Version + "/tracks/get."
 					+ this.Format 
 					+ "?oauth_token=" + this.oauth_token
-					+ "?track=" + APIUtils.toStringInteger(this.track)
+					+ "&track=" + APIUtils.toStringInteger(this.track)
 					+(total == null? "" : "&total="+APIUtils.toStringInteger(total))
 					+(initdate == null? "" : "&initdate="+APIUtils.toStringDate(initdate))
 					+(endate == null? "" : "&endate="+APIUtils.toStringDate(endate));
@@ -70,7 +70,7 @@ public class TracksGet extends APIOperation{
 						if(i==0){
 							params=params+layer[i];
 						}else{
-							params=","+params+layer[i];
+							params=params+","+layer[i];
 						}
 					}
 					;

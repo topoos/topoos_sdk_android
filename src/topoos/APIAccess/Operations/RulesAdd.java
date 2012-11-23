@@ -16,8 +16,9 @@ public class RulesAdd extends APIOperation{
 	private Double	lng=null; // (obligatorio) longitud del centro del círculo del área permitida, en grados decimales
 	private Integer 	radius=null; //(obligatorio) radio del círculo del área permitida, en grados decimales.
 	private String	type=null; //TRACK_OUT_OF_BOUNDS
-
+	private Integer track=null; //Identificador del track que vamos a añadir
 	
+
 	/**
 	 * @param operationName
 	 * @param method
@@ -28,16 +29,18 @@ public class RulesAdd extends APIOperation{
 	 * @param lng
 	 * @param radius
 	 * @param type
+	 * @param track
 	 */
 	public RulesAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, Double lat, Double lng,
-			Integer radius, String type) {
+			Integer radius, String type, Integer track) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.lat = lat;
 		this.lng = lng;
 		this.radius = radius;
 		this.type = type;
+		this.track = track;
 	}
 
 	@Override
@@ -49,6 +52,7 @@ public class RulesAdd extends APIOperation{
 		validate = validate && isValid(oauth_token);
 		validate = validate && isValid(APIUtils.toStringInteger(radius));
 		validate = validate && isValid(type);
+		validate = validate && isValid(APIUtils.toStringInteger(track));
 		return validate;
 	}
 
@@ -62,6 +66,7 @@ public class RulesAdd extends APIOperation{
 					+ "&lat="+APIUtils.toStringDouble(lat)
 					+ "&lng="+APIUtils.toStringDouble(lng)
 					+ "&radius="+APIUtils.toStringInteger(radius)
+					+ "&track="+APIUtils.toStringInteger(track)
 					+ "&type="+type
 					;
 		}

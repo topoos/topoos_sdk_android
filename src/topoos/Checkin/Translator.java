@@ -11,7 +11,7 @@ import topoos.APIAccess.Results.*;
 import topoos.APIAccess.Results.Objects.*;
 import topoos.Exception.TopoosException;
 
-public class Translator {
+class Translator {
 	
 	private static String method = "GET";
 	private static String format = "json";

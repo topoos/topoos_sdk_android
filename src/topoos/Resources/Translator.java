@@ -60,9 +60,9 @@ class Translator {
 			ResourceWebmap resourceWebmap = new ResourceWebmap("GetTrackExportedWebMapURI", method, format,
 					version, apiKey, type,
 					resourceID);
-			APICallResult aPICallResult = new APICallResult();
-			APICaller.ExecuteOperation(resourceWebmap, aPICallResult);
-			GetTrackExportedWebMapURI = aPICallResult.getResult();
+			WebMapURIResult webMapURIResult = new WebMapURIResult();
+			APICaller.ExecuteOperation(resourceWebmap, webMapURIResult);
+			GetTrackExportedWebMapURI = webMapURIResult.getWebmapuri();
 		}
 		return GetTrackExportedWebMapURI;
 	}

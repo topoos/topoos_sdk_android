@@ -12,6 +12,11 @@ import android.content.Context;
  *
  */
 public class Operations {
+	
+	public static final String LAYER_DEFAULT=topoos.APIAccess.Operations.TracksGet.LAYER_DEFAULT;
+	public static final String LAYER_BEARING=topoos.APIAccess.Operations.TracksGet.LAYER_BEARING;
+	public static final String LAYER_TRACKLINE=topoos.APIAccess.Operations.TracksGet.LAYER_TRACKLINE;
+	
 	/**
 	 * 
 	 * @param name

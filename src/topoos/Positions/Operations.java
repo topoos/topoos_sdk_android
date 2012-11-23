@@ -155,8 +155,10 @@ public class Operations {
 	 * @param endDate
 	 * @param accessTokenPregenerated
 	 * @return
+	 * @throws TopoosException 
+	 * @throws IOException 
 	 */
-	public static	List<Position> GetBetweenDays (Date initDate, Date endDate, AccessTokenOAuth accessTokenPregenerated){
+	public static	List<Position> GetBetweenDays (Date initDate, Date endDate, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
 		return Translator.GetBetweenDays(initDate, endDate, accessTokenPregenerated);	
 	}
 	/**
@@ -302,8 +304,10 @@ public class Operations {
 	 * @param initDate
 	 * @param endDate
 	 * @return
+	 * @throws TopoosException 
+	 * @throws IOException 
 	 */
-	public static	List<Position> GetBetweenDays (Context context, Date initDate, Date endDate){
+	public static	List<Position> GetBetweenDays (Context context, Date initDate, Date endDate) throws IOException, TopoosException{
 		return Translator.GetBetweenDays(context, initDate, endDate);
 	}
 	

@@ -42,7 +42,8 @@ public class ResourceWebmap extends APIOperation{
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/resources/webmap"
 					+ "?api_key=" + api_key
-					+ "&"+type+"=" + id
+					+ "&type=" + type
+					+ "&id=" + id
 					;
 		}
 		return params;

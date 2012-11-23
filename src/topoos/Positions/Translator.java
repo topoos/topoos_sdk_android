@@ -132,17 +132,19 @@ class Translator {
 	}
 
 	public static List<Position> GetBetweenDays(Date initDate, Date endDate,
-			AccessTokenOAuth accessTokenPregenerated) {
+			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<Position> positions = null;
-		/*
-		 * if (accessTokenPregenerated.isValid()) { PositionsGet_between
-		 * positionsGet_between = new PositionsGet_between("AddTrackEnd",
-		 * method, format, version,
-		 * accessTokenPregenerated.getAccessToken(),initDate,endDate,null);
-		 * PositionResult positionResult = new PositionResult();
-		 * APICaller.ExecuteOperation(positionsGet_between, positionResult);
-		 * position = positionResult.getPosition(); }
-		 */
+
+		if (accessTokenPregenerated.isValid()) {
+			PositionsGet_between positionsGet_between = new PositionsGet_between(
+					"AddTrackEnd", method, format, version,
+					accessTokenPregenerated.getAccessToken(), initDate,
+					endDate, null);
+			PositionCollectionResult positionCollectionResult = new PositionCollectionResult();
+			APICaller.ExecuteOperation(positionsGet_between, positionCollectionResult);
+			positions = positionCollectionResult.getPositions();
+		}
+
 		return positions;
 	}
 
@@ -222,7 +224,7 @@ class Translator {
 	}
 
 	public static List<Position> GetBetweenDays(Context context, Date initDate,
-			Date endDate) {
+			Date endDate) throws IOException, TopoosException {
 		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
 		accessTokenPregenerated.Load_Token(context);
 		return GetBetweenDays(initDate, endDate, accessTokenPregenerated);

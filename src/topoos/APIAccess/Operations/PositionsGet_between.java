@@ -36,7 +36,7 @@ public class PositionsGet_between extends APIOperation{
 		// TODO Auto-generated method stub
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/positions/get_bettween." + this.Format 
+			params = "/" + this.Version + "/positions/get_between." + this.Format 
 					+ "?oauth_token=" + this.oauth_token
 					+"&initdate="+APIUtils.toStringDate(initdate)
 					+"&enddate="+APIUtils.toStringDate(enddate)

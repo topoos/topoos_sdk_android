@@ -39,14 +39,14 @@ public class ResourcesGeocode  extends APIOperation{
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			if(Address==null){
+			if(Address!=null){
 				params = "/" + this.Version + "/resources/geocode."
 						+ this.Format 
 						+ "?oauth_token=" + this.oauth_token
-						+ "?Address=" + this.Address
+						+ "&Address=" + this.Address
 				;
-			}else if(lat!=null){
-				params = "/" + this.Version + "/tracks/get_last."
+			}else {
+				params = "/" + this.Version + "/resources/geocode."
 						+ this.Format 
 						+ "?oauth_token=" + this.oauth_token
 						+"&lat="+APIUtils.toStringDouble(lat)

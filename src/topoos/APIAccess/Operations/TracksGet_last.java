@@ -55,7 +55,7 @@ public class TracksGet_last extends APIOperation{
 						if(i==0){
 							params=params+layer[i];
 						}else{
-							params=","+params+layer[i];
+							params=params+","+layer[i];
 						}
 					}
 					;

@@ -1,7 +1,10 @@
 package topoos.APIAccess.Results;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -9,40 +12,45 @@ import topoos.Constants;
 import topoos.APIAccess.Results.Objects.*;
 import topoos.Exception.TopoosException;
 
-public class PositionResult extends APICallResult {
+public class PositionCollectionResult extends APICallResult {
 
-	private Position position=null;
+	List<Position> positions = null;
+
 	
 	/**
 	 * 
 	 */
-	public PositionResult() {
+	public PositionCollectionResult() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+
 
 	/**
 	 * @param error
 	 * @param result
 	 */
-	public PositionResult(String error, String result) {
+	public PositionCollectionResult(String error, String result) {
 		super(error, result);
 		// TODO Auto-generated constructor stub
 	}
 
+
 	/**
 	 * @param error
 	 * @param result
-	 * @param position
+	 * @param positions
 	 */
-	public PositionResult(String error, String result, Position position) {
+	public PositionCollectionResult(String error, String result,
+			List<Position> positions) {
 		super(error, result);
-		this.position = position;
+		this.positions = positions;
 	}
 
-	@Override
-	public void setParameters() throws TopoosException {
-		// TODO Auto-generated method stub
+
+	private Position parsePosition(JSONObject job) throws TopoosException{
+		Position position=null;
 		Integer id = null;
 		String device = null;
 		Date timestamp = null;
@@ -57,8 +65,7 @@ public class PositionResult extends APICallResult {
 		Double velocity = null;
 		String track_id = null;
 		try {
-			JSONObject jObject = (JSONObject) new JSONTokener(Result)
-					.nextValue();
+			JSONObject jObject = job;
 			// Extracting content
 			id = jObject.getInt("id");
 			device = jObject.getString("device");
@@ -78,7 +85,7 @@ public class PositionResult extends APICallResult {
 					"position_type").getString("id"), jObject.getJSONObject(
 					"position_type").getString("description"));
 			
-			this.position= new Position( id,  device,
+			position= new Position( id,  device,
 					 timestamp,  registerTime,  latitude,
 					 longitude,  elevation,  positionType,
 					 accuracy,  vaccuracy,  bearing,  velocity,
@@ -89,20 +96,51 @@ public class PositionResult extends APICallResult {
 			}
 			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
-	}
-
-	/**
-	 * @return the position
-	 */
-	public Position getPosition() {
 		return position;
 	}
 
-	/**
-	 * @param position the position to set
-	 */
-	public void setPosition(Position position) {
-		this.position = position;
+
+
+	@Override
+	public void setParameters() throws TopoosException {
+		// TODO Auto-generated method stub
+		ArrayList<Position> array=null;
+		try {
+			JSONArray jArray = (JSONArray) new JSONTokener(this.Result)
+					.nextValue();
+			array = new ArrayList<Position>();
+			// Extracting content
+			for (int i = 0; i < jArray.length(); i++) {
+				array.add(parsePosition(jArray.getJSONObject(i)));
+			}
+			//this.checkinCollection=new CheckinCollection(array);
+		} catch (Exception e) {
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
+		}
+		this.positions=array;
 	}
 
+
+
+	/**
+	 * @return the positions
+	 */
+	public List<Position> getPositions() {
+		return positions;
+	}
+
+
+
+	/**
+	 * @param positions the positions to set
+	 */
+	public void setPositions(List<Position> positions) {
+		this.positions = positions;
+	}
+	
+	
+	
 }

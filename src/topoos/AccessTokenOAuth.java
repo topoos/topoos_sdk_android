@@ -7,7 +7,11 @@ import java.util.Calendar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-
+/**
+ * 
+ * @author MAJS
+ *
+ */
 public class AccessTokenOAuth implements Serializable {
 
 
@@ -36,7 +40,10 @@ public class AccessTokenOAuth implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	/**
+	 * 
+	 * @param token
+	 */
 	public AccessTokenOAuth(String token) {
 		super();
 		AccessToken=token;
@@ -47,7 +54,13 @@ public class AccessTokenOAuth implements Serializable {
 			//Log.i(Constants.TAG, this.toStringToken());
 		}
 	}
-	
+	/**
+	 * 
+	 * @param token
+	 * @param expiresIn
+	 * @param refreshToken
+	 * @param tokenType
+	 */
 	public AccessTokenOAuth(String token, Long expiresIn, String refreshToken, String tokenType) {
 		super();
 		AccessToken=token;
@@ -125,7 +138,10 @@ public class AccessTokenOAuth implements Serializable {
 		AccessToken = accessToken;
 	}
 
-
+	/**
+	 * 
+	 * @param context
+	 */
 	public synchronized void Save_Token(Context context){
 		SharedPreferences settings = context.getSharedPreferences(
 				"PREFER", Context.MODE_PRIVATE);
@@ -139,7 +155,10 @@ public class AccessTokenOAuth implements Serializable {
 			Log.i(Constants.TAG, this.toStringToken());
 		}
 	}
-	
+	/**
+	 * 
+	 * @param context
+	 */
 	public synchronized void Load_Token(Context context){
 		SharedPreferences settings = context.getSharedPreferences(
 				"PREFER", Context.MODE_PRIVATE);
@@ -151,7 +170,10 @@ public class AccessTokenOAuth implements Serializable {
 			//Log.i(Constants.TAG, this.toStringToken());
 		}
 	}	
-	
+	/**
+	 * 
+	 * @param context
+	 */
 	public synchronized void Delete_Token(Context context){
 		SharedPreferences settings = context.getSharedPreferences(
 				"PREFER", Context.MODE_PRIVATE);
@@ -163,7 +185,10 @@ public class AccessTokenOAuth implements Serializable {
 			//Log.i(Constants.TAG, this.toStringToken());
 		}		
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isValid(){
 		boolean isvalid=true;
 		Calendar cal=Calendar.getInstance();
@@ -177,7 +202,11 @@ public class AccessTokenOAuth implements Serializable {
 		return isvalid;
 	}
 	
-	
+	/**
+	 * 
+	 * @param context
+	 * @return
+	 */
 	public static AccessTokenOAuth GetAccessToken(Context context){
 		AccessTokenOAuth access=new AccessTokenOAuth();
 		access.Load_Token(context);

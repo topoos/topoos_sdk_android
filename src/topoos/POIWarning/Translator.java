@@ -22,11 +22,13 @@ class Translator {
 		List<POIDataWarning> pOIWarning = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strPOIID = "";
-			for (int i = 0; i < POISID.length; i++) {
-				if (i < POISID.length - 1) {
-					strPOIID = strPOIID + POISID[i] + ",";
-				} else {
-					strPOIID = strPOIID + POISID[i];
+			if (POISID != null) {
+				for (int i = 0; i < POISID.length; i++) {
+					if (i < POISID.length - 1) {
+						strPOIID = strPOIID + POISID[i] + ",";
+					} else {
+						strPOIID = strPOIID + POISID[i];
+					}
 				}
 			}
 			POISWarning pOISWarning = new POISWarning("Get", method, format,

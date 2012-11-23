@@ -3,12 +3,8 @@ package topoos.APIAccess.Results;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.json.JSONArray;
+import org.json.JSONTokener;
 
 import topoos.Constants;
 import topoos.APIAccess.Results.Objects.Location;
@@ -48,8 +44,28 @@ public class PolygonResult extends APICallResult{
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
+		
+		ArrayList<Location> polygon=null;
+		try {
+			JSONArray jArray = (JSONArray) new JSONTokener(this.Result)
+					.nextValue();
+			polygon = new ArrayList<Location>();
+			// Extracting content
+			for (int i = 0; i < jArray.length(); i++) {
+				polygon.add(new Location(jArray.getJSONObject(i).getDouble("latitude"),jArray.getJSONObject(i).getDouble("longitude")));
+			}
+			//this.checkinCollection=new CheckinCollection(array);
+		} catch (Exception e) {
+			if (Constants.DEBUG){
+				e.printStackTrace();
+			}
+			throw new TopoosException(TopoosException.ERROR_PARSE);
+		}
+		this.polygon=polygon;
+		
+		
 		/* Get a SAXParser from the SAXPArserFactory. */
-		if (this.Result != null) {
+		/*if (this.Result != null) {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db;
 			try {
@@ -73,7 +89,7 @@ public class PolygonResult extends APICallResult{
 				}
 				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
-		}
+		}*/
 
 	}
 

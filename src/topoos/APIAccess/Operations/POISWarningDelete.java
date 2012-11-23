@@ -34,7 +34,7 @@ public class POISWarningDelete extends APIOperation{
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
 		boolean validate = true;
-		validate = validate && isValidorNull(poi);
+		validate = validate && isValid(poi);
 		validate = validate && isValid(type);
 		validate = validate && isValid(oauth_token);
 		return validate;
@@ -49,7 +49,7 @@ public class POISWarningDelete extends APIOperation{
 			params = "/" + this.Version + "/pois/warnings/delete."
 					+ this.Format 
 					+ "?oauth_token=" + this.oauth_token
-					+(poi == null? "" : "&poi="+APIUtils.toStringUrlEncoded(poi))
+					+ "&poi="+APIUtils.toStringUrlEncoded(poi)
 					+ "&type="+type
 					;
 		}

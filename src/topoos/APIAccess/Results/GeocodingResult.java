@@ -62,24 +62,28 @@ public class GeocodingResult extends APICallResult{
 			this.geocoding=new ArrayList<GeocodingData>();
 			for(int i=0;i<jArray.length();i++){
 				JSONObject jObject=jArray.getJSONObject(i);
-				JSONObject jObjectAddress=jObject.getJSONObject("address");
-				JSONObject jObjectLocation=jObject.getJSONObject("location");
-				JSONObject jObjectBounds=jObject.getJSONObject("bounds");
-				JSONObject jObjectSouthwest=jObjectBounds.getJSONObject("southwest");
-				JSONObject jObjectNortheast=jObjectBounds.getJSONObject("northeast");
+				JSONObject jObjectAddress=jObject.optJSONObject("address");
+				JSONObject jObjectLocation=jObject.optJSONObject("location");
+				JSONObject jObjectBounds=jObject.optJSONObject("bounds");
+				JSONObject jObjectSouthwest=null;
+				JSONObject jObjectNortheast=null;
+				if(jObjectBounds!=null){
+					jObjectSouthwest=jObjectBounds.optJSONObject("southwest");
+					jObjectNortheast=jObjectBounds.optJSONObject("northeast");
+				}
 				this.geocoding.add(
 						new GeocodingData(new Address(
-								jObjectAddress.getString("address"),
-								jObjectAddress.getString("cross_street"),
-								jObjectAddress.getString("state"),
-								jObjectAddress.getString("administrative_area"),
-								jObjectAddress.getString("country"),
-								jObjectAddress.getString("postal_code")),
-						new Location(jObjectLocation.getDouble("latitude"),
-								jObjectLocation.getDouble("longitude")),
-						new ViewportType(new Location(jObjectSouthwest.getDouble("latitude"),
-								jObjectSouthwest.getDouble("longitude")),new Location(jObjectNortheast.getDouble("latitude"),
-										jObjectNortheast.getDouble("longitude")))));
+								jObjectAddress.optString("address"),
+								jObjectAddress.optString("cross_street"),
+								jObjectAddress.optString("state"),
+								jObjectAddress.optString("administrative_area"),
+								jObjectAddress.optString("country"),
+								jObjectAddress.optString("postal_code")),
+						new Location(jObjectLocation.optDouble("latitude"),
+								jObjectLocation.optDouble("longitude")), jObjectBounds==null? null:(
+						new ViewportType(new Location(jObjectSouthwest.optDouble("latitude"),
+								jObjectSouthwest.optDouble("longitude")),new Location(jObjectNortheast.optDouble("latitude"),
+										jObjectNortheast.optDouble("longitude"))))));
 				
 			}
 
