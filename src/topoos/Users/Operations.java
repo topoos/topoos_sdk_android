@@ -20,10 +20,11 @@ public class Operations {
 	/**
 	 * Get a user
 	 * 
-	 * @param userID (obligatory) user identifier which we obtain information,
-	 *        the value "me" allows authorized user information now
-	 * @param accessTokenPregenerated (obligatory)  access_token to user
-	 *        resources
+	 * @param userID
+	 *            (required) user identifier which we obtain information, the
+	 *            value "me" allows authorized user information now
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
 	 * @return User
 	 * @throws IOException
 	 * @throws TopoosException
@@ -38,13 +39,13 @@ public class Operations {
 	 * Add user to group
 	 * 
 	 * @param userID
-	 *            (obligatory) user Identifier which we obtain information, the
+	 *            (required) user Identifier which we obtain information, the
 	 *            value "me" allows authorized user information now
 	 * @param groupID
-	 *            (obligatory) Identifier of the group to which the user
-	 *            belongs. You happen to belong to this group.
-	 * @param accessTokenPregenerated (obligatory) access_token to user
-	 *        resources
+	 *            (required) Identifier of the group to which the user belongs.
+	 *            You happen to belong to this group.
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
 	 * @return
 	 * @throws IOException
 	 * @throws TopoosException
@@ -59,13 +60,13 @@ public class Operations {
 	 * Remove user from group
 	 * 
 	 * @param userID
-	 *            (obligatory) user identifier which we obtain information, the
+	 *            (required) user identifier which we obtain information, the
 	 *            value "me" allows authorized user information now
 	 * @param groupID
-	 *            (obligatory) ID of the group to which the user belongs. The
-	 *            user will belong to this group.
+	 *            (required) ID of the group to which the user belongs. The user
+	 *            will belong to this group.
 	 * @param accessTokenPregenerated
-	 *            (obligatory) access_token to user resources
+	 *            (required) access_token to user resources
 	 * @return boolean
 	 * @throws IOException
 	 * @throws TopoosException
@@ -80,9 +81,9 @@ public class Operations {
 	 * Get users near of POI
 	 * 
 	 * @param POIID
-	 *            (obligatory) Point of interest identifier.
+	 *            (required) Point of interest identifier.
 	 * @param radius
-	 *            (obligatory) search radius in meters, should be greater than
+	 *            (required) search radius in meters, should be greater than
 	 *            zero.
 	 * @param groupID
 	 *            (optional) user group identifier. If specified, the results
@@ -94,8 +95,8 @@ public class Operations {
 	 *            (optional) the search is performed only between users who are
 	 *            currently active Track. Allowed values ​​"true". By default
 	 *            "true"
-	 * @param accessTokenPregenerated (obligatory)
-	 *            access_token to user resources
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
 	 * @return List
 	 * @throws IOException
 	 * @throws TopoosException
@@ -112,13 +113,13 @@ public class Operations {
 	 * Get users near of a position (latitude,longitude)
 	 * 
 	 * @param lat
-	 *            (obligatory) latitude search center point. It is a required
+	 *            (required) latitude search center point. It is a required
 	 *            parameter is not specified poi.
 	 * @param lng
-	 *            (obligatory) longitude search center point. It is a required
+	 *            (required) longitude search center point. It is a required
 	 *            parameter is not specified poi.
 	 * @param radius
-	 *            (obligatory) search radius in meters, should be greater than
+	 *            (required) search radius in meters, should be greater than
 	 *            zero.
 	 * @param groupID
 	 *            (optional) user group identifier. If specified, the results
@@ -130,8 +131,8 @@ public class Operations {
 	 *            (optional) the search is performed only between users who are
 	 *            currently active Track. Allowed values ​​"true". By default
 	 *            "true"
-	 * @param accessTokenPregenerated
-	 *            access_token to user resources
+	 * @param accessTokenPregenerated 
+	 *            (required) access_token to user resources
 	 * @return List
 	 * @throws IOException
 	 * @throws TopoosException
@@ -148,10 +149,10 @@ public class Operations {
 	 * Get a user
 	 * 
 	 * @param context
-	 *            (obligatory) Interface to global information about an
+	 *            (required) Interface to global information about an
 	 *            application environment
 	 * @param userID
-	 *            (obligatory) user identifier which we obtain information, the
+	 *            (required) user identifier which we obtain information, the
 	 *            value "me" allows authorized user information now
 	 * @return User
 	 * @throws IOException
@@ -166,14 +167,14 @@ public class Operations {
 	 * Add user to group
 	 * 
 	 * @param context
-	 *            (obligatory) Interface to global information about an
+	 *            (required) Interface to global information about an
 	 *            application environment
 	 * @param userID
-	 *            (obligatory) user identifier which we obtain information, the
+	 *            (required) user identifier which we obtain information, the
 	 *            value "me" allows authorized user information now
 	 * @param groupID
-	 *            (obligatory) Identifier of the group to which the user
-	 *            belongs. You happen to belong to this group.
+	 *            (required) Identifier of the group to which the user belongs.
+	 *            You happen to belong to this group.
 	 * @return boolean
 	 * @throws IOException
 	 * @throws TopoosException
@@ -187,14 +188,14 @@ public class Operations {
 	 * Remove user from group
 	 * 
 	 * @param context
-	 *            (obligatory) Interface to global information about an
+	 *            (required) Interface to global information about an
 	 *            application environment
 	 * @param userID
 	 *            user identifier which we obtain information, the value "me"
 	 *            allows authorized user information now
 	 * @param groupID
-	 *            (obligatory) ID of the group to which the user belongs. The
-	 *            user will belong to this group.
+	 *            (required) ID of the group to which the user belongs. The user
+	 *            will belong to this group.
 	 * @return boolean
 	 * @throws IOException
 	 * @throws TopoosException
@@ -208,12 +209,12 @@ public class Operations {
 	 * Get users near of POI
 	 * 
 	 * @param context
-	 *            (obligatory) Interface to global information about an
+	 *            (required) Interface to global information about an
 	 *            application environment
 	 * @param POIID
-	 *            (obligatory) Point of interest identifier.
+	 *            (required) Point of interest identifier.
 	 * @param radius
-	 *            (obligatory) search radius in meters, should be greater than
+	 *            (required) search radius in meters, should be greater than
 	 *            zero.
 	 * @param groupID
 	 *            (optional) user group identifier. If specified, the results
@@ -240,16 +241,16 @@ public class Operations {
 	 * Get users near of a position (latitude,longitude)
 	 * 
 	 * @param context
-	 *            (obligatory) Interface to global information about an
+	 *            (required) Interface to global information about an
 	 *            application environment
 	 * @param lat
-	 *            (obligatory) latitude search center point. It is a required
+	 *            (required) latitude search center point. It is a required
 	 *            parameter is not specified poi.
 	 * @param lng
-	 *            (obligatory) longitude search center point. It is a required
+	 *            (required) longitude search center point. It is a required
 	 *            parameter is not specified poi.
 	 * @param radius
-	 *            (obligatory) search radius in meters, should be greater than
+	 *            (required) search radius in meters, should be greater than
 	 *            zero.
 	 * @param groupID
 	 *            (optional) user group identifier. If specified, the results

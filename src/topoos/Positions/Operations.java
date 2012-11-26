@@ -8,308 +8,594 @@ import topoos.AccessTokenOAuth;
 import topoos.Exception.TopoosException;
 import topoos.Objects.Position;
 import android.content.Context;
+
 /**
+ * Operations related to position management
  * 
  * @author MAJS
- *
+ * 
  */
 public class Operations {
 	/**
-	 * Register a new position. This may be an isolated position or the position of an existing track.
+	 * Register a new position. This may be an isolated position or the position
+	 * of an existing track.
 	 * 
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
+	 *            (optional) motion direction (value between 0 and 360)
 	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) access_token to user resources
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static 	Position Add (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
-		return Translator.Add(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	public static Position Add(Double lat, Double lng, Integer trackID,
+			Integer accuracy, Integer vaccuracy, Integer elevation,
+			Date timestamp, Integer velocity, Integer bearing,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
+		return Translator.Add(lat, lng, trackID, accuracy, vaccuracy,
+				elevation, timestamp, velocity, bearing,
+				accessTokenPregenerated);
 	}
+
 	/**
+	 * Register a new Alarm_End position. This may be an isolated position or
+	 * the position of an existing track.
 	 * 
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
+	 *            (optional) motion direction (value between 0 and 360)
 	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) access_token to user resources
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddAlarmEnd(Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
-		return Translator.AddAlarmEnd(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	public static Position AddAlarmEnd(Double lat, Double lng, Integer trackID,
+			Integer accuracy, Integer vaccuracy, Integer elevation,
+			Date timestamp, Integer velocity, Integer bearing,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
+		return Translator.AddAlarmEnd(lat, lng, trackID, accuracy, vaccuracy,
+				elevation, timestamp, velocity, bearing,
+				accessTokenPregenerated);
 	}
+
 	/**
+	 * Register a new Alarm Init position. This may be an isolated position or
+	 * the position of an existing track.
 	 * 
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
+	 *            (optional) motion direction (value between 0 and 360)
 	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) access_token to user resources
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddAlarmInit (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
-		return Translator.AddAlarmInit(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	public static Position AddAlarmInit(Double lat, Double lng,
+			Integer trackID, Integer accuracy, Integer vaccuracy,
+			Integer elevation, Date timestamp, Integer velocity,
+			Integer bearing, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
+		return Translator.AddAlarmInit(lat, lng, trackID, accuracy, vaccuracy,
+				elevation, timestamp, velocity, bearing,
+				accessTokenPregenerated);
 	}
+
 	/**
+	 * Register a new GPSNo position. This may be an isolated position or the
+	 * position of an existing track.
 	 * 
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
+	 *            (optional) motion direction (value between 0 and 360)
 	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) access_token to user resources
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddGPSNo (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
-		return Translator.AddGPSNo(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	public static Position AddGPSNo(Double lat, Double lng, Integer trackID,
+			Integer accuracy, Integer vaccuracy, Integer elevation,
+			Date timestamp, Integer velocity, Integer bearing,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
+		return Translator.AddGPSNo(lat, lng, trackID, accuracy, vaccuracy,
+				elevation, timestamp, velocity, bearing,
+				accessTokenPregenerated);
 	}
+
 	/**
+	 * Register a new GPSOk position. This may be an isolated position or the
+	 * position of an existing track.
 	 * 
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
+	 *            (optional) motion direction (value between 0 and 360)
 	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) access_token to user resources
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddGPSOk (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
-		return Translator.AddGPSOk(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);}
-	/**
-	 * 
-	 * @param lat
-	 * @param lng
-	 * @param trackID
-	 * @param accuracy
-	 * @param vaccuracy
-	 * @param elevation
-	 * @param timestamp
-	 * @param velocity
-	 * @param bearing
-	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
-	 */
-	public static	Position AddTrackEnd (Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
-		return Translator.AddTrackEnd(lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing, accessTokenPregenerated);
+	public static Position AddGPSOk(Double lat, Double lng, Integer trackID,
+			Integer accuracy, Integer vaccuracy, Integer elevation,
+			Date timestamp, Integer velocity, Integer bearing,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
+		return Translator.AddGPSOk(lat, lng, trackID, accuracy, vaccuracy,
+				elevation, timestamp, velocity, bearing,
+				accessTokenPregenerated);
 	}
+
 	/**
+	 * Register a new Track End position. This may be an isolated position or
+	 * the position of an existing track.
+	 * 
+	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
+	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
+	 * @param trackID
+	 *            (optional) Track identifier to which the position
+	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
+	 * @param vaccuracy
+	 *            (optional) elevation accuracy
+	 * @param elevation
+	 *            (optional) elevation relative to sea level
+	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
+	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
+	 * @param bearing
+	 *            (optional) motion direction (value between 0 and 360)
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Position AddTrackEnd(Double lat, Double lng, Integer trackID,
+			Integer accuracy, Integer vaccuracy, Integer elevation,
+			Date timestamp, Integer velocity, Integer bearing,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
+		return Translator.AddTrackEnd(lat, lng, trackID, accuracy, vaccuracy,
+				elevation, timestamp, velocity, bearing,
+				accessTokenPregenerated);
+	}
+
+	/**
+	 * Obtains information of a position
 	 * 
 	 * @param posID
+	 *            (required) identifier of a particular position.
 	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) access_token to user resources
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position Get (Integer posID, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+	public static Position Get(Integer posID,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		return Translator.Get(posID, accessTokenPregenerated);
 	}
+
 	/**
+	 * Obtains information of a position
 	 * 
 	 * @param userID
+	 *            (required) user identifier, if not stated it will get the last
+	 *            position of the current user.
 	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) access_token to user resources
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position GetLastUser (String userID, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+	public static Position GetLastUser(String userID,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
 		return Translator.GetLastUser(userID, accessTokenPregenerated);
 	}
+
 	/**
+	 * Gets a collection of positions recorded in a date range
 	 * 
 	 * @param initDate
+	 *            (required) start date
 	 * @param endDate
+	 *            (required) ending date
 	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
 	 * @return
-	 * @throws TopoosException 
-	 * @throws IOException 
+	 * @throws TopoosException
+	 * @throws IOException
 	 */
-	public static	List<Position> GetBetweenDays (Date initDate, Date endDate, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
-		return Translator.GetBetweenDays(initDate, endDate, accessTokenPregenerated);	
+	public static List<Position> GetBetweenDays(Date initDate, Date endDate,
+			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			TopoosException {
+		return Translator.GetBetweenDays(initDate, endDate,
+				accessTokenPregenerated);
 	}
+
 	/**
+	 * Register a new position. This may be an isolated position or the position
+	 * of an existing track.
 	 * 
 	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (optional) motion direction (value between 0 and 360)
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static 	Position Add (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing) throws IOException, TopoosException{
-		return Translator.Add(context, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing);
+	public static Position Add(Context context, Double lat, Double lng,
+			Integer trackID, Integer accuracy, Integer vaccuracy,
+			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			throws IOException, TopoosException {
+		return Translator.Add(context, lat, lng, trackID, accuracy, vaccuracy,
+				elevation, timestamp, velocity, bearing);
 	}
+
 	/**
+	 * Register a new Alarm End position. This may be an isolated position or
+	 * the position of an existing track.
 	 * 
 	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (optional) motion direction (value between 0 and 360)
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddAlarmEnd(Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing) throws IOException, TopoosException{
-		return Translator.AddAlarmEnd(context, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing);
-	}	
+	public static Position AddAlarmEnd(Context context, Double lat, Double lng,
+			Integer trackID, Integer accuracy, Integer vaccuracy,
+			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			throws IOException, TopoosException {
+		return Translator.AddAlarmEnd(context, lat, lng, trackID, accuracy,
+				vaccuracy, elevation, timestamp, velocity, bearing);
+	}
+
 	/**
+	 * Register a new Alarm Init position. This may be an isolated position or
+	 * the position of an existing track.
 	 * 
 	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (optional) motion direction (value between 0 and 360)
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddAlarmInit (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing) throws IOException, TopoosException{
-		return Translator.AddAlarmInit(context, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing);
+	public static Position AddAlarmInit(Context context, Double lat,
+			Double lng, Integer trackID, Integer accuracy, Integer vaccuracy,
+			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			throws IOException, TopoosException {
+		return Translator.AddAlarmInit(context, lat, lng, trackID, accuracy,
+				vaccuracy, elevation, timestamp, velocity, bearing);
 	}
+
 	/**
+	 * Register a new GPSNo position. This may be an isolated position or the
+	 * position of an existing track.
 	 * 
 	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (optional) motion direction (value between 0 and 360)
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddGPSNo (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing) throws IOException, TopoosException{
-		return Translator.AddGPSNo(context, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing);
+	public static Position AddGPSNo(Context context, Double lat, Double lng,
+			Integer trackID, Integer accuracy, Integer vaccuracy,
+			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			throws IOException, TopoosException {
+		return Translator.AddGPSNo(context, lat, lng, trackID, accuracy,
+				vaccuracy, elevation, timestamp, velocity, bearing);
 	}
+
 	/**
+	 * Register a new GPSOk position. This may be an isolated position or the
+	 * position of an existing track.
 	 * 
 	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (optional) motion direction (value between 0 and 360)
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddGPSOk (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing) throws IOException, TopoosException{
-		return Translator.AddGPSOk(context, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing);
+	public static Position AddGPSOk(Context context, Double lat, Double lng,
+			Integer trackID, Integer accuracy, Integer vaccuracy,
+			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			throws IOException, TopoosException {
+		return Translator.AddGPSOk(context, lat, lng, trackID, accuracy,
+				vaccuracy, elevation, timestamp, velocity, bearing);
 	}
+
 	/**
+	 * Register a new Track End position. This may be an isolated position or
+	 * the position of an existing track.
 	 * 
 	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment
 	 * @param lat
+	 *            (required) latitude in decimal degrees of the new position.
 	 * @param lng
+	 *            (required) longitude in decimal degrees of the new position.
 	 * @param trackID
+	 *            (optional) Track identifier to which the position
 	 * @param accuracy
+	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy
+	 *            (optional) elevation accuracy
 	 * @param elevation
+	 *            (optional) elevation relative to sea level
 	 * @param timestamp
+	 *            (optional) local time with UTC offset conversion capture the
+	 *            position
 	 * @param velocity
+	 *            (optional) movement speed at the moment that captured the
+	 *            position, in meters per second
 	 * @param bearing
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (optional) motion direction (value between 0 and 360)
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position AddTrackEnd (Context context, Double lat,Double lng, Integer trackID ,Integer accuracy,Integer vaccuracy, Integer elevation,Date timestamp,Integer velocity,Integer bearing) throws IOException, TopoosException{
-		return Translator.AddTrackEnd(context, lat, lng, trackID, accuracy, vaccuracy, elevation, timestamp, velocity, bearing);
+	public static Position AddTrackEnd(Context context, Double lat, Double lng,
+			Integer trackID, Integer accuracy, Integer vaccuracy,
+			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			throws IOException, TopoosException {
+		return Translator.AddTrackEnd(context, lat, lng, trackID, accuracy,
+				vaccuracy, elevation, timestamp, velocity, bearing);
 	}
+
 	/**
+	 * Obtains information of a position
 	 * 
 	 * @param context
 	 * @param posID
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) identifier of a particular position.
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position Get (Context context, Integer posID) throws IOException, TopoosException{
+	public static Position Get(Context context, Integer posID)
+			throws IOException, TopoosException {
 		return Translator.Get(context, posID);
 	}
+
 	/**
+	 * Obtains information of a position
 	 * 
 	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment
 	 * @param userID
-	 * @return
-	 * @throws IOException 
-	 * @throws TopoosException 
+	 *            (required) user identifier, if not stated it will get the last
+	 *            position of the current user.
+	 * @return Position
+	 * @throws IOException
+	 * @throws TopoosException
 	 */
-	public static	Position GetLastUser (Context context, String userID) throws IOException, TopoosException{
+	public static Position GetLastUser(Context context, String userID)
+			throws IOException, TopoosException {
 		return Translator.GetLastUser(context, userID);
 
 	}
+
 	/**
+	 * Gets a collection of positions recorded in a date range
 	 * 
 	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment
 	 * @param initDate
+	 *            (required) start date
 	 * @param endDate
-	 * @return
-	 * @throws TopoosException 
-	 * @throws IOException 
+	 *            (required) ending date
+	 * @return Position
+	 * @throws TopoosException
+	 * @throws IOException
 	 */
-	public static	List<Position> GetBetweenDays (Context context, Date initDate, Date endDate) throws IOException, TopoosException{
+	public static List<Position> GetBetweenDays(Context context, Date initDate,
+			Date endDate) throws IOException, TopoosException {
 		return Translator.GetBetweenDays(context, initDate, endDate);
 	}
-	
+
 }

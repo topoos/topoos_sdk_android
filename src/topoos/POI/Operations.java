@@ -7,7 +7,11 @@ import topoos.AccessTokenOAuth;
 import topoos.Exception.TopoosException;
 import topoos.Objects.POI;
 import android.content.Context;
-
+/**
+ * 
+ * @author MAJS
+ *
+ */
 public class Operations {
 	
 	public static	POI Add (String name, Double lat,Double lng, Integer[] categories,Double accuracy,Double vaccuracy,Double elevation, String desc, String address,String cross_street, String city,String country, String postal_code,String phone,String twitter, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
