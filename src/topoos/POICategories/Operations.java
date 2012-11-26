@@ -5,8 +5,8 @@ import java.util.List;
 
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.Operations.POISWarning;
-import topoos.APIAccess.Results.Objects.POICategory;
 import topoos.Exception.TopoosException;
+import topoos.Objects.POICategory;
 import android.content.Context;
 
 public class Operations {

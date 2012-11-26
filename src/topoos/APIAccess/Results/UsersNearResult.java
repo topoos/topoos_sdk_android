@@ -6,8 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONTokener;
 
 import topoos.Constants;
-import topoos.APIAccess.Results.Objects.*;
 import topoos.Exception.TopoosException;
+import topoos.Objects.*;
 
 /**
  * 

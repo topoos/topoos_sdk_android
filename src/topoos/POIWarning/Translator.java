@@ -8,8 +8,8 @@ import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
 import topoos.APIAccess.Results.*;
-import topoos.APIAccess.Results.Objects.*;
 import topoos.Exception.TopoosException;
+import topoos.Objects.*;
 
 class Translator {
 	private static String method = "GET";

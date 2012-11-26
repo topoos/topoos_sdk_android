@@ -5,8 +5,8 @@ import java.util.Date;
 
 import android.content.Context;
 import topoos.AccessTokenOAuth;
-import topoos.APIAccess.Results.Objects.*;
 import topoos.Exception.TopoosException;
+import topoos.Objects.*;
 
 /**
  * 

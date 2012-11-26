@@ -3,10 +3,10 @@ package topoos.Resources;
 import java.io.IOException;
 import java.util.List;
 import topoos.AccessTokenOAuth;
-import topoos.APIAccess.Results.Objects.GeocodingData;
-import topoos.APIAccess.Results.Objects.Location;
-import topoos.APIAccess.Results.Objects.Track;
 import topoos.Exception.TopoosException;
+import topoos.Objects.GeocodingData;
+import topoos.Objects.Location;
+import topoos.Objects.Track;
 import android.content.Context;
 
 /**

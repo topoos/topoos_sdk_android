@@ -3,8 +3,8 @@ package topoos.Rules;
 import java.io.IOException;
 
 import topoos.AccessTokenOAuth;
-import topoos.APIAccess.Results.Objects.Rule;
 import topoos.Exception.TopoosException;
+import topoos.Objects.Rule;
 import android.content.Context;
 
 public class Operations {

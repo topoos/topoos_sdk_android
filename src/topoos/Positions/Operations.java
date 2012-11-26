@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import topoos.AccessTokenOAuth;
-import topoos.APIAccess.Results.Objects.Position;
 import topoos.Exception.TopoosException;
+import topoos.Objects.Position;
 import android.content.Context;
 /**
  * 
@@ -15,6 +15,7 @@ import android.content.Context;
  */
 public class Operations {
 	/**
+	 * Register a new position. This may be an isolated position or the position of an existing track.
 	 * 
 	 * @param lat
 	 * @param lng

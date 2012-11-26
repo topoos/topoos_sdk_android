@@ -12,17 +12,11 @@ class WebInterface {
 	private static final String ParamKey_AccessToken = "access_token";
 	private static final String ParamKey_ExpiresIn = "expires_in";
 	private static final String ParamKey_TokenType = "token_type";
-	private static final String ParamKey_RefreshToken = "refresh_token";
-	//private static final String ParamKey_Error_Description = "error_description";
-	//private static final String ParamKey_Error = "error";
-
-
-	
+	private static final String ParamKey_RefreshToken = "refresh_token";	
 	public static AccessTokenOAuth GetAccessToken (String url, String redirect_uri)
 	{
 		AccessTokenOAuth Access = null;
 		
-    	//Capturamos el access token si procede
     	if (url.startsWith(redirect_uri))
     	{
     		String AuxAccessToken = "";

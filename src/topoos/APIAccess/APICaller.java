@@ -18,11 +18,21 @@ import topoos.APIAccess.Results.APICallResult;
 import topoos.Exception.TopoosException;
 
 public class APICaller {
-
+	/**
+	 * Returns the url for the object operation.
+	 * @param operation 
+	 * @return URL
+	 */
 	public static String GetUriOperation(APIOperation operation) {
 		return Constants.TOPOOSURIAPI + operation.ConcatParams();
 	}
-
+	/**
+	 * Initiates an operation on topoos API.
+	 * @param operation Represents the operation to be executed
+	 * @param result Represents a result returned from a query to API topoos
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
 	public static void ExecuteOperation(APIOperation operation,
 			APICallResult result) throws IOException, TopoosException {
 		HttpClient hc = new DefaultHttpClient();

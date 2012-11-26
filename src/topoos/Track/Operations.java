@@ -3,8 +3,8 @@ package topoos.Track;
 import java.io.IOException;
 
 import topoos.AccessTokenOAuth;
-import topoos.APIAccess.Results.Objects.Track;
 import topoos.Exception.TopoosException;
+import topoos.Objects.Track;
 import android.content.Context;
 /**
  * 

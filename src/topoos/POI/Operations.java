@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import topoos.AccessTokenOAuth;
-import topoos.APIAccess.Results.Objects.POI;
 import topoos.Exception.TopoosException;
+import topoos.Objects.POI;
 import android.content.Context;
 
 public class Operations {
