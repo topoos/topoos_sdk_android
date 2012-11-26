@@ -25,8 +25,7 @@ public class Operations {
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
-	public static Track Add(String name,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+	public static Track Add(AccessTokenOAuth accessTokenPregenerated, String name) throws IOException, TopoosException {
 
 		return Translator.Add(name, accessTokenPregenerated);
 	}
@@ -41,8 +40,8 @@ public class Operations {
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
-	public static Track Get(Integer trackID, Integer numberPositions,
-			String[] layers, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+	public static Track Get(AccessTokenOAuth accessTokenPregenerated, Integer trackID, Integer numberPositions,
+			String[] layers) throws IOException, TopoosException {
 		return Translator.Get(trackID, numberPositions, layers, accessTokenPregenerated);
 
 	}
@@ -56,8 +55,7 @@ public class Operations {
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
-	public static Track GetLast(Integer numberPOIS, String[] layers,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+	public static Track GetLast(AccessTokenOAuth accessTokenPregenerated, Integer numberPOIS, String[] layers) throws IOException, TopoosException {
 		return Translator.GetLast(numberPOIS, layers, accessTokenPregenerated);
 	}
 

@@ -32,9 +32,9 @@ public class Operations {
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
-	public static List<Location> GetCircle(Integer resolution,
-			Double latCenter, Double lngCenter, Double radius,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+	public static List<Location> GetCircle(AccessTokenOAuth accessTokenPregenerated, Integer resolution,
+			Double latCenter, Double lngCenter, Double radius
+			) throws IOException, TopoosException {
 		return Translator.GetCircle(resolution, latCenter, lngCenter, radius,
 				accessTokenPregenerated);
 	}
@@ -48,8 +48,7 @@ public class Operations {
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
-	public static List<GeocodingData> GetGeocode(Double lat, Double lng,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+	public static List<GeocodingData> GetGeocode(AccessTokenOAuth accessTokenPregenerated, Double lat, Double lng) throws IOException, TopoosException {
 		return Translator.GetGeocode(lat, lng, accessTokenPregenerated);
 	}
 

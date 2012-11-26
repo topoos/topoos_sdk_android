@@ -16,47 +16,46 @@ public class Operations {
 		public static final String	TYPE_WRONG_INDICATOR=POISWarningAdd.TYPE_WRONG_INDICATOR;
 		public static final String	TYPE_WRONG_INFO=POISWarningAdd.TYPE_WRONG_INFO;
 
-		public static List<POIDataWarning> Get(Integer[] POISID, String type,
-				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+		public static List<POIDataWarning> Get(AccessTokenOAuth accessTokenPregenerated,Integer[] POISID, String type) throws IOException, TopoosException {
 			return Translator.Get(POISID, type, accessTokenPregenerated);
 		}
 
-		public static List<POIDataWarning> GetAll(String type,
-				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+		public static List<POIDataWarning> GetAll(AccessTokenOAuth accessTokenPregenerated,String type) throws IOException, TopoosException {
 			return Translator.GetAll(type, accessTokenPregenerated);
 		}
 
-		public static POIWarning AddClosed(Integer POI_ID,
-				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+		public static POIWarning AddClosed(AccessTokenOAuth accessTokenPregenerated, Integer POI_ID)
+				 throws IOException, TopoosException {
 			return Translator.AddClosed(POI_ID, accessTokenPregenerated);
 		}
 
-		public static POIWarning AddDuplicated(Integer POI_ID,
-				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+		public static POIWarning AddDuplicated(AccessTokenOAuth accessTokenPregenerated,Integer POI_ID)
+				 throws IOException, TopoosException {
 			return Translator.AddDuplicated(POI_ID, accessTokenPregenerated);
 		}
 
-		public static POIWarning AddWrongIndicator(Integer POI_ID, Double lat,
-				Double lng, Double accuracy, Double vaccuracy, Double elevation,
-				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+		public static POIWarning AddWrongIndicator(AccessTokenOAuth accessTokenPregenerated, Integer POI_ID, Double lat,
+				Double lng, Double accuracy, Double vaccuracy, Double elevation
+				)
+				 throws IOException, TopoosException {
 			return Translator.AddWrongIndicator(POI_ID, lat, lng, accuracy, vaccuracy, elevation, accessTokenPregenerated);
 		}
 
-		public static POIWarning AddWrongInfo(Integer POI_ID, String name,
+		public static POIWarning AddWrongInfo(AccessTokenOAuth accessTokenPregenerated, Integer POI_ID, String name,
 				Integer[] categories, String desc, String address,
 				String cross_street, String city, String country,
-				String postal_code, String phone, String twitter,
-				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+				String postal_code, String phone, String twitter)
+				 throws IOException, TopoosException {
 			return Translator.AddWrongInfo(POI_ID, name, categories, desc, address, cross_street, city, country, postal_code, phone, twitter, accessTokenPregenerated);
 		}
 
-		public static Boolean Delete(Integer[] POISID, String type,
-				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+		public static Boolean Delete(AccessTokenOAuth accessTokenPregenerated, Integer[] POISID, String type)
+				 throws IOException, TopoosException {
 			return Translator.Delete(POISID, type, accessTokenPregenerated);
 		}
 
-		public static Boolean DeleteAll(String type,
-				AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
+		public static Boolean DeleteAll(AccessTokenOAuth accessTokenPregenerated, String type)
+				 throws IOException, TopoosException {
 			return Translator.DeleteAll(type, accessTokenPregenerated);
 		}
 

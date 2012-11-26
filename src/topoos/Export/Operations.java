@@ -31,7 +31,7 @@ public class Operations {
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
-	public static TrackResource ExportTrack (Integer trackID, String export_format, Integer total,Date initDate,Date endDate,  AccessTokenOAuth  accessTokenPregenerated) throws IOException, TopoosException{
+	public static TrackResource ExportTrack (AccessTokenOAuth accessTokenPregenerated, Integer trackID, String export_format, Integer total,Date initDate,Date endDate) throws IOException, TopoosException{
 		return Translator.ExportTrack(trackID, export_format, total, initDate, endDate, accessTokenPregenerated);
 	}
 	/**

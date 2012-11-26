@@ -46,10 +46,10 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Position Add(Double lat, Double lng, Integer trackID,
+	public static Position Add(AccessTokenOAuth accessTokenPregenerated, Double lat, Double lng, Integer trackID,
 			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			Date timestamp, Integer velocity, Integer bearing
+			) throws IOException,
 			TopoosException {
 		return Translator.Add(lat, lng, trackID, accuracy, vaccuracy,
 				elevation, timestamp, velocity, bearing,
@@ -86,10 +86,9 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Position AddAlarmEnd(Double lat, Double lng, Integer trackID,
+	public static Position AddAlarmEnd(AccessTokenOAuth accessTokenPregenerated, Double lat, Double lng, Integer trackID,
 			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			Date timestamp, Integer velocity, Integer bearing) throws IOException,
 			TopoosException {
 		return Translator.AddAlarmEnd(lat, lng, trackID, accuracy, vaccuracy,
 				elevation, timestamp, velocity, bearing,
@@ -126,10 +125,9 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Position AddAlarmInit(Double lat, Double lng,
+	public static Position AddAlarmInit(AccessTokenOAuth accessTokenPregenerated, Double lat, Double lng,
 			Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity,
-			Integer bearing, AccessTokenOAuth accessTokenPregenerated)
+			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
 			throws IOException, TopoosException {
 		return Translator.AddAlarmInit(lat, lng, trackID, accuracy, vaccuracy,
 				elevation, timestamp, velocity, bearing,
@@ -166,10 +164,9 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Position AddGPSNo(Double lat, Double lng, Integer trackID,
+	public static Position AddGPSNo(AccessTokenOAuth accessTokenPregenerated, Double lat, Double lng, Integer trackID,
 			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			Date timestamp, Integer velocity, Integer bearing) throws IOException,
 			TopoosException {
 		return Translator.AddGPSNo(lat, lng, trackID, accuracy, vaccuracy,
 				elevation, timestamp, velocity, bearing,
@@ -206,10 +203,9 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Position AddGPSOk(Double lat, Double lng, Integer trackID,
+	public static Position AddGPSOk(AccessTokenOAuth accessTokenPregenerated, Double lat, Double lng, Integer trackID,
 			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			Date timestamp, Integer velocity, Integer bearing) throws IOException,
 			TopoosException {
 		return Translator.AddGPSOk(lat, lng, trackID, accuracy, vaccuracy,
 				elevation, timestamp, velocity, bearing,
@@ -246,10 +242,9 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Position AddTrackEnd(Double lat, Double lng, Integer trackID,
+	public static Position AddTrackEnd(AccessTokenOAuth accessTokenPregenerated, Double lat, Double lng, Integer trackID,
 			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			Date timestamp, Integer velocity, Integer bearing) throws IOException,
 			TopoosException {
 		return Translator.AddTrackEnd(lat, lng, trackID, accuracy, vaccuracy,
 				elevation, timestamp, velocity, bearing,
@@ -267,8 +262,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Position Get(Integer posID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static Position Get(AccessTokenOAuth accessTokenPregenerated, Integer posID) throws IOException,
 			TopoosException {
 		return Translator.Get(posID, accessTokenPregenerated);
 	}
@@ -285,8 +279,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Position GetLastUser(String userID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static Position GetLastUser(AccessTokenOAuth accessTokenPregenerated, String userID) throws IOException,
 			TopoosException {
 		return Translator.GetLastUser(userID, accessTokenPregenerated);
 	}
@@ -304,8 +297,7 @@ public class Operations {
 	 * @throws TopoosException
 	 * @throws IOException
 	 */
-	public static List<Position> GetBetweenDays(Date initDate, Date endDate,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static List<Position> GetBetweenDays(AccessTokenOAuth accessTokenPregenerated, Date initDate, Date endDate) throws IOException,
 			TopoosException {
 		return Translator.GetBetweenDays(initDate, endDate,
 				accessTokenPregenerated);

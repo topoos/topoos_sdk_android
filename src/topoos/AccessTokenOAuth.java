@@ -30,8 +30,8 @@ public class AccessTokenOAuth implements Serializable {
 	private String KEY_REFRESHTOKEN="KEY_REFRESHTOKEN";
 	private String KEY_TOKENTYPE="KEY_TOKENTYPE";
 
-	private String TOKEN_TYPE_ADMIN="Admin";
-	
+	public static final String TOKEN_TYPE_ADMIN="Admin";
+	public static final String TOKEN_TYPE_BEARER="bearer";
 	/**
 	 * 
 	 */

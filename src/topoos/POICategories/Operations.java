@@ -44,20 +44,17 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static POICategory Add(String name,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static POICategory Add(AccessTokenOAuth accessTokenPregenerated, String name) throws IOException,
 			TopoosException {
 		return Translator.Add(name, accessTokenPregenerated);
 	}
 
-	public static Boolean Update(Integer categoryID, String name,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static Boolean Update(AccessTokenOAuth accessTokenPregenerated, Integer categoryID, String name) throws IOException,
 			TopoosException {
 		return Translator.Update(categoryID, name, accessTokenPregenerated);
 	}
 
-	public static Boolean Delete(Integer categoryID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static Boolean Delete(AccessTokenOAuth accessTokenPregenerated, Integer categoryID) throws IOException,
 			TopoosException {
 		return Translator.Delete(categoryID, accessTokenPregenerated);
 	}

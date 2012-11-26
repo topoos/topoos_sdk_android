@@ -50,3 +50,9 @@ local.properties
 #OS junk files
 [Tt]humbs.db
 *.DS_Store
+/doc
+/res
+/AndroidManifest.xml
+/ic_launcher-web.png
+/proguard-project.txt
+/project.properties

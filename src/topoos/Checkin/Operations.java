@@ -17,16 +17,15 @@ import android.content.Context;
 public class Operations {
 	/**
 	 * 
-	 * @param POIID 
+	 * @param POIID
 	 * @param timestamp
 	 * @param accessTokenPregenerated
 	 * @return
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Checkin Add(Integer POIID, Date timestamp,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
+	public static Checkin Add(AccessTokenOAuth accessTokenPregenerated,
+			Integer POIID, Date timestamp) throws IOException, TopoosException {
 		return Translator.Add(POIID, timestamp, accessTokenPregenerated);
 	}
 
@@ -38,9 +37,8 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Checkin Get(Integer checkinID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
+	public static Checkin Get(AccessTokenOAuth accessTokenPregenerated,
+			Integer checkinID) throws IOException, TopoosException {
 		return Translator.Get(checkinID, accessTokenPregenerated);
 	}
 
@@ -52,9 +50,8 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Checkin GetLast(String userID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
+	public static Checkin GetLast(AccessTokenOAuth accessTokenPregenerated,
+			String userID) throws IOException, TopoosException {
 		return Translator.GetLast(userID, accessTokenPregenerated);
 	}
 
@@ -66,9 +63,9 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static List<Checkin> GetPOI(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
+	public static List<Checkin> GetPOI(
+			AccessTokenOAuth accessTokenPregenerated, Integer POIID)
+			throws IOException, TopoosException {
 		return Translator.GetPOI(POIID, accessTokenPregenerated);
 	}
 

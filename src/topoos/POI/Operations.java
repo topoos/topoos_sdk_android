@@ -38,7 +38,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static	POI Add (String name, Double lat,Double lng, Integer[] categories,Double accuracy,Double vaccuracy,Double elevation, String desc, String address,String cross_street, String city,String country, String postal_code,String phone,String twitter, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+	public static	POI Add (AccessTokenOAuth accessTokenPregenerated, String name, Double lat,Double lng, Integer[] categories,Double accuracy,Double vaccuracy,Double elevation, String desc, String address,String cross_street, String city,String country, String postal_code,String phone,String twitter) throws IOException, TopoosException{
 		return Translator.Add(name, lat, lng, categories, accuracy, vaccuracy, elevation, desc, address, cross_street, city, country, postal_code, phone, twitter, accessTokenPregenerated);
 	}
 	/**
@@ -65,7 +65,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static	List<POI> GetNear (Double lat,Double lng,Integer radius,Integer[] categories, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+	public static	List<POI> GetNear (AccessTokenOAuth accessTokenPregenerated, Double lat,Double lng,Integer radius,Integer[] categories) throws IOException, TopoosException{
 		return Translator.GetNear(lat, lng, radius, categories, accessTokenPregenerated);
 	}
 	/**
@@ -82,7 +82,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static List<POI> GetWhere(Integer[] categories, Integer[] POIS, String city,String country,String postal_code,String q, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+	public static List<POI> GetWhere(AccessTokenOAuth accessTokenPregenerated, Integer[] categories, Integer[] POIS, String city,String country,String postal_code,String q) throws IOException, TopoosException{
 		return Translator.GetWhere(categories, POIS, city, country, postal_code, q, accessTokenPregenerated);
 	}
 	
@@ -109,7 +109,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Boolean Update (Integer POIID,String name, Double lat, Double lng, Integer[] categories, Double accuracy,Double vaccuracy,Double elevation,String desc,String address, String cross_stret, String city, String country, String postal_code, String phone, String twitter, AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+	public static Boolean Update (AccessTokenOAuth accessTokenPregenerated, Integer POIID,String name, Double lat, Double lng, Integer[] categories, Double accuracy,Double vaccuracy,Double elevation,String desc,String address, String cross_stret, String city, String country, String postal_code, String phone, String twitter) throws IOException, TopoosException{
 		return Translator.Update(POIID, name, lat, lng, categories, accuracy, vaccuracy, elevation, desc, address, cross_stret, city, country, postal_code, phone, twitter, accessTokenPregenerated);
 	}
 	

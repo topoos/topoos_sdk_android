@@ -29,8 +29,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static User Get(String userID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static User Get(AccessTokenOAuth accessTokenPregenerated, String userID) throws IOException,
 			TopoosException {
 		return Translator.Get(userID, accessTokenPregenerated);
 	}
@@ -50,8 +49,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static boolean GroupSet(String userID, Integer groupID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static boolean GroupSet(AccessTokenOAuth accessTokenPregenerated, String userID, Integer groupID) throws IOException,
 			TopoosException {
 		return Translator.GroupSet(userID, groupID, accessTokenPregenerated);
 	}
@@ -71,8 +69,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static boolean GroupRemove(String userID, Integer groupID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static boolean GroupRemove(AccessTokenOAuth accessTokenPregenerated, String userID, Integer groupID) throws IOException,
 			TopoosException {
 		return Translator.GroupRemove(userID, groupID, accessTokenPregenerated);
 	}
@@ -101,9 +98,9 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static List<UserIdPosition> NearPOIGet(Integer POIID,
+	public static List<UserIdPosition> NearPOIGet(AccessTokenOAuth accessTokenPregenerated, Integer POIID,
 			Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated)
+			Boolean activeTrack)
 			throws IOException, TopoosException {
 		return Translator.NearPOIGet(POIID, radius, groupID, usersCount,
 				activeTrack, accessTokenPregenerated);
@@ -137,9 +134,9 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static List<UserIdPosition> NearPositionGet(Double lat, Double lng,
+	public static List<UserIdPosition> NearPositionGet(AccessTokenOAuth accessTokenPregenerated, Double lat, Double lng,
 			Integer radius, Integer groupID, Integer usersCount,
-			Boolean activeTrack, AccessTokenOAuth accessTokenPregenerated)
+			Boolean activeTrack)
 			throws IOException, TopoosException {
 		return Translator.NearPositionGet(lat, lng, radius, groupID,
 				usersCount, activeTrack, accessTokenPregenerated);
