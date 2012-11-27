@@ -197,39 +197,29 @@ class Translator {
 
 	public static List<POIDataWarning> Get(Context context, Integer[] POIID,
 			String type) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Get(POIID, type, accessTokenPregenerated);
+		return Get(POIID, type, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static List<POIDataWarning> GetAll(Context context, String type)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetAll(type, accessTokenPregenerated);
+		return GetAll(type, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static POIWarning AddClosed(Context context, Integer POI_ID)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return AddClosed(POI_ID, accessTokenPregenerated);
+		return AddClosed(POI_ID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static POIWarning AddDuplicated(Context context, Integer POI_ID)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return AddDuplicated(POI_ID, accessTokenPregenerated);
+		return AddDuplicated(POI_ID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static POIWarning AddWrongIndicator(Context context, Integer POI_ID,
 			Double lat, Double lng, Double accuracy, Double vaccuracy,
 			Double elevation) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return AddWrongIndicator(POI_ID, lat, lng, accuracy, vaccuracy,
-				elevation, accessTokenPregenerated);
+				elevation, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static POIWarning AddWrongInfo(Context context, Integer POI_ID,
@@ -237,24 +227,18 @@ class Translator {
 			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return AddWrongInfo(POI_ID, name, categories, desc, address,
 				cross_street, city, country, postal_code, phone, twitter,
-				accessTokenPregenerated);
+				AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Boolean Delete(Context context, Integer[] POIID, String type)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Delete(POIID, type, accessTokenPregenerated);
+		return Delete(POIID, type, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Boolean DeleteAll(Context context, String type)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return DeleteAll(type, accessTokenPregenerated);
+		return DeleteAll(type, AccessTokenOAuth.GetAccessToken(context));
 	}
 }

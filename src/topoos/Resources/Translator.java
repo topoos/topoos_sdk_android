@@ -69,16 +69,12 @@ class Translator {
 	
 	
 	public static	List<Location> GetCircle (Context context, Integer resolution,Double latCenter,Double lngCenter,Double radius) throws IOException, TopoosException{
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetCircle(resolution, latCenter, lngCenter, radius, accessTokenPregenerated);
+		return GetCircle(resolution, latCenter, lngCenter, radius, AccessTokenOAuth.GetAccessToken(context));
 	
 	}
 
 	public static	List<GeocodingData> GetGeocode (Context context, Double lat, Double lng) throws IOException, TopoosException{
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetGeocode(lat, lng, accessTokenPregenerated);
+		return GetGeocode(lat, lng, AccessTokenOAuth.GetAccessToken(context));
 	}
 	
 	

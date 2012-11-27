@@ -35,9 +35,7 @@ class Translator {
 	}
 	
 	public static Rule AddTrackOutOfBounds (Context context, Integer track, Double lat, Double lng, Integer radius) throws IOException, TopoosException{
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return AddTrackOutOfBounds(track,lat, lng, radius, accessTokenPregenerated);
+		return AddTrackOutOfBounds(track,lat, lng, radius, AccessTokenOAuth.GetAccessToken(context));
 		
 	}
 }

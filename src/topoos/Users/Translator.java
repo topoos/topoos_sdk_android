@@ -182,9 +182,7 @@ class Translator {
 	 */
 	public static User Get(Context context, String userID) throws IOException,
 			TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Get(userID, accessTokenPregenerated);
+		return Get(userID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	/**
@@ -198,9 +196,7 @@ class Translator {
 	 */
 	public static boolean GroupSet(Context context, String userID,
 			Integer groupID) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GroupSet(userID, groupID, accessTokenPregenerated);
+		return GroupSet(userID, groupID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	/**
@@ -214,9 +210,7 @@ class Translator {
 	 */
 	public static boolean GroupRemove(Context context, String userID,
 			Integer groupID) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GroupRemove(userID, groupID, accessTokenPregenerated);
+		return GroupRemove(userID, groupID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	/**
@@ -234,10 +228,8 @@ class Translator {
 	public static List<UserIdPosition> NearPOIGet(Context context,
 			Integer POIID, Integer radius, Integer groupID, Integer usersCount,
 			Boolean activeTrack) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return NearPOIGet(POIID, radius, groupID, usersCount, activeTrack,
-				accessTokenPregenerated);
+				AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	/**
@@ -257,10 +249,8 @@ class Translator {
 			Double lat, Double lng, Integer radius, Integer groupID,
 			Integer usersCount, Boolean activeTrack) throws IOException,
 			TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return NearPositionGet(lat, lng, radius, groupID, usersCount,
-				activeTrack, accessTokenPregenerated);
+				activeTrack, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 }

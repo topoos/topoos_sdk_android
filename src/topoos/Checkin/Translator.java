@@ -74,26 +74,18 @@ class Translator {
 	}
 
 	public static Checkin Add(Context context, Integer POIID, Date timestamp) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Add(POIID, timestamp, accessTokenPregenerated);
+		return Add(POIID, timestamp, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Checkin Get(Context context, Integer checkinID) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Get(checkinID, accessTokenPregenerated);
+		return Get(checkinID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Checkin GetLast(Context context, String userID) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetLast(userID, accessTokenPregenerated);
+		return GetLast(userID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static List<Checkin> GetPOI(Context context, Integer POIID) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetPOI(POIID, accessTokenPregenerated);
+		return GetPOI(POIID, AccessTokenOAuth.GetAccessToken(context));
 	}
 }

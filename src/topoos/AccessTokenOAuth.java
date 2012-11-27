@@ -159,7 +159,7 @@ public class AccessTokenOAuth implements Serializable {
 	 * 
 	 * @param context
 	 */
-	public synchronized void Load_Token(Context context){
+	private synchronized void Load_Token(Context context){
 		SharedPreferences settings = context.getSharedPreferences(
 				"PREFER", Context.MODE_PRIVATE);
 		this.AccessToken=settings.getString(KEY_ACCESS_TOKEN,"");
@@ -174,7 +174,7 @@ public class AccessTokenOAuth implements Serializable {
 	 * 
 	 * @param context
 	 */
-	public synchronized void Delete_Token(Context context){
+	private synchronized void Delete_Token(Context context){
 		SharedPreferences settings = context.getSharedPreferences(
 				"PREFER", Context.MODE_PRIVATE);
 		this.AccessToken=settings.getString(KEY_ACCESS_TOKEN,"");
@@ -202,6 +202,8 @@ public class AccessTokenOAuth implements Serializable {
 		return isvalid;
 	}
 	
+	
+	
 	/**
 	 * 
 	 * @param context
@@ -214,6 +216,14 @@ public class AccessTokenOAuth implements Serializable {
 			//Log.i(Constants.TAG, access.toStringToken());
 		}
 		return access;
+	}
+	
+	public static void DeleteAccessToken(Context context){
+		AccessTokenOAuth access=new AccessTokenOAuth();
+		access.Delete_Token(context);
+		if(Constants.DEBUG){
+			//Log.i(Constants.TAG, access.toStringToken());
+		}		
 	}
 	
 	private String toStringToken(){

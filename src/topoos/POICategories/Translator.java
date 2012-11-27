@@ -94,30 +94,22 @@ class Translator {
 
 	public static List<POICategory> GetAll(Context context) throws IOException,
 			TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetAll(accessTokenPregenerated);
+		return GetAll(AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static POICategory Add(Context context, String name)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Add(name, accessTokenPregenerated);
+		return Add(name, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Boolean Update(Context context, Integer categoryID,
 			String name) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Update(categoryID, name, accessTokenPregenerated);
+		return Update(categoryID, name, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Boolean Delete(Context context, Integer categoryID)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Delete(categoryID, accessTokenPregenerated);
+		return Delete(categoryID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 }

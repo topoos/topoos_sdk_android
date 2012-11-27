@@ -73,8 +73,7 @@ public class Operations {
 			String clientID, String clientSecret, String refreshToken) {
 		AccessTokenOAuth RefreshAccessToken = null;
 
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
+		AccessTokenOAuth accessTokenPregenerated = AccessTokenOAuth.GetAccessToken(context);
 		if (!accessTokenPregenerated.isValid()
 				& accessTokenPregenerated.getRefreshToken() != null) {
 			try {
@@ -190,9 +189,7 @@ public class Operations {
 	 * @return
 	 */
 	public boolean CheckAccessToken(Context context) {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return accessTokenPregenerated.isValid();
+		return AccessTokenOAuth.GetAccessToken(context).isValid();
 	}
 
 }

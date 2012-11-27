@@ -152,82 +152,64 @@ class Translator {
 			Integer trackID, Integer accuracy, Integer vaccuracy,
 			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return Add(lat, lng, trackID, accuracy, vaccuracy, elevation,
-				timestamp, velocity, bearing, accessTokenPregenerated);
+				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddAlarmEnd(Context context, Double lat, Double lng,
 			Integer trackID, Integer accuracy, Integer vaccuracy,
 			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return AddAlarmEnd(lat, lng, trackID, accuracy, vaccuracy, elevation,
-				timestamp, velocity, bearing, accessTokenPregenerated);
+				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddAlarmInit(Context context, Double lat,
 			Double lng, Integer trackID, Integer accuracy, Integer vaccuracy,
 			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return AddAlarmInit(lat, lng, trackID, accuracy, vaccuracy, elevation,
-				timestamp, velocity, bearing, accessTokenPregenerated);
+				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddGPSNo(Context context, Double lat, Double lng,
 			Integer trackID, Integer accuracy, Integer vaccuracy,
 			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return AddGPSNo(lat, lng, trackID, accuracy, vaccuracy, elevation,
-				timestamp, velocity, bearing, accessTokenPregenerated);
+				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddGPSOk(Context context, Double lat, Double lng,
 			Integer trackID, Integer accuracy, Integer vaccuracy,
 			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return AddGPSOk(lat, lng, trackID, accuracy, vaccuracy, elevation,
-				timestamp, velocity, bearing, accessTokenPregenerated);
+				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddTrackEnd(Context context, Double lat, Double lng,
 			Integer trackID, Integer accuracy, Integer vaccuracy,
 			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return AddTrackEnd(lat, lng, trackID, accuracy, vaccuracy, elevation,
-				timestamp, velocity, bearing, accessTokenPregenerated);
+				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position Get(Context context, Integer posID)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Get(posID, accessTokenPregenerated);
+		return Get(posID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position GetLastUser(Context context, String userID)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetLastUser(userID, accessTokenPregenerated);
+		return GetLastUser(userID, AccessTokenOAuth.GetAccessToken(context));
 
 	}
 
 	public static List<Position> GetBetweenDays(Context context, Date initDate,
 			Date endDate) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetBetweenDays(initDate, endDate, accessTokenPregenerated);
+		return GetBetweenDays(initDate, endDate, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 }

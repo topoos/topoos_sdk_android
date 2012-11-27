@@ -36,10 +36,8 @@ class Translator {
 	}
 	
 	public static TrackResource ExportTrack (Context context,Integer trackID, String export_format, Integer total,Date initDate,Date endDate) throws IOException, TopoosException{
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return ExportTrack(trackID, export_format, total, initDate, endDate, accessTokenPregenerated);
-	}
+		return ExportTrack(trackID, export_format, total, initDate, endDate, AccessTokenOAuth.GetAccessToken(context));
+				}
 
 	
 }

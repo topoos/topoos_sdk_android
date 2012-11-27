@@ -113,9 +113,7 @@ class Translator {
 	 */
 	public static Track Add(Context context, String name) throws IOException,
 			TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Add(name, accessTokenPregenerated);
+		return Add(name, AccessTokenOAuth.GetAccessToken(context));
 
 	}
 
@@ -132,9 +130,7 @@ class Translator {
 	public static Track Get(Context context, Integer trackID,
 			Integer numberPositions, String[] layers) throws IOException,
 			TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Get(trackID, numberPositions, layers, accessTokenPregenerated);
+		return Get(trackID, numberPositions, layers, AccessTokenOAuth.GetAccessToken(context));
 
 	}
 
@@ -149,9 +145,7 @@ class Translator {
 	 */
 	public static Track GetLast(Context context, Integer numberPOIS,
 			String[] layers) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetLast(numberPOIS, layers, accessTokenPregenerated);
+		return GetLast(numberPOIS, layers, AccessTokenOAuth.GetAccessToken(context));
 
 	}
 

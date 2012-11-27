@@ -187,36 +187,28 @@ class Translator {
 			Double elevation, String desc, String address, String cross_street,
 			String city, String country, String postal_code, String phone,
 			String twitter) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return Add(name, lat, lng, categories, accuracy, vaccuracy, elevation,
 				desc, address, cross_street, city, country, postal_code, phone,
-				twitter, accessTokenPregenerated);
+				twitter, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static POI Get(Context context, Integer POIID) throws IOException,
 			TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Get(POIID, accessTokenPregenerated);
+		return Get(POIID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static List<POI> GetNear(Context context, Double lat, Double lng,
 			Integer radius, Integer[] categories) throws IOException,
 			TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return GetNear(lat, lng, radius, categories, accessTokenPregenerated);
+		return GetNear(lat, lng, radius, categories, AccessTokenOAuth.GetAccessToken(context));
 
 	}
 
 	public static List<POI> GetWhere(Context context, Integer[] categories,
 			Integer[] POIS, String city, String country, String postal_code,
 			String q) throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return GetWhere(categories, POIS, city, country, postal_code, q,
-				accessTokenPregenerated);
+				AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Boolean Update(Context context, Integer POIID, String name,
@@ -225,18 +217,14 @@ class Translator {
 			String cross_stret, String city, String country,
 			String postal_code, String phone, String twitter)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
 		return Update(POIID, name, lat, lng, categories, accuracy, vaccuracy,
 				elevation, desc, address, cross_stret, city, country,
-				postal_code, phone, twitter, accessTokenPregenerated);
+				postal_code, phone, twitter, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Boolean Delete(Context context, Integer POIID)
 			throws IOException, TopoosException {
-		AccessTokenOAuth accessTokenPregenerated = new AccessTokenOAuth();
-		accessTokenPregenerated.Load_Token(context);
-		return Delete(POIID, accessTokenPregenerated);
+		return Delete(POIID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 }
