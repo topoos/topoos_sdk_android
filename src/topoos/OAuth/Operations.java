@@ -1,25 +1,8 @@
 package topoos.OAuth;
 
-import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
 import topoos.AccessTokenOAuth;
+import topoos.Constants;
 import android.content.Context;
 
 /**
@@ -29,10 +12,10 @@ import android.content.Context;
  */
 public class Operations {
 
-	private static final String ParamKey_AccessToken = "access_token";
+	/*private static final String ParamKey_AccessToken = "access_token";
 	private static final String ParamKey_ExpiresIn = "expires_in";
 	private static final String ParamKey_TokenType = "token_type";
-	private static final String ParamKey_RefreshToken = "refresh_token";
+	private static final String ParamKey_RefreshToken = "refresh_token";*/
 
 	/**
 	 * 
@@ -40,7 +23,7 @@ public class Operations {
 	 * @return
 	 */
 	public String GetLoginClientSideURI(String clientID) {
-		String url = "https://login.topoos.com/oauth/authtoken?response_type=token&client_id="
+		String url = Constants.TOPOOSURILOGIN+"/oauth/authtoken?response_type=token&client_id="
 				+ clientID
 				+ "&redirect_uri="
 				+ URLEncoder.encode("https://login.topoos.com/oauth/dummy")
@@ -54,21 +37,14 @@ public class Operations {
 	 * @return
 	 */
 	public String GetLoginServerSideURI(String clientID) {
-		String url = "https://login.trazaME.com/oauth/authtoken?client_id="
+		String url = Constants.TOPOOSURILOGIN+"/oauth/authtoken?client_id="
 				+ clientID + "&redirect_uri="
-				+ URLEncoder.encode("https://login.topoos.com/oauth/dummy")
+				+ URLEncoder.encode(Constants.TOPOOSURILOGIN+"/oauth/dummy")
 				+ "&response_type=code";
 		return url;
 	}
 
-	/**
-	 * 
-	 * @param context
-	 * @param clientID
-	 * @param clientSecret
-	 * @param refreshToken
-	 * @return
-	 */
+/*
 	public AccessTokenOAuth RefreshAccessToken(Context context,
 			String clientID, String clientSecret, String refreshToken) {
 		AccessTokenOAuth RefreshAccessToken = null;
@@ -125,12 +101,7 @@ public class Operations {
 		return RefreshAccessToken;
 	}
 
-	/**
-	 * 
-	 * @param clientID
-	 * @param clientSecret
-	 * @param code
-	 */
+
 	public AccessTokenOAuth GetAccessToken(String url, String redirect_uri) {
 		AccessTokenOAuth Access = null;
 
@@ -173,7 +144,7 @@ public class Operations {
 
 		return Access;
 	}
-
+*/
 	/**
 	 * 
 	 * @param accessTokenOAuth

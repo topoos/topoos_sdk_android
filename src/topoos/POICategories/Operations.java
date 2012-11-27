@@ -24,6 +24,7 @@ public class Operations {
 
 	/**
 	 * Gets the list of POI categories.
+	 * 
 	 * @param accessTokenPregenerated
 	 *            (required) access_token to user resources
 	 * @return List<POICategory>
@@ -35,30 +36,53 @@ public class Operations {
 			TopoosException {
 		return Translator.GetAll(accessTokenPregenerated);
 	}
-	
+
 	/**
+	 * Create a new category of POIs
 	 * 
-	 * @param name
+	 * @param name (required) Category description
 	 * @param accessTokenPregenerated
-	 * @return
+	 *            (required) Access_token to root resources
+	 * @return POICategory
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static POICategory Add(AccessTokenOAuth accessTokenPregenerated, String name) throws IOException,
-			TopoosException {
+	public static POICategory Add(AccessTokenOAuth accessTokenPregenerated,
+			String name) throws IOException, TopoosException {
 		return Translator.Add(name, accessTokenPregenerated);
 	}
 
-	public static Boolean Update(AccessTokenOAuth accessTokenPregenerated, Integer categoryID, String name) throws IOException,
+	/**
+	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) Access_token to root resources
+	 * @param categoryID Category ID to modify
+	 * @param name (required) Category description
+	 * @return Boolean
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean Update(AccessTokenOAuth accessTokenPregenerated,
+			Integer categoryID, String name) throws IOException,
 			TopoosException {
 		return Translator.Update(categoryID, name, accessTokenPregenerated);
 	}
 
-	public static Boolean Delete(AccessTokenOAuth accessTokenPregenerated, Integer categoryID) throws IOException,
-			TopoosException {
+	/**
+	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
+	 * @param categoryID Category ID to delete
+	 * @return Boolean
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean Delete(AccessTokenOAuth accessTokenPregenerated,
+			Integer categoryID) throws IOException, TopoosException {
 		return Translator.Delete(categoryID, accessTokenPregenerated);
 	}
 
+	
 	public static List<POICategory> GetAll(Context context) throws IOException,
 			TopoosException {
 		return Translator.GetAll(context);

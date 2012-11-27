@@ -82,7 +82,7 @@ public class LoginActivity extends Activity {
 			Log.i(Constants.TAG, url);
 			AccessTokenOAuth access = WebInterface.GetAccessToken(url, value_redirect_uri ); 
 			if(access!=null){
-				access.Save_Token(activity);
+				access.save_Token(activity);
 				activity.finish();
 			}
 		}

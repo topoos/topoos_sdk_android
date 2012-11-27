@@ -11,8 +11,8 @@ class WebInterface {
 	
 	private static final String ParamKey_AccessToken = "access_token";
 	private static final String ParamKey_ExpiresIn = "expires_in";
-	private static final String ParamKey_TokenType = "token_type";
-	private static final String ParamKey_RefreshToken = "refresh_token";	
+	//private static final String ParamKey_TokenType = "token_type";
+	//private static final String ParamKey_RefreshToken = "refresh_token";	
 	public static AccessTokenOAuth GetAccessToken (String url, String redirect_uri)
 	{
 		AccessTokenOAuth Access = null;
@@ -21,8 +21,8 @@ class WebInterface {
     	{
     		String AuxAccessToken = "";
     		String AuxExpiresIn = "";
-    		String AuxTokenType= "";
-    		String AuxRefreshToken= "";
+    		//String AuxTokenType= "";
+    		//String AuxRefreshToken= "";
     		
     		String[] urlFragment = url.split("#");
     		
@@ -44,21 +44,21 @@ class WebInterface {
     				{
     					AuxExpiresIn = value;
     				}
-    				else if (key.equalsIgnoreCase(ParamKey_RefreshToken))
+    				/*else if (key.equalsIgnoreCase(ParamKey_RefreshToken))
     				{
     					AuxRefreshToken = value;
     				}
     				else if (key.equalsIgnoreCase(ParamKey_TokenType))
     				{
     					AuxTokenType = value;
-    				}
+    				}*/
     			}
     		}
     		//Calendar calendar= new Calen
     		Calendar cal = Calendar.getInstance();
 			cal = Calendar.getInstance();
 			cal.add(Calendar.SECOND, Integer.parseInt(AuxExpiresIn));
-    		Access = new AccessTokenOAuth(AuxAccessToken, cal.getTimeInMillis(), AuxRefreshToken,AuxTokenType);
+    		Access = new AccessTokenOAuth(AuxAccessToken, cal.getTimeInMillis());
     	}
     	
     	return Access;
