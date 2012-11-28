@@ -13,12 +13,12 @@ public class Address {
     public String country =null;
     public String postal_code =null;
 	/**
-	 * @param address
-	 * @param cross_street
-	 * @param state
-	 * @param administrative_area
-	 * @param country
-	 * @param postal_code
+	 * @param address name of the address
+	 * @param cross_street name of the cross street 	
+	 * @param state name of the state
+	 * @param administrative_area name of the administrative area
+	 * @param country name of the country
+	 * @param postal_code postal code
 	 */
 	public Address(String address, String cross_street, String state,
 			String administrative_area, String country, String postal_code) {

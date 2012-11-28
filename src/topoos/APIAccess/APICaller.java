@@ -16,7 +16,11 @@ import topoos.Constants;
 import topoos.APIAccess.Operations.APIOperation;
 import topoos.APIAccess.Results.APICallResult;
 import topoos.Exception.TopoosException;
-
+/**
+ * Class that implements http call to topoos api 
+ * @author MAJS
+ *
+ */
 public class APICaller {
 	/**
 	 * Returns the url for the object operation.

@@ -4,8 +4,18 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-
+/**
+ * Class that implements the utils of Api
+ * @author MAJS
+ *
+ */
 class APIUtils {
+	/**
+	 * 
+	 * @param date
+	 * @return
+	 */
+	
 	public static String toStringDate(Date date){
 		String formatoFecha = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 		SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha);
