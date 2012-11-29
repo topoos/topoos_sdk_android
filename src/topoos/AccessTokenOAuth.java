@@ -139,7 +139,7 @@ public class AccessTokenOAuth {
 		isvalid=cal.getTimeInMillis()<ExpiresIn || ExpiresIn==0;
 		isvalid=isvalid&&(AccessToken!=null &&!AccessToken.equals(""));
 		if(Constants.DEBUG){
-			//Log.i(Constants.TAG, "Valido: "+isvalid);
+			Log.i(Constants.TAG, "Valido: "+isvalid);
 		}
 		return isvalid;
 	}
