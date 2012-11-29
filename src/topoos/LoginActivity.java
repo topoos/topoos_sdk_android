@@ -18,11 +18,12 @@ import android.webkit.WebViewClient;
 @SuppressLint("SetJavaScriptEnabled")
 public class LoginActivity extends Activity {
 
-	public static final String CLIENT_ID="client_id";
-	public static final String REDIRECT_URI="redirect_uri";
-	private String url_login = Constants.TOPOOSURILOGIN+"/oauth/authtoken";
+	public static final String CLIENT_ID = "client_id";
+	public static final String REDIRECT_URI = "redirect_uri";
+	private String url_login = Constants.TOPOOSURILOGIN + "/oauth/authtoken";
 	private String param_redirect_uri = "redirect_uri";
-	private String value_redirect_uri = Constants.TOPOOSURILOGIN+"/oauth/dummy";
+	private String value_redirect_uri = Constants.TOPOOSURILOGIN
+			+ "/oauth/dummy";
 	private String param_response_type = "response_type";
 	private String value_response_type = "token";
 	private String param_client_id = "client_id";
@@ -34,7 +35,7 @@ public class LoginActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		activity=this; 
+		activity = this;
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		Intent intent = this.getIntent();
 		Bundle extras = intent.getExtras();
@@ -66,11 +67,12 @@ public class LoginActivity extends Activity {
 			webview.loadUrl(url_login + "?" + param_response_type + "="
 					+ value_response_type + "&" + param_client_id + "="
 					+ value_client_id + "&" + param_redirect_uri + "="
-					+ URLEncoder.encode(value_redirect_uri) + "&" + param_agent +"=" + value_agent);
+					+ URLEncoder.encode(value_redirect_uri) + "&" + param_agent
+					+ "=" + value_agent);
 		} else {
 			this.finish();
 		}
-		
+
 	}
 
 	private class LoginViewClient extends WebViewClient {
@@ -79,9 +81,11 @@ public class LoginActivity extends Activity {
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
 			// TODO Auto-generated method stub
 			super.onPageStarted(view, url, favicon);
-			Log.i(Constants.TAG, url);
-			AccessTokenOAuth access = WebInterface.GetAccessToken(url, value_redirect_uri ); 
-			if(access!=null){
+			if (Constants.DEBUG)
+				Log.i(Constants.TAG, url);
+			AccessTokenOAuth access = WebInterface.GetAccessToken(url,
+					value_redirect_uri);
+			if (access != null) {
 				access.save_Token(activity);
 				activity.finish();
 			}
