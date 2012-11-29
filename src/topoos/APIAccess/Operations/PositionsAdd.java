@@ -2,7 +2,11 @@ package topoos.APIAccess.Operations;
 
 import java.util.Date;
 
-
+/**
+ * @see APIOperation
+ * @author MAJS
+ *
+ */
 public class PositionsAdd extends APIOperation{
 
 	

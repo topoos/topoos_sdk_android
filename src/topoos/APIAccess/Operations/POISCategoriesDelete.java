@@ -1,11 +1,12 @@
 package topoos.APIAccess.Operations;
 
 /**
- * Elimina una categoría de puntos de interés. La categoría ya no aparecerá como
- * resultado de las consultas, pero los puntos de interés seguirán estando
- * asociados a la categoría eliminada si ya lo estaban anteriormente. La
- * categoría debe pertenecer a la aplicación.
  * 
+ * Delete a category of POI. The category will not appear as a result of a
+ * request, but the pois are still associated to the deleted category if they
+ * were associated previously. The category has to belong to the application
+ * 
+ * @see APIOperation
  * @author MAJS
  * 
  */
@@ -14,11 +15,10 @@ public class POISCategoriesDelete extends APIOperation {
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
 	private Integer category = null; // (obligatorio) identificador de la
-									// categoría a modificar
+										// categoría a modificar
 
 	public POISCategoriesDelete(String operationName, String method,
-			String format, Integer version, String oauth_token, 
-			Integer category) {
+			String format, Integer version, String oauth_token, Integer category) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.category = category;

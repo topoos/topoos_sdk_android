@@ -8,7 +8,11 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class CheckinCollectionResult extends APICallResult {
 
 	private CheckinCollection checkinCollection = null;

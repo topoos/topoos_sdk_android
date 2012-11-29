@@ -10,7 +10,11 @@ import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.Location;
 
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class PolygonResult extends APICallResult{
 	List<Location> polygon=null;
 	

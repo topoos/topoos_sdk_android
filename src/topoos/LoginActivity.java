@@ -14,7 +14,11 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
+/**
+ * Implements the login activity
+ * @author MAJS
+ *
+ */
 @SuppressLint("SetJavaScriptEnabled")
 public class LoginActivity extends Activity {
 

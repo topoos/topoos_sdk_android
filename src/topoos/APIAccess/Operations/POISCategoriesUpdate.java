@@ -1,9 +1,12 @@
 package topoos.APIAccess.Operations;
 
 /**
- * Actualiza la descripción de una categoría. La categoría debe pertenecer a la
- * aplicación.
  * 
+ * 
+ * Update the description of a category. The category has to belong to the
+ * application
+ * 
+ * @see APIOperation
  * @author MAJS
  * 
  */

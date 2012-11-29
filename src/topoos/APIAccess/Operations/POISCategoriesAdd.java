@@ -1,14 +1,17 @@
 package topoos.APIAccess.Operations;
+
 /**
- * Crea una nueva categoría de puntos de interés.
+ * 
+ * Create a new category of POI.
+ * @see APIOperation
  * @author MAJS
- *
+ * 
  */
-public class POISCategoriesAdd extends APIOperation{
+public class POISCategoriesAdd extends APIOperation {
 
-	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private String 	desc=null; //: (obligatorio) descripción de la categoría
-
+	private String oauth_token = null; // (obligatorio) access_token a los
+										// recursos del usuario
+	private String desc = null; // : (obligatorio) descripción de la categoría
 
 	public POISCategoriesAdd(String operationName, String method,
 			String format, Integer version, String oauth_token, String desc) {
@@ -16,7 +19,7 @@ public class POISCategoriesAdd extends APIOperation{
 		this.oauth_token = oauth_token;
 		this.desc = desc;
 	}
-	
+
 	@Override
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
@@ -30,10 +33,9 @@ public class POISCategoriesAdd extends APIOperation{
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/pois/categories/add." + this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+ "&desc="+APIUtils.toStringUrlEncoded(desc)
-					;
+			params = "/" + this.Version + "/pois/categories/add." + this.Format
+					+ "?oauth_token=" + this.oauth_token + "&desc="
+					+ APIUtils.toStringUrlEncoded(desc);
 		}
 		return params;
 	}

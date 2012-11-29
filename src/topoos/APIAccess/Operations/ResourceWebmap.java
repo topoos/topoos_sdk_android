@@ -1,15 +1,26 @@
 package topoos.APIAccess.Operations;
 
-public class ResourceWebmap extends APIOperation{
+/**
+ * @see APIOperation
+ * @author MAJS
+ * 
+ */
+public class ResourceWebmap extends APIOperation {
 
 	public static final String TYPE_LAYER = "layer";
-	
-	private String	api_key=null; // (obligatorio) 
-	private String  type=null; //(obligatorio) el nombre del parámetro type determina el tipo de recurso que se desea obtener. Por ejemplo para obtener un recurso previamente exportado de tipo capa KML, su valor es layer. Valores permitidos: layer.
-	private String	id=null; // (obligatorio) el valor del parámetro type indica el identificador del recurso que se desea visualizar, este se obtuvo como respuesta de la operación de exportación de recurso.
 
-	
-	
+	private String api_key = null; // (obligatorio)
+	private String type = null; // (obligatorio) el nombre del parámetro type
+								// determina el tipo de recurso que se desea
+								// obtener. Por ejemplo para obtener un recurso
+								// previamente exportado de tipo capa KML, su
+								// valor es layer. Valores permitidos: layer.
+	private String id = null; // (obligatorio) el valor del parámetro type
+								// indica el identificador del recurso que se
+								// desea visualizar, este se obtuvo como
+								// respuesta de la operación de exportación de
+								// recurso.
+
 	/**
 	 * @param operationName
 	 * @param method
@@ -40,11 +51,8 @@ public class ResourceWebmap extends APIOperation{
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/resources/webmap"
-					+ "?api_key=" + api_key
-					+ "&type=" + type
-					+ "&id=" + id
-					;
+			params = "/" + this.Version + "/resources/webmap" + "?api_key="
+					+ api_key + "&type=" + type + "&id=" + id;
 		}
 		return params;
 	}

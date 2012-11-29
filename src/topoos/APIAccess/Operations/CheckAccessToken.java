@@ -1,5 +1,10 @@
 package topoos.APIAccess.Operations;
-
+/**
+ * Class that check the access token
+ * @see APIOperation
+ * @author MAJS
+ *
+ */
 public class CheckAccessToken extends APIOperation{
 
 	

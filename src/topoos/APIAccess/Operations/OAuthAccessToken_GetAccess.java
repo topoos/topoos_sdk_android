@@ -1,5 +1,10 @@
 package topoos.APIAccess.Operations;
-
+/**
+ * 
+ * @see APIOperation
+ * @author MAJS
+ *
+ */
 public class OAuthAccessToken_GetAccess extends APIOperation {
 	
 

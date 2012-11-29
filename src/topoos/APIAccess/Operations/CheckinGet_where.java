@@ -1,13 +1,17 @@
 package topoos.APIAccess.Operations;
-/**
- * Obtiene todos los CheckIns realizados sobre un POI
- * @author MAJS
- *
- */
-public class CheckinGet_where extends APIOperation{
 
-	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private Integer	poi=null; // (obligatorio)identificador del POI
+/**
+ * Get all CheckIns that have been realized in a POI
+ * 
+ * @see APIOperation
+ * @author MAJS
+ * 
+ */
+public class CheckinGet_where extends APIOperation {
+
+	private String oauth_token = null; // (obligatorio) access_token a los
+										// recursos del usuario
+	private Integer poi = null; // (obligatorio)identificador del POI
 
 	public CheckinGet_where(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi) {
@@ -15,7 +19,7 @@ public class CheckinGet_where extends APIOperation{
 		this.oauth_token = oauth_token;
 		this.poi = poi;
 	}
-	
+
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = true;
@@ -28,11 +32,9 @@ public class CheckinGet_where extends APIOperation{
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/checkin/get_where."
-					+ this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+"&poi="+ APIUtils.toStringInteger(this.poi)
-					;
+			params = "/" + this.Version + "/checkin/get_where." + this.Format
+					+ "?oauth_token=" + this.oauth_token + "&poi="
+					+ APIUtils.toStringInteger(this.poi);
 
 		}
 		return params;

@@ -1,7 +1,12 @@
 package topoos.APIAccess.Results;
 
 import topoos.Exception.TopoosException;
-
+/**
+ * Class that implements the api caller result
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public abstract class APICallResult {
 
 	protected String Format = null;
@@ -20,6 +25,7 @@ public abstract class APICallResult {
 	public abstract void setParameters() throws TopoosException;
 
 	/**
+	 * set the parameter
 	 * @return the format
 	 */
 	public String getFormat() {
@@ -27,6 +33,7 @@ public abstract class APICallResult {
 	}
 
 	/**
+	 * set the format that received as a parameter  
 	 * @param format
 	 *            the format to set
 	 */
@@ -35,6 +42,7 @@ public abstract class APICallResult {
 	}
 
 	/**
+	 * get the error
 	 * @return the error
 	 */
 	public String getError() {
@@ -42,6 +50,7 @@ public abstract class APICallResult {
 	}
 
 	/**
+	 * 
 	 * @param error
 	 *            the error to set
 	 */
@@ -50,6 +59,7 @@ public abstract class APICallResult {
 	}
 
 	/**
+	 * get the result
 	 * @return the result
 	 */
 	public String getResult() {

@@ -10,7 +10,11 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class POIWarningResult extends APICallResult {
 
 	POIWarning poiWarning = null;

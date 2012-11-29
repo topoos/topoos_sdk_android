@@ -1,5 +1,9 @@
 package topoos.APIAccess.Operations;
-
+/**
+ * @see APIOperation
+ * @author MAJS
+ *
+ */
 public class ResourceTypeId extends APIOperation{
 
 	public static final String DATA_TRACK= "Track";

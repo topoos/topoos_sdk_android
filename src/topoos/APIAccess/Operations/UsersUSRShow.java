@@ -1,12 +1,15 @@
 package topoos.APIAccess.Operations;
+
 /**
- * Obtiene información del usuario. Permite verificar el oauth_token.
+ * Get the information of a user. You can check the oauth_token.
+ * 
+ * @see APIOperation
  * @author MAJS
- *
+ * 
  */
 public class UsersUSRShow extends APIOperation {
 
-	private String OAuthToken=null;
+	private String OAuthToken = null;
 	private String USR = null;
 
 	public UsersUSRShow(String operationName, String method, String format,

@@ -1,5 +1,9 @@
 package topoos.APIAccess.Operations;
-
+/**
+ * @see APIOperation
+ * @author MAJS
+ *
+ */
 public class POISGet_where extends APIOperation{
 
 	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario

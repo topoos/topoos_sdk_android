@@ -1,23 +1,31 @@
 package topoos.APIAccess.Operations;
 
-
 /**
- * Crea una nueva regla de uno de los siguientes tipos:
- *	TRACK_OUT_OF_BOUNDS: Regla asociada a un Track. Cada vez que se registre una posición asociada a un Track se comprobará si esta está fuera de la zona circular especificada, y si es así se generará una alerta Push al Endpoint establecido en la configuración de la aplicación.
+ * 
+ * 
+ * Create a new rule of one this types: TRACK_OUT_OF_BOUNDS: Rule associated to
+ * a Track. Each time that a position that is associated to a track will check
+ * if it is out of the specified zone if it is out,a push alert will be generate
+ * to the Endpoint that is specified in the application configuration.
+ * 
+ * @see APIOperation
  * @author MAJS
- *
+ * 
  */
-public class RulesAdd extends APIOperation{
+public class RulesAdd extends APIOperation {
 
-	public static final String TYPE_TRACK_OUT_OF_BOUNDS="TRACK_OUT_OF_BOUNDS";
-	
-	private String oauth_token=null; // (obligatorio)access_token de Acceso a recursos
-	private Double	lat=null; // (obligatorio) latitud del centro del círculo del área permitida, en grados decimales
-	private Double	lng=null; // (obligatorio) longitud del centro del círculo del área permitida, en grados decimales
-	private Integer 	radius=null; //(obligatorio) radio del círculo del área permitida, en grados decimales.
-	private String	type=null; //TRACK_OUT_OF_BOUNDS
-	private Integer track=null; //Identificador del track que vamos a añadir
-	
+	public static final String TYPE_TRACK_OUT_OF_BOUNDS = "TRACK_OUT_OF_BOUNDS";
+
+	private String oauth_token = null; // (obligatorio)access_token de Acceso a
+										// recursos
+	private Double lat = null; // (obligatorio) latitud del centro del círculo
+								// del área permitida, en grados decimales
+	private Double lng = null; // (obligatorio) longitud del centro del círculo
+								// del área permitida, en grados decimales
+	private Integer radius = null; // (obligatorio) radio del círculo del área
+									// permitida, en grados decimales.
+	private String type = null; // TRACK_OUT_OF_BOUNDS
+	private Integer track = null; // Identificador del track que vamos a añadir
 
 	/**
 	 * @param operationName
@@ -61,18 +69,14 @@ public class RulesAdd extends APIOperation{
 
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/rules/add." + this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+ "&lat="+APIUtils.toStringDouble(lat)
-					+ "&lng="+APIUtils.toStringDouble(lng)
-					+ "&radius="+APIUtils.toStringInteger(radius)
-					+ "&track="+APIUtils.toStringInteger(track)
-					+ "&type="+type
-					;
+			params = "/" + this.Version + "/rules/add." + this.Format
+					+ "?oauth_token=" + this.oauth_token + "&lat="
+					+ APIUtils.toStringDouble(lat) + "&lng="
+					+ APIUtils.toStringDouble(lng) + "&radius="
+					+ APIUtils.toStringInteger(radius) + "&track="
+					+ APIUtils.toStringInteger(track) + "&type=" + type;
 		}
 		return params;
 	}
-	
 
-		
 }

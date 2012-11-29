@@ -11,7 +11,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class PositionKML extends APICallResult {
 
 	Date timestamp = null;

@@ -10,7 +10,7 @@ import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 /**
- * 
+ * @see APICallResult
  * @author MAJS
  *
  */

@@ -1,7 +1,11 @@
 package topoos.APIAccess.Results;
 
 import topoos.Exception.TopoosException;
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class WebMapURIResult extends APICallResult{
 
 	String webmapuri=null;

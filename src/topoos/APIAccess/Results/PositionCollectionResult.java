@@ -11,7 +11,11 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class PositionCollectionResult extends APICallResult {
 
 	List<Position> positions = null;

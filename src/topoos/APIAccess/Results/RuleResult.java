@@ -6,7 +6,11 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class RuleResult extends APICallResult{
 
 	private Rule rule =null;

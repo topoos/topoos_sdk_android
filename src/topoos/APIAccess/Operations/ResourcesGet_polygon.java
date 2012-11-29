@@ -1,19 +1,26 @@
 package topoos.APIAccess.Operations;
-/**
- * Obtiene un documento KML que permite representar un polígono en un mapa que acepte capas KML.
- * @author MAJS
- *
- */
-public class ResourcesGet_polygon extends APIOperation{
 
-	public static final String SHAPE_CIRCLE="circle";
-	
-	private String	oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private String	shape=null; // (obligatorio) forma del polígono (valor admitido "circle")
-	private Integer	resolution=null; // (obligatorio) vértices para un círculo
-	private Double	lat=null; //(obligatorio) latitud del centro del circulo
-	private Double	lng=null; //(obligatorio)longitud del centro del círculo
-	private Double	radius=null; //(obligatorio)radio en metros
+/**
+ * 
+ * Get a KML document that allow to represent a polygon in a map that accept KML
+ * layers.
+ * 
+ * @see APIOperation
+ * @author MAJS
+ * 
+ */
+public class ResourcesGet_polygon extends APIOperation {
+
+	public static final String SHAPE_CIRCLE = "circle";
+
+	private String oauth_token = null; // (obligatorio) access_token a los
+										// recursos del usuario
+	private String shape = null; // (obligatorio) forma del polígono (valor
+									// admitido "circle")
+	private Integer resolution = null; // (obligatorio) vértices para un círculo
+	private Double lat = null; // (obligatorio) latitud del centro del circulo
+	private Double lng = null; // (obligatorio)longitud del centro del círculo
+	private Double radius = null; // (obligatorio)radio en metros
 
 	public ResourcesGet_polygon(String operationName, String method,
 			String format, Integer version, String oauth_token, String shape,
@@ -26,7 +33,6 @@ public class ResourcesGet_polygon extends APIOperation{
 		this.lng = lng;
 		this.radius = radius;
 	}
-	
 
 	@Override
 	public boolean ValidateParams() {
@@ -45,14 +51,11 @@ public class ResourcesGet_polygon extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/resources/get_polygon."
-					+ this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+ "&lat=" + APIUtils.toStringDouble(lat)
-					+ "&lng=" + APIUtils.toStringDouble(lng)
-					+ "&radius=" + APIUtils.toStringDouble(radius)
-					+ "&resolution=" + APIUtils.toStringInteger(resolution)
-					+ "&shape=" + shape
-					;
+					+ this.Format + "?oauth_token=" + this.oauth_token
+					+ "&lat=" + APIUtils.toStringDouble(lat) + "&lng="
+					+ APIUtils.toStringDouble(lng) + "&radius="
+					+ APIUtils.toStringDouble(radius) + "&resolution="
+					+ APIUtils.toStringInteger(resolution) + "&shape=" + shape;
 		}
 		return params;
 	}

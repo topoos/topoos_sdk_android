@@ -2,25 +2,48 @@ package topoos.APIAccess.Operations;
 
 import java.util.Date;
 
-public class ExportLayerTrack extends APIOperation{
+/**
+ * Make a track public that´s belong to an user and application
+ * 
+ * @see APIOperation
+ * @author MAJS
+ * 
+ */
+public class ExportLayerTrack extends APIOperation {
 
-	public static final String DATA_TRACK= "Track";
-	public static final String TYPE_LAYER= "layer";
-	public static final String EXPORT_FORMAT="kml";
-	
-	private String	oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private String	type=null; //  (obligatorio) este fragmento determina el tipo de recurso que se desea generar. Por ejemplo para generar un recurso de tipo capa KML, su valor es layer. Valores permitidos: layer.
-	private String	data=null; //  (obligatorio) este fragmento especifica los datos que se almacenarán en el recurso exportado. Por ejemplo, es posible almacenar un Track. Valores permitidos: Track.
+	public static final String DATA_TRACK = "Track";
+	public static final String TYPE_LAYER = "layer";
+	public static final String EXPORT_FORMAT = "kml";
 
-	//Parametros de TracksGet
-	
-	private String	export_format; // (obligatorio) este fragmento establece el formato de la respuesta de esta operación (no el formato del recurso). Valores disponibles: json.
-	protected Integer  	track=null; // (obligatorio) identificador del Track solicitado
-	protected Integer  	total=null; // (opcional) si se especifica un valor N, se obtendrán las últimas N posiciones del Track
-	protected Date initdate=null;
-	protected Date enddate=null;
-		//: (opcional) fechas en formato UTC que permiten filtrar posiciones registradas dentro del rango especificado, según el estándar ISO 8601. No se incluyen las posiciones registradas en la fecha indicada.
+	private String oauth_token = null; // (obligatorio) access_token a los
+										// recursos del usuario
+	private String type = null; // (obligatorio) este fragmento determina el
+								// tipo de recurso que se desea generar. Por
+								// ejemplo para generar un recurso de tipo capa
+								// KML, su valor es layer. Valores permitidos:
+								// layer.
+	private String data = null; // (obligatorio) este fragmento especifica los
+								// datos que se almacenarán en el recurso
+								// exportado. Por ejemplo, es posible almacenar
+								// un Track. Valores permitidos: Track.
 
+	// Parametros de TracksGet
+
+	private String export_format; // (obligatorio) este fragmento establece el
+									// formato de la respuesta de esta operación
+									// (no el formato del recurso). Valores
+									// disponibles: json.
+	protected Integer track = null; // (obligatorio) identificador del Track
+									// solicitado
+	protected Integer total = null; // (opcional) si se especifica un valor N,
+									// se obtendrán las últimas N posiciones del
+									// Track
+	protected Date initdate = null;
+	protected Date enddate = null;
+
+	// : (opcional) fechas en formato UTC que permiten filtrar posiciones
+	// registradas dentro del rango especificado, según el estándar ISO 8601. No
+	// se incluyen las posiciones registradas en la fecha indicada.
 
 	/**
 	 * @param operationName
@@ -50,8 +73,7 @@ public class ExportLayerTrack extends APIOperation{
 		this.initdate = initdate;
 		this.enddate = endate;
 	}
-	
-	
+
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
@@ -66,23 +88,32 @@ public class ExportLayerTrack extends APIOperation{
 		return validate;
 	}
 
-
 	@Override
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/export/"+ExportLayerTrack.TYPE_LAYER+"/"+ExportLayerTrack.DATA_TRACK+"."
-					+ this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+(track == null? "" : "&track="+APIUtils.toStringInteger(track))
-					+(export_format == null? "" : "&format="+APIUtils.toStringUrlEncoded(export_format))
-					+(total == null? "" : "&total="+APIUtils.toStringInteger(total))
-					+(initdate == null? "" : "&initdate="+APIUtils.toStringDate(initdate))
-					+(enddate == null? "" : "&endate="+APIUtils.toStringDate(enddate))
-					;
+			params = "/"
+					+ this.Version
+					+ "/export/"
+					+ ExportLayerTrack.TYPE_LAYER
+					+ "/"
+					+ ExportLayerTrack.DATA_TRACK
+					+ "."
+					+ this.Format
+					+ "?oauth_token="
+					+ this.oauth_token
+					+ (track == null ? "" : "&track="
+							+ APIUtils.toStringInteger(track))
+					+ (export_format == null ? "" : "&format="
+							+ APIUtils.toStringUrlEncoded(export_format))
+					+ (total == null ? "" : "&total="
+							+ APIUtils.toStringInteger(total))
+					+ (initdate == null ? "" : "&initdate="
+							+ APIUtils.toStringDate(initdate))
+					+ (enddate == null ? "" : "&endate="
+							+ APIUtils.toStringDate(enddate));
 		}
 		return params;
 	}
-
 
 }

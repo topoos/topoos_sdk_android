@@ -2,7 +2,11 @@ package topoos.APIAccess.Operations;
 
 import java.util.Date;
 
-
+/**
+ * @see APIOperation
+ * @author MAJS
+ *
+ */
 public class PositionsGet_between extends APIOperation{
 
 	private String	oauth_token=null; // (obligatorio) access_token a los recursos del usuario

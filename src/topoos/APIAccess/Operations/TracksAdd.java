@@ -1,14 +1,26 @@
 package topoos.APIAccess.Operations;
-/**
- * Crea un nuevo Track. Un Track representa una secuencia de posiciones registradas durante una sesión.
- * @author MAJS
- *
- */
-public class TracksAdd extends APIOperation{
 
-	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private String device=null; // (opcional) dispositivo que crea el Track. Es un parámetro obligatorio cuando la aplicación puede utilizar los dispositivos físicos de un usuario, opción que por defecto está deshabilitada.
-	private String name=null; // (opcional) descripción del Track, máx. 100 caracteres.
+/**
+ * 
+ * Create a new Track. A Track represent a sequence of registered positions.
+ * during a session
+ * 
+ * @see APIOperation
+ * @author MAJS
+ * 
+ */
+public class TracksAdd extends APIOperation {
+
+	private String oauth_token = null; // (obligatorio) access_token a los
+										// recursos del usuario
+	private String device = null; // (opcional) dispositivo que crea el Track.
+									// Es un parámetro obligatorio cuando la
+									// aplicación puede utilizar los
+									// dispositivos físicos de un usuario,
+									// opción que por defecto está
+									// deshabilitada.
+	private String name = null; // (opcional) descripción del Track, máx. 100
+								// caracteres.
 
 	public TracksAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, String device, String name) {
@@ -31,12 +43,15 @@ public class TracksAdd extends APIOperation{
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/tracks/add."
-					+ this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+(name == null? "" : "&name="+APIUtils.toStringUrlEncoded(name))
-					+(device == null? "" : "&device="+device)
-					;
+			params = "/"
+					+ this.Version
+					+ "/tracks/add."
+					+ this.Format
+					+ "?oauth_token="
+					+ this.oauth_token
+					+ (name == null ? "" : "&name="
+							+ APIUtils.toStringUrlEncoded(name))
+					+ (device == null ? "" : "&device=" + device);
 
 		}
 		return params;

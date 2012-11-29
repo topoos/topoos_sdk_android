@@ -7,6 +7,11 @@ import java.util.Calendar;
 /*
  * Clase que actua como interfaz a la parte nativa de la aplicaci�n, y viceversa
  */
+/**
+ * Class that acting as interface to the native side of the application and vice versa
+ * @author MAJS
+ *
+ */
 class WebInterface {
 	
 	private static final String ParamKey_AccessToken = "access_token";

@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 /**
- * 
+ * Implements AccesToken
  * @author MAJS
  *
  */
@@ -30,7 +30,7 @@ public class AccessTokenOAuth {
 	}
 	
 	/**
-	 * 
+	 * set the token without expires time
 	 * @param token
 	 */
 	public AccessTokenOAuth(String token) {
@@ -39,7 +39,7 @@ public class AccessTokenOAuth {
 		ExpiresIn=(long) 0;
 	}
 	/**
-	 * 
+	 * set the token with the parameters that received
 	 * @param token
 	 * @param expiresIn
 	 */
@@ -55,6 +55,7 @@ public class AccessTokenOAuth {
 
 	
 	/**
+	 * get the time that token expires
 	 * @return the expiresIn
 	 */
 	public Long getExpiresIn() {
@@ -62,7 +63,7 @@ public class AccessTokenOAuth {
 	}
 
 
-	/**
+	/** set the expires time of the token acces
 	 * @param expiresIn the expiresIn to set
 	 */
 	public void setExpiresIn(Long expiresIn) {
@@ -70,7 +71,7 @@ public class AccessTokenOAuth {
 	}
 
 	
-	/**
+	/** get the access token
 	 * @return the accessToken
 	 */
 	public String getAccessToken() {
@@ -79,6 +80,7 @@ public class AccessTokenOAuth {
 
 
 	/**
+	 * set the access token that received as parameter
 	 * @param accessToken the accessToken to set
 	 */
 	public void setAccessToken(String accessToken) {
@@ -86,7 +88,7 @@ public class AccessTokenOAuth {
 	}
 
 	/**
-	 * 
+	 * save the token
 	 * @param context
 	 */
 	public synchronized void save_Token(Context context){
@@ -101,7 +103,7 @@ public class AccessTokenOAuth {
 		}
 	}
 	/**
-	 * 
+	 * load the Token that recieved as parameter
 	 * @param context
 	 */
 	private synchronized void load_Token(Context context){
@@ -115,7 +117,7 @@ public class AccessTokenOAuth {
 		}
 	}	
 	/**
-	 * 
+	 * delete the token that has been saved previously
 	 * @param context
 	 */
 	private synchronized void delete_Token(Context context){
@@ -128,7 +130,7 @@ public class AccessTokenOAuth {
 		}		
 	}
 	/**
-	 * 
+	 * check if the token is valid, it has not expired
 	 * @return
 	 */
 	public boolean isValid(){
@@ -145,7 +147,7 @@ public class AccessTokenOAuth {
 	
 	
 	/**
-	 * 
+	 * get the access token that is previously saved
 	 * @param context
 	 * @return
 	 */
@@ -159,7 +161,7 @@ public class AccessTokenOAuth {
 	}
 	
 	/**
-	 * 
+	 * delete the access token
 	 * @param context
 	 */
 	public static void DeleteAccessToken(Context context){
@@ -169,7 +171,10 @@ public class AccessTokenOAuth {
 			//Log.i(Constants.TAG, access.toStringToken());
 		}		
 	}
-	
+	/**
+	 * convert to string the Access Token
+	 * @return
+	 */
 	private String toStringToken(){
 		return "Token: "+this.AccessToken+" Time: "+this.ExpiresIn;
 	}

@@ -1,5 +1,9 @@
 package topoos.APIAccess.Operations;
-
+/**
+ * @see APIOperation
+ * @author MAJS
+ *
+ */
 public class UsersUSRRemove_group  extends APIOperation{
 	private String oauth_token;
 	private String USR;

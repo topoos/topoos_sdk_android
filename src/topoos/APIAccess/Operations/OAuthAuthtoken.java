@@ -1,8 +1,11 @@
 package topoos.APIAccess.Operations;
 
-public class OAuthAuthtoken extends APIOperation{
-
-
+/**
+ * @see APIOperation
+ * @author MAJS
+ * 
+ */
+public class OAuthAuthtoken extends APIOperation {
 
 	@Override
 	public boolean ValidateParams() {

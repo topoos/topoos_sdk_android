@@ -15,10 +15,10 @@ public abstract class APIOperation {
 
 	/**
 	 * 
-	 * @param operationName
-	 * @param method
-	 * @param format
-	 * @param version
+	 * @param operationName name of the operation
+	 * @param method name of the method
+	 * @param format format
+	 * @param version version 
 	 */
 	public APIOperation(String operationName, String method, String format,
 			Integer version) {
@@ -35,7 +35,7 @@ public abstract class APIOperation {
 	};
 
 	/**
-	 * 
+	 * get the operation name
 	 * @return Operation name
 	 */
 	public String getOperationName() {
@@ -43,7 +43,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * 
+	 * set the operation name
 	 * @param operationName
 	 *            set the operation name
 	 */
@@ -52,7 +52,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * 
+	 * get the method
 	 * @return Method
 	 */
 	public String getMethod() {
@@ -60,7 +60,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * 
+	 * set the method
 	 * @param method
 	 *            set method
 	 */
@@ -69,7 +69,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * 
+	 * get the format
 	 * @return Format
 	 */
 	public String getFormat() {
@@ -77,7 +77,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * 
+	 * set the format
 	 * @param format
 	 *            set the format
 	 */
@@ -86,7 +86,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * 
+	 * get the version
 	 * @return Version
 	 */
 	public Integer getVersion() {
@@ -94,7 +94,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * 
+	 * set the version
 	 * @param version
 	 *            set the version
 	 */
@@ -103,7 +103,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * Check if the version is not null or not empty
+	 * check if the version is not null or not empty
 	 * 
 	 * @param param
 	 * @return Boolean
@@ -113,7 +113,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * Check if is valid or null the param
+	 * check if is valid or null the param
 	 * 
 	 * @param param
 	 * @return Boolean
@@ -123,7 +123,7 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * Validate the params
+	 * validate the params
 	 * 
 	 * @return Boolean
 	 */
@@ -136,7 +136,7 @@ public abstract class APIOperation {
 		return validate;
 	};
 	/**
-	 * Return the object´s parameters concatenate
+	 * return the object´s parameters concatenate
 	 * @return
 	 *  string	
 	 */

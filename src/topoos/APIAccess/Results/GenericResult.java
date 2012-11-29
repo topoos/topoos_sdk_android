@@ -6,7 +6,11 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class GenericResult extends APICallResult {
 
 	private Integer code=null;

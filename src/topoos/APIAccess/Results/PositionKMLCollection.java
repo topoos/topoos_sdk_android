@@ -12,7 +12,11 @@ import org.w3c.dom.NodeList;
 
 import topoos.Constants;
 import topoos.Exception.TopoosException;
-
+/**
+ * @see APICallResult
+ * @author MAJS
+ *
+ */
 public class PositionKMLCollection extends APICallResult {
 
 	String name = null;

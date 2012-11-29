@@ -1,10 +1,17 @@
 package topoos.APIAccess.Operations;
 
-public class POISGet extends APIOperation{
+/**
+ * 
+ * @see APIOperation
+ * @author MAJS
+ * 
+ */
+public class POISGet extends APIOperation {
 
-	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
-	private Integer	poi=null; // (obligatorio) identificador del punto de interés
-	
+	private String oauth_token = null; // (obligatorio) access_token a los
+										// recursos del usuario
+	private Integer poi = null; // (obligatorio) identificador del punto de
+								// interés
 
 	public POISGet(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi) {
@@ -12,8 +19,7 @@ public class POISGet extends APIOperation{
 		this.oauth_token = oauth_token;
 		this.poi = poi;
 	}
-	
-	
+
 	@Override
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
@@ -29,8 +35,9 @@ public class POISGet extends APIOperation{
 
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/pois/get."
-					+ this.Format + "?oauth_token=" + this.oauth_token+"&poi="+APIUtils.toStringInteger(poi);
+			params = "/" + this.Version + "/pois/get." + this.Format
+					+ "?oauth_token=" + this.oauth_token + "&poi="
+					+ APIUtils.toStringInteger(poi);
 
 		}
 		return params;

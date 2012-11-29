@@ -10,9 +10,9 @@ import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
 /**
- * 
+ * @see APICallResult
  * @author MAJS
- * 
+ *
  */
 public class UserResult extends APICallResult {
 
