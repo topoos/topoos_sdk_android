@@ -1,7 +1,7 @@
 package topoos.Objects;
 
 /**
- * 
+ * Class that implements a user id position
  * @author MAJS
  *
  */
@@ -18,7 +18,7 @@ public class UserIdPosition {
 		this.userid = userid;
 		this.position = position;
 	}
-	/**
+	/**get the user position
 	 * @return the position
 	 */
 	public UserPosition getPosition() {
@@ -31,6 +31,7 @@ public class UserIdPosition {
 		this.position = position;
 	}
 	/**
+	 * get the user id
 	 * @return the userid
 	 */
 	public String getUserid() {

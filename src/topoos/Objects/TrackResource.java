@@ -1,5 +1,9 @@
 package topoos.Objects;
-
+/**
+ * Class that implements a resource of the track
+ * @author MAJS
+ *
+ */
 public class TrackResource {
 
 	private Integer id=null;
@@ -19,6 +23,7 @@ public class TrackResource {
 	}
 
 	/**
+	 * get the id
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -33,6 +38,7 @@ public class TrackResource {
 	}
 
 	/**
+	 * get the type
 	 * @return the type
 	 */
 	public String getType() {
@@ -47,6 +53,7 @@ public class TrackResource {
 	}
 
 	/**
+	 * get the format
 	 * @return the format
 	 */
 	public String getFormat() {

@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
-
+/**
+ * Class that implements a poi data warning
+ * @author MAJS
+ *
+ */
 public class POIDataWarning {
 	private POI poi=null;
 	private ArrayList<POIWarning> poiWarnings=null;
@@ -14,7 +18,7 @@ public class POIDataWarning {
 		this.poi = poi;
 		this.poiWarnings = poiWarnings;
 	}
-	/**
+	/**get the poi
 	 * @return the poi
 	 */
 	public POI getPoi() {
@@ -27,6 +31,7 @@ public class POIDataWarning {
 		this.poi = poi;
 	}
 	/**
+	 * get the poi warnings
 	 * @return the poiWarnings
 	 */
 	public ArrayList<POIWarning> getPoiWarnings() {

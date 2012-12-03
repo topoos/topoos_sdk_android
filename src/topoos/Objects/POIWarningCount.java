@@ -20,6 +20,7 @@ public class POIWarningCount{
 		this.wrongInfo = wrongInfo;
 	}
 	/**
+	 * get the closed
 	 * @return the closed
 	 */
 	public Integer getClosed() {
@@ -32,6 +33,7 @@ public class POIWarningCount{
 		this.closed = closed;
 	}
 	/**
+	 * get the duplicated
 	 * @return the duplicated
 	 */
 	public Integer getDuplicated() {
@@ -44,6 +46,7 @@ public class POIWarningCount{
 		this.duplicated = duplicated;
 	}
 	/**
+	 * get the wrong indicator
 	 * @return the wrongIndicator
 	 */
 	public Integer getWrongIndicator() {
@@ -56,6 +59,7 @@ public class POIWarningCount{
 		this.wrongIndicator = wrongIndicator;
 	}
 	/**
+	 * get the wrong info
 	 * @return the wrongInfo
 	 */
 	public Integer getWrongInfo() {

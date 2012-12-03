@@ -1,8 +1,15 @@
 package topoos.Objects;
 
+/**
+ * Class that implements a rule
+ * 
+ * @author MAJS
+ * 
+ */
 public class Rule {
-	private Integer id=null;
-	private String type=null;
+	private Integer id = null;
+	private String type = null;
+
 	/**
 	 * @param id
 	 * @param type
@@ -12,30 +19,39 @@ public class Rule {
 		this.id = id;
 		this.type = type;
 	}
+
 	/**
+	 * get the id
+	 * 
 	 * @return the id
 	 */
 	public Integer getId() {
 		return id;
 	}
+
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	/**
+	 * get the type
+	 * 
 	 * @return the type
 	 */
 	public String getType() {
 		return type;
 	}
+
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
+
 }

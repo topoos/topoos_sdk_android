@@ -1,5 +1,9 @@
 package topoos.Objects;
-
+/**
+ * Class that implements a type of position
+ * @author MAJS
+ *
+ */
 public class PositionType {
 	String id = null;
 	String description = null;
@@ -15,6 +19,7 @@ public class PositionType {
 	}
 
 	/**
+	 * get the id
 	 * @return the id
 	 */
 	public String getId() {
@@ -30,6 +35,7 @@ public class PositionType {
 	}
 
 	/**
+	 * get the description
 	 * @return the description
 	 */
 	public String getDescription() {

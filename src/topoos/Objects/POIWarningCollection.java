@@ -2,7 +2,11 @@ package topoos.Objects;
 
 import java.util.ArrayList;
 
-
+/**
+ * Class that implements a collection of warning of the pois
+ * @author FBP
+ *
+ */
 public class POIWarningCollection {
 
 	
@@ -17,6 +21,7 @@ public class POIWarningCollection {
 	}
 
 	/**
+	 * get the poi warnings
 	 * @return the pOIWarnings
 	 */
 	public ArrayList<POIDataWarning> getPOIWarnings() {

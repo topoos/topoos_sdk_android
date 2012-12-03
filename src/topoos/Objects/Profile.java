@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.Date;
-
+/**
+ * Class that implements a profile
+ * @author MAJS
+ *
+ */
 public class Profile {
 
 	private Date Birthday = null;
@@ -19,7 +23,7 @@ public class Profile {
 	}
 
 	/**
-	 * 
+	 * get the birthday
 	 * @return Date of birthday
 	 */
 	public Date getBirthday() {
@@ -37,7 +41,7 @@ public class Profile {
 	}
 
 	/**
-	 * 
+	 * get the gender
 	 * @return the gender
 	 */
 	public String getGender() {

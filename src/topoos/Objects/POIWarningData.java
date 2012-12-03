@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
-
+/**
+ * class that implements the warning data of the pois
+ * @author MAJS
+ *
+ */
 public class POIWarningData {
 
 	private Integer id =null;
@@ -62,6 +66,7 @@ public class POIWarningData {
 		this.categories = categories;
 	}
 	/**
+	 * get the id
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -74,6 +79,7 @@ public class POIWarningData {
 		this.id = id;
 	}
 	/**
+	 * get the latitude
 	 * @return the latitude
 	 */
 	public Double getLatitude() {
@@ -86,6 +92,7 @@ public class POIWarningData {
 		this.latitude = latitude;
 	}
 	/**
+	 * get the longitude
 	 * @return the longitude
 	 */
 	public Double getLongitude() {
@@ -98,6 +105,7 @@ public class POIWarningData {
 		this.longitude = longitude;
 	}
 	/**
+	 * get the accuracy
 	 * @return the accuracy
 	 */
 	public Double getAccuracy() {
@@ -110,6 +118,7 @@ public class POIWarningData {
 		this.accuracy = accuracy;
 	}
 	/**
+	 * get the vaccuracy
 	 * @return the vaccuracy
 	 */
 	public Double getVaccuracy() {
@@ -122,6 +131,7 @@ public class POIWarningData {
 		this.vaccuracy = vaccuracy;
 	}
 	/**
+	 * get the elevation
 	 * @return the elevation
 	 */
 	public Double getElevation() {
@@ -134,6 +144,7 @@ public class POIWarningData {
 		this.elevation = elevation;
 	}
 	/**
+	 * get the name
 	 * @return the name
 	 */
 	public String getName() {
@@ -146,6 +157,7 @@ public class POIWarningData {
 		this.name = name;
 	}
 	/**
+	 * get the address
 	 * @return the address
 	 */
 	public String getAddress() {
@@ -158,6 +170,7 @@ public class POIWarningData {
 		this.address = address;
 	}
 	/**
+	 * get the cross street
 	 * @return the cross_street
 	 */
 	public String getCross_street() {
@@ -170,6 +183,7 @@ public class POIWarningData {
 		this.cross_street = cross_street;
 	}
 	/**
+	 * get the city
 	 * @return the city
 	 */
 	public String getCity() {
@@ -182,6 +196,7 @@ public class POIWarningData {
 		this.city = city;
 	}
 	/**
+	 * get the country
 	 * @return the country
 	 */
 	public String getCountry() {
@@ -194,6 +209,7 @@ public class POIWarningData {
 		this.country = country;
 	}
 	/**
+	 * get the postal code
 	 * @return the postal_code
 	 */
 	public String getPostal_code() {
@@ -206,6 +222,7 @@ public class POIWarningData {
 		this.postal_code = postal_code;
 	}
 	/**
+	 * get the phone
 	 * @return the phone
 	 */
 	public String getPhone() {
@@ -218,6 +235,7 @@ public class POIWarningData {
 		this.phone = phone;
 	}
 	/**
+	 * get the twitter
 	 * @return the twitter
 	 */
 	public String getTwitter() {
@@ -230,6 +248,7 @@ public class POIWarningData {
 		this.twitter = twitter;
 	}
 	/**
+	 * get the description
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -242,6 +261,7 @@ public class POIWarningData {
 		this.description = description;
 	}
 	/**
+	 * get the categories
 	 * @return the categories
 	 */
 	public ArrayList<POICategory> getCategories() {

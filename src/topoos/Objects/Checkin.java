@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.Date;
-
+/**
+ * Class that implements a object Checkin
+ * @author MAJS
+ *
+ */
 public class Checkin {
 
 	private Integer id=null;
@@ -26,6 +30,7 @@ public class Checkin {
 		this.timestamp = timestamp;
 	}
 	/**
+	 * get the id
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -38,6 +43,7 @@ public class Checkin {
 		this.id = id;
 	}
 	/**
+	 * get the device id
 	 * @return the device_id
 	 */
 	public Integer getDevice_id() {
@@ -50,6 +56,7 @@ public class Checkin {
 		this.device_id = device_id;
 	}
 	/**
+	 * get the id of the poi
 	 * @return the poi_id
 	 */
 	public Integer getPoi_id() {
@@ -62,6 +69,7 @@ public class Checkin {
 		this.poi_id = poi_id;
 	}
 	/**
+	 * get the register time
 	 * @return the register_time
 	 */
 	public Date getRegister_time() {
@@ -74,6 +82,7 @@ public class Checkin {
 		this.register_time = register_time;
 	}
 	/**
+	 * get the timestamp
 	 * @return the timestamp
 	 */
 	public Date getTimestamp() {

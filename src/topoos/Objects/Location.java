@@ -1,6 +1,6 @@
 package topoos.Objects;
 /**
- * 
+ * Class that represents a location with a latitude and a longitude
  * @author MAJS
  *
  */
@@ -18,6 +18,7 @@ public class Location {
 		this.longitude = longitude;
 	}
 	/**
+	 * get the latitude
 	 * @return the latitude
 	 */
 	public Double getLatitude() {
@@ -30,6 +31,7 @@ public class Location {
 		this.latitude = latitude;
 	}
 	/**
+	 * get the longitude
 	 * @return the longitude
 	 */
 	public Double getLongitude() {

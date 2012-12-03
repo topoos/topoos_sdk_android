@@ -1,5 +1,9 @@
 package topoos.Objects;
-
+/**
+ * Class that implements a user position
+ * @author MAJS
+ *
+ */
 public class UserPosition {
 	private Double latitude = null;
 	private Double longitude = null;
@@ -18,6 +22,7 @@ public class UserPosition {
 	}
 
 	/**
+	 * get the latitude
 	 * @return the latitude
 	 */
 	public Double getLatitude() {
@@ -33,6 +38,7 @@ public class UserPosition {
 	}
 
 	/**
+	 * get the longitude
 	 * @return the longitude
 	 */
 	public Double getLongitude() {
@@ -48,6 +54,7 @@ public class UserPosition {
 	}
 
 	/**
+	 * get the accuracy
 	 * @return the accuracy
 	 */
 	public Double getAccuracy() {

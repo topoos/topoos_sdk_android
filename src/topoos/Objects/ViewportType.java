@@ -1,6 +1,6 @@
 package topoos.Objects;
 /**
- * 
+ * Class that implements a view of the type of port
  * @author MAJS
  *
  */
@@ -18,6 +18,7 @@ public class ViewportType {
 		this.northeast = northeast;
 	}
 	/**
+	 * get the northeast
 	 * @return the northeast
 	 */
 	public Location getNortheast() {
@@ -30,6 +31,7 @@ public class ViewportType {
 		this.northeast = northeast;
 	}
 	/**
+	 * get the southwest
 	 * @return the southwest
 	 */
 	public Location getSouthwest() {

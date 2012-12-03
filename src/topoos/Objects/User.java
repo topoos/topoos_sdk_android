@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
-
+/**
+ * Class that implements a user
+ * @author MAJS
+ *
+ */
 public class User   {
 
 	private String Id = null;
@@ -25,6 +29,7 @@ public class User   {
 
 
 	/**
+	 * get the id
 	 * @return the id
 	 */
 	public String getId() {
@@ -39,6 +44,7 @@ public class User   {
 	}
 
 	/**
+	 * get the name
 	 * @return the name
 	 */
 	public String getName() {
@@ -53,6 +59,7 @@ public class User   {
 	}
 
 	/**
+	 * get the email
 	 * @return the email
 	 */
 	public String getEmail() {
@@ -67,6 +74,7 @@ public class User   {
 	}
 
 	/**
+	 * get the profile
 	 * @return the profile
 	 */
 	public Profile getProfile() {
@@ -81,6 +89,7 @@ public class User   {
 	}
 
 	/**
+	 * get the id of the group
 	 * @return the ugroup
 	 */
 	public ArrayList<Integer> getUgroup() {
@@ -95,6 +104,7 @@ public class User   {
 	}
 
 	/**
+	 * get the acreditation
 	 * @return the acreditation
 	 */
 	public Acreditation getAcreditation() {

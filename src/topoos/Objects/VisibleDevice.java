@@ -1,5 +1,9 @@
 package topoos.Objects;
-
+/**
+ * Class that implements a visible device
+ * @author MAJS
+ *
+ */
 public class VisibleDevice {
 
 	private String Id = null;
@@ -22,7 +26,7 @@ public class VisibleDevice {
 		this.isLogical = isLogical;
 	}
 	/**
-	 * 
+	 * get the device id
 	 * @return the device id
 	 */
 	public String getId() {
@@ -37,7 +41,7 @@ public class VisibleDevice {
 		Id = id;
 	}
 	/**
-	 * 
+	 * get the name of the device
 	 * @return
 	 * 		name of the device
 	 */
@@ -53,7 +57,7 @@ public class VisibleDevice {
 		Name = name;
 	}
 	/**
-	 * 
+	 * get the model of the device
 	 * @return 
 	 * 		model of the device
 	 */
@@ -69,7 +73,7 @@ public class VisibleDevice {
 		Model = model;
 	}
 	/**
-	 * 
+	 * get the type of the device true if it is logical
 	 * @return
 	 * 		if is a logical device
 	 */

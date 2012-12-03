@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.Date;
-
+/**
+ * Class that implements a position
+ * @author FBP
+ *
+ */
 public class Position {
 
 	Integer id = null;
@@ -55,6 +59,7 @@ public class Position {
 
 
 	/**
+	 * get the id
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -70,6 +75,7 @@ public class Position {
 	}
 
 	/**
+	 * get the device
 	 * @return the device
 	 */
 	public String getDevice() {
@@ -85,6 +91,7 @@ public class Position {
 	}
 
 	/**
+	 * get the time stamp
 	 * @return the timestamp
 	 */
 	public Date getTimestamp() {
@@ -100,6 +107,7 @@ public class Position {
 	}
 
 	/**
+	 * get the register time
 	 * @return the registerTime
 	 */
 	public Date getRegisterTime() {
@@ -115,6 +123,7 @@ public class Position {
 	}
 
 	/**
+	 * get the latitude
 	 * @return the latitude
 	 */
 	public Double getLatitude() {
@@ -130,6 +139,7 @@ public class Position {
 	}
 
 	/**
+	 * get the longitude
 	 * @return the longitude
 	 */
 	public Double getLongitude() {
@@ -145,6 +155,7 @@ public class Position {
 	}
 
 	/**
+	 * get the elevation
 	 * @return the elevation
 	 */
 	public Double getElevation() {
@@ -160,6 +171,7 @@ public class Position {
 	}
 
 	/**
+	 * get the position type
 	 * @return the positionType
 	 */
 	public PositionType getPositionType() {
@@ -175,6 +187,7 @@ public class Position {
 	}
 
 	/**
+	 * get the accuracy
 	 * @return the accuracy
 	 */
 	public Double getAccuracy() {
@@ -190,6 +203,7 @@ public class Position {
 	}
 
 	/**
+	 * get the vaccuracy
 	 * @return the vaccuracy
 	 */
 	public Double getVaccuracy() {
@@ -205,6 +219,7 @@ public class Position {
 	}
 
 	/**
+	 * get the bearing 
 	 * @return the bearing
 	 */
 	public Double getBearing() {
@@ -220,6 +235,7 @@ public class Position {
 	}
 
 	/**
+	 * get the velocity
 	 * @return the velocity
 	 */
 	public Double getVelocity() {
@@ -235,6 +251,7 @@ public class Position {
 	}
 
 	/**
+	 * get the track id
 	 * @return the track_id
 	 */
 	public String getTrack_id() {

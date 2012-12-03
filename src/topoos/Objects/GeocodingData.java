@@ -2,7 +2,7 @@ package topoos.Objects;
 
 
 /**
- * 
+ * Class that implements a geocoding data 
  * @author MAJS
  *
  */
@@ -23,6 +23,7 @@ public class GeocodingData {
 		this.bounds = bounds;
 	}
 	/**
+	 * get the address that it is saved in a geocoding data
 	 * @return the address
 	 */
 	public Address getAddress() {
@@ -35,6 +36,7 @@ public class GeocodingData {
 		this.address = address;
 	}
 	/**
+	 * get the location
 	 * @return the location
 	 */
 	public Location getLocation() {
@@ -47,6 +49,7 @@ public class GeocodingData {
 		this.location = location;
 	}
 	/**
+	 * get the bounds
 	 * @return the bounds
 	 */
 	public ViewportType getBounds() {

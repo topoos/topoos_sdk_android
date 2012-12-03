@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author MAJS
+ *
+ */
 public class Track {
 
 	private Integer id=null;
@@ -23,6 +27,7 @@ public class Track {
 		this.positions = positions;
 	}
 	/**
+	 * get the id
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -35,6 +40,7 @@ public class Track {
 		this.id = id;
 	}
 	/**
+	 * get the name
 	 * @return the name
 	 */
 	public String getName() {
@@ -47,6 +53,7 @@ public class Track {
 		this.name = name;
 	}
 	/**
+	 * get the device
 	 * @return the device
 	 */
 	public Integer getDevice() {
@@ -59,6 +66,7 @@ public class Track {
 		this.device = device;
 	}
 	/**
+	 * get the positions
 	 * @return the positions
 	 */
 	public ArrayList<Position> getPositions() {

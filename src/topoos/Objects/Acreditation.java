@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
-
+/**
+ * Class that implement
+ * @author MAJS
+ *
+ */
 public class Acreditation {
 	private String Expirationtime = null;
 	private String clientId = null;

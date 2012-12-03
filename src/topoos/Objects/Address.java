@@ -1,7 +1,7 @@
 package topoos.Objects;
 
 /**
- * 
+ * Class that implements a object address
  * @author MAJS
  *
  */
@@ -30,7 +30,7 @@ public class Address {
 		this.country = country;
 		this.postal_code = postal_code;
 	}
-	/**
+	/**get the address
 	 * @return the address
 	 */
 	public String getAddress() {
@@ -42,7 +42,7 @@ public class Address {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	/**
+	/**get the cross street
 	 * @return the cross_street
 	 */
 	public String getCross_street() {
@@ -54,7 +54,7 @@ public class Address {
 	public void setCross_street(String cross_street) {
 		this.cross_street = cross_street;
 	}
-	/**
+	/**get the state
 	 * @return the state
 	 */
 	public String getState() {
@@ -66,7 +66,7 @@ public class Address {
 	public void setState(String state) {
 		this.state = state;
 	}
-	/**
+	/**get the administrative area
 	 * @return the administrative_area
 	 */
 	public String getAdministrative_area() {
@@ -79,6 +79,7 @@ public class Address {
 		this.administrative_area = administrative_area;
 	}
 	/**
+	 * get the country
 	 * @return the country
 	 */
 	public String getCountry() {
@@ -91,6 +92,7 @@ public class Address {
 		this.country = country;
 	}
 	/**
+	 * get the postal code
 	 * @return the postal_code
 	 */
 	public String getPostal_code() {

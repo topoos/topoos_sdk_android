@@ -3,7 +3,7 @@ package topoos.Objects;
 import java.util.ArrayList;
 
 /**
- * 
+ * Class that implements a position collection 
  * @author MAJS
  *
  */
@@ -20,6 +20,7 @@ public class PositionCollection {
 	}
 
 	/**
+	 * get the position of the collection
 	 * @return the positionCollection
 	 */
 	public ArrayList<Position> getPositionCollection() {

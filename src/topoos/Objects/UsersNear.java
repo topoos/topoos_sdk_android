@@ -1,8 +1,11 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
-
-
+/**
+ * Class that implements a list of users that are near
+ * @author MAJS
+ *
+ */
 public class UsersNear  {
 
 	private ArrayList<UserIdPosition> useridPositions=null;
@@ -16,6 +19,7 @@ public class UsersNear  {
 	}
 
 	/**
+	 * get the user positions
 	 * @return the userPositions
 	 */
 	public ArrayList<UserIdPosition> getUserPositions() {

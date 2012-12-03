@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
-
+/**
+ * Class that implements a checkingcollection where are saves all check ins
+ * @author MAJS
+ *
+ */
 public class CheckinCollection {
 
 	ArrayList<Checkin> CheckIns=null;
@@ -15,6 +19,7 @@ public class CheckinCollection {
 	}
 
 	/**
+	 * Get the check ins
 	 * @return the checkIns
 	 */
 	public ArrayList<Checkin> getCheckIns() {

@@ -1,7 +1,11 @@
 package topoos.Objects;
 
 import java.util.Date;
-
+/**
+ * Class that implements a poi warning
+ * @author MAJS
+ *
+ */
 public class POIWarning {
 
 	private Integer id=null;
@@ -31,6 +35,7 @@ public class POIWarning {
 		this.data = data;
 	}
 	/**
+	 * get the id of the warning
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -43,6 +48,7 @@ public class POIWarning {
 		this.id = id;
 	}
 	/**
+	 * get the id of the poi
 	 * @return the poi_id
 	 */
 	public Integer getPoi_id() {
@@ -55,6 +61,7 @@ public class POIWarning {
 		this.poi_id = poi_id;
 	}
 	/**
+	 * get the type
 	 * @return the type
 	 */
 	public String getType() {
@@ -67,6 +74,7 @@ public class POIWarning {
 		this.type = type;
 	}
 	/**
+	 * get the id of the user
 	 * @return the user_id
 	 */
 	public String getUser_id() {
@@ -79,6 +87,7 @@ public class POIWarning {
 		this.user_id = user_id;
 	}
 	/**
+	 * get the time stamp
 	 * @return the timestamp
 	 */
 	public Date getTimestamp() {
@@ -91,6 +100,7 @@ public class POIWarning {
 		this.timestamp = timestamp;
 	}
 	/**
+	 * get the data of the warning
 	 * @return the data
 	 */
 	public POIWarningData getData() {
