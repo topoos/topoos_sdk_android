@@ -20,7 +20,7 @@ public class Operations {
 	/**
 	 * 
 	 * @param clientID
-	 * @return
+	 * @return String
 	 */
 	public String GetLoginClientSideURI(String clientID) {
 		String url = Constants.TOPOOSURILOGIN+"/oauth/authtoken?response_type=token&client_id="
@@ -34,7 +34,7 @@ public class Operations {
 	/**
 	 * 
 	 * @param clientID
-	 * @return
+	 * @return String
 	 */
 	public String GetLoginServerSideURI(String clientID) {
 		String url = Constants.TOPOOSURILOGIN+"/oauth/authtoken?client_id="
@@ -148,7 +148,7 @@ public class Operations {
 	/**
 	 * 
 	 * @param accessTokenOAuth
-	 * @return
+	 * @return boolean
 	 */
 	public boolean CheckAccessToken(AccessTokenOAuth accessTokenOAuth) {
 		return accessTokenOAuth.isValid();
@@ -157,7 +157,7 @@ public class Operations {
 	/**
 	 * 
 	 * @param context
-	 * @return
+	 * @return boolean
 	 */
 	public boolean CheckAccessToken(Context context) {
 		return AccessTokenOAuth.GetAccessToken(context).isValid();

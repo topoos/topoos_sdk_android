@@ -19,7 +19,7 @@ public class Operations {
 	 * 
 	 * @param accessTokenPregenerated
 	 *            (required) access_token to user resources
-	 * @param Track
+	 * @param track
 	 *            (required) Track ID that associate the rule
 	 * @param lat
 	 *            (required) latitude of the new position

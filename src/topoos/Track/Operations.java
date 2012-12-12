@@ -70,7 +70,7 @@ public class Operations {
 	 * @param layers
 	 *            (Optional) requested KML layers, separated by commas
 	 * @param accessTokenPregenerated
-	 * @return
+	 * @return Track
 	 * @throws IOException
 	 * @throws TopoosException
 	 */

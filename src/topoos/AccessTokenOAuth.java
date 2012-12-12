@@ -131,7 +131,7 @@ public class AccessTokenOAuth {
 	}
 	/**
 	 * check if the token is valid, it has not expired
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isValid(){
 		boolean isvalid=true;
@@ -149,7 +149,7 @@ public class AccessTokenOAuth {
 	/**
 	 * get the access token that is previously saved
 	 * @param context
-	 * @return
+	 * @return AccessTokenOAuth
 	 */
 	public static AccessTokenOAuth GetAccessToken(Context context){
 		AccessTokenOAuth access=new AccessTokenOAuth();

@@ -191,11 +191,11 @@ public class Operations {
 	public static Boolean Update(AccessTokenOAuth accessTokenPregenerated,
 			Integer POIID, String name, Double lat, Double lng,
 			Integer[] categories, Double accuracy, Double vaccuracy,
-			Double elevation, String desc, String address, String cross_stret,
+			Double elevation, String desc, String address, String cross_street,
 			String city, String country, String postal_code, String phone,
 			String twitter) throws IOException, TopoosException {
 		return Translator.Update(POIID, name, lat, lng, categories, accuracy,
-				vaccuracy, elevation, desc, address, cross_stret, city,
+				vaccuracy, elevation, desc, address, cross_street, city,
 				country, postal_code, phone, twitter, accessTokenPregenerated);
 	}
 
@@ -392,11 +392,11 @@ public class Operations {
 	public static Boolean Update(Context context, Integer POIID, String name,
 			Double lat, Double lng, Integer[] categories, Double accuracy,
 			Double vaccuracy, Double elevation, String desc, String address,
-			String cross_stret, String city, String country,
+			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter)
 			throws IOException, TopoosException {
 		return Translator.Update(context, POIID, name, lat, lng, categories,
-				accuracy, vaccuracy, elevation, desc, address, cross_stret,
+				accuracy, vaccuracy, elevation, desc, address, cross_street,
 				city, country, postal_code, phone, twitter);
 	}
 

@@ -196,8 +196,7 @@ public class PositionKMLCollection extends APICallResult {
 		ExtendedData extendedData = null;
 
 		/**
-		 * @param error
-		 * @param result
+		 * 
 		 * @param timestamp
 		 * @param name
 		 * @param description

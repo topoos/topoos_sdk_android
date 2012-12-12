@@ -27,7 +27,7 @@ public class Operations {
 	 * @param initDate
 	 * @param endDate
 	 * @param accessTokenPregenerated
-	 * @return
+	 * @return TrackResource
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
@@ -42,7 +42,7 @@ public class Operations {
 	 * @param total
 	 * @param initDate
 	 * @param endDate
-	 * @return
+	 * @return TrackResource
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */

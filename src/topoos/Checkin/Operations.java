@@ -20,7 +20,7 @@ public class Operations {
 	 * @param POIID
 	 * @param timestamp
 	 * @param accessTokenPregenerated
-	 * @return
+	 * @return Checkin
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
@@ -33,7 +33,7 @@ public class Operations {
 	 * 
 	 * @param checkinID
 	 * @param accessTokenPregenerated
-	 * @return
+	 * @return Checkin
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
@@ -46,7 +46,7 @@ public class Operations {
 	 * 
 	 * @param userID
 	 * @param accessTokenPregenerated
-	 * @return
+	 * @return Checkin
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
@@ -59,7 +59,7 @@ public class Operations {
 	 * 
 	 * @param POIID
 	 * @param accessTokenPregenerated
-	 * @return
+	 * @return List<Checkin>
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
@@ -74,7 +74,7 @@ public class Operations {
 	 * @param context
 	 * @param POIID
 	 * @param timestamp
-	 * @return
+	 * @return Checkin
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
@@ -92,7 +92,7 @@ public class Operations {
 	 * 
 	 * @param context
 	 * @param userID
-	 * @return
+	 * @return Checkin
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
@@ -105,7 +105,7 @@ public class Operations {
 	 * 
 	 * @param context
 	 * @param POIID
-	 * @return
+	 * @return List<Checkin>
 	 * @throws IOException
 	 * @throws TopoosException
 	 */

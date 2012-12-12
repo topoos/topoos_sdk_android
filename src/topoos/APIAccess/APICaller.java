@@ -1,5 +1,8 @@
 package topoos.APIAccess;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
@@ -11,44 +14,58 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
+import android.os.Environment;
 import android.util.Log;
 import topoos.Constants;
 import topoos.APIAccess.Operations.APIOperation;
 import topoos.APIAccess.Results.APICallResult;
 import topoos.Exception.TopoosException;
+
 /**
- * Class that implements http call to topoos api 
+ * Class that implements http call to topoos api
+ * 
  * @author MAJS
- *
+ * 
  */
 public class APICaller {
+	
 	/**
 	 * Returns the url for the object operation.
-	 * @param operation 
+	 * 
+	 * @param operation
 	 * @return URL
 	 */
 	public static String GetUriOperation(APIOperation operation) {
 		return Constants.TOPOOSURIAPI + operation.ConcatParams();
 	}
+
 	/**
 	 * Initiates an operation on topoos API.
-	 * @param operation Represents the operation to be executed
-	 * @param result Represents a result returned from a query to API topoos
+	 * 
+	 * @param operation
+	 *            Represents the operation to be executed
+	 * @param result
+	 *            Represents a result returned from a query to API topoos
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
 	public static void ExecuteOperation(APIOperation operation,
 			APICallResult result) throws IOException, TopoosException {
 		HttpClient hc = new DefaultHttpClient();
-		if(!operation.ValidateParams())
+		if (!operation.ValidateParams())
 			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
 		String OpURI = Constants.TOPOOSURIAPI + operation.ConcatParams();
-		if (Constants.DEBUG)
+		if (Constants.DEBUG) {
 			Log.d(Constants.TAG, OpURI);
+			appendLog("******************************************************");
+			appendLog(OpURI);
+		}
 		HttpPost post = new HttpPost(OpURI);
-
+		//POST
+		if(operation.getMethod().equals("POST")){
+			post.setEntity(operation.BodyParams());
+		}
 		HttpResponse rp = hc.execute(post);
-
 		HttpParams httpParams = hc.getParams();
 		HttpConnectionParams.setConnectionTimeout(httpParams,
 				Constants.HTTP_WAITING_MILISECONDS);
@@ -56,8 +73,11 @@ public class APICaller {
 				Constants.HTTP_WAITING_MILISECONDS);
 		if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 			result.setResult(EntityUtils.toString(rp.getEntity()));
-			if (Constants.DEBUG)
+			if (Constants.DEBUG){
 				Log.d(Constants.TAG, result.getResult());
+				appendLog(result.getResult());
+				appendLog("******************************************************");
+			}
 			result.setError(null);
 			result.setParameters();
 		} else {
@@ -67,10 +87,28 @@ public class APICaller {
 			case 405:
 				throw new TopoosException(TopoosException.ERROR405);
 			default:
-				throw new TopoosException("¿Error: "+rp.getStatusLine().getStatusCode()+"?");
+				throw new TopoosException("Error: "
+						+ rp.getStatusLine().getStatusCode() + "");
 			}
-			
+
 		}
 	}
 
+	private static void appendLog(String text) {
+		try {
+			File logFile = new File(Environment.getExternalStorageDirectory(),
+					"logoperations.txt");
+			if (!logFile.exists()) {
+				logFile.createNewFile();
+			}
+
+			BufferedWriter buf = new BufferedWriter(new FileWriter(logFile,
+					true));
+			buf.append(text);
+			buf.newLine();
+			buf.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

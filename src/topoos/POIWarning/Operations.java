@@ -179,7 +179,7 @@ public class Operations {
 	 * @param context
 	 *            (required) Interface to global information about an
 	 *            application environment
-	 * @param POISID
+	 * @param POIID
 	 *            (optional) List of identifier whose warnings POI want to
 	 *            retrieve.
 	 * @param type

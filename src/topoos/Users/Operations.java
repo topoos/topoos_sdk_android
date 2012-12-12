@@ -45,7 +45,7 @@ public class Operations {
 	 *            You happen to belong to this group.
 	 * @param accessTokenPregenerated
 	 *            (required) access_token to user resources
-	 * @return
+	 * @return boolean
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
@@ -121,7 +121,7 @@ public class Operations {
 	 * @param groupID
 	 *            (optional) user group identifier. If specified, the results
 	 *            will include only users who belong to that group.
-	 * @param numberUsers
+	 * @param usersCount
 	 *            (optional) number of users returned. The return will always be
 	 *            those closest to the point. Default value 1.
 	 * @param activeTrack

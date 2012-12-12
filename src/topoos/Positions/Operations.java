@@ -299,7 +299,7 @@ public class Operations {
 	 *            (required) ending date
 	 * @param accessTokenPregenerated
 	 *            (required) access_token to user resources
-	 * @return
+	 * @return List<Position>
 	 * @throws TopoosException
 	 * @throws IOException
 	 */

@@ -28,7 +28,7 @@ public class Operations {
 	 * @param lngCenter
 	 * @param radius
 	 * @param accessTokenPregenerated
-	 * @return
+	 * @return List<Location>
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
@@ -44,7 +44,7 @@ public class Operations {
 	 * @param lat
 	 * @param lng
 	 * @param accessTokenPregenerated
-	 * @return
+	 * @return List<GeocodingData>
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
@@ -57,8 +57,8 @@ public class Operations {
 	 * @param resourceID
 	 * @param type
 	 * @param format
-	 * @param apiKey
-	 * @return
+	 * @param apiKey 
+	 * @return Track
 	 */
 	public static Track GetTrackExported(Integer resourceID, String type,
 			String format, String apiKey) {
@@ -70,7 +70,7 @@ public class Operations {
 	 * @param resourceID
 	 * @param type
 	 * @param apiKey
-	 * @return
+	 * @return String
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
@@ -86,7 +86,7 @@ public class Operations {
 	 * @param latCenter
 	 * @param lngCenter
 	 * @param radius
-	 * @return
+	 * @return List<Location>
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */
@@ -102,7 +102,7 @@ public class Operations {
 	 * @param context
 	 * @param lat
 	 * @param lng
-	 * @return
+	 * @return List<GeocodingData>
 	 * @throws IOException 
 	 * @throws TopoosException 
 	 */

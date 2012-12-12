@@ -1,5 +1,7 @@
 package topoos.APIAccess.Operations;
 
+import topoos.APIAccess.mime.MultipartEntity;
+
 /**
  * Class that implements the api operations
  * 
@@ -141,5 +143,8 @@ public abstract class APIOperation {
 	 *  string	
 	 */
 	public abstract String ConcatParams();
-
+	
+	public MultipartEntity BodyParams(){
+		return null;
+	}
 }
