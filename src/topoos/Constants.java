@@ -8,7 +8,8 @@ public class Constants {
 	//public static String TOPOOSURIAPI="https://api.topoos.com";
 	//public static final String TOPOOSURIAPI="http://192.168.0.64:10001";
 	public static final String TOPOOSURIAPI="http://topoos2.cloudapp.net:9000";
-	//public static final String TOPOOSURIAPI="http://topoospre.cloudapp.net:9000";
+	//public static final String TOPOOSURIAPI="http://topoospre.cloudapp.net:9000";	
+	public static final String TOPOOSURIPIC="http://topoos2.cloudapp.net:9003";
 	public static final String TAG="SDK_TOPOOS";
 	public static final int HTTP_WAITING_MILISECONDS = 5000;
 	public static final Integer SDKVERSION = 1;

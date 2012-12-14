@@ -1,5 +1,7 @@
 package topoos.APIAccess.Operations;
 
+import java.io.IOException;
+
 import topoos.APIAccess.mime.MultipartEntity;
 
 /**
@@ -144,7 +146,7 @@ public abstract class APIOperation {
 	 */
 	public abstract String ConcatParams();
 	
-	public MultipartEntity BodyParams(){
+	public MultipartEntity BodyParams() throws IOException{
 		return null;
 	}
 }

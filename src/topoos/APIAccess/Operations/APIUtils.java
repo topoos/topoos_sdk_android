@@ -49,11 +49,30 @@ class APIUtils {
 		return str==null? null:URLEncoder.encode(str);
 	}
 	/**
-	 *  Convert to String an boolean value that received as parameter
+	 *  Convert to String a boolean value that received as parameter
 	 * @param bool
 	 * @return String
 	 */
 	public static String toStringBoolean(Boolean bool){
 		return bool==null? null:URLEncoder.encode(Boolean.toString(bool));
+	}
+	
+	/**
+	 *  Convert to String a Integer[] value that received as parameter
+	 * @param array
+	 * @return String
+	 */
+	public static String toStringIntegerArray(Integer[] array){
+		String strarray = "";
+		if (array != null) {
+			for (int i = 0; i < array.length; i++) {
+				if (i < array.length - 1) {
+					strarray = strarray + array[i] + ",";
+				} else {
+					strarray = strarray + array[i];
+				}
+			}
+		}
+		return strarray;
 	}
 }

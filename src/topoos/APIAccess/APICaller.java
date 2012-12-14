@@ -28,15 +28,38 @@ import topoos.Exception.TopoosException;
  * 
  */
 public class APICaller {
-	
+
+	public static final int SERVICE_API = 0;
+	public static final int SERVICE_LOGIN = 1;
+	public static final int SERVICE_PIC = 2;
+
 	/**
 	 * Returns the url for the object operation.
 	 * 
 	 * @param operation
 	 * @return URL
 	 */
-	public static String GetUriOperation(APIOperation operation) {
+	public static String GetUriAPIOperation(APIOperation operation) {
 		return Constants.TOPOOSURIAPI + operation.ConcatParams();
+	}
+
+	/**
+	 * Returns the url for topoos api service
+	 * 
+	 * @param operation
+	 * @return URL
+	 */
+	public static String GetURLAPItopoos() {
+		return Constants.TOPOOSURIAPI;
+	}
+
+	/**
+	 * Returns the url for topoos pic service
+	 * 
+	 * @return String
+	 */
+	public static String GetURLPICAPItopoos() {
+		return Constants.TOPOOSURIPIC;
 	}
 
 	/**
@@ -61,8 +84,8 @@ public class APICaller {
 			appendLog(OpURI);
 		}
 		HttpPost post = new HttpPost(OpURI);
-		//POST
-		if(operation.getMethod().equals("POST")){
+		// POST
+		if (operation.getMethod().equals("POST")) {
 			post.setEntity(operation.BodyParams());
 		}
 		HttpResponse rp = hc.execute(post);
@@ -73,7 +96,74 @@ public class APICaller {
 				Constants.HTTP_WAITING_MILISECONDS);
 		if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 			result.setResult(EntityUtils.toString(rp.getEntity()));
-			if (Constants.DEBUG){
+			if (Constants.DEBUG) {
+				Log.d(Constants.TAG, result.getResult());
+				appendLog(result.getResult());
+				appendLog("******************************************************");
+			}
+			result.setError(null);
+			result.setParameters();
+		} else {
+			switch (rp.getStatusLine().getStatusCode()) {
+			case 400:
+				throw new TopoosException(TopoosException.ERROR400);
+			case 405:
+				throw new TopoosException(TopoosException.ERROR405);
+			default:
+				throw new TopoosException("Error: "
+						+ rp.getStatusLine().getStatusCode() + "");
+			}
+
+		}
+	}
+
+	/**
+	 * Initiates an operation on topoos API.
+	 * 
+	 * @param operation
+	 *            Represents the operation to be executed
+	 * @param result
+	 *            Represents a result returned from a query to API topoos
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static void ExecuteOperation(APIOperation operation,
+			APICallResult result, Integer service) throws IOException,
+			TopoosException {
+		HttpClient hc = new DefaultHttpClient();
+		if (!operation.ValidateParams())
+			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
+		String OpURI="";
+		switch (service) {
+		case SERVICE_API:
+			OpURI = GetURLAPItopoos() + operation.ConcatParams();
+			break;
+		case SERVICE_PIC:
+			OpURI = GetURLPICAPItopoos() + operation.ConcatParams();
+			break;
+		default:
+			OpURI = GetURLAPItopoos() + operation.ConcatParams();
+			break;
+		}
+		if (Constants.DEBUG) {
+			Log.d(Constants.TAG, OpURI);
+			appendLog("******************************************************");
+			appendLog(OpURI);
+		}
+		HttpPost post = new HttpPost(OpURI);
+		// POST
+		if (operation.getMethod().equals("POST")) {
+			post.setEntity(operation.BodyParams());
+		}
+		HttpResponse rp = hc.execute(post);
+		HttpParams httpParams = hc.getParams();
+		HttpConnectionParams.setConnectionTimeout(httpParams,
+				Constants.HTTP_WAITING_MILISECONDS);
+		HttpConnectionParams.setSoTimeout(httpParams,
+				Constants.HTTP_WAITING_MILISECONDS);
+		if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+			result.setResult(EntityUtils.toString(rp.getEntity()));
+			if (Constants.DEBUG) {
 				Log.d(Constants.TAG, result.getResult());
 				appendLog(result.getResult());
 				appendLog("******************************************************");
