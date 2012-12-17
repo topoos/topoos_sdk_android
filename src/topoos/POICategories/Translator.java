@@ -41,14 +41,14 @@ class Translator {
 		return GetAll;
 	}
 
-	public static POICategory Add(String name,
+	public static POICategory Add(String description,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
 		POICategory pOICategory = null;
 		if (accessTokenPregenerated.isValid()) {
 			POISCategoriesAdd pOISCategoriesAdd = new POISCategoriesAdd("Add",
 					method, format, version,
-					accessTokenPregenerated.getAccessToken(), name);
+					accessTokenPregenerated.getAccessToken(), description);
 			POICategoryResult pOICategoryResult = new POICategoryResult();
 			APICaller.ExecuteOperation(pOISCategoriesAdd, pOICategoryResult);
 			pOICategory = pOICategoryResult.getPoiCategory();
@@ -58,16 +58,16 @@ class Translator {
 		return pOICategory;
 	}
 
-	public static Boolean Update(Integer categoryID, String name,
+	public static Boolean Update(Integer categoryID, String description,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
 		POICategory pOICategory = null;
 		if (accessTokenPregenerated.isValid()) {
-			POISCategoriesAdd pOISCategoriesAdd = new POISCategoriesAdd(
+			POISCategoriesUpdate pOISCategoriesUpdate = new POISCategoriesUpdate(
 					"Update", method, format, version,
-					accessTokenPregenerated.getAccessToken(), name);
+					accessTokenPregenerated.getAccessToken(), description,categoryID);
 			POICategoryResult pOICategoryResult = new POICategoryResult();
-			APICaller.ExecuteOperation(pOISCategoriesAdd, pOICategoryResult);
+			APICaller.ExecuteOperation(pOISCategoriesUpdate, pOICategoryResult);
 			pOICategory = pOICategoryResult.getPoiCategory();
 		} else {
 			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
@@ -103,8 +103,8 @@ class Translator {
 	}
 
 	public static Boolean Update(Context context, Integer categoryID,
-			String name) throws IOException, TopoosException {
-		return Update(categoryID, name, AccessTokenOAuth.GetAccessToken(context));
+			String description) throws IOException, TopoosException {
+		return Update(categoryID, description, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Boolean Delete(Context context, Integer categoryID)

@@ -40,7 +40,7 @@ public class Operations {
 	/**
 	 * Create a new category of POIs
 	 * 
-	 * @param name
+	 * @param description
 	 *            (required) Category description
 	 * @param accessTokenPregenerated
 	 *            (required) Access_token to root resources
@@ -49,8 +49,8 @@ public class Operations {
 	 * @throws TopoosException
 	 */
 	public static POICategory Add(AccessTokenOAuth accessTokenPregenerated,
-			String name) throws IOException, TopoosException {
-		return Translator.Add(name, accessTokenPregenerated);
+			String description) throws IOException, TopoosException {
+		return Translator.Add(description, accessTokenPregenerated);
 	}
 
 	/**
@@ -61,16 +61,16 @@ public class Operations {
 	 *            (required) Access_token to root resources
 	 * @param categoryID
 	 *            (required) Category ID to modify
-	 * @param name
+	 * @param description
 	 *            (required) Category description
 	 * @return Boolean
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
 	public static Boolean Update(AccessTokenOAuth accessTokenPregenerated,
-			Integer categoryID, String name) throws IOException,
+			Integer categoryID, String description) throws IOException,
 			TopoosException {
-		return Translator.Update(categoryID, name, accessTokenPregenerated);
+		return Translator.Update(categoryID, description, accessTokenPregenerated);
 	}
 
 	/**
@@ -124,22 +124,22 @@ public class Operations {
 		return Translator.Add(context, name);
 	}
 
+
 	/**
-	 * Updates the description of a category. The category must belong to the
-	 * application.
 	 * 
 	 * @param context
 	 *            (required) Interface to global information about an
 	 *            application environment
 	 * @param categoryID
 	 *            (required) Category ID to modify
+	 * @param description (required) New description of category
 	 * @return Boolean
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
 	public static Boolean Update(Context context, Integer categoryID,
-			String name) throws IOException, TopoosException {
-		return Translator.Update(context, categoryID, name);
+			String description) throws IOException, TopoosException {
+		return Translator.Update(context, categoryID, description);
 	}
 
 	/**

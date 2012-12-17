@@ -28,9 +28,7 @@ public class APICaller {
 	public static final int SERVICE_API = 0;
 	public static final int SERVICE_LOGIN = 1;
 	public static final int SERVICE_PIC = 2;
-	//NAMES OF POST ENTITIES
-	public static final String ENT_TOKEN = "Authorization";
-	public static final String ENT_CLAVE_TOKEN = "Bearer ";
+
 	/**
 	 * Returns the url for the object operation.
 	 * 

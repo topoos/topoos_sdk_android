@@ -15,10 +15,10 @@ public class Constants {
 	public static final String TOPOOSURIPIC="http://192.168.0.64:10003";	
 	public static final String TOPOOSURIAPI="http://192.168.0.64:10001";
 	public static final String TOPOOSURILOGIN="http://192.168.0.64:10000";
-
 	
 	public static final String TAG="SDK_TOPOOS";
 	public static final int HTTP_WAITING_MILISECONDS = 5000;
 	public static final Integer SDKVERSION = 1;
 	public static final Integer APIVERSION = 1;
+	
 }
