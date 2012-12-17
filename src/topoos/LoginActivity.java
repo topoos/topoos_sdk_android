@@ -21,7 +21,12 @@ import android.webkit.WebViewClient;
  */
 @SuppressLint("SetJavaScriptEnabled")
 public class LoginActivity extends Activity {
-
+	
+	public static final int RESULT_OK=Activity.RESULT_OK;
+	public static final int RESULT_CANCELED=Activity.RESULT_CANCELED;
+	public static final int RESULT_FIRST_USER=Activity.RESULT_FIRST_USER;
+	public static final int RESULT_TOPOOSERROR=2;
+	
 	public static final String CLIENT_ID = "client_id";
 	public static final String REDIRECT_URI = "redirect_uri";
 	private String url_login = Constants.TOPOOSURILOGIN + "/oauth/authtoken";
@@ -74,7 +79,9 @@ public class LoginActivity extends Activity {
 					+ URLEncoder.encode(value_redirect_uri) + "&" + param_agent
 					+ "=" + value_agent);
 		} else {
+			setResult(RESULT_CANCELED);
 			this.finish();
+			
 		}
 
 	}
@@ -91,9 +98,16 @@ public class LoginActivity extends Activity {
 					value_redirect_uri);
 			if (access != null) {
 				access.save_Token(activity);
+				setResult(RESULT_OK);
 				activity.finish();
 			}
 		}
+	}
+	
+	@Override
+	public void onBackPressed(){
+		setResult(RESULT_CANCELED);
+		super.onBackPressed();
 	}
 
 }
