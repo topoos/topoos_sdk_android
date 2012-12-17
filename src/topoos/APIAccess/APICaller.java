@@ -1,8 +1,5 @@
 package topoos.APIAccess;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
@@ -14,12 +11,11 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
-import android.os.Environment;
-import android.util.Log;
 import topoos.Constants;
 import topoos.APIAccess.Operations.APIOperation;
 import topoos.APIAccess.Results.APICallResult;
 import topoos.Exception.TopoosException;
+import android.util.Log;
 
 /**
  * Class that implements http call to topoos api
@@ -32,7 +28,9 @@ public class APICaller {
 	public static final int SERVICE_API = 0;
 	public static final int SERVICE_LOGIN = 1;
 	public static final int SERVICE_PIC = 2;
-
+	//NAMES OF POST ENTITIES
+	public static final String ENT_TOKEN = "Authorization";
+	public static final String ENT_CLAVE_TOKEN = "Bearer ";
 	/**
 	 * Returns the url for the object operation.
 	 * 
@@ -185,9 +183,10 @@ public class APICaller {
 	}
 
 	private static void appendLog(String text) {
-		try {
+		/*try {
 			File logFile = new File(Environment.getExternalStorageDirectory(),
 					"logoperations.txt");
+			
 			if (!logFile.exists()) {
 				logFile.createNewFile();
 			}
@@ -199,6 +198,6 @@ public class APICaller {
 			buf.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

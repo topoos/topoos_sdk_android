@@ -52,10 +52,10 @@ public class ImageResult extends APICallResult {
 					jObject.getString("filename_unique"),
 					jObject.getString("file_ext"), jObject.getString("uri"),
 					APIUtils.toDateString(jObject.getString("register_date")),
-					new GeoData(jObject.getJSONObject("geo_data").getInt("id"),
-							jObject.getJSONObject("geo_data").getInt(
+					new GeoData(jObject.getJSONObject("geo_data").optInt("id"),
+							jObject.getJSONObject("geo_data").optInt(
 									"position_id"), jObject.getJSONObject(
-									"geo_data").getInt("poi_id")));
+									"geo_data").optInt("poi_id")));
 		} catch (Exception e) {
 			if (Constants.DEBUG) {
 				e.printStackTrace();
