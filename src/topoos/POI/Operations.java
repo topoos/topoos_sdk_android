@@ -81,8 +81,8 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static POI Get(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static POI Get(AccessTokenOAuth accessTokenPregenerated, Integer POIID
+			) throws IOException,
 			TopoosException {
 		return Translator.Get(POIID, accessTokenPregenerated);
 	}

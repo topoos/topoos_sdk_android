@@ -1,20 +1,12 @@
 package topoos;
 
 public class Constants {
-	public static boolean DEBUG = true;
-	//public static String TOPOOSURILOGIN="https://login.topoos.com";
-	//public static String TOPOOSURIAPI="https://api.topoos.com";
+	public static boolean DEBUG = false;
+	public static boolean DEBUGURL = true;
 	
-	//public static final String TOPOOSURIAPI="http://topoospre.cloudapp.net:9000";	
-	//public static final String TOPOOSURILOGIN="http://topoospre.cloudapp.net:9001";	
-	
-//	public static final String TOPOOSURIPIC="http://topoos2.cloudapp.net:9003";
-//	public static final String TOPOOSURIAPI="http://topoos2.cloudapp.net:9000";
-//	public static final String TOPOOSURILOGIN="http://topoos2.cloudapp.net:9001";
-	
-	public static final String TOPOOSURIPIC="http://192.168.0.64:10003";	
-	public static final String TOPOOSURIAPI="http://192.168.0.64:10001";
-	public static final String TOPOOSURILOGIN="http://192.168.0.64:10000";
+	public static final String TOPOOSURIPIC="https://pic.topoos.com";
+	public static final String TOPOOSURIAPI="https://api.topoos.com";
+	public static final String TOPOOSURILOGIN="https://login.topoos.com";
 	
 	public static final String TAG="SDK_TOPOOS";
 	public static final int HTTP_WAITING_MILISECONDS = 5000;

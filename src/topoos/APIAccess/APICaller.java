@@ -74,10 +74,8 @@ public class APICaller {
 		if (!operation.ValidateParams())
 			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
 		String OpURI = Constants.TOPOOSURIAPI + operation.ConcatParams();
-		if (Constants.DEBUG) {
+		if (Constants.DEBUGURL) {
 			Log.d(Constants.TAG, OpURI);
-			appendLog("******************************************************");
-			appendLog(OpURI);
 		}
 		HttpPost post = new HttpPost(OpURI);
 		// POST
@@ -92,10 +90,8 @@ public class APICaller {
 				Constants.HTTP_WAITING_MILISECONDS);
 		if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 			result.setResult(EntityUtils.toString(rp.getEntity()));
-			if (Constants.DEBUG) {
+			if (Constants.DEBUGURL) {
 				Log.d(Constants.TAG, result.getResult());
-				appendLog(result.getResult());
-				appendLog("******************************************************");
 			}
 			result.setError(null);
 			result.setParameters();
@@ -141,10 +137,8 @@ public class APICaller {
 			OpURI = GetURLAPItopoos() + operation.ConcatParams();
 			break;
 		}
-		if (Constants.DEBUG) {
+		if (Constants.DEBUGURL) {
 			Log.d(Constants.TAG, OpURI);
-			appendLog("******************************************************");
-			appendLog(OpURI);
 		}
 		HttpPost post = new HttpPost(OpURI);
 		// POST
@@ -159,10 +153,8 @@ public class APICaller {
 				Constants.HTTP_WAITING_MILISECONDS);
 		if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 			result.setResult(EntityUtils.toString(rp.getEntity()));
-			if (Constants.DEBUG) {
+			if (Constants.DEBUGURL) {
 				Log.d(Constants.TAG, result.getResult());
-				appendLog(result.getResult());
-				appendLog("******************************************************");
 			}
 			result.setError(null);
 			result.setParameters();
@@ -180,22 +172,4 @@ public class APICaller {
 		}
 	}
 
-	private static void appendLog(String text) {
-		/*try {
-			File logFile = new File(Environment.getExternalStorageDirectory(),
-					"logoperations.txt");
-			
-			if (!logFile.exists()) {
-				logFile.createNewFile();
-			}
-
-			BufferedWriter buf = new BufferedWriter(new FileWriter(logFile,
-					true));
-			buf.append(text);
-			buf.newLine();
-			buf.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-	}
 }
