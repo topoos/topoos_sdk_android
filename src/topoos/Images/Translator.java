@@ -1,6 +1,7 @@
 package topoos.Images;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import android.content.Context;
 
@@ -17,11 +18,10 @@ class Translator {
 	public static final int SIZE_XXSMALL = 1;
 	public static final int SIZE_XSMALL = 2;
 	public static final int SIZE_SMALL = 3;
-	public static final int SIZE_MEDIUM = 4;
-	public static final int SIZE_LARGE = 5;
-	public static final int SIZE_XLARGE = 6;
-	public static final int SIZE_XXLARGE = 7;
-	public static final int SIZE_XXXLARGE = 8;
+	public static final int SIZE_LARGE = 4;
+	public static final int SIZE_XLARGE = 5;
+	public static final int SIZE_XXLARGE = 6;
+	public static final int SIZE_XXXLARGE = 7;
 
 	private static String method_post = "POST";
 	private static String format = "json";
@@ -130,45 +130,42 @@ class Translator {
 	}
 
 	public static String GetImageURI(String filename_unique) {
-		String uri = APICaller.GetURLPICAPItopoos() + "/" + filename_unique;
+		String uri = APICaller.GetURLPICAPItopoos() + "/" + URLEncoder.encode(filename_unique);
 		return uri;
 	}
 
 	public static String GetImageURIThumb(String filename_unique, int size) {
-		String strsize = "medium";
+		String strsize = "small";
 		switch (size) {
 		case SIZE_LARGE:
 			strsize = "large";
-			break;
-		case SIZE_MEDIUM:
-			strsize = "medium";
 			break;
 		case SIZE_SMALL:
 			strsize = "small";
 			break;
 		case SIZE_XLARGE:
-			strsize = "xlarge";
+			strsize = "x-large";
 			break;
 		case SIZE_XSMALL:
-			strsize = "xsmall";
+			strsize = "x-small";
 			break;
 		case SIZE_XXLARGE:
-			strsize = "xxlarge";
+			strsize = "xx-large";
 			break;
 		case SIZE_XXSMALL:
-			strsize = "xxsmall";
+			strsize = "xx-small";
 			break;
 		case SIZE_XXXLARGE:
-			strsize = "xxxlarge";
+			strsize = "xxx-large";
 			break;
 		case SIZE_XXXSMALL:
-			strsize = "xxxsmall";
+			strsize = "xxx-small";
 			break;
 		default:
 			break;
 		}
 		String uri = APICaller.GetURLPICAPItopoos() + "/thumb/"
-				+ filename_unique + "?size=" + strsize;
+				+ URLEncoder.encode(filename_unique) + "?size=" + URLEncoder.encode(strsize);
 		return uri;
 	}
 

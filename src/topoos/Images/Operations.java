@@ -19,7 +19,6 @@ public class Operations {
 	public static final int SIZE_XXSMALL = Translator.SIZE_XXSMALL;
 	public static final int SIZE_XSMALL = Translator.SIZE_XSMALL;
 	public static final int SIZE_SMALL = Translator.SIZE_SMALL;
-	public static final int SIZE_MEDIUM = Translator.SIZE_MEDIUM;
 	public static final int SIZE_LARGE = Translator.SIZE_LARGE;
 	public static final int SIZE_XLARGE = Translator.SIZE_XLARGE;
 	public static final int SIZE_XXLARGE = Translator.SIZE_XXLARGE;
@@ -63,6 +62,8 @@ public class Operations {
 	/**
 	 * Uploading an image to topoos pic services
 	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
 	 * @param file (required) image
 	 * @param filename (required) image name
 	 * @param name
@@ -96,19 +97,17 @@ public class Operations {
 	 *            (optional) Contact phone
 	 * @param twitter
 	 *            (optional) user ID or hashtag of Twitter
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
 	 * @return Image
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Image ImageUploadNewPOI(byte[] file, String filename,
+	public static Image ImageUploadNewPOI(
+			AccessTokenOAuth accessTokenPregenerated, byte[] file, String filename,
 			Integer pos_id, Double lat, Double lng, String name,
 			String description, Integer elevation, Integer accuracy,
 			Integer vaccuracy, String address, String cross_street,
 			String city, String country, String postal_code, String phone,
-			String twitter, Integer[] categories,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+			String twitter, Integer[] categories) throws IOException,
 			TopoosException {
 		return Translator.ImageUploadNewPOI(file, filename, lat, lng, name, description, elevation, accuracy, vaccuracy, address, cross_street, city, country, postal_code, phone, twitter, categories, accessTokenPregenerated);
 	}
