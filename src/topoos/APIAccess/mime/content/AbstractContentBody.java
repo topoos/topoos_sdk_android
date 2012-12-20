@@ -27,16 +27,28 @@
 
 package topoos.APIAccess.mime.content;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class AbstractContentBody.
  *
  * @since 4.0
  */
 public abstract class AbstractContentBody implements ContentBody {
 
+    /** The mime type. */
     private final String mimeType;
+    
+    /** The media type. */
     private final String mediaType;
+    
+    /** The sub type. */
     private final String subType;
 
+    /**
+     * Instantiates a new abstract content body.
+     *
+     * @param mimeType the mime type
+     */
     public AbstractContentBody(final String mimeType) {
         super();
         if (mimeType == null) {
@@ -53,14 +65,23 @@ public abstract class AbstractContentBody implements ContentBody {
         }
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getMimeType()
+     */
     public String getMimeType() {
         return this.mimeType;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getMediaType()
+     */
     public String getMediaType() {
         return this.mediaType;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getSubType()
+     */
     public String getSubType() {
         return this.subType;
     }

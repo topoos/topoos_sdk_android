@@ -33,15 +33,27 @@ import java.io.OutputStream;
 
 import topoos.APIAccess.mime.MIME;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class InputStreamBody.
  *
  * @since 4.0
  */
 public class InputStreamBody extends AbstractContentBody {
 
+    /** The in. */
     private final InputStream in;
+    
+    /** The filename. */
     private final String filename;
 
+    /**
+     * Instantiates a new input stream body.
+     *
+     * @param in the in
+     * @param mimeType the mime type
+     * @param filename the filename
+     */
     public InputStreamBody(final InputStream in, final String mimeType, final String filename) {
         super(mimeType);
         if (in == null) {
@@ -51,14 +63,28 @@ public class InputStreamBody extends AbstractContentBody {
         this.filename = filename;
     }
 
+    /**
+     * Instantiates a new input stream body.
+     *
+     * @param in the in
+     * @param filename the filename
+     */
     public InputStreamBody(final InputStream in, final String filename) {
         this(in, "application/octet-stream", filename);
     }
 
+    /**
+     * Gets the input stream.
+     *
+     * @return the input stream
+     */
     public InputStream getInputStream() {
         return this.in;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentBody#writeTo(java.io.OutputStream)
+     */
     public void writeTo(final OutputStream out) throws IOException {
         if (out == null) {
             throw new IllegalArgumentException("Output stream may not be null");
@@ -75,18 +101,30 @@ public class InputStreamBody extends AbstractContentBody {
         }
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getTransferEncoding()
+     */
     public String getTransferEncoding() {
         return MIME.ENC_BINARY;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getCharset()
+     */
     public String getCharset() {
         return null;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getContentLength()
+     */
     public long getContentLength() {
         return -1;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentBody#getFilename()
+     */
     public String getFilename() {
         return this.filename;
     }

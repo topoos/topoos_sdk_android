@@ -6,17 +6,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class CheckinResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class CheckinResult extends APICallResult {
 
+	/** The checkin. */
 	private Checkin checkin = null;
 
 	/**
-	 * 
+	 * Instantiates a new checkin result.
 	 */
 	public CheckinResult() {
 		super();
@@ -24,8 +28,10 @@ public class CheckinResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new checkin result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public CheckinResult(String error, String result) {
 		super(error, result);
@@ -33,15 +39,20 @@ public class CheckinResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param checkin
+	 * Instantiates a new checkin result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param checkin the checkin
 	 */
 	public CheckinResult(String error, String result, Checkin checkin) {
 		super(error, result);
 		this.checkin = checkin;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -62,6 +73,8 @@ public class CheckinResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the checkin.
+	 *
 	 * @return the checkin
 	 */
 	public Checkin getCheckin() {
@@ -69,8 +82,9 @@ public class CheckinResult extends APICallResult {
 	}
 
 	/**
-	 * @param checkin
-	 *            the checkin to set
+	 * Sets the checkin.
+	 *
+	 * @param checkin the checkin to set
 	 */
 	public void setCheckin(Checkin checkin) {
 		this.checkin = checkin;

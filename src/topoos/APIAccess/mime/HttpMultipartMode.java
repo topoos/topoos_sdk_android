@@ -27,13 +27,15 @@
 
 package topoos.APIAccess.mime;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Enum HttpMultipartMode.
  *
  * @since 4.0
  */
 public enum HttpMultipartMode {
 
-    /** RFC 822, RFC 2045, RFC 2046 compliant */
+    /** RFC 822, RFC 2045, RFC 2046 compliant. */
     STRICT,
     /** browser-compatible mode, i.e. only write Content-Disposition; use content charset */
     BROWSER_COMPATIBLE

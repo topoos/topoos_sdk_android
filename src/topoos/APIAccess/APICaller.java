@@ -42,7 +42,6 @@ public class APICaller {
 	/**
 	 * Returns the url for topoos api service
 	 * 
-	 * @param operation
 	 * @return URL
 	 */
 	public static String GetURLAPItopoos() {
@@ -125,7 +124,7 @@ public class APICaller {
 		HttpClient hc = new DefaultHttpClient();
 		if (!operation.ValidateParams())
 			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
-		String OpURI="";
+		String OpURI = "";
 		switch (service) {
 		case SERVICE_API:
 			OpURI = GetURLAPItopoos() + operation.ConcatParams();

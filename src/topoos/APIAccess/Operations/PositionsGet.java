@@ -33,7 +33,7 @@ public class PositionsGet extends APIOperation {
 		// TODO Auto-generated method stub
 		boolean validate = true;
 		validate = validate
-				&& (isValid(APIUtils.toStringInteger(posid)) || isValid(usr) || isValid(device));
+				&& (isValid(APIUtils.toStringInteger(posid)) || isValid(device) || isValidorNull(usr));
 		validate = validate && isValid(oauth_token);
 		return validate;
 	}
@@ -48,13 +48,16 @@ public class PositionsGet extends APIOperation {
 				params = "/" + this.Version + "/positions/get." + this.Format
 						+ "?oauth_token=" + this.oauth_token + "&posid="
 						+ APIUtils.toStringInteger(posid);
-			} else if (isValid(usr)) {
-				params = "/" + this.Version + "/positions/get." + this.Format
-						+ "?oauth_token=" + this.oauth_token + "&usr=" + usr;
 			} else if (isValid(device)) {
 				params = "/" + this.Version + "/positions/get." + this.Format
 						+ "?oauth_token=" + this.oauth_token + "&device="
 						+ device;
+			}else if (isValid(usr)) {
+				params = "/" + this.Version + "/positions/get." + this.Format
+						+ "?oauth_token=" + this.oauth_token + "&usr=" + usr;
+			} else{
+				params = "/" + this.Version + "/positions/get." + this.Format
+						+ "?oauth_token=" + this.oauth_token;
 			}
 		}
 		return params;

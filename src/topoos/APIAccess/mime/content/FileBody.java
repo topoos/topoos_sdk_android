@@ -35,17 +35,30 @@ import java.io.OutputStream;
 
 import topoos.APIAccess.mime.MIME;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class FileBody.
  *
  * @since 4.0
  */
 public class FileBody extends AbstractContentBody {
 
+    /** The file. */
     private final File file;
+    
+    /** The filename. */
     private final String filename;
+    
+    /** The charset. */
     private final String charset;
 
     /**
+     * Instantiates a new file body.
+     *
+     * @param file the file
+     * @param filename the filename
+     * @param mimeType the mime type
+     * @param charset the charset
      * @since 4.1
      */
     public FileBody(final File file,
@@ -65,6 +78,11 @@ public class FileBody extends AbstractContentBody {
     }
 
     /**
+     * Instantiates a new file body.
+     *
+     * @param file the file
+     * @param mimeType the mime type
+     * @param charset the charset
      * @since 4.1
      */
     public FileBody(final File file,
@@ -73,18 +91,38 @@ public class FileBody extends AbstractContentBody {
         this(file, null, mimeType, charset);
     }
 
+    /**
+     * Instantiates a new file body.
+     *
+     * @param file the file
+     * @param mimeType the mime type
+     */
     public FileBody(final File file, final String mimeType) {
         this(file, mimeType, null);
     }
 
+    /**
+     * Instantiates a new file body.
+     *
+     * @param file the file
+     */
     public FileBody(final File file) {
         this(file, "application/octet-stream");
     }
 
+    /**
+     * Gets the input stream.
+     *
+     * @return the input stream
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public InputStream getInputStream() throws IOException {
         return new FileInputStream(this.file);
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentBody#writeTo(java.io.OutputStream)
+     */
     public void writeTo(final OutputStream out) throws IOException {
         if (out == null) {
             throw new IllegalArgumentException("Output stream may not be null");
@@ -102,22 +140,39 @@ public class FileBody extends AbstractContentBody {
         }
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getTransferEncoding()
+     */
     public String getTransferEncoding() {
         return MIME.ENC_BINARY;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getCharset()
+     */
     public String getCharset() {
         return charset;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getContentLength()
+     */
     public long getContentLength() {
         return this.file.length();
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentBody#getFilename()
+     */
     public String getFilename() {
         return filename;
     }
 
+    /**
+     * Gets the file.
+     *
+     * @return the file
+     */
     public File getFile() {
         return this.file;
     }

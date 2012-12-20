@@ -1,18 +1,24 @@
 package topoos.Objects;
 
+// TODO: Auto-generated Javadoc
 /**
- * Class that implements a rule
- * 
+ * Class that implements a rule.
+ *
  * @author MAJS
- * 
  */
 public class Rule {
+	
+	/** The id. */
 	private Integer id = null;
+	
+	/** The type. */
 	private String type = null;
 
 	/**
-	 * @param id
-	 * @param type
+	 * Instantiates a new rule.
+	 *
+	 * @param id the id
+	 * @param type the type
 	 */
 	public Rule(Integer id, String type) {
 		super();
@@ -21,8 +27,8 @@ public class Rule {
 	}
 
 	/**
-	 * get the id
-	 * 
+	 * get the id.
+	 *
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -30,16 +36,17 @@ public class Rule {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * Sets the id.
+	 *
+	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	 * get the type
-	 * 
+	 * get the type.
+	 *
 	 * @return the type
 	 */
 	public String getType() {
@@ -47,8 +54,9 @@ public class Rule {
 	}
 
 	/**
-	 * @param type
-	 *            the type to set
+	 * Sets the type.
+	 *
+	 * @param type the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;

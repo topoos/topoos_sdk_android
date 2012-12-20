@@ -10,17 +10,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class TrackResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class TrackResult extends APICallResult {
 
+	/** The track. */
 	private Track track = null;
 
 	/**
-	 * 
+	 * Instantiates a new track result.
 	 */
 	public TrackResult() {
 		super();
@@ -28,8 +32,10 @@ public class TrackResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new track result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public TrackResult(String error, String result) {
 		super(error, result);
@@ -37,15 +43,20 @@ public class TrackResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param track
+	 * Instantiates a new track result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param track the track
 	 */
 	public TrackResult(String error, String result, Track track) {
 		super(error, result);
 		this.track = track;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -61,7 +72,7 @@ public class TrackResult extends APICallResult {
 			// Extracting content
 			id = jObject.getInt("id");
 			device = jObject.getInt("device");
-			name = jObject.getString("name");
+			name = APIUtils.getStringorNull(jObject,"name");
 
 			positions = new ArrayList<Position>();
 			if (jObject.optJSONArray("positions") != null) {
@@ -84,7 +95,7 @@ public class TrackResult extends APICallResult {
 							Result).nextValue();
 					// Extracting content
 					id_pos = jObjectPosition.getInt("id");
-					device_pos = jObjectPosition.getString("device");
+					device_pos = APIUtils.getStringorNull(jObjectPosition,"device");
 					latitude = jObjectPosition.getDouble("latitude");
 					longitude = jObjectPosition.getDouble("longitude");
 					elevation = jObjectPosition.getDouble("elevation");
@@ -92,15 +103,15 @@ public class TrackResult extends APICallResult {
 					vaccuracy = jObjectPosition.getDouble("vaccuracy");
 					bearing = jObjectPosition.getDouble("bearing");
 					velocity = jObjectPosition.getDouble("velocity");
-					track_id = jObjectPosition.getString("track_id");
+					track_id = APIUtils.getStringorNull(jObjectPosition,"track_id");
 					timestamp = APIUtils.toDateString(jObjectPosition
 							.getString("timestamp"));
 					registerTime = APIUtils.toDateString(jObjectPosition
 							.getString("registerTime"));
-					positionType = new PositionType(jObjectPosition
-							.getJSONObject("positiotype").getString("id"),
-							jObjectPosition.getJSONObject("positiotype")
-									.getString("description"));
+					positionType = new PositionType(APIUtils.getStringorNull(jObjectPosition
+							.getJSONObject("positiotype"),"id"),
+							APIUtils.getStringorNull(jObjectPosition.getJSONObject("positiotype")
+									,"description"));
 
 					positions.add(new Position(id_pos, device_pos, timestamp,
 							registerTime, latitude, longitude, elevation,
@@ -120,6 +131,8 @@ public class TrackResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the track.
+	 *
 	 * @return the track
 	 */
 	public Track getTrack() {
@@ -127,8 +140,9 @@ public class TrackResult extends APICallResult {
 	}
 
 	/**
-	 * @param track
-	 *            the track to set
+	 * Sets the track.
+	 *
+	 * @param track the track to set
 	 */
 	public void setTrack(Track track) {
 		this.track = track;

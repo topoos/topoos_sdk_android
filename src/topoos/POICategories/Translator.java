@@ -11,17 +11,31 @@ import topoos.APIAccess.Results.*;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class Translator.
+ *
  * @author MAJS
- * 
  */
 class Translator {
 
+	/** The method. */
 	private static String method = "GET";
+	
+	/** The format. */
 	private static String format = "json";
+	
+	/** The version. */
 	private static Integer version = topoos.Constants.APIVERSION;
 
+	/**
+	 * Gets the all.
+	 *
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static List<POICategory> GetAll(
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -41,6 +55,15 @@ class Translator {
 		return GetAll;
 	}
 
+	/**
+	 * Adds the.
+	 *
+	 * @param description the description
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the pOI category
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POICategory Add(String description,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -58,6 +81,16 @@ class Translator {
 		return pOICategory;
 	}
 
+	/**
+	 * Update.
+	 *
+	 * @param categoryID the category id
+	 * @param description the description
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the boolean
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Boolean Update(Integer categoryID, String description,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -75,6 +108,15 @@ class Translator {
 		return pOICategory != null;
 	}
 
+	/**
+	 * Delete.
+	 *
+	 * @param categoryID the category id
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the boolean
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Boolean Delete(Integer categoryID,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -92,21 +134,57 @@ class Translator {
 		return delete;
 	}
 
+	/**
+	 * Gets the all.
+	 *
+	 * @param context the context
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static List<POICategory> GetAll(Context context) throws IOException,
 			TopoosException {
 		return GetAll(AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Adds the.
+	 *
+	 * @param context the context
+	 * @param name the name
+	 * @return the pOI category
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POICategory Add(Context context, String name)
 			throws IOException, TopoosException {
 		return Add(name, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Update.
+	 *
+	 * @param context the context
+	 * @param categoryID the category id
+	 * @param description the description
+	 * @return the boolean
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Boolean Update(Context context, Integer categoryID,
 			String description) throws IOException, TopoosException {
 		return Update(categoryID, description, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Delete.
+	 *
+	 * @param context the context
+	 * @param categoryID the category id
+	 * @return the boolean
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Boolean Delete(Context context, Integer categoryID)
 			throws IOException, TopoosException {
 		return Delete(categoryID, AccessTokenOAuth.GetAccessToken(context));

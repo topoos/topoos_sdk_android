@@ -2,54 +2,91 @@ package topoos.APIAccess.Operations;
 
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class PositionsAdd.
+ *
  * @see APIOperation
  * @author MAJS
- *
  */
 public class PositionsAdd extends APIOperation{
 
 	
 
+	/** The Constant TRACK_END. */
 	public static final int TRACK_END =	2; 
+	
+	/** The Constant POS. */
 	public static final int POS =	3; 
+	
+	/** The Constant ALARM_INIT. */
 	public static final int ALARM_INIT = 6;
+	
+	/** The Constant ALARM_END. */
 	public static final int ALARM_END =	7; 
+	
+	/** The Constant GPS_OK. */
 	public static final int GPS_OK = 8; 
+	
+	/** The Constant GPS_NO. */
 	public static final int GPS_NO = 9; 
 	
+	/** The oauth_token. */
 	private String oauth_token=null; // (obligatorio)access_token de Acceso a recursos
+	
+	/** The device. */
 	private String	device=null; // (opcional) dispositivo que capturó la posición. Se trata de un parámetro obligatorio cuando la aplicación puede manejar los dispositivos físicos de un usuario, opción que por defecto está deshabilitada.
+	
+	/** The lat. */
 	private Double	lat=null; // (obligatorio) latitud en grados decimales de la nueva posición
+	
+	/** The lng. */
 	private Double	lng=null; // (obligatorio) longitud en grados decimales de la nueva posición
+	
+	/** The accuracy. */
 	private Integer	accuracy=null; // (opcional) precisión de la posición (latitud, longitud)
+	
+	/** The vaccuracy. */
 	private Integer	vaccuracy=null; // (opcional) precisión de la elevación
+	
+	/** The elevation. */
 	private Integer	elevation=null; // (opcional) elevación respecto al nivel del mar
+	
+	/** The timestamp. */
 	private Date	timestamp=null; // (opcional) hora local con offset de conversión UTC de captura de la posición, según el estándar ISO 8601.
 	 //(AAAA-MM-DDThh:mm:sszzzzzz) en UTC
 	 //ejemplo: 1997-07-16T10:30:15.342+03:00
-	private Integer	velocity=null; // (opcional) velocidad de movimiento en el instante en que se capturó la posición, en metros por segundo
+	/** The velocity. */
+ 	private Integer	velocity=null; // (opcional) velocidad de movimiento en el instante en que se capturó la posición, en metros por segundo
+	
+	/** The postype. */
 	private Integer	postype=null; //(opcional) tipo de posición a registrar
+	
+	/** The bearing. */
 	private Integer	bearing=null; // (opcional) rumbo de movimiento (valor entre 0 y 360)
+	
+	/** The track. */
 	private Integer	track=null; // (opcional) identificador del Track al que pertenece la posición (excepto cuando es TRACK_INIT)
 
 	/**
-	 * @param operationName
-	 * @param method
-	 * @param format
-	 * @param version
-	 * @param oauth_token
-	 * @param device
-	 * @param lat
-	 * @param lng
-	 * @param accuracy
-	 * @param vaccuracy
-	 * @param elevation
-	 * @param timestamp
-	 * @param velocity
-	 * @param postype
-	 * @param bearing
-	 * @param track
+	 * Instantiates a new positions add.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param device the device
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @param accuracy the accuracy
+	 * @param vaccuracy the vaccuracy
+	 * @param elevation the elevation
+	 * @param timestamp the timestamp
+	 * @param velocity the velocity
+	 * @param postype the postype
+	 * @param bearing the bearing
+	 * @param track the track
 	 */
 	public PositionsAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, String device, Double lat,
@@ -71,6 +108,9 @@ public class PositionsAdd extends APIOperation{
 		this.track = track;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 
@@ -90,6 +130,9 @@ public class PositionsAdd extends APIOperation{
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 

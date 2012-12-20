@@ -6,17 +6,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class POICategoryResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class POICategoryResult extends APICallResult {
 
+	/** The poi category. */
 	private POICategory poiCategory = null;
 
 	/**
-	 * 
+	 * Instantiates a new pOI category result.
 	 */
 	public POICategoryResult() {
 		super();
@@ -24,8 +28,10 @@ public class POICategoryResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new pOI category result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public POICategoryResult(String error, String result) {
 		super(error, result);
@@ -33,9 +39,11 @@ public class POICategoryResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param poiCategory
+	 * Instantiates a new pOI category result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param poiCategory the poi category
 	 */
 	public POICategoryResult(String error, String result,
 			POICategory poiCategory) {
@@ -43,6 +51,9 @@ public class POICategoryResult extends APICallResult {
 		this.poiCategory = poiCategory;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -55,7 +66,7 @@ public class POICategoryResult extends APICallResult {
 			// Extracting content
 			id = jObject.getInt("Id");
 			
-			description = jObject.getString("Description");
+			description = APIUtils.getStringorNull(jObject,"Description");
 			isSystem = jObject.getBoolean("is_system_category");
 			this.poiCategory=new POICategory(id,description,isSystem);
 		} catch (Exception e) {
@@ -69,6 +80,8 @@ public class POICategoryResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the poi category.
+	 *
 	 * @return the poiCategory
 	 */
 	public POICategory getPoiCategory() {
@@ -76,8 +89,9 @@ public class POICategoryResult extends APICallResult {
 	}
 
 	/**
-	 * @param poiCategory
-	 *            the poiCategory to set
+	 * Sets the poi category.
+	 *
+	 * @param poiCategory the poiCategory to set
 	 */
 	public void setPoiCategory(POICategory poiCategory) {
 		this.poiCategory = poiCategory;

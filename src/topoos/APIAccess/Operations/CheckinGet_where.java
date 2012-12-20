@@ -1,18 +1,30 @@
 package topoos.APIAccess.Operations;
 
+// TODO: Auto-generated Javadoc
 /**
- * Get all CheckIns that have been realized in a POI
- * 
+ * Get all CheckIns that have been realized in a POI.
+ *
  * @see APIOperation
  * @author MAJS
- * 
  */
 public class CheckinGet_where extends APIOperation {
 
+	/** The oauth_token. */
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
-	private Integer poi = null; // (obligatorio)identificador del POI
+	/** The poi. */
+										private Integer poi = null; // (obligatorio)identificador del POI
 
+	/**
+	 * Instantiates a new checkin get_where.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param poi the poi
+	 */
 	public CheckinGet_where(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi) {
 		super(operationName, method, format, version);
@@ -20,6 +32,9 @@ public class CheckinGet_where extends APIOperation {
 		this.poi = poi;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = true;
@@ -28,6 +43,9 @@ public class CheckinGet_where extends APIOperation {
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		String params = null;

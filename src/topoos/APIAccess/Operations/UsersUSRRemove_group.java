@@ -1,23 +1,34 @@
 package topoos.APIAccess.Operations;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class UsersUSRRemove_group.
+ *
  * @see APIOperation
  * @author MAJS
- *
  */
 public class UsersUSRRemove_group  extends APIOperation{
+	
+	/** The oauth_token. */
 	private String oauth_token;
+	
+	/** The usr. */
 	private String USR;
+	
+	/** The ugroup. */
 	private Integer ugroup;
 
 
 	/**
-	 * @param operationName
-	 * @param method
-	 * @param format
-	 * @param version
-	 * @param oauth_token
-	 * @param uSR
-	 * @param ugroup
+	 * Instantiates a new users usr remove_group.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param uSR the u sr
+	 * @param ugroup the ugroup
 	 */
 	public UsersUSRRemove_group(String operationName, String method,
 			String format, Integer version, String oauth_token, String uSR,
@@ -28,6 +39,9 @@ public class UsersUSRRemove_group  extends APIOperation{
 		this.ugroup = ugroup;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
@@ -38,6 +52,9 @@ public class UsersUSRRemove_group  extends APIOperation{
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		// TODO Auto-generated method stub

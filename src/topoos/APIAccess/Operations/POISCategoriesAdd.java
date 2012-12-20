@@ -1,5 +1,6 @@
 package topoos.APIAccess.Operations;
 
+// TODO: Auto-generated Javadoc
 /**
  * 
  * Create a new category of POI.
@@ -9,10 +10,22 @@ package topoos.APIAccess.Operations;
  */
 public class POISCategoriesAdd extends APIOperation {
 
+	/** The oauth_token. */
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
-	private String desc = null; // : (obligatorio) descripción de la categoría
+	/** The desc. */
+										private String desc = null; // : (obligatorio) descripción de la categoría
 
+	/**
+	 * Instantiates a new pOIS categories add.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param desc the desc
+	 */
 	public POISCategoriesAdd(String operationName, String method,
 			String format, Integer version, String oauth_token, String desc) {
 		super(operationName, method, format, version);
@@ -20,6 +33,9 @@ public class POISCategoriesAdd extends APIOperation {
 		this.desc = desc;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
@@ -29,6 +45,9 @@ public class POISCategoriesAdd extends APIOperation {
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		String params = null;

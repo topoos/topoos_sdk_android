@@ -10,17 +10,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class POIResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class POIResult extends APICallResult {
 
+	/** The poi. */
 	private POI poi = null;
 
 	/**
-	 * 
+	 * Instantiates a new pOI result.
 	 */
 	public POIResult() {
 		super();
@@ -28,8 +32,10 @@ public class POIResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new pOI result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public POIResult(String error, String result) {
 		super(error, result);
@@ -37,15 +43,20 @@ public class POIResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param poi
+	 * Instantiates a new pOI result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param poi the poi
 	 */
 	public POIResult(String error, String result, POI poi) {
 		super(error, result);
 		this.poi = poi;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -74,24 +85,25 @@ public class POIResult extends APICallResult {
 					.nextValue();
 			// Extracting content
 			id = jObject.getInt("id");
-			name = jObject.getString("name");
-			description = jObject.getString("description");
+			name = APIUtils.getStringorNull(jObject,"name");
+			description = APIUtils.getStringorNull(jObject,"description");
 			latitude = jObject.getDouble("latitude");
 			longitude = jObject.getDouble("longitude");
 			elevation = jObject.getDouble("elevation");
 			accuracy = jObject.getDouble("accuracy");
 			vaccuracy = jObject.getDouble("vaccuracy");
-			address = jObject.getString("address");
-			crossStreet = jObject.getString("cross_street");
-			city = jObject.getString("city");
-			country = jObject.getString("country");
+			address = APIUtils.getStringorNull(jObject,"address");
+			crossStreet = APIUtils.getStringorNull(jObject,"cross_street");
+			city = APIUtils.getStringorNull(jObject,"city");
+			country = APIUtils.getStringorNull(jObject,"country");
 			registertime = APIUtils.toDateString(jObject
 					.getString("registertime"));
 			lastUpdate = APIUtils
-					.toDateString(jObject.getString("last_update"));
-			postalCode = jObject.getString("postal_code");
-			phone = jObject.getString("phone");
-			twitter = jObject.getString("twitter");
+					.toDateString(jObject
+							.getString("last_update"));
+			postalCode = APIUtils.getStringorNull(jObject,"postal_code");
+			phone = APIUtils.getStringorNull(jObject,"phone");
+			twitter = APIUtils.getStringorNull(jObject,"twitter");
 			categories = new ArrayList<POICategory>();
 			JSONArray jArray = jObject.getJSONArray("categories");
 			for (int i = 0; i < jArray.length(); i++) {
@@ -120,6 +132,8 @@ public class POIResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the poi.
+	 *
 	 * @return the poi
 	 */
 	public POI getPoi() {
@@ -127,6 +141,8 @@ public class POIResult extends APICallResult {
 	}
 
 	/**
+	 * Sets the poi.
+	 *
 	 * @param poi the poi to set
 	 */
 	public void setPoi(POI poi) {

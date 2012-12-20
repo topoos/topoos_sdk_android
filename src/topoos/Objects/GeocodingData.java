@@ -1,20 +1,29 @@
 package topoos.Objects;
 
 
+// TODO: Auto-generated Javadoc
 /**
- * Class that implements a geocoding data 
- * @author MAJS
+ * Class that implements a geocoding data.
  *
+ * @author MAJS
  */
 public class GeocodingData {
 
+    /** The address. */
     public Address address =null;
+    
+    /** The location. */
     public Location location =null;
+    
+    /** The bounds. */
     public ViewportType bounds =null;
+	
 	/**
-	 * @param address
-	 * @param location
-	 * @param bounds
+	 * Instantiates a new geocoding data.
+	 *
+	 * @param address the address
+	 * @param location the location
+	 * @param bounds the bounds
 	 */
 	public GeocodingData(Address address, Location location, ViewportType bounds) {
 		super();
@@ -22,40 +31,55 @@ public class GeocodingData {
 		this.location = location;
 		this.bounds = bounds;
 	}
+	
 	/**
-	 * get the address that it is saved in a geocoding data
+	 * get the address that it is saved in a geocoding data.
+	 *
 	 * @return the address
 	 */
 	public Address getAddress() {
 		return address;
 	}
+	
 	/**
+	 * Sets the address.
+	 *
 	 * @param address the address to set
 	 */
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
 	/**
-	 * get the location
+	 * get the location.
+	 *
 	 * @return the location
 	 */
 	public Location getLocation() {
 		return location;
 	}
+	
 	/**
+	 * Sets the location.
+	 *
 	 * @param location the location to set
 	 */
 	public void setLocation(Location location) {
 		this.location = location;
 	}
+	
 	/**
-	 * get the bounds
+	 * get the bounds.
+	 *
 	 * @return the bounds
 	 */
 	public ViewportType getBounds() {
 		return bounds;
 	}
+	
 	/**
+	 * Sets the bounds.
+	 *
 	 * @param bounds the bounds to set
 	 */
 	public void setBounds(ViewportType bounds) {

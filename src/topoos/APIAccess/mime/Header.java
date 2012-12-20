@@ -36,20 +36,32 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+// TODO: Auto-generated Javadoc
 /**
  * The header of an entity (see RFC 2045).
  */
 public class Header implements Iterable<MinimalField> {
 
+    /** The fields. */
     private final List<MinimalField> fields;
+    
+    /** The field map. */
     private final Map<String, List<MinimalField>> fieldMap;
 
+    /**
+     * Instantiates a new header.
+     */
     public Header() {
         super();
         this.fields = new LinkedList<MinimalField>();
         this.fieldMap = new HashMap<String, List<MinimalField>>();
     }
 
+    /**
+     * Adds the field.
+     *
+     * @param field the field
+     */
     public void addField(final MinimalField field) {
         if (field == null) {
             return;
@@ -64,10 +76,21 @@ public class Header implements Iterable<MinimalField> {
         this.fields.add(field);
     }
 
+    /**
+     * Gets the fields.
+     *
+     * @return the fields
+     */
     public List<MinimalField> getFields() {
         return new ArrayList<MinimalField>(this.fields);
     }
 
+    /**
+     * Gets the field.
+     *
+     * @param name the name
+     * @return the field
+     */
     public MinimalField getField(final String name) {
         if (name == null) {
             return null;
@@ -80,6 +103,12 @@ public class Header implements Iterable<MinimalField> {
         return null;
     }
 
+    /**
+     * Gets the fields.
+     *
+     * @param name the name
+     * @return the fields
+     */
     public List<MinimalField> getFields(final String name) {
         if (name == null) {
             return null;
@@ -93,6 +122,12 @@ public class Header implements Iterable<MinimalField> {
         }
     }
 
+    /**
+     * Removes the fields.
+     *
+     * @param name the name
+     * @return the int
+     */
     public int removeFields(final String name) {
         if (name == null) {
             return 0;
@@ -106,6 +141,11 @@ public class Header implements Iterable<MinimalField> {
         return removed.size();
     }
 
+    /**
+     * Sets the field.
+     *
+     * @param field the new field
+     */
     public void setField(final MinimalField field) {
         if (field == null) {
             return;
@@ -132,10 +172,16 @@ public class Header implements Iterable<MinimalField> {
         this.fields.add(firstOccurrence, field);
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Iterable#iterator()
+     */
     public Iterator<MinimalField> iterator() {
         return Collections.unmodifiableList(fields).iterator();
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
         return this.fields.toString();

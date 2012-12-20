@@ -27,6 +27,7 @@
 
 package topoos.APIAccess.mime.content;
 
+// TODO: Auto-generated Javadoc
 /**
  * Represents common content properties.
  */
@@ -34,28 +35,31 @@ public interface ContentDescriptor {
 
     /**
      * Returns the body descriptors MIME type.
+     *
+     * @return The MIME type, which has been parsed from the
+     * content-type definition. Must not be null, but
+     * "text/plain", if no content-type was specified.
      * @see #getMediaType()
      * @see #getSubType()
-     * @return The MIME type, which has been parsed from the
-     *   content-type definition. Must not be null, but
-     *   "text/plain", if no content-type was specified.
      */
     String getMimeType();
 
     /**
      * Gets the defaulted MIME media type for this content.
      * For example <code>TEXT</code>, <code>IMAGE</code>, <code>MULTIPART</code>
-     * @see #getMimeType()
+     *
      * @return the MIME media type when content-type specified,
      * otherwise the correct default (<code>TEXT</code>)
+     * @see #getMimeType()
      */
     String getMediaType();
 
     /**
      * Gets the defaulted MIME sub type for this content.
-     * @see #getMimeType()
+     *
      * @return the MIME media type when content-type is specified,
      * otherwise the correct default (<code>PLAIN</code>)
+     * @see #getMimeType()
      */
     String getSubType();
 

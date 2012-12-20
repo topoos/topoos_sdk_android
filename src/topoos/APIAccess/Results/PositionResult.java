@@ -8,17 +8,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class PositionResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class PositionResult extends APICallResult {
 
+	/** The position. */
 	private Position position=null;
 	
 	/**
-	 * 
+	 * Instantiates a new position result.
 	 */
 	public PositionResult() {
 		super();
@@ -26,8 +30,10 @@ public class PositionResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new position result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public PositionResult(String error, String result) {
 		super(error, result);
@@ -35,15 +41,20 @@ public class PositionResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param position
+	 * Instantiates a new position result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param position the position
 	 */
 	public PositionResult(String error, String result, Position position) {
 		super(error, result);
 		this.position = position;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -65,7 +76,7 @@ public class PositionResult extends APICallResult {
 					.nextValue();
 			// Extracting content
 			id = jObject.getInt("id");
-			device = jObject.getString("device");
+			device = APIUtils.getStringorNull(jObject,"device");
 			latitude = jObject.getDouble("latitude");
 			longitude = jObject.getDouble("longitude");
 			elevation = jObject.getDouble("elevation");
@@ -73,14 +84,14 @@ public class PositionResult extends APICallResult {
 			vaccuracy = jObject.getDouble("vaccuracy");
 			bearing = jObject.getDouble("bearing");
 			velocity = jObject.getDouble("velocity");
-			track_id = jObject.getString("track_id");
+			track_id = APIUtils.getStringorNull(jObject,"track_id");
 			timestamp = APIUtils.toDateString(jObject
 					.getString("timestamp"));
 			registerTime = APIUtils.toDateString(jObject
 					.getString("registerTime"));
-			positionType = new PositionType(jObject.getJSONObject(
-					"position_type").getString("id"), jObject.getJSONObject(
-					"position_type").getString("description"));
+			positionType = new PositionType(APIUtils.getStringorNull(jObject.getJSONObject(
+					"position_type"),"id"), APIUtils.getStringorNull(jObject.getJSONObject(
+					"position_type"),"description"));
 			
 			this.position= new Position( id,  device,
 					 timestamp,  registerTime,  latitude,
@@ -96,6 +107,8 @@ public class PositionResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the position.
+	 *
 	 * @return the position
 	 */
 	public Position getPosition() {
@@ -103,6 +116,8 @@ public class PositionResult extends APICallResult {
 	}
 
 	/**
+	 * Sets the position.
+	 *
 	 * @param position the position to set
 	 */
 	public void setPosition(Position position) {

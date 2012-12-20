@@ -1,33 +1,54 @@
 package topoos.Objects;
 
 import java.util.Date;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
- * @author MAJS
+ * The Class Image.
  *
+ * @author MAJS
  */
 public class Image {
 
+	/** The id. */
 	private String id = null;
+	
+	/** The client_id. */
 	private String client_id = null;
+	
+	/** The user_id. */
 	private String user_id = null;
+	
+	/** The filename. */
 	private String filename = null;
+	
+	/** The filename_unique. */
 	private String filename_unique = null;
+	
+	/** The file_ext. */
 	private String file_ext = null;
+	
+	/** The uri. */
 	private String uri = null;
+	
+	/** The register_date. */
 	private Date register_date = null;
+	
+	/** The geo_data. */
 	private GeoData geo_data = null;
 	
 	/**
-	 * @param id
-	 * @param client_id
-	 * @param user_id
-	 * @param filename
-	 * @param filename_unique
-	 * @param file_ext
-	 * @param uri
-	 * @param register_date
-	 * @param geo_data
+	 * Instantiates a new image.
+	 *
+	 * @param id the id
+	 * @param client_id the client_id
+	 * @param user_id the user_id
+	 * @param filename the filename
+	 * @param filename_unique the filename_unique
+	 * @param file_ext the file_ext
+	 * @param uri the uri
+	 * @param register_date the register_date
+	 * @param geo_data the geo_data
 	 */
 	public Image(String id, String client_id, String user_id, String filename,
 			String filename_unique, String file_ext, String uri,
@@ -45,6 +66,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the id.
+	 *
 	 * @return the id
 	 */
 	public String getId() {
@@ -52,6 +75,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the id.
+	 *
 	 * @param id the id to set
 	 */
 	public void setId(String id) {
@@ -59,6 +84,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the client_id.
+	 *
 	 * @return the client_id
 	 */
 	public String getClient_id() {
@@ -66,6 +93,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the client_id.
+	 *
 	 * @param client_id the client_id to set
 	 */
 	public void setClient_id(String client_id) {
@@ -73,6 +102,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the user_id.
+	 *
 	 * @return the user_id
 	 */
 	public String getUser_id() {
@@ -80,6 +111,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the user_id.
+	 *
 	 * @param user_id the user_id to set
 	 */
 	public void setUser_id(String user_id) {
@@ -87,6 +120,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the filename.
+	 *
 	 * @return the filename
 	 */
 	public String getFilename() {
@@ -94,6 +129,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the filename.
+	 *
 	 * @param filename the filename to set
 	 */
 	public void setFilename(String filename) {
@@ -101,6 +138,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the filename_unique.
+	 *
 	 * @return the filename_unique
 	 */
 	public String getFilename_unique() {
@@ -108,6 +147,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the filename_unique.
+	 *
 	 * @param filename_unique the filename_unique to set
 	 */
 	public void setFilename_unique(String filename_unique) {
@@ -115,6 +156,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the file_ext.
+	 *
 	 * @return the file_ext
 	 */
 	public String getFile_ext() {
@@ -122,6 +165,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the file_ext.
+	 *
 	 * @param file_ext the file_ext to set
 	 */
 	public void setFile_ext(String file_ext) {
@@ -129,6 +174,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the uri.
+	 *
 	 * @return the uri
 	 */
 	public String getUri() {
@@ -136,6 +183,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the uri.
+	 *
 	 * @param uri the uri to set
 	 */
 	public void setUri(String uri) {
@@ -143,6 +192,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the register_date.
+	 *
 	 * @return the register_date
 	 */
 	public Date getRegister_date() {
@@ -150,6 +201,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the register_date.
+	 *
 	 * @param register_date the register_date to set
 	 */
 	public void setRegister_date(Date register_date) {
@@ -157,6 +210,8 @@ public class Image {
 	}
 
 	/**
+	 * Gets the geo_data.
+	 *
 	 * @return the geo_data
 	 */
 	public GeoData getGeo_data() {
@@ -164,6 +219,8 @@ public class Image {
 	}
 
 	/**
+	 * Sets the geo_data.
+	 *
 	 * @param geo_data the geo_data to set
 	 */
 	public void setGeo_data(GeoData geo_data) {

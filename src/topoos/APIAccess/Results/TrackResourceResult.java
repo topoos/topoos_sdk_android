@@ -6,17 +6,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class TrackResourceResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class TrackResourceResult extends APICallResult {
 
+	/** The track resource. */
 	private TrackResource trackResource = null;
 
 	/**
-	 * 
+	 * Instantiates a new track resource result.
 	 */
 	public TrackResourceResult() {
 		super();
@@ -24,8 +28,10 @@ public class TrackResourceResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new track resource result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public TrackResourceResult(String error, String result) {
 		super(error, result);
@@ -33,9 +39,11 @@ public class TrackResourceResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param trackResource
+	 * Instantiates a new track resource result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param trackResource the track resource
 	 */
 	public TrackResourceResult(String error, String result,
 			TrackResource trackResource) {
@@ -43,6 +51,9 @@ public class TrackResourceResult extends APICallResult {
 		this.trackResource = trackResource;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -54,8 +65,8 @@ public class TrackResourceResult extends APICallResult {
 			String type = null;
 			String format = null;
 			id = jObject.getInt("id");
-			type = jObject.getString("type");
-			format = jObject.getString("format");
+			type = APIUtils.getStringorNull(jObject,"type");
+			format = APIUtils.getStringorNull(jObject,"format");
 			this.trackResource=new TrackResource(id,type,format);
 
 		} catch (Exception e) {
@@ -67,6 +78,8 @@ public class TrackResourceResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the track resource.
+	 *
 	 * @return the trackResource
 	 */
 	public TrackResource getTrackResource() {
@@ -74,8 +87,9 @@ public class TrackResourceResult extends APICallResult {
 	}
 
 	/**
-	 * @param trackResource
-	 *            the trackResource to set
+	 * Sets the track resource.
+	 *
+	 * @param trackResource the trackResource to set
 	 */
 	public void setTrackResource(TrackResource trackResource) {
 		this.trackResource = trackResource;

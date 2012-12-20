@@ -11,11 +11,31 @@ import topoos.APIAccess.Results.*;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Translator.
+ */
 class Translator {
+	
+	/** The method. */
 	private static String method = "GET";
+	
+	/** The format. */
 	private static String format = "json";
+	
+	/** The version. */
 	private static Integer version = topoos.Constants.APIVERSION;
 
+	/**
+	 * Gets the.
+	 *
+	 * @param POISID the poisid
+	 * @param type the type
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static List<POIDataWarning> Get(Integer[] POISID, String type,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -43,6 +63,15 @@ class Translator {
 		return pOIWarning;
 	}
 
+	/**
+	 * Gets the all.
+	 *
+	 * @param type the type
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static List<POIDataWarning> GetAll(String type,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -60,6 +89,15 @@ class Translator {
 		return pOIWarning;
 	}
 
+	/**
+	 * Adds the closed.
+	 *
+	 * @param POI_ID the poi id
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the pOI warning
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POIWarning AddClosed(Integer POI_ID,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -78,6 +116,15 @@ class Translator {
 		return pOIWarning;
 	}
 
+	/**
+	 * Adds the duplicated.
+	 *
+	 * @param POI_ID the poi id
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the pOI warning
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POIWarning AddDuplicated(Integer POI_ID,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -96,6 +143,20 @@ class Translator {
 		return pOIWarning;
 	}
 
+	/**
+	 * Adds the wrong indicator.
+	 *
+	 * @param POI_ID the poi id
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @param accuracy the accuracy
+	 * @param vaccuracy the vaccuracy
+	 * @param elevation the elevation
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the pOI warning
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POIWarning AddWrongIndicator(Integer POI_ID, Double lat,
 			Double lng, Double accuracy, Double vaccuracy, Double elevation,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
@@ -116,6 +177,25 @@ class Translator {
 		return pOIWarning;
 	}
 
+	/**
+	 * Adds the wrong info.
+	 *
+	 * @param POI_ID the poi id
+	 * @param name the name
+	 * @param categories the categories
+	 * @param desc the desc
+	 * @param address the address
+	 * @param cross_street the cross_street
+	 * @param city the city
+	 * @param country the country
+	 * @param postal_code the postal_code
+	 * @param phone the phone
+	 * @param twitter the twitter
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the pOI warning
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POIWarning AddWrongInfo(Integer POI_ID, String name,
 			Integer[] categories, String desc, String address,
 			String cross_street, String city, String country,
@@ -150,6 +230,16 @@ class Translator {
 		return pOIWarning;
 	}
 
+	/**
+	 * Delete.
+	 *
+	 * @param POISID the poisid
+	 * @param type the type
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the boolean
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Boolean Delete(Integer[] POISID, String type,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -178,6 +268,15 @@ class Translator {
 		return delete;
 	}
 
+	/**
+	 * Delete all.
+	 *
+	 * @param type the type
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the boolean
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Boolean DeleteAll(String type,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -195,26 +294,77 @@ class Translator {
 		return delete;
 	}
 
+	/**
+	 * Gets the.
+	 *
+	 * @param context the context
+	 * @param POIID the poiid
+	 * @param type the type
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static List<POIDataWarning> Get(Context context, Integer[] POIID,
 			String type) throws IOException, TopoosException {
 		return Get(POIID, type, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Gets the all.
+	 *
+	 * @param context the context
+	 * @param type the type
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static List<POIDataWarning> GetAll(Context context, String type)
 			throws IOException, TopoosException {
 		return GetAll(type, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Adds the closed.
+	 *
+	 * @param context the context
+	 * @param POI_ID the poi id
+	 * @return the pOI warning
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POIWarning AddClosed(Context context, Integer POI_ID)
 			throws IOException, TopoosException {
 		return AddClosed(POI_ID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Adds the duplicated.
+	 *
+	 * @param context the context
+	 * @param POI_ID the poi id
+	 * @return the pOI warning
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POIWarning AddDuplicated(Context context, Integer POI_ID)
 			throws IOException, TopoosException {
 		return AddDuplicated(POI_ID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Adds the wrong indicator.
+	 *
+	 * @param context the context
+	 * @param POI_ID the poi id
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @param accuracy the accuracy
+	 * @param vaccuracy the vaccuracy
+	 * @param elevation the elevation
+	 * @return the pOI warning
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POIWarning AddWrongIndicator(Context context, Integer POI_ID,
 			Double lat, Double lng, Double accuracy, Double vaccuracy,
 			Double elevation) throws IOException, TopoosException {
@@ -222,6 +372,25 @@ class Translator {
 				elevation, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Adds the wrong info.
+	 *
+	 * @param context the context
+	 * @param POI_ID the poi id
+	 * @param name the name
+	 * @param categories the categories
+	 * @param desc the desc
+	 * @param address the address
+	 * @param cross_street the cross_street
+	 * @param city the city
+	 * @param country the country
+	 * @param postal_code the postal_code
+	 * @param phone the phone
+	 * @param twitter the twitter
+	 * @return the pOI warning
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static POIWarning AddWrongInfo(Context context, Integer POI_ID,
 			String name, Integer[] categories, String desc, String address,
 			String cross_street, String city, String country,
@@ -232,11 +401,30 @@ class Translator {
 				AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Delete.
+	 *
+	 * @param context the context
+	 * @param POIID the poiid
+	 * @param type the type
+	 * @return the boolean
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Boolean Delete(Context context, Integer[] POIID, String type)
 			throws IOException, TopoosException {
 		return Delete(POIID, type, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Delete all.
+	 *
+	 * @param context the context
+	 * @param type the type
+	 * @return the boolean
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Boolean DeleteAll(Context context, String type)
 			throws IOException, TopoosException {
 		return DeleteAll(type, AccessTokenOAuth.GetAccessToken(context));

@@ -8,17 +8,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class CheckinCollectionResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class CheckinCollectionResult extends APICallResult {
 
+	/** The checkin collection. */
 	private CheckinCollection checkinCollection = null;
 
 	/**
-	 * 
+	 * Instantiates a new checkin collection result.
 	 */
 	public CheckinCollectionResult() {
 		super();
@@ -26,8 +30,10 @@ public class CheckinCollectionResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new checkin collection result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public CheckinCollectionResult(String error, String result) {
 		super(error, result);
@@ -35,9 +41,11 @@ public class CheckinCollectionResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param checkinCollection
+	 * Instantiates a new checkin collection result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param checkinCollection the checkin collection
 	 */
 	public CheckinCollectionResult(String error, String result,
 			CheckinCollection checkinCollection) {
@@ -45,6 +53,9 @@ public class CheckinCollectionResult extends APICallResult {
 		this.checkinCollection = checkinCollection;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -72,6 +83,8 @@ public class CheckinCollectionResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the checkin collection.
+	 *
 	 * @return the checkinCollection
 	 */
 	public CheckinCollection getCheckinCollection() {
@@ -79,8 +92,9 @@ public class CheckinCollectionResult extends APICallResult {
 	}
 
 	/**
-	 * @param checkinCollection
-	 *            the checkinCollection to set
+	 * Sets the checkin collection.
+	 *
+	 * @param checkinCollection the checkinCollection to set
 	 */
 	public void setCheckinCollection(CheckinCollection checkinCollection) {
 		this.checkinCollection = checkinCollection;

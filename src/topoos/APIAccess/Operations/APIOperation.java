@@ -4,25 +4,33 @@ import java.io.IOException;
 
 import topoos.APIAccess.mime.MultipartEntity;
 
+// TODO: Auto-generated Javadoc
 /**
- * Class that implements the api operations
- * 
+ * Class that implements the api operations.
+ *
  * @author MAJS
- * 
  */
 public abstract class APIOperation {
 
+	/** The Operation name. */
 	String OperationName;
+	
+	/** The Version. */
 	Integer Version;
+	
+	/** The Method. */
 	String Method;
+	
+	/** The Format. */
 	String Format;
 
 	/**
-	 * 
+	 * Instantiates a new aPI operation.
+	 *
 	 * @param operationName name of the operation
 	 * @param method name of the method
 	 * @param format format
-	 * @param version version 
+	 * @param version version
 	 */
 	public APIOperation(String operationName, String method, String format,
 			Integer version) {
@@ -33,13 +41,17 @@ public abstract class APIOperation {
 		Version = version;
 	}
 
+	/**
+	 * Instantiates a new aPI operation.
+	 */
 	public APIOperation() {
 		super();
 		Version = -1;
 	};
 
 	/**
-	 * get the operation name
+	 * get the operation name.
+	 *
 	 * @return Operation name
 	 */
 	public String getOperationName() {
@@ -47,16 +59,17 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * set the operation name
-	 * @param operationName
-	 *            set the operation name
+	 * set the operation name.
+	 *
+	 * @param operationName set the operation name
 	 */
 	public void setOperationName(String operationName) {
 		OperationName = operationName;
 	}
 
 	/**
-	 * get the method
+	 * get the method.
+	 *
 	 * @return Method
 	 */
 	public String getMethod() {
@@ -64,16 +77,17 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * set the method
-	 * @param method
-	 *            set method
+	 * set the method.
+	 *
+	 * @param method set method
 	 */
 	public void setMethod(String method) {
 		Method = method;
 	}
 
 	/**
-	 * get the format
+	 * get the format.
+	 *
 	 * @return Format
 	 */
 	public String getFormat() {
@@ -81,16 +95,17 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * set the format
-	 * @param format
-	 *            set the format
+	 * set the format.
+	 *
+	 * @param format set the format
 	 */
 	public void setFormat(String format) {
 		Format = format;
 	}
 
 	/**
-	 * get the version
+	 * get the version.
+	 *
 	 * @return Version
 	 */
 	public Integer getVersion() {
@@ -98,18 +113,18 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * set the version
-	 * @param version
-	 *            set the version
+	 * set the version.
+	 *
+	 * @param version set the version
 	 */
 	public void setVersion(Integer version) {
 		Version = version;
 	}
 
 	/**
-	 * check if the version is not null or not empty
-	 * 
-	 * @param param
+	 * check if the version is not null or not empty.
+	 *
+	 * @param param the param
 	 * @return Boolean
 	 */
 	protected boolean isValid(String param) {
@@ -117,9 +132,9 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * check if is valid or null the param
-	 * 
-	 * @param param
+	 * check if is valid or null the param.
+	 *
+	 * @param param the param
 	 * @return Boolean
 	 */
 	protected boolean isValidorNull(String param) {
@@ -127,8 +142,8 @@ public abstract class APIOperation {
 	}
 
 	/**
-	 * validate the params
-	 * 
+	 * validate the params.
+	 *
 	 * @return Boolean
 	 */
 	public boolean ValidateParams() {
@@ -139,13 +154,21 @@ public abstract class APIOperation {
 		validate = validate && (Version > 0);
 		return validate;
 	};
+	
 	/**
-	 * return the object´s parameters concatenate
-	 * @return
-	 *  string	
+	 * return the object´s parameters concatenate.
+	 *
+	 * @return the string
+	 * string
 	 */
 	public abstract String ConcatParams();
 	
+	/**
+	 * Body params.
+	 *
+	 * @return the multipart entity
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public MultipartEntity BodyParams() throws IOException{
 		return null;
 	}

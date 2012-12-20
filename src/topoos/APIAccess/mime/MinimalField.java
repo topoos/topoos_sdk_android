@@ -27,6 +27,7 @@
 
 package topoos.APIAccess.mime;
 
+// TODO: Auto-generated Javadoc
 /**
  * Minimal MIME field.
  *
@@ -34,23 +35,45 @@ package topoos.APIAccess.mime;
  */
 public class MinimalField {
 
+    /** The name. */
     private final String name;
+    
+    /** The value. */
     private final String value;
 
+    /**
+     * Instantiates a new minimal field.
+     *
+     * @param name the name
+     * @param value the value
+     */
     MinimalField(final String name, final String value) {
         super();
         this.name = name;
         this.value = value;
     }
 
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Gets the body.
+     *
+     * @return the body
+     */
     public String getBody() {
         return this.value;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();

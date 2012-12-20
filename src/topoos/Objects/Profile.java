@@ -1,20 +1,26 @@
 package topoos.Objects;
 
 import java.util.Date;
+// TODO: Auto-generated Javadoc
+
 /**
- * Class that implements a profile
- * @author MAJS
+ * Class that implements a profile.
  *
+ * @author MAJS
  */
 public class Profile {
 
+	/** The Birthday. */
 	private Date Birthday = null;
+	
+	/** The Gender. */
 	private String Gender = null;
 
 	/**
-	 * 
-	 * @param birthday
-	 * @param gender
+	 * Instantiates a new profile.
+	 *
+	 * @param birthday the birthday
+	 * @param gender the gender
 	 */
 	public Profile(Date birthday, String gender) {
 		super();
@@ -23,7 +29,8 @@ public class Profile {
 	}
 
 	/**
-	 * get the birthday
+	 * get the birthday.
+	 *
 	 * @return Date of birthday
 	 */
 	public Date getBirthday() {
@@ -31,17 +38,17 @@ public class Profile {
 	}
 
 	/**
-	 * Set the birthday date
-	 * 
-	 * @param birthday
-	 *            date of birthday to set
+	 * Set the birthday date.
+	 *
+	 * @param birthday date of birthday to set
 	 */
 	public void setBirthday(Date birthday) {
 		Birthday = birthday;
 	}
 
 	/**
-	 * get the gender
+	 * get the gender.
+	 *
 	 * @return the gender
 	 */
 	public String getGender() {
@@ -49,9 +56,9 @@ public class Profile {
 	}
 
 	/**
-	 * 
-	 * @param gender
-	 *            gender to set
+	 * Sets the gender.
+	 *
+	 * @param gender gender to set
 	 */
 	public void setGender(String gender) {
 		Gender = gender;

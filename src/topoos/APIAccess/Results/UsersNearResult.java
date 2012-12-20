@@ -9,18 +9,21 @@ import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class UsersNearResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class UsersNearResult extends APICallResult {
 
+	/** The usersnear. */
 	private UsersNear usersnear = null;
 
 	
 	/**
-	 * 
+	 * Instantiates a new users near result.
 	 */
 	public UsersNearResult() {
 		super();
@@ -28,8 +31,10 @@ public class UsersNearResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new users near result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public UsersNearResult(String error, String result) {
 		super(error, result);
@@ -37,15 +42,20 @@ public class UsersNearResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param usersnear
+	 * Instantiates a new users near result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param usersnear the usersnear
 	 */
 	public UsersNearResult(String error, String result, UsersNear usersnear) {
 		super(error, result);
 		this.usersnear = usersnear;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		ArrayList<UserIdPosition> userPositions = null;
@@ -54,7 +64,7 @@ public class UsersNearResult extends APICallResult {
 			JSONArray jArray = (JSONArray) new JSONTokener(Result).nextValue();
 			userPositions = new ArrayList<UserIdPosition>();
 			for (int i = 0; i < jArray.length(); i++) {
-				String user_id = jArray.getJSONObject(i).getString("user_id");
+				String user_id = APIUtils.getStringorNull(jArray.getJSONObject(i),"user_id");
 				Double latitude = jArray.getJSONObject(i)
 						.getJSONObject("position").getDouble("latitude");
 				Double logitude = jArray.getJSONObject(i)
@@ -76,6 +86,8 @@ public class UsersNearResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the usersnear.
+	 *
 	 * @return the usersnear
 	 */
 	public UsersNear getUsersnear() {
@@ -83,6 +95,8 @@ public class UsersNearResult extends APICallResult {
 	}
 
 	/**
+	 * Sets the usersnear.
+	 *
 	 * @param usersnear the usersnear to set
 	 */
 	public void setUsersnear(UsersNear usersnear) {

@@ -4,20 +4,31 @@ import java.net.URLDecoder;
 import java.util.Calendar;
 
 
+// TODO: Auto-generated Javadoc
 /*
  * Clase que actua como interfaz a la parte nativa de la aplicaci�n, y viceversa
  */
 /**
- * Class that acting as interface to the native side of the application and vice versa
- * @author MAJS
+ * Class that acting as interface to the native side of the application and vice versa.
  *
+ * @author MAJS
  */
 class WebInterface {
 	
+	/** The Constant ParamKey_AccessToken. */
 	private static final String ParamKey_AccessToken = "access_token";
+	
+	/** The Constant ParamKey_ExpiresIn. */
 	private static final String ParamKey_ExpiresIn = "expires_in";
 	//private static final String ParamKey_TokenType = "token_type";
 	//private static final String ParamKey_RefreshToken = "refresh_token";	
+	/**
+	 * Gets the access token.
+	 *
+	 * @param url the url
+	 * @param redirect_uri the redirect_uri
+	 * @return the access token o auth
+	 */
 	public static AccessTokenOAuth GetAccessToken (String url, String redirect_uri)
 	{
 		AccessTokenOAuth Access = null;

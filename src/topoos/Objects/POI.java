@@ -3,54 +3,93 @@ package topoos.Objects;
 import java.util.ArrayList;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
 /**
- * Class that implements a point of interest
- * 
+ * Class that implements a point of interest.
+ *
  * @author MAJS
- * 
  */
 public class POI {
 
+	/** The id. */
 	private Integer id = null;
+	
+	/** The name. */
 	private String name = null;
+	
+	/** The description. */
 	private String description = null;
+	
+	/** The latitude. */
 	private Double latitude = null;
+	
+	/** The longitude. */
 	private Double longitude = null;
+	
+	/** The elevation. */
 	private Double elevation = null;
+	
+	/** The accuracy. */
 	private Double accuracy = null;
+	
+	/** The vaccuracy. */
 	private Double vaccuracy = null;
+	
+	/** The registertime. */
 	private Date registertime = null;
+	
+	/** The categories. */
 	private ArrayList<POICategory> categories = null;
+	
+	/** The address. */
 	private String address = null;
+	
+	/** The cross street. */
 	private String crossStreet = null;
+	
+	/** The city. */
 	private String city = null;
+	
+	/** The country. */
 	private String country = null;
+	
+	/** The postal code. */
 	private String postalCode = null;
+	
+	/** The phone. */
 	private String phone = null;
+	
+	/** The twitter. */
 	private String twitter = null;
+	
+	/** The last update. */
 	private Date lastUpdate = null;
+	
+	/** The warningcount. */
 	private POIWarningCount warningcount = null;
 
 	/**
-	 * @param id
-	 * @param name
-	 * @param description
-	 * @param latitude
-	 * @param longitude
-	 * @param elevation
-	 * @param accuracy
-	 * @param vaccuracy
-	 * @param registertime
-	 * @param categories
-	 * @param address
-	 * @param crossStreet
-	 * @param city
-	 * @param country
-	 * @param postalCode
-	 * @param phone
-	 * @param twitter
-	 * @param lastUpdate
-	 * @param warningcount
+	 * Instantiates a new poi.
+	 *
+	 * @param id the id
+	 * @param name the name
+	 * @param description the description
+	 * @param latitude the latitude
+	 * @param longitude the longitude
+	 * @param elevation the elevation
+	 * @param accuracy the accuracy
+	 * @param vaccuracy the vaccuracy
+	 * @param registertime the registertime
+	 * @param categories the categories
+	 * @param address the address
+	 * @param crossStreet the cross street
+	 * @param city the city
+	 * @param country the country
+	 * @param postalCode the postal code
+	 * @param phone the phone
+	 * @param twitter the twitter
+	 * @param lastUpdate the last update
+	 * @param warningcount the warningcount
 	 */
 	public POI(Integer id, String name, String description, Double latitude,
 			Double longitude, Double elevation, Double accuracy,
@@ -81,8 +120,8 @@ public class POI {
 	}
 
 	/**
-	 * Get the id of the poi
-	 * 
+	 * Get the id of the poi.
+	 *
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -90,16 +129,17 @@ public class POI {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * Sets the id.
+	 *
+	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	 * get the name
-	 * 
+	 * get the name.
+	 *
 	 * @return the name
 	 */
 	public String getName() {
@@ -107,16 +147,17 @@ public class POI {
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * Sets the name.
+	 *
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * get the description
-	 * 
+	 * get the description.
+	 *
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -124,16 +165,17 @@ public class POI {
 	}
 
 	/**
-	 * @param description
-	 *            the description to set
+	 * Sets the description.
+	 *
+	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 	/**
-	 * get the latitude
-	 * 
+	 * get the latitude.
+	 *
 	 * @return the latitude
 	 */
 	public Double getLatitude() {
@@ -141,16 +183,17 @@ public class POI {
 	}
 
 	/**
-	 * @param latitude
-	 *            the latitude to set
+	 * Sets the latitude.
+	 *
+	 * @param latitude the latitude to set
 	 */
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
 	/**
-	 * get the longitude
-	 * 
+	 * get the longitude.
+	 *
 	 * @return the longitude
 	 */
 	public Double getLongitude() {
@@ -158,16 +201,17 @@ public class POI {
 	}
 
 	/**
-	 * @param longitude
-	 *            the longitude to set
+	 * Sets the longitude.
+	 *
+	 * @param longitude the longitude to set
 	 */
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
 	/**
-	 * get the elevation
-	 * 
+	 * get the elevation.
+	 *
 	 * @return the elevation
 	 */
 	public Double getElevation() {
@@ -175,16 +219,17 @@ public class POI {
 	}
 
 	/**
-	 * @param elevation
-	 *            the elevation to set
+	 * Sets the elevation.
+	 *
+	 * @param elevation the elevation to set
 	 */
 	public void setElevation(Double elevation) {
 		this.elevation = elevation;
 	}
 
 	/**
-	 * get the accuracy
-	 * 
+	 * get the accuracy.
+	 *
 	 * @return the accuracy
 	 */
 	public Double getAccuracy() {
@@ -192,16 +237,17 @@ public class POI {
 	}
 
 	/**
-	 * @param accuracy
-	 *            the accuracy to set
+	 * Sets the accuracy.
+	 *
+	 * @param accuracy the accuracy to set
 	 */
 	public void setAccuracy(Double accuracy) {
 		this.accuracy = accuracy;
 	}
 
 	/**
-	 * get the vaccuracy
-	 * 
+	 * get the vaccuracy.
+	 *
 	 * @return the vaccuracy
 	 */
 	public Double getVaccuracy() {
@@ -209,16 +255,17 @@ public class POI {
 	}
 
 	/**
-	 * @param vaccuracy
-	 *            the vaccuracy to set
+	 * Sets the vaccuracy.
+	 *
+	 * @param vaccuracy the vaccuracy to set
 	 */
 	public void setVaccuracy(Double vaccuracy) {
 		this.vaccuracy = vaccuracy;
 	}
 
 	/**
-	 * get the register time
-	 * 
+	 * get the register time.
+	 *
 	 * @return the registertime
 	 */
 	public Date getRegistertime() {
@@ -226,16 +273,17 @@ public class POI {
 	}
 
 	/**
-	 * @param registertime
-	 *            the registertime to set
+	 * Sets the registertime.
+	 *
+	 * @param registertime the registertime to set
 	 */
 	public void setRegistertime(Date registertime) {
 		this.registertime = registertime;
 	}
 
 	/**
-	 * get a list of the categories
-	 * 
+	 * get a list of the categories.
+	 *
 	 * @return the categories
 	 */
 	public ArrayList<POICategory> getCategories() {
@@ -243,16 +291,17 @@ public class POI {
 	}
 
 	/**
-	 * @param categories
-	 *            the categories to set
+	 * Sets the categories.
+	 *
+	 * @param categories the categories to set
 	 */
 	public void setCategories(ArrayList<POICategory> categories) {
 		this.categories = categories;
 	}
 
 	/**
-	 * get the address
-	 * 
+	 * get the address.
+	 *
 	 * @return the address
 	 */
 	public String getAddress() {
@@ -260,16 +309,17 @@ public class POI {
 	}
 
 	/**
-	 * @param address
-	 *            the address to set
+	 * Sets the address.
+	 *
+	 * @param address the address to set
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	/**
-	 * get the cross street
-	 * 
+	 * get the cross street.
+	 *
 	 * @return the crossStreet
 	 */
 	public String getCrossStreet() {
@@ -277,16 +327,17 @@ public class POI {
 	}
 
 	/**
-	 * @param crossStreet
-	 *            the crossStreet to set
+	 * Sets the cross street.
+	 *
+	 * @param crossStreet the crossStreet to set
 	 */
 	public void setCrossStreet(String crossStreet) {
 		this.crossStreet = crossStreet;
 	}
 
 	/**
-	 * get the city
-	 * 
+	 * get the city.
+	 *
 	 * @return the city
 	 */
 	public String getCity() {
@@ -294,16 +345,17 @@ public class POI {
 	}
 
 	/**
-	 * @param city
-	 *            the city to set
+	 * Sets the city.
+	 *
+	 * @param city the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
 	}
 
 	/**
-	 * get the country
-	 * 
+	 * get the country.
+	 *
 	 * @return the country
 	 */
 	public String getCountry() {
@@ -311,16 +363,17 @@ public class POI {
 	}
 
 	/**
-	 * @param country
-	 *            the country to set
+	 * Sets the country.
+	 *
+	 * @param country the country to set
 	 */
 	public void setCountry(String country) {
 		this.country = country;
 	}
 
 	/**
-	 * get the postal code
-	 * 
+	 * get the postal code.
+	 *
 	 * @return the postalCode
 	 */
 	public String getPostalCode() {
@@ -328,16 +381,17 @@ public class POI {
 	}
 
 	/**
-	 * @param postalCode
-	 *            the postalCode to set
+	 * Sets the postal code.
+	 *
+	 * @param postalCode the postalCode to set
 	 */
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
 	/**
-	 * get the phone
-	 * 
+	 * get the phone.
+	 *
 	 * @return the phone
 	 */
 	public String getPhone() {
@@ -345,16 +399,17 @@ public class POI {
 	}
 
 	/**
-	 * @param phone
-	 *            the phone to set
+	 * Sets the phone.
+	 *
+	 * @param phone the phone to set
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
 	/**
-	 * get the twitter id
-	 * 
+	 * get the twitter id.
+	 *
 	 * @return the twitter
 	 */
 	public String getTwitter() {
@@ -362,16 +417,17 @@ public class POI {
 	}
 
 	/**
-	 * @param twitter
-	 *            the twitter to set
+	 * Sets the twitter.
+	 *
+	 * @param twitter the twitter to set
 	 */
 	public void setTwitter(String twitter) {
 		this.twitter = twitter;
 	}
 
 	/**
-	 * get the last update
-	 * 
+	 * get the last update.
+	 *
 	 * @return the lastUpdate
 	 */
 	public Date getLastUpdate() {
@@ -379,16 +435,17 @@ public class POI {
 	}
 
 	/**
-	 * @param lastUpdate
-	 *            the lastUpdate to set
+	 * Sets the last update.
+	 *
+	 * @param lastUpdate the lastUpdate to set
 	 */
 	public void setLastUpdate(Date lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
 
 	/**
-	 * get the warning count
-	 * 
+	 * get the warning count.
+	 *
 	 * @return the warningcount
 	 */
 	public POIWarningCount getWarningcount() {
@@ -396,8 +453,9 @@ public class POI {
 	}
 
 	/**
-	 * @param warningcount
-	 *            the warningcount to set
+	 * Sets the warningcount.
+	 *
+	 * @param warningcount the warningcount to set
 	 */
 	public void setWarningcount(POIWarningCount warningcount) {
 		this.warningcount = warningcount;

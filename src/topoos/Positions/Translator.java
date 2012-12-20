@@ -102,7 +102,7 @@ class Translator {
 			TopoosException {
 		Position position = null;
 		if (accessTokenPregenerated.isValid()) {
-			PositionsGet positionsGet = new PositionsGet("AddTrackEnd", method,
+			PositionsGet positionsGet = new PositionsGet("Get", method,
 					format, version, accessTokenPregenerated.getAccessToken(),
 					posID, null, null);
 			PositionResult positionResult = new PositionResult();
@@ -119,7 +119,10 @@ class Translator {
 			TopoosException {
 		Position position = null;
 		if (accessTokenPregenerated.isValid()) {
-			PositionsGet positionsGet = new PositionsGet("AddTrackEnd", method,
+			if(userID==null){
+				userID="me";
+			}
+			PositionsGet positionsGet = new PositionsGet("GetLastUser", method,
 					format, version, accessTokenPregenerated.getAccessToken(),
 					null, userID, null);
 			PositionResult positionResult = new PositionResult();

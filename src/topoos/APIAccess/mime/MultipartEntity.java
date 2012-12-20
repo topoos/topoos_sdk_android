@@ -40,6 +40,7 @@ import org.apache.http.protocol.HTTP;
 
 import topoos.APIAccess.mime.content.ContentBody;
 
+// TODO: Auto-generated Javadoc
 /**
  * Multipart/form coded HTTP entity consisting of multiple body parts.
  *
@@ -54,15 +55,22 @@ public class MultipartEntity implements HttpEntity {
         "-_1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             .toCharArray();
 
+    /** The multipart. */
     private final HttpMultipart multipart;
+    
+    /** The content type. */
     private final Header contentType;
 
     // @GuardedBy("dirty") // we always read dirty before accessing length
+    /** The length. */
     private long length;
+    
+    /** The dirty. */
     private volatile boolean dirty; // used to decide whether to recalculate length
 
     /**
-     * Creates an instance using the specified parameters
+     * Creates an instance using the specified parameters.
+     *
      * @param mode the mode to use, may be {@code null}, in which case {@link HttpMultipartMode#STRICT} is used
      * @param boundary the boundary string, may be {@code null}, in which case {@link #generateBoundary()} is invoked to create the string
      * @param charset the character set to use, may be {@code null}, in which case {@link MIME#DEFAULT_CHARSET} - i.e. US-ASCII - is used.
@@ -95,12 +103,19 @@ public class MultipartEntity implements HttpEntity {
     }
 
     /**
-     * Creates an instance using mode {@link HttpMultipartMode#STRICT}
+     * Creates an instance using mode {@link HttpMultipartMode#STRICT}.
      */
     public MultipartEntity() {
         this(HttpMultipartMode.STRICT, null, null);
     }
 
+    /**
+     * Generate content type.
+     *
+     * @param boundary the boundary
+     * @param charset the charset
+     * @return the string
+     */
     protected String generateContentType(
             final String boundary,
             final Charset charset) {
@@ -114,6 +129,11 @@ public class MultipartEntity implements HttpEntity {
         return buffer.toString();
     }
 
+    /**
+     * Generate boundary.
+     *
+     * @return the string
+     */
     protected String generateBoundary() {
         StringBuilder buffer = new StringBuilder();
         Random rand = new Random();
@@ -124,15 +144,29 @@ public class MultipartEntity implements HttpEntity {
         return buffer.toString();
     }
 
+    /**
+     * Adds the part.
+     *
+     * @param bodyPart the body part
+     */
     public void addPart(final FormBodyPart bodyPart) {
         this.multipart.addBodyPart(bodyPart);
         this.dirty = true;
     }
 
+    /**
+     * Adds the part.
+     *
+     * @param name the name
+     * @param contentBody the content body
+     */
     public void addPart(final String name, final ContentBody contentBody) {
         addPart(new FormBodyPart(name, contentBody));
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#isRepeatable()
+     */
     public boolean isRepeatable() {
         for (FormBodyPart part: this.multipart.getBodyParts()) {
             ContentBody body = part.getBody();
@@ -143,14 +177,23 @@ public class MultipartEntity implements HttpEntity {
         return true;
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#isChunked()
+     */
     public boolean isChunked() {
         return !isRepeatable();
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#isStreaming()
+     */
     public boolean isStreaming() {
         return !isRepeatable();
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#getContentLength()
+     */
     public long getContentLength() {
         if (this.dirty) {
             this.length = this.multipart.getTotalLength();
@@ -159,14 +202,23 @@ public class MultipartEntity implements HttpEntity {
         return this.length;
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#getContentType()
+     */
     public Header getContentType() {
         return this.contentType;
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#getContentEncoding()
+     */
     public Header getContentEncoding() {
         return null;
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#consumeContent()
+     */
     public void consumeContent()
         throws IOException, UnsupportedOperationException{
         if (isStreaming()) {
@@ -175,11 +227,17 @@ public class MultipartEntity implements HttpEntity {
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#getContent()
+     */
     public InputStream getContent() throws IOException, UnsupportedOperationException {
         throw new UnsupportedOperationException(
                     "Multipart form entity does not implement #getContent()");
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.http.HttpEntity#writeTo(java.io.OutputStream)
+     */
     public void writeTo(final OutputStream outstream) throws IOException {
         this.multipart.writeTo(outstream);
     }

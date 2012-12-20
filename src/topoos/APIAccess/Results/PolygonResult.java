@@ -10,16 +10,20 @@ import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.Location;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class PolygonResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class PolygonResult extends APICallResult{
+	
+	/** The polygon. */
 	List<Location> polygon=null;
 	
 	/**
-	 * 
+	 * Instantiates a new polygon result.
 	 */
 	public PolygonResult() {
 		super();
@@ -27,8 +31,10 @@ public class PolygonResult extends APICallResult{
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new polygon result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public PolygonResult(String error, String result) {
 		super(error, result);
@@ -36,15 +42,20 @@ public class PolygonResult extends APICallResult{
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param polygon
+	 * Instantiates a new polygon result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param polygon the polygon
 	 */
 	public PolygonResult(String error, String result, List<Location> polygon) {
 		super(error, result);
 		this.polygon = polygon;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -98,6 +109,8 @@ public class PolygonResult extends APICallResult{
 	}
 
 	/**
+	 * Gets the polygon.
+	 *
 	 * @return the polygon
 	 */
 	public List<Location> getPolygon() {
@@ -105,6 +118,8 @@ public class PolygonResult extends APICallResult{
 	}
 
 	/**
+	 * Sets the polygon.
+	 *
 	 * @param polygon the polygon to set
 	 */
 	public void setPolygon(List<Location> polygon) {

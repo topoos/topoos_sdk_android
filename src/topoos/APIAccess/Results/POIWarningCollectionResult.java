@@ -9,15 +9,22 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class POIWarningCollectionResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class POIWarningCollectionResult extends APICallResult {
 
+	/** The POI data warnings. */
 	private ArrayList<POIDataWarning> POIDataWarnings = null;
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		try {
@@ -43,19 +50,19 @@ public class POIWarningCollectionResult extends APICallResult {
 						.getJSONObject("warnings").getInt("wrongIndicator"),
 						jPOI.getJSONObject("warnings").getInt("wrongInfo"));
 				//POI
-				POI poi = new POI(jPOI.getInt("id"), jPOI.getString("name"),
-						jPOI.getString("description"),
+				POI poi = new POI(jPOI.getInt("id"), APIUtils.getStringorNull(jPOI,"name"),
+						APIUtils.getStringorNull(jPOI,"description"),
 						jPOI.getDouble("latitude"),
 						jPOI.getDouble("longitude"),
 						jPOI.getDouble("elevation"),
 						jPOI.getDouble("accuracy"),
 						jPOI.getDouble("vaccuracy"), APIUtils.toDateString(jPOI
 								.getString("registertime")), categories,
-						jPOI.getString("address"),
-						jPOI.getString("crossStreet"), jPOI.getString("city"),
-						jPOI.getString("country"),
-						jPOI.getString("postalCode"), jPOI.getString("phone"),
-						jPOI.getString("twitter"), APIUtils.toDateString(jPOI
+						APIUtils.getStringorNull(jPOI,"address"),
+						APIUtils.getStringorNull(jPOI,"crossStreet"), APIUtils.getStringorNull(jPOI,"city"),
+						APIUtils.getStringorNull(jPOI,"country"),
+						APIUtils.getStringorNull(jPOI,"postalCode"), APIUtils.getStringorNull(jPOI,"phone"),
+						APIUtils.getStringorNull(jPOI,"twitter"), APIUtils.toDateString(jPOI
 								.getString("lastUpdate")), warningcount);
 				JSONArray jArrayWarnings = jArray.getJSONObject(i)
 						.getJSONArray("warnings");
@@ -72,9 +79,9 @@ public class POIWarningCollectionResult extends APICallResult {
 						for (int z = 0; z < jPOIwarningCategories.length(); z++) {
 							arrayCategories.add(new POICategory(
 									jPOIwarningCategories.getJSONObject(z)
-											.getInt("Id"),
+											.getInt("Id"),APIUtils.getStringorNull(
 									jPOIwarningCategories.getJSONObject(z)
-											.getString("Description"),
+											,"Description"),
 									jPOIwarningCategories.getJSONObject(z)
 											.getBoolean("is_system_category")));
 						}
@@ -87,32 +94,30 @@ public class POIWarningCollectionResult extends APICallResult {
 										"accuracy"), jPOIwarning.optJSONObject(
 										"data").getDouble("vaccuracy"),
 								jPOIwarning.optJSONObject("data").getDouble(
-										"elevation"), jPOIwarning
-										.optJSONObject("data")
-										.getString("name"), jPOIwarning
-										.optJSONObject("data").getString(
-												"address"), jPOIwarning
-										.optJSONObject("data").getString(
-												"cross_street"), jPOIwarning
-										.optJSONObject("data")
-										.getString("city"), jPOIwarning
-										.optJSONObject("data").getString(
-												"country"), jPOIwarning
-										.optJSONObject("data").getString(
-												"postal_code"), jPOIwarning
-										.optJSONObject("data").getString(
-												"phone"), jPOIwarning
-										.optJSONObject("data").getString(
-												"twitter"), jPOIwarning
-										.optJSONObject("data").getString(
+										"elevation"), APIUtils.getStringorNull( jPOIwarning
+												.optJSONObject("data"),"name"), APIUtils.getStringorNull( jPOIwarning
+												.optJSONObject("data"),
+												"address"), APIUtils.getStringorNull( jPOIwarning
+														.optJSONObject("data"),
+												"cross_street"), APIUtils.getStringorNull( jPOIwarning
+														.optJSONObject("data"),"city"), APIUtils.getStringorNull( jPOIwarning
+												.optJSONObject("data"),
+												"country"), APIUtils.getStringorNull( jPOIwarning
+														.optJSONObject("data"),
+												"postal_code"), APIUtils.getStringorNull( jPOIwarning
+														.optJSONObject("data"),
+												"phone"), APIUtils.getStringorNull( jPOIwarning
+														.optJSONObject("data"),
+												"twitter"),APIUtils.getStringorNull( jPOIwarning
+										.optJSONObject("data"),
 												"description"), arrayCategories);
 					}
 					
 					POIWarning poiwarning = new POIWarning(
 							jPOIwarning.getInt("id"),
 							jPOIwarning.getInt("poi_id"),
-							jPOIwarning.getString("type"),
-							jPOIwarning.getString("user_id"),
+							APIUtils.getStringorNull(jPOIwarning,"type"),
+							APIUtils.getStringorNull(jPOIwarning,"user_id"),
 							APIUtils.toDateString(jPOIwarning
 									.getString("timestamp")), poiWarningData);
 					arrayPOIWarnings.add(poiwarning);
@@ -129,6 +134,8 @@ public class POIWarningCollectionResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the pOI data warnings.
+	 *
 	 * @return the pOIDataWarnings
 	 */
 	public ArrayList<POIDataWarning> getPOIDataWarnings() {
@@ -136,6 +143,8 @@ public class POIWarningCollectionResult extends APICallResult {
 	}
 
 	/**
+	 * Sets the pOI data warnings.
+	 *
 	 * @param pOIDataWarnings the pOIDataWarnings to set
 	 */
 	public void setPOIDataWarnings(ArrayList<POIDataWarning> pOIDataWarnings) {

@@ -1,18 +1,28 @@
 package topoos.Objects;
+// TODO: Auto-generated Javadoc
+
 /**
- * Class that implements a user position
- * @author MAJS
+ * Class that implements a user position.
  *
+ * @author MAJS
  */
 public class UserPosition {
+	
+	/** The latitude. */
 	private Double latitude = null;
+	
+	/** The longitude. */
 	private Double longitude = null;
+	
+	/** The accuracy. */
 	private Double accuracy = null;
 
 	/**
-	 * @param latitude
-	 * @param longitude
-	 * @param accuracy
+	 * Instantiates a new user position.
+	 *
+	 * @param latitude the latitude
+	 * @param longitude the longitude
+	 * @param accuracy the accuracy
 	 */
 	public UserPosition(Double latitude, Double longitude, Double accuracy) {
 		super();
@@ -22,7 +32,8 @@ public class UserPosition {
 	}
 
 	/**
-	 * get the latitude
+	 * get the latitude.
+	 *
 	 * @return the latitude
 	 */
 	public Double getLatitude() {
@@ -30,15 +41,17 @@ public class UserPosition {
 	}
 
 	/**
-	 * @param latitude
-	 *            the latitude to set
+	 * Sets the latitude.
+	 *
+	 * @param latitude the latitude to set
 	 */
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
 	/**
-	 * get the longitude
+	 * get the longitude.
+	 *
 	 * @return the longitude
 	 */
 	public Double getLongitude() {
@@ -46,15 +59,17 @@ public class UserPosition {
 	}
 
 	/**
-	 * @param longitude
-	 *            the longitude to set
+	 * Sets the longitude.
+	 *
+	 * @param longitude the longitude to set
 	 */
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
 	/**
-	 * get the accuracy
+	 * get the accuracy.
+	 *
 	 * @return the accuracy
 	 */
 	public Double getAccuracy() {
@@ -62,8 +77,9 @@ public class UserPosition {
 	}
 
 	/**
-	 * @param accuracy
-	 *            the accuracy to set
+	 * Sets the accuracy.
+	 *
+	 * @param accuracy the accuracy to set
 	 */
 	public void setAccuracy(Double accuracy) {
 		this.accuracy = accuracy;

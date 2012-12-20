@@ -1,51 +1,91 @@
 package topoos.APIAccess.Operations;
 
+// TODO: Auto-generated Javadoc
 /**
- * Class that add POIS
- * 
+ * Class that add POIS.
+ *
  * @see APIOperation
  * @author MAJS
- * 
  */
 public class POISAdd extends APIOperation {
 
+	/** The oauth_token. */
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
-	private Double lat = null; // (obligatorio) latitud de la nueva posición.
+	/** The lat. */
+										private Double lat = null; // (obligatorio) latitud de la nueva posición.
 								// Decimal.
-	private Double lng = null; // (obligatorio) longitud de la nueva posición.
+	/** The lng. */
+								private Double lng = null; // (obligatorio) longitud de la nueva posición.
 								// Decimal.
-	private Double accuracy = null; // (opcional) precisión de la posición
+	/** The accuracy. */
+								private Double accuracy = null; // (opcional) precisión de la posición
 									// (latitud, longitud). Decimal.
-	private Double vaccuracy = null; // (opcional) precisión de la elevación.
+	/** The vaccuracy. */
+									private Double vaccuracy = null; // (opcional) precisión de la elevación.
 										// Decimal.
-	private Double elevation = null; // (opcional) elevación respecto al nivel
+	/** The elevation. */
+										private Double elevation = null; // (opcional) elevación respecto al nivel
 										// del mar. Decimal.
-	private String categories = null; // (obligatorio) identificadores de las
+	/** The categories. */
+										private String categories = null; // (obligatorio) identificadores de las
 										// categorías a las que pertenece este
 										// POI, separados por comas
-	private String name = null; // (obligatorio) nombre del punto de interés.
+	/** The name. */
+										private String name = null; // (obligatorio) nombre del punto de interés.
 								// Cadena de texto. Máximo 255 caracteres.
-	private String desc = null; // (opcional) descripción del punto de interés.
+	/** The desc. */
+								private String desc = null; // (opcional) descripción del punto de interés.
 								// Cadena de texto. Máximo 500 caracteres.
-	private String address = null; // (opcional) dirección del punto del
+	/** The address. */
+								private String address = null; // (opcional) dirección del punto del
 									// interés. Cadena de texto. Máximo 50
 									// caracteres.
-	private String cross_street = null; // (opcional) calle transversal. Cadena
+	/** The cross_street. */
+									private String cross_street = null; // (opcional) calle transversal. Cadena
 										// de texto. Máximo 50 caracteres.
-	private String city = null; // (opcional) ciudad del punto de interés.
+	/** The city. */
+										private String city = null; // (opcional) ciudad del punto de interés.
 								// Cadena de texto. Máximo 50 caracteres.
-	private String country = null; // (opcional) estado. Cadena de texto. Máximo
+	/** The country. */
+								private String country = null; // (opcional) estado. Cadena de texto. Máximo
 									// 30 caracteres.
-	private String postal_code = null; // (opcional) código postal. Cadena de
+	/** The postal_code. */
+									private String postal_code = null; // (opcional) código postal. Cadena de
 										// texto. Máximo 12 caracteres.
-	private String phone = null; // (opcional) teléfono de contacto. Cadena de
+	/** The phone. */
+										private String phone = null; // (opcional) teléfono de contacto. Cadena de
 									// texto. Máximo 20 caracteres.
-	private String twitter = null; // (opcional) identificador de usuario o
+	/** The twitter. */
+									private String twitter = null; // (opcional) identificador de usuario o
 									// hashtag de Twitter. Cadena de texto.
 									// Máximo 50 caracteres.
 
-	public POISAdd(String operationName, String method, String format,
+	/**
+									 * Instantiates a new pOIS add.
+									 *
+									 * @param operationName the operation name
+									 * @param method the method
+									 * @param format the format
+									 * @param version the version
+									 * @param oauth_token the oauth_token
+									 * @param lat the lat
+									 * @param lng the lng
+									 * @param accuracy the accuracy
+									 * @param vaccuracy the vaccuracy
+									 * @param elevation the elevation
+									 * @param categories the categories
+									 * @param name the name
+									 * @param desc the desc
+									 * @param address the address
+									 * @param cross_street the cross_street
+									 * @param city the city
+									 * @param country the country
+									 * @param postal_code the postal_code
+									 * @param phone the phone
+									 * @param twitter the twitter
+									 */
+									public POISAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, Double lat, Double lng,
 			Double accuracy, Double vaccuracy, Double elevation,
 			String categories, String name, String desc, String address,
@@ -70,6 +110,9 @@ public class POISAdd extends APIOperation {
 		this.twitter = twitter;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
@@ -94,6 +137,9 @@ public class POISAdd extends APIOperation {
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		String params = null;

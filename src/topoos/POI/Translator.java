@@ -135,10 +135,10 @@ class Translator {
 		return poilist;
 	}
 
-	public static Boolean Update(Integer POIID, String name, Double lat,
+	public static POI Update(Integer POIID, String name, Double lat,
 			Double lng, Integer[] categories, Double accuracy,
 			Double vaccuracy, Double elevation, String desc, String address,
-			String cross_stret, String city, String country,
+			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
@@ -154,16 +154,15 @@ class Translator {
 					}
 				}
 			}
-			POISUpdate pOISUpdate = new POISUpdate("Update", method, format,
-					version, accessTokenPregenerated.getAccessToken(), POIID,
-					lat, lng, accuracy, vaccuracy, elevation, !strcategories.equals("") ? strcategories : null);
+			POISUpdate pOISUpdate= new POISUpdate("Update", method, format,
+					version, accessTokenPregenerated.getAccessToken(), POIID, name, desc, lat, lng, accuracy, vaccuracy, elevation, !strcategories.equals("") ? strcategories : null, address, cross_street, city, country, postal_code, phone, twitter);
 			POIResult poiResult = new POIResult();
 			APICaller.ExecuteOperation(pOISUpdate, poiResult);
 			poi = poiResult.getPoi();
 		} else {
 			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
-		return poi != null;
+		return poi;
 	}
 
 	public static Boolean Delete(Integer POIID,
@@ -211,14 +210,14 @@ class Translator {
 				AccessTokenOAuth.GetAccessToken(context));
 	}
 
-	public static Boolean Update(Context context, Integer POIID, String name,
+	public static POI Update(Context context, Integer POIID, String name,
 			Double lat, Double lng, Integer[] categories, Double accuracy,
 			Double vaccuracy, Double elevation, String desc, String address,
-			String cross_stret, String city, String country,
+			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter)
 			throws IOException, TopoosException {
 		return Update(POIID, name, lat, lng, categories, accuracy, vaccuracy,
-				elevation, desc, address, cross_stret, city, country,
+				elevation, desc, address, cross_street, city, country,
 				postal_code, phone, twitter, AccessTokenOAuth.GetAccessToken(context));
 	}
 

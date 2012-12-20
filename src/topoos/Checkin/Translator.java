@@ -11,12 +11,31 @@ import topoos.APIAccess.Results.*;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Translator.
+ */
 class Translator {
 	
+	/** The method. */
 	private static String method = "GET";
+	
+	/** The format. */
 	private static String format = "json";
+	
+	/** The version. */
 	private static Integer version = topoos.Constants.APIVERSION;
 	
+	/**
+	 * Adds the.
+	 *
+	 * @param POIID the poiid
+	 * @param timestamp the timestamp
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the checkin
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Checkin Add(Integer POIID, Date timestamp,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Checkin checkin = null;
@@ -31,6 +50,15 @@ class Translator {
 		return checkin;
 	}
 
+	/**
+	 * Gets the.
+	 *
+	 * @param checkinID the checkin id
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the checkin
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Checkin Get(Integer checkinID,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Checkin checkin = null;
@@ -45,6 +73,15 @@ class Translator {
 		return checkin;
 	}
 
+	/**
+	 * Gets the last.
+	 *
+	 * @param userID the user id
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the checkin
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Checkin GetLast(String userID,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		Checkin checkin = null;
@@ -59,6 +96,15 @@ class Translator {
 		return checkin;
 	}
 
+	/**
+	 * Gets the poi.
+	 *
+	 * @param POIID the poiid
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static List<Checkin> GetPOI(Integer POIID,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<Checkin> checkin = null;
@@ -73,18 +119,55 @@ class Translator {
 		return checkin;
 	}
 
+	/**
+	 * Adds the.
+	 *
+	 * @param context the context
+	 * @param POIID the poiid
+	 * @param timestamp the timestamp
+	 * @return the checkin
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Checkin Add(Context context, Integer POIID, Date timestamp) throws IOException, TopoosException {
 		return Add(POIID, timestamp, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Gets the.
+	 *
+	 * @param context the context
+	 * @param checkinID the checkin id
+	 * @return the checkin
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Checkin Get(Context context, Integer checkinID) throws IOException, TopoosException {
 		return Get(checkinID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Gets the last.
+	 *
+	 * @param context the context
+	 * @param userID the user id
+	 * @return the checkin
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static Checkin GetLast(Context context, String userID) throws IOException, TopoosException {
 		return GetLast(userID, AccessTokenOAuth.GetAccessToken(context));
 	}
 
+	/**
+	 * Gets the poi.
+	 *
+	 * @param context the context
+	 * @param POIID the poiid
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
 	public static List<Checkin> GetPOI(Context context, Integer POIID) throws IOException, TopoosException {
 		return GetPOI(POIID, AccessTokenOAuth.GetAccessToken(context));
 	}

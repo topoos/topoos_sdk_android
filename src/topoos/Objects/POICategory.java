@@ -1,20 +1,28 @@
 package topoos.Objects;
 
+// TODO: Auto-generated Javadoc
 /**
- * Class that implements a category of a POI
- * 
+ * Class that implements a category of a POI.
+ *
  * @author MAJS
- * 
  */
 public class POICategory {
+	
+	/** The id. */
 	private Integer id = null;
+	
+	/** The description. */
 	private String description = null;
+	
+	/** The is system. */
 	private Boolean isSystem = null;
 
 	/**
-	 * @param id
-	 * @param description
-	 * @param isSystem
+	 * Instantiates a new pOI category.
+	 *
+	 * @param id the id
+	 * @param description the description
+	 * @param isSystem the is system
 	 */
 	public POICategory(Integer id, String description, Boolean isSystem) {
 		super();
@@ -24,8 +32,8 @@ public class POICategory {
 	}
 
 	/**
-	 * get the id
-	 * 
+	 * get the id.
+	 *
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -33,16 +41,17 @@ public class POICategory {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * Sets the id.
+	 *
+	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	 * get the description
-	 * 
+	 * get the description.
+	 *
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -50,16 +59,17 @@ public class POICategory {
 	}
 
 	/**
-	 * @param description
-	 *            the description to set
+	 * Sets the description.
+	 *
+	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 	/**
-	 * get the is system status
-	 * 
+	 * get the is system status.
+	 *
 	 * @return the isSystem
 	 */
 	public Boolean getIsSystem() {
@@ -67,8 +77,9 @@ public class POICategory {
 	}
 
 	/**
-	 * @param isSystem
-	 *            the isSystem to set
+	 * Sets the checks if is system.
+	 *
+	 * @param isSystem the isSystem to set
 	 */
 	public void setIsSystem(Boolean isSystem) {
 		this.isSystem = isSystem;

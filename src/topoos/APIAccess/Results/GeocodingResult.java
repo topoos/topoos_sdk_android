@@ -71,19 +71,21 @@ public class GeocodingResult extends APICallResult{
 					jObjectSouthwest=jObjectBounds.optJSONObject("southwest");
 					jObjectNortheast=jObjectBounds.optJSONObject("northeast");
 				}
-				this.geocoding.add(
-						new GeocodingData(new Address(
-								jObjectAddress.optString("address"),
-								jObjectAddress.optString("cross_street"),
-								jObjectAddress.optString("state"),
-								jObjectAddress.optString("administrative_area"),
-								jObjectAddress.optString("country"),
-								jObjectAddress.optString("postal_code")),
-						new Location(jObjectLocation.optDouble("latitude"),
-								jObjectLocation.optDouble("longitude")), jObjectBounds==null? null:(
-						new ViewportType(new Location(jObjectSouthwest.optDouble("latitude"),
-								jObjectSouthwest.optDouble("longitude")),new Location(jObjectNortheast.optDouble("latitude"),
-										jObjectNortheast.optDouble("longitude"))))));
+				if(jObjectAddress!=null||jObjectLocation!=null|| jObjectSouthwest!=null||jObjectNortheast!=null){
+					this.geocoding.add(
+							new GeocodingData(jObjectAddress!=null?new Address(
+									APIUtils.getStringorNull(jObjectAddress,"address"),
+									APIUtils.getStringorNull(jObjectAddress,"cross_street"),
+									APIUtils.getStringorNull(jObjectAddress,"state"),
+									APIUtils.getStringorNull(jObjectAddress,"administrative_area"),
+									APIUtils.getStringorNull(jObjectAddress,"country"),
+									APIUtils.getStringorNull(jObjectAddress,"postal_code")):null, jObjectLocation!=null?
+							new Location(jObjectLocation.optDouble("latitude"),
+									jObjectLocation.optDouble("longitude")):null, jObjectBounds==null? null:(
+											jObjectNortheast!=null&&jObjectSouthwest!=null?new ViewportType(new Location(jObjectSouthwest.optDouble("latitude"),
+									jObjectSouthwest.optDouble("longitude")),new Location(jObjectNortheast.optDouble("latitude"),
+											jObjectNortheast.optDouble("longitude"))):null)));
+				}
 				
 			}
 

@@ -40,6 +40,7 @@ import org.apache.http.util.ByteArrayBuffer;
 
 import topoos.APIAccess.mime.content.ContentBody;
 
+// TODO: Auto-generated Javadoc
 /**
  * HttpMultipart represents a collection of MIME multipart encoded content bodies. This class is
  * capable of operating either in the strict (RFC 822, RFC 2045, RFC 2046 compliant) or
@@ -49,6 +50,13 @@ import topoos.APIAccess.mime.content.ContentBody;
  */
 public class HttpMultipart {
 
+    /**
+     * Encode.
+     *
+     * @param charset the charset
+     * @param string the string
+     * @return the byte array buffer
+     */
     private static ByteArrayBuffer encode(
             final Charset charset, final String string) {
         ByteBuffer encoded = charset.encode(CharBuffer.wrap(string));
@@ -57,23 +65,52 @@ public class HttpMultipart {
         return bab;
     }
 
+    /**
+     * Write bytes.
+     *
+     * @param b the b
+     * @param out the out
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private static void writeBytes(
             final ByteArrayBuffer b, final OutputStream out) throws IOException {
         out.write(b.buffer(), 0, b.length());
     }
 
+    /**
+     * Write bytes.
+     *
+     * @param s the s
+     * @param charset the charset
+     * @param out the out
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private static void writeBytes(
             final String s, final Charset charset, final OutputStream out) throws IOException {
         ByteArrayBuffer b = encode(charset, s);
         writeBytes(b, out);
     }
 
+    /**
+     * Write bytes.
+     *
+     * @param s the s
+     * @param out the out
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private static void writeBytes(
             final String s, final OutputStream out) throws IOException {
         ByteArrayBuffer b = encode(MIME.DEFAULT_CHARSET, s);
         writeBytes(b, out);
     }
 
+    /**
+     * Write field.
+     *
+     * @param field the field
+     * @param out the out
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private static void writeField(
             final MinimalField field, final OutputStream out) throws IOException {
         writeBytes(field.getName(), out);
@@ -82,6 +119,14 @@ public class HttpMultipart {
         writeBytes(CR_LF, out);
     }
 
+    /**
+     * Write field.
+     *
+     * @param field the field
+     * @param charset the charset
+     * @param out the out
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private static void writeField(
             final MinimalField field, final Charset charset, final OutputStream out) throws IOException {
         writeBytes(field.getName(), charset, out);
@@ -90,16 +135,29 @@ public class HttpMultipart {
         writeBytes(CR_LF, out);
     }
 
+    /** The Constant FIELD_SEP. */
     private static final ByteArrayBuffer FIELD_SEP = encode(MIME.DEFAULT_CHARSET, ": ");
+    
+    /** The Constant CR_LF. */
     private static final ByteArrayBuffer CR_LF = encode(MIME.DEFAULT_CHARSET, "\r\n");
+    
+    /** The Constant TWO_DASHES. */
     private static final ByteArrayBuffer TWO_DASHES = encode(MIME.DEFAULT_CHARSET, "--");
 
 
+    /** The sub type. */
     private final String subType;
+    
+    /** The charset. */
     private final Charset charset;
+    
+    /** The boundary. */
     private final String boundary;
+    
+    /** The parts. */
     private final List<FormBodyPart> parts;
 
+    /** The mode. */
     private final HttpMultipartMode mode;
 
     /**
@@ -109,7 +167,6 @@ public class HttpMultipart {
      * @param charset the character set to use. May be {@code null}, in which case {@link MIME#DEFAULT_CHARSET} - i.e. US-ASCII - is used.
      * @param boundary to use  - must not be {@code null}
      * @param mode the mode to use
-     * @throws IllegalArgumentException if charset is null or boundary is null
      */
     public HttpMultipart(final String subType, final Charset charset, final String boundary, HttpMultipartMode mode) {
         super();
@@ -133,32 +190,62 @@ public class HttpMultipart {
      * @param subType mime subtype - must not be {@code null}
      * @param charset the character set to use. May be {@code null}, in which case {@link MIME#DEFAULT_CHARSET} - i.e. US-ASCII - is used.
      * @param boundary to use  - must not be {@code null}
-     * @throws IllegalArgumentException if charset is null or boundary is null
      */
     public HttpMultipart(final String subType, final Charset charset, final String boundary) {
         this(subType, charset, boundary, HttpMultipartMode.STRICT);
     }
 
+    /**
+     * Instantiates a new http multipart.
+     *
+     * @param subType the sub type
+     * @param boundary the boundary
+     */
     public HttpMultipart(final String subType, final String boundary) {
         this(subType, null, boundary);
     }
 
+    /**
+     * Gets the sub type.
+     *
+     * @return the sub type
+     */
     public String getSubType() {
         return this.subType;
     }
 
+    /**
+     * Gets the charset.
+     *
+     * @return the charset
+     */
     public Charset getCharset() {
         return this.charset;
     }
 
+    /**
+     * Gets the mode.
+     *
+     * @return the mode
+     */
     public HttpMultipartMode getMode() {
         return this.mode;
     }
 
+    /**
+     * Gets the body parts.
+     *
+     * @return the body parts
+     */
     public List<FormBodyPart> getBodyParts() {
         return this.parts;
     }
 
+    /**
+     * Adds the body part.
+     *
+     * @param part the part
+     */
     public void addBodyPart(final FormBodyPart part) {
         if (part == null) {
             return;
@@ -166,10 +253,23 @@ public class HttpMultipart {
         this.parts.add(part);
     }
 
+    /**
+     * Gets the boundary.
+     *
+     * @return the boundary
+     */
     public String getBoundary() {
         return this.boundary;
     }
 
+    /**
+     * Do write to.
+     *
+     * @param mode the mode
+     * @param out the out
+     * @param writeContent the write content
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private void doWriteTo(
         final HttpMultipartMode mode,
         final OutputStream out,
@@ -219,6 +319,8 @@ public class HttpMultipart {
      * produces slightly different formatting depending on its compatibility
      * mode.
      *
+     * @param out the out
+     * @throws IOException Signals that an I/O exception has occurred.
      * @see #getMode()
      */
     public void writeTo(final OutputStream out) throws IOException {

@@ -32,6 +32,7 @@ import java.io.OutputStream;
 import topoos.APIAccess.mime.MIME;
 import topoos.APIAccess.mime.content.AbstractContentBody;
 
+// TODO: Auto-generated Javadoc
 /**
  * Body part that is built using a byte array containing a file.
  *
@@ -75,22 +76,37 @@ public class ByteArrayBody extends AbstractContentBody {
         this(data, "application/octet-stream", filename);
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentBody#getFilename()
+     */
     public String getFilename() {
         return filename;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentBody#writeTo(java.io.OutputStream)
+     */
     public void writeTo(final OutputStream out) throws IOException {
         out.write(data);
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getCharset()
+     */
     public String getCharset() {
         return null;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getTransferEncoding()
+     */
     public String getTransferEncoding() {
         return MIME.ENC_BINARY;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getContentLength()
+     */
     public long getContentLength() {
         return data.length;
     }

@@ -29,17 +29,27 @@ package topoos.APIAccess.mime;
 
 import java.nio.charset.Charset;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class MIME.
  *
  * @since 4.0
  */
 public final class MIME {
 
+    /** The Constant CONTENT_TYPE. */
     public static final String CONTENT_TYPE          = "Content-Type";
+    
+    /** The Constant CONTENT_TRANSFER_ENC. */
     public static final String CONTENT_TRANSFER_ENC  = "Content-Transfer-Encoding";
+    
+    /** The Constant CONTENT_DISPOSITION. */
     public static final String CONTENT_DISPOSITION   = "Content-Disposition";
 
+    /** The Constant ENC_8BIT. */
     public static final String ENC_8BIT              = "8bit";
+    
+    /** The Constant ENC_BINARY. */
     public static final String ENC_BINARY            = "binary";
 
     /** The default character set to be used, i.e. "US-ASCII" */

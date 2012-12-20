@@ -9,17 +9,20 @@ import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class UserResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class UserResult extends APICallResult {
 
+	/** The user. */
 	private User user = null;
 
 	/**
-	 * 
+	 * Instantiates a new user result.
 	 */
 	public UserResult() {
 		super();
@@ -27,8 +30,10 @@ public class UserResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new user result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public UserResult(String error, String result) {
 		super(error, result);
@@ -36,15 +41,20 @@ public class UserResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param user
+	 * Instantiates a new user result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param user the user
 	 */
 	public UserResult(String error, String result, User user) {
 		super(error, result);
 		this.user = user;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		String Id = null;
@@ -58,15 +68,15 @@ public class UserResult extends APICallResult {
 			JSONObject jObject = (JSONObject) new JSONTokener(Result)
 					.nextValue();
 			// Extracting content
-			Id = jObject.getString("id");
-			Name = jObject.getString("name");
+			Id = APIUtils.getStringorNull(jObject,"id");
+			Name = APIUtils.getStringorNull(jObject,"name");
 			if (jObject.optJSONObject("profile") != null) {
 				Profile = new Profile(APIUtils.toDateString(jObject
 						.getJSONObject("profile").getString("birthday")),
-						jObject.getJSONObject("profile").getString("gender"));
+						APIUtils.getStringorNull(jObject.getJSONObject("profile"),"gender"));
 			} else
 				Profile = null;
-			Email = jObject.getString("email");
+			Email = APIUtils.getStringorNull(jObject,"email");
 			JSONArray jarray = jObject.getJSONArray("ugroup");
 			if (Ugroup == null)
 				Ugroup = new ArrayList<Integer>();
@@ -78,12 +88,12 @@ public class UserResult extends APICallResult {
 					.getJSONArray("visibledevices");
 			for (int i = 0; i < jarray2.length(); i++) {
 				arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
-						.getString("id"), jarray2.getJSONObject(i).getString(
+						.getString("id"), APIUtils.getStringorNull(jarray2.getJSONObject(i),
 						"name"), jarray2.getJSONObject(i).getInt("model"),
 						jarray2.getJSONObject(i).getBoolean("islogical")));
 			}
-			Acreditation = new Acreditation(jObject.getJSONObject(
-					"accreditation").getString("expirationtime"), jObject
+			Acreditation = new Acreditation(APIUtils.getStringorNull(jObject.getJSONObject(
+					"accreditation"),"expirationtime"), jObject
 					.getJSONObject("accreditation").getString("client_id"),
 					arrayV);
 			this.user = new User(Id, Name, Email, Profile, Ugroup, Acreditation);
@@ -97,6 +107,8 @@ public class UserResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the user.
+	 *
 	 * @return the user
 	 */
 	public User getUser() {
@@ -104,8 +116,9 @@ public class UserResult extends APICallResult {
 	}
 
 	/**
-	 * @param user
-	 *            the user to set
+	 * Sets the user.
+	 *
+	 * @param user the user to set
 	 */
 	public void setUser(User user) {
 		this.user = user;

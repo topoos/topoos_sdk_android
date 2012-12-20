@@ -184,11 +184,11 @@ public class Operations {
 	 *            (optional) user ID or hashtag of Twitter
 	 * @param accessTokenPregenerated
 	 *            (required) access_token to user resources
-	 * @return Boolean
+	 * @return POI
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Boolean Update(AccessTokenOAuth accessTokenPregenerated,
+	public static POI Update(AccessTokenOAuth accessTokenPregenerated,
 			Integer POIID, String name, Double lat, Double lng,
 			Integer[] categories, Double accuracy, Double vaccuracy,
 			Double elevation, String desc, String address, String cross_street,
@@ -210,8 +210,8 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Boolean Delete(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
+	public static Boolean Delete(AccessTokenOAuth accessTokenPregenerated, Integer POIID
+			) throws IOException,
 			TopoosException {
 		return Translator.Delete(POIID, accessTokenPregenerated);
 	}
@@ -389,7 +389,7 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Boolean Update(Context context, Integer POIID, String name,
+	public static POI Update(Context context, Integer POIID, String name,
 			Double lat, Double lng, Integer[] categories, Double accuracy,
 			Double vaccuracy, Double elevation, String desc, String address,
 			String cross_street, String city, String country,

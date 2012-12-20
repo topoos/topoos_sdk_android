@@ -1,19 +1,50 @@
 package topoos.APIAccess.Operations;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class POISGet_where.
+ *
  * @see APIOperation
  * @author MAJS
- *
  */
 public class POISGet_where extends APIOperation{
 
+	/** The oauth_token. */
 	private String  oauth_token=null; // (obligatorio) access_token a los recursos del usuario
+	
+	/** The pois. */
 	private String  pois=null; // (opcional) lista de identificadores de POI que deseamos recuperar, separados por comas
+	
+	/** The categories. */
 	private String  categories=null; // (obligatorio) identificadores de las categorías de filtrado, los POI obtenidos pertenecerán a todas las especificadas, separadas por comas
+	
+	/** The city. */
 	private String  city=null; // (opcional) obtiene los POI en la ciudad especificada
+	
+	/** The country. */
 	private String  country=null; // (opcional) obtiene los POI en la provincia especificada
+	
+	/** The postal_code. */
 	private String  postal_code=null; //(opcional) obtiene los POI cuyo código postal coincida con el especificado
+	
+	/** The q. */
 	private String  q=null; // (opcional) obtiene los POI cuyo nombre o descripción coincida con el patrón
 
+	/**
+	 * Instantiates a new pOIS get_where.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param pois the pois
+	 * @param categories the categories
+	 * @param city the city
+	 * @param country the country
+	 * @param postal_code the postal_code
+	 * @param q the q
+	 */
 	public POISGet_where(String operationName, String method, String format,
 			Integer version, String oauth_token, String pois,
 			String categories, String city, String country, String postal_code,
@@ -29,6 +60,9 @@ public class POISGet_where extends APIOperation{
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
@@ -43,6 +77,9 @@ public class POISGet_where extends APIOperation{
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		String params = null;

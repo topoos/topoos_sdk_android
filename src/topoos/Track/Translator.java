@@ -10,24 +10,31 @@ import topoos.APIAccess.Results.*;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class Translator.
+ *
  * @author MAJS
- * 
  */
 class Translator {
 
+	/** The method. */
 	private static String method = "GET";
+	
+	/** The format. */
 	private static String format = "json";
+	
+	/** The version. */
 	private static Integer version = topoos.Constants.APIVERSION;
 
 	/**
-	 * 
-	 * @param name
-	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException
-	 * @throws TopoosException
+	 * Adds the.
+	 *
+	 * @param name the name
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the track
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track Add(String name,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
@@ -48,14 +55,15 @@ class Translator {
 	}
 
 	/**
-	 * 
-	 * @param trackID
-	 * @param numberPositions
-	 * @param layers
-	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException
-	 * @throws TopoosException
+	 * Gets the.
+	 *
+	 * @param trackID the track id
+	 * @param numberPositions the number positions
+	 * @param layers the layers
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the track
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track Get(Integer trackID, Integer numberPositions,
 			String[] layers, AccessTokenOAuth accessTokenPregenerated)
@@ -76,13 +84,14 @@ class Translator {
 	}
 
 	/**
-	 * 
-	 * @param numberPOIS
-	 * @param layers
-	 * @param accessTokenPregenerated
-	 * @return
-	 * @throws IOException
-	 * @throws TopoosException
+	 * Gets the last.
+	 *
+	 * @param numberPOIS the number pois
+	 * @param layers the layers
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @return the track
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track GetLast(Integer numberPOIS, String[] layers,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
@@ -104,12 +113,13 @@ class Translator {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 * @param name
-	 * @return
-	 * @throws IOException
-	 * @throws TopoosException
+	 * Adds the.
+	 *
+	 * @param context the context
+	 * @param name the name
+	 * @return the track
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track Add(Context context, String name) throws IOException,
 			TopoosException {
@@ -118,14 +128,15 @@ class Translator {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 * @param trackID
-	 * @param numberPositions
-	 * @param layers
-	 * @return
-	 * @throws IOException
-	 * @throws TopoosException
+	 * Gets the.
+	 *
+	 * @param context the context
+	 * @param trackID the track id
+	 * @param numberPositions the number positions
+	 * @param layers the layers
+	 * @return the track
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track Get(Context context, Integer trackID,
 			Integer numberPositions, String[] layers) throws IOException,
@@ -135,13 +146,14 @@ class Translator {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 * @param numberPOIS
-	 * @param layers
-	 * @return
-	 * @throws IOException
-	 * @throws TopoosException
+	 * Gets the last.
+	 *
+	 * @param context the context
+	 * @param numberPOIS the number pois
+	 * @param layers the layers
+	 * @return the track
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track GetLast(Context context, Integer numberPOIS,
 			String[] layers) throws IOException, TopoosException {

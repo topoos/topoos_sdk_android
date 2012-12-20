@@ -11,18 +11,22 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class PositionCollectionResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class PositionCollectionResult extends APICallResult {
 
+	/** The positions. */
 	List<Position> positions = null;
 
 	
 	/**
-	 * 
+	 * Instantiates a new position collection result.
 	 */
 	public PositionCollectionResult() {
 		super();
@@ -32,8 +36,10 @@ public class PositionCollectionResult extends APICallResult {
 
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new position collection result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public PositionCollectionResult(String error, String result) {
 		super(error, result);
@@ -42,9 +48,11 @@ public class PositionCollectionResult extends APICallResult {
 
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param positions
+	 * Instantiates a new position collection result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param positions the positions
 	 */
 	public PositionCollectionResult(String error, String result,
 			List<Position> positions) {
@@ -53,6 +61,13 @@ public class PositionCollectionResult extends APICallResult {
 	}
 
 
+	/**
+	 * Parses the position.
+	 *
+	 * @param job the job
+	 * @return the position
+	 * @throws TopoosException the topoos exception
+	 */
 	private Position parsePosition(JSONObject job) throws TopoosException{
 		Position position=null;
 		Integer id = null;
@@ -72,7 +87,7 @@ public class PositionCollectionResult extends APICallResult {
 			JSONObject jObject = job;
 			// Extracting content
 			id = jObject.getInt("id");
-			device = jObject.getString("device");
+			device = APIUtils.getStringorNull(jObject,"device");
 			latitude = jObject.getDouble("latitude");
 			longitude = jObject.getDouble("longitude");
 			elevation = jObject.getDouble("elevation");
@@ -80,7 +95,7 @@ public class PositionCollectionResult extends APICallResult {
 			vaccuracy = jObject.getDouble("vaccuracy");
 			bearing = jObject.getDouble("bearing");
 			velocity = jObject.getDouble("velocity");
-			track_id = jObject.getString("track_id");
+			track_id = APIUtils.getStringorNull(jObject,"track_id");
 			timestamp = APIUtils.toDateString(jObject
 					.getString("timestamp"));
 			registerTime = APIUtils.toDateString(jObject
@@ -105,6 +120,9 @@ public class PositionCollectionResult extends APICallResult {
 
 
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -130,6 +148,8 @@ public class PositionCollectionResult extends APICallResult {
 
 
 	/**
+	 * Gets the positions.
+	 *
 	 * @return the positions
 	 */
 	public List<Position> getPositions() {
@@ -139,6 +159,8 @@ public class PositionCollectionResult extends APICallResult {
 
 
 	/**
+	 * Sets the positions.
+	 *
 	 * @param positions the positions to set
 	 */
 	public void setPositions(List<Position> positions) {

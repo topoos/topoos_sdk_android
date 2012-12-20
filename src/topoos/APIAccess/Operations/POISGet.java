@@ -1,25 +1,41 @@
 package topoos.APIAccess.Operations;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class POISGet.
+ *
  * @see APIOperation
  * @author MAJS
- * 
  */
 public class POISGet extends APIOperation {
 
+	/** The oauth_token. */
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
-	private Integer poi = null; // (obligatorio) identificador del punto de
+	/** The poi. */
+										private Integer poi = null; // (obligatorio) identificador del punto de
 								// interés
 
-	public POISGet(String operationName, String method, String format,
+	/**
+								 * Instantiates a new pOIS get.
+								 *
+								 * @param operationName the operation name
+								 * @param method the method
+								 * @param format the format
+								 * @param version the version
+								 * @param oauth_token the oauth_token
+								 * @param poi the poi
+								 */
+								public POISGet(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.poi = poi;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
@@ -29,6 +45,9 @@ public class POISGet extends APIOperation {
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		// TODO Auto-generated method stub

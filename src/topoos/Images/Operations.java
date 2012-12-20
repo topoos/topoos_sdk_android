@@ -31,6 +31,25 @@ public class Operations {
 	 *            (required) access_token to user resources
 	 * @param file (required) image
 	 * @param filename (required) image name
+	 * @return Image
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Image ImageUpload(AccessTokenOAuth accessTokenPregenerated, byte[] file, String filename
+			 ) throws IOException, TopoosException{
+		return Translator.ImageUpload(file, filename, accessTokenPregenerated);
+		
+	}
+
+	
+	
+	/**
+	 * Uploading an image to topoos pic services
+	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
+	 * @param file (required) image
+	 * @param filename (required) image name
 	 * @param pos_id (required) position identifier
 	 * @return Image
 	 * @throws IOException
@@ -112,6 +131,24 @@ public class Operations {
 		return Translator.ImageUploadNewPOI(file, filename, lat, lng, name, description, elevation, accuracy, vaccuracy, address, cross_street, city, country, postal_code, phone, twitter, categories, accessTokenPregenerated);
 	}
 
+	/**
+	 * Uploading an image to topoos pic services
+	 * 
+	 * @param context
+	 *            (required) Interface to global information about an
+	 *            application environment 
+	 * @param file (required) image
+	 * @param filename (required) image name
+	 * @return Image
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Image ImageUpload(Context context, byte[] file, String filename
+			 ) throws IOException, TopoosException{
+		return Translator.ImageUpload(context, file, filename);
+		
+	}
+	
 	/**
 	 * Uploading an image to topoos pic services
 	 * 

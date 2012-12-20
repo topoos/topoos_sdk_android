@@ -6,17 +6,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class RuleResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class RuleResult extends APICallResult{
 
+	/** The rule. */
 	private Rule rule =null;
 	
 	/**
-	 * 
+	 * Instantiates a new rule result.
 	 */
 	public RuleResult() {
 		super();
@@ -24,8 +28,10 @@ public class RuleResult extends APICallResult{
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new rule result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public RuleResult(String error, String result) {
 		super(error, result);
@@ -33,15 +39,20 @@ public class RuleResult extends APICallResult{
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param rule
+	 * Instantiates a new rule result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param rule the rule
 	 */
 	public RuleResult(String error, String result, Rule rule) {
 		super(error, result);
 		this.rule = rule;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -53,7 +64,7 @@ public class RuleResult extends APICallResult{
 					.nextValue();
 			// Extracting content
 			id = jObject.getInt("id");
-			type = jObject.getString("type");
+			type = APIUtils.getStringorNull(jObject,"type");
 			this.rule=new Rule(id,type);
 			
 		} catch (Exception e) {
@@ -65,6 +76,8 @@ public class RuleResult extends APICallResult{
 	}
 
 	/**
+	 * Gets the rule.
+	 *
 	 * @return the rule
 	 */
 	public Rule getRule() {
@@ -72,6 +85,8 @@ public class RuleResult extends APICallResult{
 	}
 
 	/**
+	 * Sets the rule.
+	 *
 	 * @param rule the rule to set
 	 */
 	public void setRule(Rule rule) {

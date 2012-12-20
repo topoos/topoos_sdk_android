@@ -5,10 +5,11 @@ import topoos.AccessTokenOAuth;
 import topoos.Constants;
 import android.content.Context;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class Operations.
+ *
  * @author MAJS
- * 
  */
 public class Operations {
 
@@ -18,8 +19,9 @@ public class Operations {
 	private static final String ParamKey_RefreshToken = "refresh_token";*/
 
 	/**
-	 * 
-	 * @param clientID
+	 * Gets the login client side uri.
+	 *
+	 * @param clientID the client id
 	 * @return String
 	 */
 	public String GetLoginClientSideURI(String clientID) {
@@ -32,8 +34,9 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param clientID
+	 * Gets the login server side uri.
+	 *
+	 * @param clientID the client id
 	 * @return String
 	 */
 	public String GetLoginServerSideURI(String clientID) {
@@ -83,9 +86,9 @@ public class Operations {
 						JSONObject jObject = (JSONObject) new JSONTokener(
 								statusResult).nextValue();
 						RefreshAccessToken = new AccessTokenOAuth(
-								jObject.getString("Access_token"),
+								APIUtils.getStringorNull(jObject,"Access_token"),
 								jObject.getLong("expires_in"),
-								jObject.getString("refresh_token"), "bearer");
+								APIUtils.getStringorNull(jObject,"refresh_token"), "bearer");
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -146,17 +149,19 @@ public class Operations {
 	}
 */
 	/**
-	 * 
-	 * @param accessTokenOAuth
-	 * @return boolean
-	 */
+ * Check access token.
+ *
+ * @param accessTokenOAuth the access token o auth
+ * @return boolean
+ */
 	public boolean CheckAccessToken(AccessTokenOAuth accessTokenOAuth) {
 		return accessTokenOAuth.isValid();
 	}
 
 	/**
-	 * 
-	 * @param context
+	 * Check access token.
+	 *
+	 * @param context the context
 	 * @return boolean
 	 */
 	public boolean CheckAccessToken(Context context) {

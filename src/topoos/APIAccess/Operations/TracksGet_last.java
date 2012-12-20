@@ -1,5 +1,6 @@
 package topoos.APIAccess.Operations;
 
+// TODO: Auto-generated Javadoc
 /**
  * 
  * Get a document that represents the last registered Track by a device.
@@ -9,29 +10,50 @@ package topoos.APIAccess.Operations;
  */
 public class TracksGet_last extends APIOperation {
 
+	/** The Constant LAYER_DEFAULT. */
 	public static final String LAYER_DEFAULT = "default";
+	
+	/** The Constant LAYER_BEARING. */
 	public static final String LAYER_BEARING = "bearing";
+	
+	/** The Constant LAYER_TRACKLINE. */
 	public static final String LAYER_TRACKLINE = "trackline";
 
+	/** The oauth_token. */
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
-	private String device = null; // (opcional) dispositivo del que vamos a
+	/** The device. */
+										private String device = null; // (opcional) dispositivo del que vamos a
 									// recuperar el último Track, es obligatorio
 									// si la aplicación puede utilizar los
 									// dispositivos físicos de un usuario,
 									// opción que por defecto está
 									// deshabilitada.
-	private Integer total = null; // (opcional) si se especifica un valor N, se
+	/** The total. */
+									private Integer total = null; // (opcional) si se especifica un valor N, se
 									// obtendrán las últimas N posiciones del
 									// Track
-	private String[] layer = null; // (opcional) capas KML solicitadas,
+	/** The layer. */
+									private String[] layer = null; // (opcional) capas KML solicitadas,
 									// separadas por comas.
 
 	// default (valor por defecto) marcadores de posición
 	// bearing flechas de rumbo
 	// trackline línea de trayectoria
 
-	public TracksGet_last(String operationName, String method, String format,
+	/**
+									 * Instantiates a new tracks get_last.
+									 *
+									 * @param operationName the operation name
+									 * @param method the method
+									 * @param format the format
+									 * @param version the version
+									 * @param oauth_token the oauth_token
+									 * @param device the device
+									 * @param total the total
+									 * @param layer the layer
+									 */
+									public TracksGet_last(String operationName, String method, String format,
 			Integer version, String oauth_token, String device, Integer total,
 			String[] layer) {
 		super(operationName, method, format, version);
@@ -41,6 +63,9 @@ public class TracksGet_last extends APIOperation {
 		this.layer = layer;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
@@ -53,6 +78,9 @@ public class TracksGet_last extends APIOperation {
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		String params = null;

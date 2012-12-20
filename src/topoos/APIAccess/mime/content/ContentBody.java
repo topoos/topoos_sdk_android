@@ -30,14 +30,27 @@ package topoos.APIAccess.mime.content;
 import java.io.IOException;
 import java.io.OutputStream;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Interface ContentBody.
  *
  * @since 4.0
  */
 public interface ContentBody extends ContentDescriptor {
 
+    /**
+     * Gets the filename.
+     *
+     * @return the filename
+     */
     String getFilename();
 
+    /**
+     * Write to.
+     *
+     * @param out the out
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     void writeTo(OutputStream out) throws IOException;
 
 }

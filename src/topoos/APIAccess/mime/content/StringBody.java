@@ -38,16 +38,28 @@ import java.nio.charset.Charset;
 
 import topoos.APIAccess.mime.MIME;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class StringBody.
  *
  * @since 4.0
  */
 public class StringBody extends AbstractContentBody {
 
+    /** The content. */
     private final byte[] content;
+    
+    /** The charset. */
     private final Charset charset;
 
     /**
+     * Creates the.
+     *
+     * @param text the text
+     * @param mimeType the mime type
+     * @param charset the charset
+     * @return the string body
+     * @throws IllegalArgumentException the illegal argument exception
      * @since 4.1
      */
     public static StringBody create(
@@ -62,6 +74,12 @@ public class StringBody extends AbstractContentBody {
     }
 
     /**
+     * Creates the.
+     *
+     * @param text the text
+     * @param charset the charset
+     * @return the string body
+     * @throws IllegalArgumentException the illegal argument exception
      * @since 4.1
      */
     public static StringBody create(
@@ -70,6 +88,11 @@ public class StringBody extends AbstractContentBody {
     }
 
     /**
+     * Creates the.
+     *
+     * @param text the text
+     * @return the string body
+     * @throws IllegalArgumentException the illegal argument exception
      * @since 4.1
      */
     public static StringBody create(final String text) throws IllegalArgumentException {
@@ -82,8 +105,7 @@ public class StringBody extends AbstractContentBody {
      * @param text to be used for the body, not {@code null}
      * @param mimeType the mime type, not {@code null}
      * @param charset the character set, may be {@code null}, in which case the US-ASCII charset is used
-     * @throws UnsupportedEncodingException
-     * @throws IllegalArgumentException if the {@code text} parameter is null
+     * @throws UnsupportedEncodingException the unsupported encoding exception
      */
     public StringBody(
             final String text,
@@ -106,8 +128,7 @@ public class StringBody extends AbstractContentBody {
      *
      * @param text to be used for the body, not {@code null}
      * @param charset the character set, may be {@code null}, in which case the US-ASCII charset is used
-     * @throws UnsupportedEncodingException
-     * @throws IllegalArgumentException if the {@code text} parameter is null
+     * @throws UnsupportedEncodingException the unsupported encoding exception
      */
     public StringBody(final String text, final Charset charset) throws UnsupportedEncodingException {
         this(text, "text/plain", charset);
@@ -119,19 +140,26 @@ public class StringBody extends AbstractContentBody {
      * The hosts default charset is used.
      *
      * @param text to be used for the body, not {@code null}
-     * @throws UnsupportedEncodingException
-     * @throws IllegalArgumentException if the {@code text} parameter is null
+     * @throws UnsupportedEncodingException the unsupported encoding exception
      */
     public StringBody(final String text) throws UnsupportedEncodingException {
         this(text, "text/plain", null);
     }
 
+    /**
+     * Gets the reader.
+     *
+     * @return the reader
+     */
     public Reader getReader() {
         return new InputStreamReader(
                 new ByteArrayInputStream(this.content),
                 this.charset);
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentBody#writeTo(java.io.OutputStream)
+     */
     public void writeTo(final OutputStream out) throws IOException {
         if (out == null) {
             throw new IllegalArgumentException("Output stream may not be null");
@@ -145,18 +173,30 @@ public class StringBody extends AbstractContentBody {
         out.flush();
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getTransferEncoding()
+     */
     public String getTransferEncoding() {
         return MIME.ENC_8BIT;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getCharset()
+     */
     public String getCharset() {
         return this.charset.name();
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentDescriptor#getContentLength()
+     */
     public long getContentLength() {
         return this.content.length;
     }
 
+    /* (non-Javadoc)
+     * @see topoos.APIAccess.mime.content.ContentBody#getFilename()
+     */
     public String getFilename() {
         return null;
     }

@@ -1,52 +1,101 @@
 package topoos.APIAccess.Operations;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class POISWarningAdd.
+ *
  * @see APIOperation
  * @author MAJS
- * 
  */
 public class POISWarningAdd extends APIOperation {
 
+	/** The Constant TYPE_CLOSED. */
 	public static final String TYPE_CLOSED = "CLOSED";
+	
+	/** The Constant TYPE_DUPLICATED. */
 	public static final String TYPE_DUPLICATED = "DUPLICATED";
+	
+	/** The Constant TYPE_WRONG_INDICATOR. */
 	public static final String TYPE_WRONG_INDICATOR = "WRONG_INDICATOR";
+	
+	/** The Constant TYPE_WRONG_INFO. */
 	public static final String TYPE_WRONG_INFO = "WRONG_INFO";
 
+	/** The oauth_token. */
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
-	private Integer poi = null; // (opcional) lista de identificadores de POI
+	/** The poi. */
+										private Integer poi = null; // (opcional) lista de identificadores de POI
 								// cuyos warnings deseamos recuperar, separados
 								// por comas
-	private String type = null; // (opcional) lista de tipos de warning que
+	/** The type. */
+								private String type = null; // (opcional) lista de tipos de warning que
 								// deseamos recuperar, los valores pueden ser:
 	// CLOSED: Marcados como cerrado o inexistente
 	// DUPLICATED: Marcados como duplicado
 	// WRONG_INDICATOR: La marca de posición es incorrecta o inexacta
 	// WRONG_INFO: La información del punto de interés es incorrecta o
 	// incompleta
-	private Double lat = null; // (obligatorio) latitud de la nueva posición
+	/** The lat. */
+								private Double lat = null; // (obligatorio) latitud de la nueva posición
+	
+	/** The lng. */
 	private Double lng = null; // (obligatorio) longitud de la nueva posición
+	
+	/** The accuracy. */
 	private Double accuracy = null; // (opcional) precisión de la posición
 									// (latitud, longitud)
-	private Double vaccuracy = null; // (opcional) precisión de la elevación
+	/** The vaccuracy. */
+									private Double vaccuracy = null; // (opcional) precisión de la elevación
+	
+	/** The elevation. */
 	private Double elevation = null; // (opcional) elevación respecto al nivel
 										// del mar
 
-	private String categories = null; // (obligatorio) identificadores de las
+	/** The categories. */
+										private String categories = null; // (obligatorio) identificadores de las
 										// categorías a las que pertenece este
 										// POI, separados por comas
-	private String name = null; // (obligatorio) nombre del punto de interés
+	/** The name. */
+										private String name = null; // (obligatorio) nombre del punto de interés
+	
+	/** The desc. */
 	private String desc = null; // (opcional) descripción del punto de interés
+	
+	/** The address. */
 	private String address = null; // (opcional) dirección del punto del interés
+	
+	/** The cross_street. */
 	private String cross_street = null; // (opcional) calle transversal
+	
+	/** The city. */
 	private String city = null; // (opcional) ciudad del punto de interés
+	
+	/** The country. */
 	private String country = null; // (opcional) estado
+	
+	/** The postal_code. */
 	private String postal_code = null; // (opcional) código postal
+	
+	/** The phone. */
 	private String phone = null; // (opcional) teléfono de contacto
+	
+	/** The twitter. */
 	private String twitter = null; // (opcional) identificador de usuario o
 									// hashtag de twitter
 
-	public POISWarningAdd(String operationName, String method, String format,
+	/**
+									 * Instantiates a new pOIS warning add.
+									 *
+									 * @param operationName the operation name
+									 * @param method the method
+									 * @param format the format
+									 * @param version the version
+									 * @param oauth_token the oauth_token
+									 * @param poi the poi
+									 * @param type the type
+									 */
+									public POISWarningAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi, String type) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
@@ -54,6 +103,22 @@ public class POISWarningAdd extends APIOperation {
 		this.type = type;
 	}
 
+	/**
+	 * Instantiates a new pOIS warning add.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param poi the poi
+	 * @param type the type
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @param accuracy the accuracy
+	 * @param vaccuracy the vaccuracy
+	 * @param elevation the elevation
+	 */
 	public POISWarningAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi, String type,
 			Double lat, Double lng, Double accuracy, Double vaccuracy,
@@ -69,6 +134,27 @@ public class POISWarningAdd extends APIOperation {
 		this.elevation = elevation;
 	}
 
+	/**
+	 * Instantiates a new pOIS warning add.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param poi the poi
+	 * @param type the type
+	 * @param categories the categories
+	 * @param name the name
+	 * @param desc the desc
+	 * @param address the address
+	 * @param cross_street the cross_street
+	 * @param city the city
+	 * @param country the country
+	 * @param postal_code the postal_code
+	 * @param phone the phone
+	 * @param twitter the twitter
+	 */
 	public POISWarningAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi, String type,
 			String categories, String name, String desc, String address,
@@ -90,6 +176,9 @@ public class POISWarningAdd extends APIOperation {
 		this.twitter = twitter;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
@@ -121,6 +210,9 @@ public class POISWarningAdd extends APIOperation {
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		// TODO Auto-generated method stub

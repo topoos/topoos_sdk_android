@@ -1,20 +1,43 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
+// TODO: Auto-generated Javadoc
+
 /**
- * Class that implements a user
- * @author MAJS
+ * Class that implements a user.
  *
+ * @author MAJS
  */
 public class User   {
 
+	/** The Id. */
 	private String Id = null;
+	
+	/** The Name. */
 	private String Name = null;
+	
+	/** The Email. */
 	private String Email = null;
+	
+	/** The Profile. */
 	private Profile Profile = null;
+	
+	/** The Ugroup. */
 	private ArrayList<Integer> Ugroup = null;
+	
+	/** The Acreditation. */
 	private Acreditation Acreditation = null;
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param id the id
+	 * @param name the name
+	 * @param email the email
+	 * @param profile the profile
+	 * @param ugroup the ugroup
+	 * @param acreditation the acreditation
+	 */
 	public User(String id, String name,
 			String email, Profile profile,
 			ArrayList<Integer> ugroup,
@@ -29,7 +52,8 @@ public class User   {
 
 
 	/**
-	 * get the id
+	 * get the id.
+	 *
 	 * @return the id
 	 */
 	public String getId() {
@@ -37,6 +61,8 @@ public class User   {
 	}
 
 	/**
+	 * Sets the id.
+	 *
 	 * @param id the id to set
 	 */
 	public void setId(String id) {
@@ -44,7 +70,8 @@ public class User   {
 	}
 
 	/**
-	 * get the name
+	 * get the name.
+	 *
 	 * @return the name
 	 */
 	public String getName() {
@@ -52,6 +79,8 @@ public class User   {
 	}
 
 	/**
+	 * Sets the name.
+	 *
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
@@ -59,7 +88,8 @@ public class User   {
 	}
 
 	/**
-	 * get the email
+	 * get the email.
+	 *
 	 * @return the email
 	 */
 	public String getEmail() {
@@ -67,6 +97,8 @@ public class User   {
 	}
 
 	/**
+	 * Sets the email.
+	 *
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
@@ -74,7 +106,8 @@ public class User   {
 	}
 
 	/**
-	 * get the profile
+	 * get the profile.
+	 *
 	 * @return the profile
 	 */
 	public Profile getProfile() {
@@ -82,6 +115,8 @@ public class User   {
 	}
 
 	/**
+	 * Sets the profile.
+	 *
 	 * @param profile the profile to set
 	 */
 	public void setProfile(Profile profile) {
@@ -89,7 +124,8 @@ public class User   {
 	}
 
 	/**
-	 * get the id of the group
+	 * get the id of the group.
+	 *
 	 * @return the ugroup
 	 */
 	public ArrayList<Integer> getUgroup() {
@@ -97,6 +133,8 @@ public class User   {
 	}
 
 	/**
+	 * Sets the ugroup.
+	 *
 	 * @param ugroup the ugroup to set
 	 */
 	public void setUgroup(ArrayList<Integer> ugroup) {
@@ -104,7 +142,8 @@ public class User   {
 	}
 
 	/**
-	 * get the acreditation
+	 * get the acreditation.
+	 *
 	 * @return the acreditation
 	 */
 	public Acreditation getAcreditation() {
@@ -112,6 +151,8 @@ public class User   {
 	}
 
 	/**
+	 * Sets the acreditation.
+	 *
 	 * @param acreditation the acreditation to set
 	 */
 	public void setAcreditation(Acreditation acreditation) {

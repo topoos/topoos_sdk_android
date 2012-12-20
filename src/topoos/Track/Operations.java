@@ -7,29 +7,32 @@ import topoos.Exception.TopoosException;
 import topoos.Objects.Track;
 import android.content.Context;
 
+// TODO: Auto-generated Javadoc
 /**
- * Operations related to position management
- * 
+ * Operations related to position management.
+ *
  * @author MAJS
- * 
  */
 public class Operations {
 
+	/** The Constant LAYER_DEFAULT. */
 	public static final String LAYER_DEFAULT = topoos.APIAccess.Operations.TracksGet.LAYER_DEFAULT;
+	
+	/** The Constant LAYER_BEARING. */
 	public static final String LAYER_BEARING = topoos.APIAccess.Operations.TracksGet.LAYER_BEARING;
+	
+	/** The Constant LAYER_TRACKLINE. */
 	public static final String LAYER_TRACKLINE = topoos.APIAccess.Operations.TracksGet.LAYER_TRACKLINE;
 
 	/**
 	 * Create a new Track. A Track is a sequence of positions recorded during a
 	 * session
-	 * 
-	 * @param name
-	 *            (optional) description of the Track
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param name (optional) description of the Track
 	 * @return Track
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track Add(AccessTokenOAuth accessTokenPregenerated,
 			String name) throws IOException, TopoosException {
@@ -38,20 +41,16 @@ public class Operations {
 	}
 
 	/**
-	 * Obtain information from a Track
-	 * 
-	 * @param trackID
-	 *            (required) requested identifier Track
-	 * @param numberPositions
-	 *            (optional) if you specify a value N, N shows the latest
-	 *            positions
-	 * @param layers
-	 *            (optional) requested KML layers, separated by commas
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
+	 * Obtain information from a Track.
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param trackID (required) requested identifier Track
+	 * @param numberPositions (optional) if you specify a value N, N shows the latest
+	 * positions
+	 * @param layers (optional) requested KML layers, separated by commas
 	 * @return Track
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track Get(AccessTokenOAuth accessTokenPregenerated,
 			Integer trackID, Integer numberPositions, String[] layers)
@@ -62,17 +61,15 @@ public class Operations {
 	}
 
 	/**
-	 * Gets a document that represents the last track recorded by a device
-	 * 
-	 * @param numberPOIS
-	 *            (optional) if you specify a value N, N positions get the
-	 *            latest Track
-	 * @param layers
-	 *            (Optional) requested KML layers, separated by commas
-	 * @param accessTokenPregenerated
+	 * Gets a document that represents the last track recorded by a device.
+	 *
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @param numberPOIS (optional) if you specify a value N, N positions get the
+	 * latest Track
+	 * @param layers (Optional) requested KML layers, separated by commas
 	 * @return Track
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track GetLast(AccessTokenOAuth accessTokenPregenerated,
 			Integer numberPOIS, String[] layers) throws IOException,
@@ -83,15 +80,13 @@ public class Operations {
 	/**
 	 * Create a new Track. A Track is a sequence of positions recorded during a
 	 * session
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param name
-	 *            (optional) description of the Track
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param name (optional) description of the Track
 	 * @return Track
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track Add(Context context, String name) throws IOException,
 			TopoosException {
@@ -99,17 +94,16 @@ public class Operations {
 	}
 
 	/**
-	 * Obtain information from a Track
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param trackID
-	 * @param numberPositions
-	 * @param layers
+	 * Obtain information from a Track.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param trackID the track id
+	 * @param numberPositions the number positions
+	 * @param layers the layers
 	 * @return Track
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track Get(Context context, Integer trackID,
 			Integer numberPositions, String[] layers) throws IOException,
@@ -119,19 +113,16 @@ public class Operations {
 	}
 
 	/**
-	 * Gets a document that represents the last track recorded by a device
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param numberPOIS
-	 *            (optional) if you specify a value N, N positions get the
-	 *            latest Track
-	 * @param layers
-	 *            (Optional) requested KML layers, separated by commas
+	 * Gets a document that represents the last track recorded by a device.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param numberPOIS (optional) if you specify a value N, N positions get the
+	 * latest Track
+	 * @param layers (Optional) requested KML layers, separated by commas
 	 * @return Track
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Track GetLast(Context context, Integer numberPOIS,
 			String[] layers) throws IOException, TopoosException {

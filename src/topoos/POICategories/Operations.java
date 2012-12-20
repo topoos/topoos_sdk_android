@@ -9,27 +9,33 @@ import topoos.Exception.TopoosException;
 import topoos.Objects.POICategory;
 import android.content.Context;
 
+// TODO: Auto-generated Javadoc
 /**
- * Operations related to POICategories management
- * 
+ * Operations related to POICategories management.
+ *
  * @author MAJS
- * 
  */
 public class Operations {
 
+	/** The Constant TYPE_CLOSED. */
 	public static final String TYPE_CLOSED = POISWarning.TYPE_CLOSED;
+	
+	/** The Constant TYPE_DUPLICATED. */
 	public static final String TYPE_DUPLICATED = POISWarning.TYPE_DUPLICATED;
+	
+	/** The Constant TYPE_WRONG_INDICATOR. */
 	public static final String TYPE_WRONG_INDICATOR = POISWarning.TYPE_WRONG_INDICATOR;
+	
+	/** The Constant TYPE_WRONG_INFO. */
 	public static final String TYPE_WRONG_INFO = POISWarning.TYPE_WRONG_INFO;
 
 	/**
 	 * Gets the list of POI categories.
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
 	 * @return List<POICategory>
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static List<POICategory> GetAll(
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
@@ -38,15 +44,13 @@ public class Operations {
 	}
 
 	/**
-	 * Create a new category of POIs
-	 * 
-	 * @param description
-	 *            (required) Category description
-	 * @param accessTokenPregenerated
-	 *            (required) Access_token to root resources
+	 * Create a new category of POIs.
+	 *
+	 * @param accessTokenPregenerated (required) Access_token to root resources
+	 * @param description (required) Category description
 	 * @return POICategory
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POICategory Add(AccessTokenOAuth accessTokenPregenerated,
 			String description) throws IOException, TopoosException {
@@ -56,16 +60,13 @@ public class Operations {
 	/**
 	 * Updates the description of a category. The category must belong to the
 	 * application.
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) Access_token to root resources
-	 * @param categoryID
-	 *            (required) Category ID to modify
-	 * @param description
-	 *            (required) Category description
+	 *
+	 * @param accessTokenPregenerated (required) Access_token to root resources
+	 * @param categoryID (required) Category ID to modify
+	 * @param description (required) Category description
 	 * @return Boolean
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Boolean Update(AccessTokenOAuth accessTokenPregenerated,
 			Integer categoryID, String description) throws IOException,
@@ -78,14 +79,12 @@ public class Operations {
 	 * queries, but the points of interest will remain associated with the
 	 * deleted category if they were already above. The category must belong to
 	 * the application.
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
-	 * @param categoryID
-	 *            (required) Category ID to delete
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param categoryID (required) Category ID to delete
 	 * @return Boolean
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Boolean Delete(AccessTokenOAuth accessTokenPregenerated,
 			Integer categoryID) throws IOException, TopoosException {
@@ -94,13 +93,12 @@ public class Operations {
 
 	/**
 	 * Gets the list of POI categories.
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
 	 * @return List<POICategory>
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static List<POICategory> GetAll(Context context) throws IOException,
 			TopoosException {
@@ -108,16 +106,14 @@ public class Operations {
 	}
 
 	/**
-	 * Create a new category of POIs
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param name
-	 *            (required) Category description
+	 * Create a new category of POIs.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param name (required) Category description
 	 * @return POICategory
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POICategory Add(Context context, String name)
 			throws IOException, TopoosException {
@@ -126,16 +122,15 @@ public class Operations {
 
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param categoryID
-	 *            (required) Category ID to modify
+	 * Update.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param categoryID (required) Category ID to modify
 	 * @param description (required) New description of category
 	 * @return Boolean
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Boolean Update(Context context, Integer categoryID,
 			String description) throws IOException, TopoosException {
@@ -147,15 +142,13 @@ public class Operations {
 	 * queries, but the points of interest will remain associated with the
 	 * deleted category if they were already above. The category must belong to
 	 * the application.
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param categoryID
-	 *            (required) Category ID to delete
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param categoryID (required) Category ID to delete
 	 * @return Boolean
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Boolean Delete(Context context, Integer categoryID)
 			throws IOException, TopoosException {

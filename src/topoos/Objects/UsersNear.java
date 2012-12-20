@@ -1,17 +1,22 @@
 package topoos.Objects;
 
 import java.util.ArrayList;
+// TODO: Auto-generated Javadoc
+
 /**
- * Class that implements a list of users that are near
- * @author MAJS
+ * Class that implements a list of users that are near.
  *
+ * @author MAJS
  */
 public class UsersNear  {
 
+	/** The userid positions. */
 	private ArrayList<UserIdPosition> useridPositions=null;
 	
 	/**
-	 * @param userPositions
+	 * Instantiates a new users near.
+	 *
+	 * @param userPositions the user positions
 	 */
 	public UsersNear(
 			ArrayList<UserIdPosition> userPositions) {
@@ -19,7 +24,8 @@ public class UsersNear  {
 	}
 
 	/**
-	 * get the user positions
+	 * get the user positions.
+	 *
 	 * @return the userPositions
 	 */
 	public ArrayList<UserIdPosition> getUserPositions() {
@@ -27,6 +33,8 @@ public class UsersNear  {
 	}
 
 	/**
+	 * Sets the user positions.
+	 *
 	 * @param userPositions the userPositions to set
 	 */
 	public void setUserPositions(ArrayList<UserIdPosition> userPositions) {

@@ -9,6 +9,7 @@ import topoos.APIAccess.Operations.POISWarningAdd;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
+// TODO: Auto-generated Javadoc
 /**
  * Operations related to POI Warnings management.
  * 
@@ -17,24 +18,28 @@ import topoos.Objects.*;
  */
 public class Operations {
 
+	/** The Constant TYPE_CLOSED. */
 	public static final String TYPE_CLOSED = POISWarningAdd.TYPE_CLOSED;
+	
+	/** The Constant TYPE_DUPLICATED. */
 	public static final String TYPE_DUPLICATED = POISWarningAdd.TYPE_DUPLICATED;
+	
+	/** The Constant TYPE_WRONG_INDICATOR. */
 	public static final String TYPE_WRONG_INDICATOR = POISWarningAdd.TYPE_WRONG_INDICATOR;
+	
+	/** The Constant TYPE_WRONG_INFO. */
 	public static final String TYPE_WRONG_INFO = POISWarningAdd.TYPE_WRONG_INFO;
 
 	/**
 	 * Gets the list of error messages related to a point of interest.
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
-	 * @param POISID
-	 *            (optional) List of identifier whose warnings POI want to
-	 *            retrieve.
-	 * @param type
-	 *            (optional) List of type whose warnings POI want to retrieve.
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param POISID (optional) List of identifier whose warnings POI want to
+	 * retrieve.
+	 * @param type (optional) List of type whose warnings POI want to retrieve.
 	 * @return List<POIDataWarning>
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static List<POIDataWarning> Get(
 			AccessTokenOAuth accessTokenPregenerated, Integer[] POISID,
@@ -44,14 +49,13 @@ public class Operations {
 
 	/**
 	 * Gets the list of all error messages related to a type.
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
 	 * @param type (required) Type of warning (TYPE_CLOSED, TYPE_DUPLICATED,
-	 *         TYPE_WRONG_INDICATOR, TYPE_WRONG_INFO)
+	 * TYPE_WRONG_INDICATOR, TYPE_WRONG_INFO)
 	 * @return List<POIDataWarning>
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static List<POIDataWarning> GetAll(
 			AccessTokenOAuth accessTokenPregenerated, String type)
@@ -60,14 +64,13 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
-	 * @param POI_ID
-	 *            (required) POI ID that we assign this warning.
+	 * Adds the closed.
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param POI_ID (required) POI ID that we assign this warning.
 	 * @return POIWarning
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POIWarning AddClosed(
 			AccessTokenOAuth accessTokenPregenerated, Integer POI_ID)
@@ -76,14 +79,13 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
-	 * @param POI_ID
-	 *            (required) POI ID that we assign this warning.
+	 * Adds the duplicated.
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param POI_ID (required) POI ID that we assign this warning.
 	 * @return POIWarning
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POIWarning AddDuplicated(
 			AccessTokenOAuth accessTokenPregenerated, Integer POI_ID)
@@ -92,19 +94,18 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
-	 * @param POI_ID
-	 *            (required) POI ID that we assign this warning.
-	 * @param lat
-	 * @param lng
-	 * @param accuracy
-	 * @param vaccuracy
-	 * @param elevation
+	 * Adds the wrong indicator.
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param POI_ID (required) POI ID that we assign this warning.
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @param accuracy the accuracy
+	 * @param vaccuracy the vaccuracy
+	 * @param elevation the elevation
 	 * @return POIWarning
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POIWarning AddWrongIndicator(
 			AccessTokenOAuth accessTokenPregenerated, Integer POI_ID,
@@ -115,24 +116,23 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
-	 * @param POI_ID
-	 *            (required) POI ID that we assign this warning.
-	 * @param name
-	 * @param categories
-	 * @param desc
-	 * @param address
-	 * @param cross_street
-	 * @param city
-	 * @param country
-	 * @param postal_code
-	 * @param phone
-	 * @param twitter
+	 * Adds the wrong info.
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param POI_ID (required) POI ID that we assign this warning.
+	 * @param name the name
+	 * @param categories the categories
+	 * @param desc the desc
+	 * @param address the address
+	 * @param cross_street the cross_street
+	 * @param city the city
+	 * @param country the country
+	 * @param postal_code the postal_code
+	 * @param phone the phone
+	 * @param twitter the twitter
 	 * @return POIWarning
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POIWarning AddWrongInfo(
 			AccessTokenOAuth accessTokenPregenerated, Integer POI_ID,
@@ -146,14 +146,14 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
-	 * @param POISID
-	 * @param type
+	 * Delete.
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param POISID the poisid
+	 * @param type the type
 	 * @return Boolean
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Boolean Delete(AccessTokenOAuth accessTokenPregenerated,
 			Integer[] POISID, String type) throws IOException, TopoosException {
@@ -161,13 +161,13 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
-	 * @param type
+	 * Delete all.
+	 *
+	 * @param accessTokenPregenerated (required) access_token to user resources
+	 * @param type the type
 	 * @return Boolean
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Boolean DeleteAll(AccessTokenOAuth accessTokenPregenerated,
 			String type) throws IOException, TopoosException {
@@ -175,18 +175,16 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param POIID
-	 *            (optional) List of identifier whose warnings POI want to
-	 *            retrieve.
-	 * @param type
-	 *            (optional) List of type whose warnings POI want to retrieve.
+	 * Gets the.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param POIID (optional) List of identifier whose warnings POI want to
+	 * retrieve.
+	 * @param type (optional) List of type whose warnings POI want to retrieve.
 	 * @return List<POIDataWarning>
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static List<POIDataWarning> Get(Context context, Integer[] POIID,
 			String type) throws IOException, TopoosException {
@@ -194,15 +192,15 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
+	 * Gets the all.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
 	 * @param type (required) Type of warning (TYPE_CLOSED, TYPE_DUPLICATED,
-	 *         TYPE_WRONG_INDICATOR, TYPE_WRONG_INFO)
+	 * TYPE_WRONG_INDICATOR, TYPE_WRONG_INFO)
 	 * @return List<POIDataWarning>
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static List<POIDataWarning> GetAll(Context context, String type)
 			throws IOException, TopoosException {
@@ -210,15 +208,14 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param POI_ID
-	 *            (required) POI ID that we assign this warning.
+	 * Adds the closed.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param POI_ID (required) POI ID that we assign this warning.
 	 * @return POIWarning
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POIWarning AddClosed(Context context, Integer POI_ID)
 			throws IOException, TopoosException {
@@ -226,15 +223,14 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param POI_ID
-	 *            (required) POI ID that we assign this warning.
+	 * Adds the duplicated.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param POI_ID (required) POI ID that we assign this warning.
 	 * @return POIWarning
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POIWarning AddDuplicated(Context context, Integer POI_ID)
 			throws IOException, TopoosException {
@@ -242,20 +238,19 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param POI_ID
-	 *            (required) POI ID that we assign this warning.
-	 * @param lat
-	 * @param lng
-	 * @param accuracy
-	 * @param vaccuracy
-	 * @param elevation
+	 * Adds the wrong indicator.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param POI_ID (required) POI ID that we assign this warning.
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @param accuracy the accuracy
+	 * @param vaccuracy the vaccuracy
+	 * @param elevation the elevation
 	 * @return POIWarning
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POIWarning AddWrongIndicator(Context context, Integer POI_ID,
 			Double lat, Double lng, Double accuracy, Double vaccuracy,
@@ -265,25 +260,24 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param POI_ID
-	 *            (required) POI ID that we assign this warning.
-	 * @param name
-	 * @param categories
-	 * @param desc
-	 * @param address
-	 * @param cross_street
-	 * @param city
-	 * @param country
-	 * @param postal_code
-	 * @param phone
-	 * @param twitter
+	 * Adds the wrong info.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param POI_ID (required) POI ID that we assign this warning.
+	 * @param name the name
+	 * @param categories the categories
+	 * @param desc the desc
+	 * @param address the address
+	 * @param cross_street the cross_street
+	 * @param city the city
+	 * @param country the country
+	 * @param postal_code the postal_code
+	 * @param phone the phone
+	 * @param twitter the twitter
 	 * @return POIWarning
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static POIWarning AddWrongInfo(Context context, Integer POI_ID,
 			String name, Integer[] categories, String desc, String address,
@@ -296,15 +290,15 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param POIID
-	 * @param type
+	 * Delete.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param POIID the poiid
+	 * @param type the type
 	 * @return Boolean
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Boolean Delete(Context context, Integer[] POIID, String type)
 			throws IOException, TopoosException {
@@ -312,14 +306,14 @@ public class Operations {
 	}
 
 	/**
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param type
+	 * Delete all.
+	 *
+	 * @param context (required) Interface to global information about an
+	 * application environment
+	 * @param type the type
 	 * @return Boolean
-	 * @throws IOException
-	 * @throws TopoosException
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
 	 */
 	public static Boolean DeleteAll(Context context, String type)
 			throws IOException, TopoosException {

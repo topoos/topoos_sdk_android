@@ -1,21 +1,54 @@
 package topoos.APIAccess.Operations;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class UsersGet_near.
+ *
  * @see APIOperation
  * @author MAJS
- *
  */
 public class UsersGet_near extends APIOperation {
 
+	/** The oauth_token. */
 	private String oauth_token=null;// (obligatorio) access_token a los recursos del usuario
+	
+	/** The lat. */
 	private Double lat=null;// (opcional) latitud del punto central de búsqueda. Es un parámetro obligatorio si no se especifica poi.
+	
+	/** The lng. */
 	private Double lng=null;// (opcional) longitud del punto central de búsqueda. Es un parámetro obligatorio si no se especifica poi.
+	
+	/** The poi. */
 	private Integer poi=null;// (opcional) identificador del punto de interés alrededor del cual se realiza la búsqueda. Es un parámetro obligatorio si no se especifican lat y lng.
+	
+	/** The radius. */
 	private Integer radius=null;// (obligatorio) radio de búsqueda en metros > 0
+	
+	/** The active. */
 	private Boolean active=null;// (opcional) true|false la búsqueda se realiza únicamente entre aquellos usuarios que tengan Track activos en este momento. Valores permitidos “true”. Por defecto “true”
+	
+	/** The ugroup. */
 	private Integer ugroup=null;// (opcional) identificador de grupo de usuario. Si se especifica, los resultados solo incluirán usuarios que pertenezcan a dicho grupo.
+	
+	/** The Count. */
 	private Integer Count=null;// (opcional) número de usuarios devueltos. Los devueltos siempre serán los más cercanos al punto. Valor por defecto 1.
 
 
+	/**
+	 * Instantiates a new users get_near.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @param radius the radius
+	 * @param active the active
+	 * @param ugroup the ugroup
+	 * @param count the count
+	 */
 	public UsersGet_near(String operationName, String method, String format,
 			Integer version, String oauth_token, Double lat, Double lng,
 			Integer radius, Boolean active, Integer ugroup, Integer count) {
@@ -29,6 +62,20 @@ public class UsersGet_near extends APIOperation {
 		Count = count;
 	}
 
+	/**
+	 * Instantiates a new users get_near.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param poi the poi
+	 * @param radius the radius
+	 * @param active the active
+	 * @param ugroup the ugroup
+	 * @param count the count
+	 */
 	public UsersGet_near(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi, Integer radius,
 			Boolean active, Integer ugroup, Integer count) {
@@ -42,6 +89,9 @@ public class UsersGet_near extends APIOperation {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 		// TODO Auto-generated method stub
@@ -55,6 +105,9 @@ public class UsersGet_near extends APIOperation {
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 		// TODO Auto-generated method stub

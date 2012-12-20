@@ -1,5 +1,6 @@
 package topoos.APIAccess.Operations;
 
+// TODO: Auto-generated Javadoc
 /**
  * 
  * 
@@ -14,30 +15,40 @@ package topoos.APIAccess.Operations;
  */
 public class RulesAdd extends APIOperation {
 
+	/** The Constant TYPE_TRACK_OUT_OF_BOUNDS. */
 	public static final String TYPE_TRACK_OUT_OF_BOUNDS = "TRACK_OUT_OF_BOUNDS";
 
+	/** The oauth_token. */
 	private String oauth_token = null; // (obligatorio)access_token de Acceso a
 										// recursos
-	private Double lat = null; // (obligatorio) latitud del centro del círculo
+	/** The lat. */
+										private Double lat = null; // (obligatorio) latitud del centro del círculo
 								// del área permitida, en grados decimales
-	private Double lng = null; // (obligatorio) longitud del centro del círculo
+	/** The lng. */
+								private Double lng = null; // (obligatorio) longitud del centro del círculo
 								// del área permitida, en grados decimales
-	private Integer radius = null; // (obligatorio) radio del círculo del área
+	/** The radius. */
+								private Integer radius = null; // (obligatorio) radio del círculo del área
 									// permitida, en grados decimales.
-	private String type = null; // TRACK_OUT_OF_BOUNDS
+	/** The type. */
+									private String type = null; // TRACK_OUT_OF_BOUNDS
+	
+	/** The track. */
 	private Integer track = null; // Identificador del track que vamos a añadir
 
 	/**
-	 * @param operationName
-	 * @param method
-	 * @param format
-	 * @param version
-	 * @param oauth_token
-	 * @param lat
-	 * @param lng
-	 * @param radius
-	 * @param type
-	 * @param track
+	 * Instantiates a new rules add.
+	 *
+	 * @param operationName the operation name
+	 * @param method the method
+	 * @param format the format
+	 * @param version the version
+	 * @param oauth_token the oauth_token
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @param radius the radius
+	 * @param type the type
+	 * @param track the track
 	 */
 	public RulesAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, Double lat, Double lng,
@@ -51,6 +62,9 @@ public class RulesAdd extends APIOperation {
 		this.track = track;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
+	 */
 	@Override
 	public boolean ValidateParams() {
 
@@ -64,6 +78,9 @@ public class RulesAdd extends APIOperation {
 		return validate;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
+	 */
 	@Override
 	public String ConcatParams() {
 

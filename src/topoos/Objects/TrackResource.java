@@ -1,19 +1,28 @@
 package topoos.Objects;
+// TODO: Auto-generated Javadoc
+
 /**
- * Class that implements a resource of the track
- * @author MAJS
+ * Class that implements a resource of the track.
  *
+ * @author MAJS
  */
 public class TrackResource {
 
+	/** The id. */
 	private Integer id=null;
+	
+	/** The Type. */
 	private String Type=null;
+	
+	/** The Format. */
 	private String Format=null;
 
 	/**
-	 * @param id
-	 * @param type
-	 * @param format
+	 * Instantiates a new track resource.
+	 *
+	 * @param id the id
+	 * @param type the type
+	 * @param format the format
 	 */
 	public TrackResource(Integer id, String type, String format) {
 		super();
@@ -23,7 +32,8 @@ public class TrackResource {
 	}
 
 	/**
-	 * get the id
+	 * get the id.
+	 *
 	 * @return the id
 	 */
 	public Integer getId() {
@@ -31,6 +41,8 @@ public class TrackResource {
 	}
 
 	/**
+	 * Sets the id.
+	 *
 	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
@@ -38,7 +50,8 @@ public class TrackResource {
 	}
 
 	/**
-	 * get the type
+	 * get the type.
+	 *
 	 * @return the type
 	 */
 	public String getType() {
@@ -46,6 +59,8 @@ public class TrackResource {
 	}
 
 	/**
+	 * Sets the type.
+	 *
 	 * @param type the type to set
 	 */
 	public void setType(String type) {
@@ -53,7 +68,8 @@ public class TrackResource {
 	}
 
 	/**
-	 * get the format
+	 * get the format.
+	 *
 	 * @return the format
 	 */
 	public String getFormat() {
@@ -61,6 +77,8 @@ public class TrackResource {
 	}
 
 	/**
+	 * Sets the format.
+	 *
 	 * @param format the format to set
 	 */
 	public void setFormat(String format) {

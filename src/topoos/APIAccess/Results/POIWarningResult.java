@@ -10,17 +10,21 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class POIWarningResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class POIWarningResult extends APICallResult {
 
+	/** The poi warning. */
 	POIWarning poiWarning = null;
 
 	/**
-	 * 
+	 * Instantiates a new pOI warning result.
 	 */
 	public POIWarningResult() {
 		super();
@@ -28,8 +32,10 @@ public class POIWarningResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new pOI warning result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public POIWarningResult(String error, String result) {
 		super(error, result);
@@ -37,15 +43,20 @@ public class POIWarningResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param poiWarning
+	 * Instantiates a new pOI warning result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param poiWarning the poi warning
 	 */
 	public POIWarningResult(String error, String result, POIWarning poiWarning) {
 		super(error, result);
 		this.poiWarning = poiWarning;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -79,9 +90,9 @@ public class POIWarningResult extends APICallResult {
 			// Extracting content
 			id = jObject.getInt("id");
 			poi_id = jObject.getInt("poi_id");
-			type = jObject.getString("type");
-			user_id = jObject.getString("user_id");
-			timestamp = APIUtils.toDateString(jObject.getString("timestamp"));
+			type = APIUtils.getStringorNull(jObject,"type");
+			user_id = APIUtils.getStringorNull(jObject,"user_id");
+			timestamp = APIUtils.toDateString(APIUtils.getStringorNull(jObject,"timestamp"));
 			JSONObject jObjectData = jObject.optJSONObject("data");
 			if (jObjectData != null) {
 				id_warningdata = jObjectData.getInt("id");
@@ -104,8 +115,8 @@ public class POIWarningResult extends APICallResult {
 				if (jArray != null) {
 					for (int i = 0; i < jArray.length(); i++) {
 						JSONObject job = jArray.getJSONObject(i);
-						categories.add(new POICategory(job.getInt("Id"), job
-								.getString("Description"), job
+						categories.add(new POICategory(job.getInt("Id"), APIUtils.getStringorNull(job
+								,"Description"), job
 								.getBoolean("is_system_category")));
 					}
 				}
@@ -125,6 +136,8 @@ public class POIWarningResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the poi warning.
+	 *
 	 * @return the poiWarning
 	 */
 	public POIWarning getPoiWarning() {
@@ -132,8 +145,9 @@ public class POIWarningResult extends APICallResult {
 	}
 
 	/**
-	 * @param poiWarning
-	 *            the poiWarning to set
+	 * Sets the poi warning.
+	 *
+	 * @param poiWarning the poiWarning to set
 	 */
 	public void setPoiWarning(POIWarning poiWarning) {
 		this.poiWarning = poiWarning;

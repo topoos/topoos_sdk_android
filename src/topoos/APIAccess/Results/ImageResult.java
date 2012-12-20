@@ -8,11 +8,17 @@ import topoos.Exception.TopoosException;
 import topoos.Objects.GeoData;
 import topoos.Objects.Image;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ImageResult.
+ */
 public class ImageResult extends APICallResult {
+	
+	/** The image. */
 	private Image image = null;
 
 	/**
-	 * 
+	 * Instantiates a new image result.
 	 */
 	public ImageResult() {
 		super();
@@ -20,8 +26,10 @@ public class ImageResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new image result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public ImageResult(String error, String result) {
 		super(error, result);
@@ -29,15 +37,20 @@ public class ImageResult extends APICallResult {
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param image
+	 * Instantiates a new image result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param image the image
 	 */
 	public ImageResult(String error, String result, Image image) {
 		super(error, result);
 		this.image = image;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -45,13 +58,13 @@ public class ImageResult extends APICallResult {
 			JSONObject jObject = (JSONObject) new JSONTokener(this.Result)
 					.nextValue();
 			// Extracting content
-			this.image = new Image(jObject.getString("id"),
-					jObject.getString("client_id"),
-					jObject.getString("user_id"),
-					jObject.getString("filename"),
-					jObject.getString("filename_unique"),
-					jObject.getString("file_ext"), jObject.getString("uri"),
-					APIUtils.toDateString(jObject.getString("register_date")),
+			this.image = new Image(APIUtils.getStringorNull(jObject,"id"),
+					APIUtils.getStringorNull(jObject,"client_id"),
+					APIUtils.getStringorNull(jObject,"user_id"),
+					APIUtils.getStringorNull(jObject,"filename"),
+					APIUtils.getStringorNull(jObject,"filename_unique"),
+					APIUtils.getStringorNull(jObject,"file_ext"), APIUtils.getStringorNull(jObject,"uri"),
+					APIUtils.toDateString(APIUtils.getStringorNull(jObject,"register_date")),
 					new GeoData(jObject.getJSONObject("geo_data").optInt("id"),
 							jObject.getJSONObject("geo_data").optInt(
 									"position_id"), jObject.getJSONObject(
@@ -65,6 +78,8 @@ public class ImageResult extends APICallResult {
 	}
 
 	/**
+	 * Gets the image.
+	 *
 	 * @return the image
 	 */
 	public Image getImage() {
@@ -72,8 +87,9 @@ public class ImageResult extends APICallResult {
 	}
 
 	/**
-	 * @param image
-	 *            the image to set
+	 * Sets the image.
+	 *
+	 * @param image the image to set
 	 */
 	public void setImage(Image image) {
 		this.image = image;

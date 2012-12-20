@@ -9,17 +9,22 @@ import org.json.JSONTokener;
 import topoos.Constants;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class POICategoryCollectionResult.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class POICategoryCollectionResult extends APICallResult 
 {
+	
+	/** The poi category collection. */
 	private POICategoryCollection poiCategoryCollection = null;
 
 	/**
-	 * 
+	 * Instantiates a new pOI category collection result.
 	 */
 	public POICategoryCollectionResult() {
 		super();
@@ -27,8 +32,10 @@ public class POICategoryCollectionResult extends APICallResult
 	}
 
 	/**
-	 * @param error
-	 * @param result
+	 * Instantiates a new pOI category collection result.
+	 *
+	 * @param error the error
+	 * @param result the result
 	 */
 	public POICategoryCollectionResult(String error, String result) {
 		super(error, result);
@@ -36,9 +43,11 @@ public class POICategoryCollectionResult extends APICallResult
 	}
 
 	/**
-	 * @param error
-	 * @param result
-	 * @param poiCategoryCollection
+	 * Instantiates a new pOI category collection result.
+	 *
+	 * @param error the error
+	 * @param result the result
+	 * @param poiCategoryCollection the poi category collection
 	 */
 	public POICategoryCollectionResult(String error, String result,
 			POICategoryCollection poiCategoryCollection) {
@@ -46,6 +55,9 @@ public class POICategoryCollectionResult extends APICallResult
 		this.poiCategoryCollection = poiCategoryCollection;
 	}
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -61,7 +73,7 @@ public class POICategoryCollectionResult extends APICallResult
 				jObject = jArray.getJSONObject(i);
 				// Extracting content
 				id = jObject.getInt("Id");
-				description = jObject.getString("Description");
+				description = APIUtils.getStringorNull(jObject,"Description");
 				isSystem = jObject.getBoolean("is_system_category");
 				poiCategory=new POICategory(id,description,isSystem);
 				arraylist.add(poiCategory);
@@ -76,6 +88,8 @@ public class POICategoryCollectionResult extends APICallResult
 	}
 
 	/**
+	 * Gets the poi category collection.
+	 *
 	 * @return the poiCategoryCollection
 	 */
 	public POICategoryCollection getPoiCategoryCollection() {
@@ -83,6 +97,8 @@ public class POICategoryCollectionResult extends APICallResult
 	}
 
 	/**
+	 * Sets the poi category collection.
+	 *
 	 * @param poiCategoryCollection the poiCategoryCollection to set
 	 */
 	public void setPoiCategoryCollection(POICategoryCollection poiCategoryCollection) {

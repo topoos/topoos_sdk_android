@@ -29,6 +29,7 @@ package topoos.APIAccess.mime;
 
 import topoos.APIAccess.mime.content.ContentBody;
 
+// TODO: Auto-generated Javadoc
 /**
  * FormBodyPart class represents a content body that can be used as a part of multipart encoded
  * entities. This class automatically populates the header with standard fields based on
@@ -38,11 +39,21 @@ import topoos.APIAccess.mime.content.ContentBody;
  */
 public class FormBodyPart {
 
+    /** The name. */
     private final String name;
+    
+    /** The header. */
     private final Header header;
 
+    /** The body. */
     private final ContentBody body;
 
+    /**
+     * Instantiates a new form body part.
+     *
+     * @param name the name
+     * @param body the body
+     */
     public FormBodyPart(final String name, final ContentBody body) {
         super();
         if (name == null) {
@@ -60,18 +71,39 @@ public class FormBodyPart {
         generateTransferEncoding(body);
     }
 
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Gets the body.
+     *
+     * @return the body
+     */
     public ContentBody getBody() {
         return this.body;
     }
 
+    /**
+     * Gets the header.
+     *
+     * @return the header
+     */
     public Header getHeader() {
         return this.header;
     }
 
+    /**
+     * Adds the field.
+     *
+     * @param name the name
+     * @param value the value
+     */
     public void addField(final String name, final String value) {
         if (name == null) {
             throw new IllegalArgumentException("Field name may not be null");
@@ -79,6 +111,11 @@ public class FormBodyPart {
         this.header.addField(new MinimalField(name, value));
     }
 
+    /**
+     * Generate content disp.
+     *
+     * @param body the body
+     */
     protected void generateContentDisp(final ContentBody body) {
         StringBuilder buffer = new StringBuilder();
         buffer.append("form-data; name=\"");
@@ -92,6 +129,11 @@ public class FormBodyPart {
         addField(MIME.CONTENT_DISPOSITION, buffer.toString());
     }
 
+    /**
+     * Generate content type.
+     *
+     * @param body the body
+     */
     protected void generateContentType(final ContentBody body) {
         StringBuilder buffer = new StringBuilder();
         buffer.append(body.getMimeType()); // MimeType cannot be null
@@ -102,6 +144,11 @@ public class FormBodyPart {
         addField(MIME.CONTENT_TYPE, buffer.toString());
     }
 
+    /**
+     * Generate transfer encoding.
+     *
+     * @param body the body
+     */
     protected void generateTransferEncoding(final ContentBody body) {
         addField(MIME.CONTENT_TRANSFER_ENC, body.getTransferEncoding()); // TE cannot be null
     }

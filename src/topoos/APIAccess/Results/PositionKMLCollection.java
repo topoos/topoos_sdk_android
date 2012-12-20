@@ -12,17 +12,28 @@ import org.w3c.dom.NodeList;
 
 import topoos.Constants;
 import topoos.Exception.TopoosException;
+// TODO: Auto-generated Javadoc
+
 /**
+ * The Class PositionKMLCollection.
+ *
  * @see APICallResult
  * @author MAJS
- *
  */
 public class PositionKMLCollection extends APICallResult {
 
+	/** The name. */
 	String name = null;
+	
+	/** The description. */
 	String description = null;
+	
+	/** The Placemarks. */
 	ArrayList<PositionKML> Placemarks = null;
 
+	/* (non-Javadoc)
+	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
+	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
@@ -187,21 +198,34 @@ public class PositionKMLCollection extends APICallResult {
 		}
 	}
 	
+	/**
+	 * The Class PositionKML.
+	 */
 	public class PositionKML {
 
+		/** The timestamp. */
 		Date timestamp = null;
+		
+		/** The name. */
 		String name = null;
+		
+		/** The description. */
 		String description = null;
+		
+		/** The point. */
 		Point point = null;
+		
+		/** The extended data. */
 		ExtendedData extendedData = null;
 
 		/**
-		 * 
-		 * @param timestamp
-		 * @param name
-		 * @param description
-		 * @param point
-		 * @param extendedData
+		 * Instantiates a new position kml.
+		 *
+		 * @param timestamp the timestamp
+		 * @param name the name
+		 * @param description the description
+		 * @param point the point
+		 * @param extendedData the extended data
 		 */
 		public PositionKML(Date timestamp,
 				String name, String description, Point point,
@@ -215,6 +239,8 @@ public class PositionKMLCollection extends APICallResult {
 
 
 		/**
+		 * Gets the timestamp.
+		 *
 		 * @return the timestamp
 		 */
 		public Date getTimestamp() {
@@ -222,14 +248,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param timestamp
-		 *            the timestamp to set
+		 * Sets the timestamp.
+		 *
+		 * @param timestamp the timestamp to set
 		 */
 		public void setTimestamp(Date timestamp) {
 			this.timestamp = timestamp;
 		}
 
 		/**
+		 * Gets the name.
+		 *
 		 * @return the name
 		 */
 		public String getName() {
@@ -237,14 +266,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param name
-		 *            the name to set
+		 * Sets the name.
+		 *
+		 * @param name the name to set
 		 */
 		public void setName(String name) {
 			this.name = name;
 		}
 
 		/**
+		 * Gets the description.
+		 *
 		 * @return the description
 		 */
 		public String getDescription() {
@@ -252,14 +284,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param description
-		 *            the description to set
+		 * Sets the description.
+		 *
+		 * @param description the description to set
 		 */
 		public void setDescription(String description) {
 			this.description = description;
 		}
 
 		/**
+		 * Gets the point.
+		 *
 		 * @return the point
 		 */
 		public Point getPoint() {
@@ -267,14 +302,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param point
-		 *            the point to set
+		 * Sets the point.
+		 *
+		 * @param point the point to set
 		 */
 		public void setPoint(Point point) {
 			this.point = point;
 		}
 
 		/**
+		 * Gets the extended data.
+		 *
 		 * @return the extendedData
 		 */
 		public ExtendedData getExtendedData() {
@@ -282,8 +320,9 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param extendedData
-		 *            the extendedData to set
+		 * Sets the extended data.
+		 *
+		 * @param extendedData the extendedData to set
 		 */
 		public void setExtendedData(ExtendedData extendedData) {
 			this.extendedData = extendedData;
@@ -292,15 +331,27 @@ public class PositionKMLCollection extends APICallResult {
 
 
 	}
+	
+	/**
+	 * The Class Point.
+	 */
 	public class Point {
+		
+		/** The latitude. */
 		Double latitude = null;
+		
+		/** The longitude. */
 		Double longitude = null;
+		
+		/** The value. */
 		Integer value = 4;
 
 		/**
-		 * @param latitude
-		 * @param longitude
-		 * @param value
+		 * Instantiates a new point.
+		 *
+		 * @param latitude the latitude
+		 * @param longitude the longitude
+		 * @param value the value
 		 */
 		public Point(Double latitude, Double longitude, Integer value) {
 			super();
@@ -310,6 +361,8 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
+		 * Gets the latitude.
+		 *
 		 * @return the latitude
 		 */
 		public Double getLatitude() {
@@ -317,14 +370,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param latitude
-		 *            the latitude to set
+		 * Sets the latitude.
+		 *
+		 * @param latitude the latitude to set
 		 */
 		public void setLatitude(Double latitude) {
 			this.latitude = latitude;
 		}
 
 		/**
+		 * Gets the longitude.
+		 *
 		 * @return the longitude
 		 */
 		public Double getLongitude() {
@@ -332,14 +388,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param longitude
-		 *            the longitude to set
+		 * Sets the longitude.
+		 *
+		 * @param longitude the longitude to set
 		 */
 		public void setLongitude(Double longitude) {
 			this.longitude = longitude;
 		}
 
 		/**
+		 * Gets the value.
+		 *
 		 * @return the value
 		 */
 		public Integer getValue() {
@@ -347,8 +406,9 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param value
-		 *            the value to set
+		 * Sets the value.
+		 *
+		 * @param value the value to set
 		 */
 		public void setValue(Integer value) {
 			this.value = value;
@@ -356,13 +416,22 @@ public class PositionKMLCollection extends APICallResult {
 
 	}
 
+	/**
+	 * The Class PositionType.
+	 */
 	public class PositionType {
+		
+		/** The id. */
 		String id = null;
+		
+		/** The description. */
 		String description = null;
 
 		/**
-		 * @param id
-		 * @param description
+		 * Instantiates a new position type.
+		 *
+		 * @param id the id
+		 * @param description the description
 		 */
 		public PositionType(String id, String description) {
 			super();
@@ -371,6 +440,8 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
+		 * Gets the id.
+		 *
 		 * @return the id
 		 */
 		public String getId() {
@@ -378,14 +449,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param id
-		 *            the id to set
+		 * Sets the id.
+		 *
+		 * @param id the id to set
 		 */
 		public void setId(String id) {
 			this.id = id;
 		}
 
 		/**
+		 * Gets the description.
+		 *
 		 * @return the description
 		 */
 		public String getDescription() {
@@ -393,8 +467,9 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param description
-		 *            the description to set
+		 * Sets the description.
+		 *
+		 * @param description the description to set
 		 */
 		public void setDescription(String description) {
 			this.description = description;
@@ -402,27 +477,50 @@ public class PositionKMLCollection extends APICallResult {
 
 	}
 	
+	/**
+	 * The Class ExtendedData.
+	 */
 	public class ExtendedData {
+		
+		/** The id. */
 		String id = null;
+		
+		/** The device. */
 		String device = null;
+		
+		/** The register time. */
 		Date registerTime = null;
+		
+		/** The accuracy. */
 		Double accuracy = null;
+		
+		/** The position type. */
 		PositionType positionType = null;
+		
+		/** The elevation. */
 		Double elevation = null;
+		
+		/** The vaccuracy. */
 		Double vaccuracy = null;
+		
+		/** The bearing. */
 		Double bearing = null;
+		
+		/** The velocity. */
 		Double velocity = null;
 
 		/**
-		 * @param id
-		 * @param device
-		 * @param registerTime
-		 * @param accuracy
-		 * @param positionType
-		 * @param elevation
-		 * @param vaccuracy
-		 * @param bearing
-		 * @param velocity
+		 * Instantiates a new extended data.
+		 *
+		 * @param id the id
+		 * @param device the device
+		 * @param registerTime the register time
+		 * @param accuracy the accuracy
+		 * @param positionType the position type
+		 * @param elevation the elevation
+		 * @param vaccuracy the vaccuracy
+		 * @param bearing the bearing
+		 * @param velocity the velocity
 		 */
 		public ExtendedData(String id, String device, Date registerTime,
 				Double accuracy, PositionType positionType, Double elevation,
@@ -440,6 +538,8 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
+		 * Gets the id.
+		 *
 		 * @return the id
 		 */
 		public String getId() {
@@ -447,14 +547,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param id
-		 *            the id to set
+		 * Sets the id.
+		 *
+		 * @param id the id to set
 		 */
 		public void setId(String id) {
 			this.id = id;
 		}
 
 		/**
+		 * Gets the device.
+		 *
 		 * @return the device
 		 */
 		public String getDevice() {
@@ -462,14 +565,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param device
-		 *            the device to set
+		 * Sets the device.
+		 *
+		 * @param device the device to set
 		 */
 		public void setDevice(String device) {
 			this.device = device;
 		}
 
 		/**
+		 * Gets the register time.
+		 *
 		 * @return the registerTime
 		 */
 		public Date getRegisterTime() {
@@ -477,14 +583,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param registerTime
-		 *            the registerTime to set
+		 * Sets the register time.
+		 *
+		 * @param registerTime the registerTime to set
 		 */
 		public void setRegisterTime(Date registerTime) {
 			this.registerTime = registerTime;
 		}
 
 		/**
+		 * Gets the accuracy.
+		 *
 		 * @return the accuracy
 		 */
 		public Double getAccuracy() {
@@ -492,14 +601,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param accuracy
-		 *            the accuracy to set
+		 * Sets the accuracy.
+		 *
+		 * @param accuracy the accuracy to set
 		 */
 		public void setAccuracy(Double accuracy) {
 			this.accuracy = accuracy;
 		}
 
 		/**
+		 * Gets the position type.
+		 *
 		 * @return the positionType
 		 */
 		public PositionType getPositionType() {
@@ -507,14 +619,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param positionType
-		 *            the positionType to set
+		 * Sets the position type.
+		 *
+		 * @param positionType the positionType to set
 		 */
 		public void setPositionType(PositionType positionType) {
 			this.positionType = positionType;
 		}
 
 		/**
+		 * Gets the elevation.
+		 *
 		 * @return the elevation
 		 */
 		public Double getElevation() {
@@ -522,14 +637,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param elevation
-		 *            the elevation to set
+		 * Sets the elevation.
+		 *
+		 * @param elevation the elevation to set
 		 */
 		public void setElevation(Double elevation) {
 			this.elevation = elevation;
 		}
 
 		/**
+		 * Gets the vaccuracy.
+		 *
 		 * @return the vaccuracy
 		 */
 		public Double getVaccuracy() {
@@ -537,14 +655,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param vaccuracy
-		 *            the vaccuracy to set
+		 * Sets the vaccuracy.
+		 *
+		 * @param vaccuracy the vaccuracy to set
 		 */
 		public void setVaccuracy(Double vaccuracy) {
 			this.vaccuracy = vaccuracy;
 		}
 
 		/**
+		 * Gets the bearing.
+		 *
 		 * @return the bearing
 		 */
 		public Double getBearing() {
@@ -552,14 +673,17 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param bearing
-		 *            the bearing to set
+		 * Sets the bearing.
+		 *
+		 * @param bearing the bearing to set
 		 */
 		public void setBearing(Double bearing) {
 			this.bearing = bearing;
 		}
 
 		/**
+		 * Gets the velocity.
+		 *
 		 * @return the velocity
 		 */
 		public Double getVelocity() {
@@ -567,8 +691,9 @@ public class PositionKMLCollection extends APICallResult {
 		}
 
 		/**
-		 * @param velocity
-		 *            the velocity to set
+		 * Sets the velocity.
+		 *
+		 * @param velocity the velocity to set
 		 */
 		public void setVelocity(Double velocity) {
 			this.velocity = velocity;
