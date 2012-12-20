@@ -15,7 +15,7 @@ import topoos.Objects.Location;
  * The Class PolygonResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class PolygonResult extends APICallResult{
 	

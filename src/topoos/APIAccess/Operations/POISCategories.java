@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * Class that implements the categories of the POIS.
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class POISCategories extends APIOperation {

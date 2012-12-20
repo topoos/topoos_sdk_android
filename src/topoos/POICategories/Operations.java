@@ -13,7 +13,7 @@ import android.content.Context;
 /**
  * Operations related to POICategories management.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Operations {
 

@@ -6,7 +6,7 @@ package topoos.APIAccess.Operations;
  * with a visible device.
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class CheckinGet_last extends APIOperation {

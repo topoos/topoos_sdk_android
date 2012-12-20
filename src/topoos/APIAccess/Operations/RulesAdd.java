@@ -10,7 +10,7 @@ package topoos.APIAccess.Operations;
  * to the Endpoint that is specified in the application configuration.
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class RulesAdd extends APIOperation {

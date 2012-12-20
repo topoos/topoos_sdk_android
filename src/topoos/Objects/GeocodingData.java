@@ -5,7 +5,7 @@ package topoos.Objects;
 /**
  * Class that implements a geocoding data.
  *
- * @author MAJS
+ * @author topoos
  */
 public class GeocodingData {
 

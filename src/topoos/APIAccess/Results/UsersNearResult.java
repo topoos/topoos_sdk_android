@@ -14,7 +14,7 @@ import topoos.Objects.*;
  * The Class UsersNearResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class UsersNearResult extends APICallResult {
 

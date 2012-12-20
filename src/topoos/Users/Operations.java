@@ -12,7 +12,7 @@ import android.content.Context;
 /**
  * Operations related to user management
  * 
- * @author MAJS
+ * @author topoos
  * 
  */
 public class Operations {

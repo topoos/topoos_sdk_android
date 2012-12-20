@@ -7,7 +7,7 @@ package topoos.APIAccess.Operations;
  * during a session
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class TracksAdd extends APIOperation {

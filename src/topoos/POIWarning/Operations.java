@@ -13,7 +13,7 @@ import topoos.Objects.*;
 /**
  * Operations related to POI Warnings management.
  * 
- * @author MAJS
+ * @author topoos
  * 
  */
 public class Operations {

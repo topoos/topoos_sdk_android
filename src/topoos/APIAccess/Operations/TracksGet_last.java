@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * 
  * Get a document that represents the last registered Track by a device.
  * 
- * @author MAJS
+ * @author topoos
  * 
  */
 public class TracksGet_last extends APIOperation {

@@ -16,7 +16,7 @@ import topoos.Objects.*;
  * The Class POIResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class POIResult extends APICallResult {
 

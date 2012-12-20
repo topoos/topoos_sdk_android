@@ -18,7 +18,7 @@ import topoos.Exception.TopoosException;
  * The Class PositionKMLCollection.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class PositionKMLCollection extends APICallResult {
 

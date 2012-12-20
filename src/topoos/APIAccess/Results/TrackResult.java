@@ -16,7 +16,7 @@ import topoos.Objects.*;
  * The Class TrackResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class TrackResult extends APICallResult {
 

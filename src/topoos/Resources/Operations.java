@@ -11,7 +11,7 @@ import android.content.Context;
 
 /**
  * 
- * @author MAJS
+ * @author topoos
  * 
  */
 public class Operations {

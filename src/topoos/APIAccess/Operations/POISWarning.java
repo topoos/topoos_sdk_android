@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class POISWarning.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class POISWarning extends APIOperation {
 

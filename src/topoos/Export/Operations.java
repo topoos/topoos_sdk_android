@@ -12,7 +12,7 @@ import topoos.Objects.*;
 /**
  * The Class Operations.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Operations {
 	

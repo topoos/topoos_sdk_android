@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class that implements a position collection.
  *
- * @author MAJS
+ * @author topoos
  */
 public class PositionCollection {
 

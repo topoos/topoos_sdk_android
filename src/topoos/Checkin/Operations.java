@@ -13,7 +13,7 @@ import android.content.Context;
 /**
  * The Class Operations.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Operations {
 	

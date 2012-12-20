@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * The Class Image.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Image {
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class that implement.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Acreditation {
 	

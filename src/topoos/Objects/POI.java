@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Class that implements a point of interest.
  *
- * @author MAJS
+ * @author topoos
  */
 public class POI {
 

@@ -4,7 +4,7 @@ package topoos.Objects;
 /**
  * Class that implements a resource of the track.
  *
- * @author MAJS
+ * @author topoos
  */
 public class TrackResource {
 

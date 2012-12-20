@@ -14,7 +14,7 @@ import topoos.Objects.*;
  * The Class CheckinCollectionResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class CheckinCollectionResult extends APICallResult {
 

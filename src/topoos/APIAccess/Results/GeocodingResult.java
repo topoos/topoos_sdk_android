@@ -11,7 +11,7 @@ import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 /**
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  *
  */
 public class GeocodingResult extends APICallResult{

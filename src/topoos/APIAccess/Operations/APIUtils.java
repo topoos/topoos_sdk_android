@@ -9,7 +9,7 @@ import java.util.TimeZone;
 /**
  * Class that implements the utils of Api.
  *
- * @author MAJS
+ * @author topoos
  */
 class APIUtils {
 	

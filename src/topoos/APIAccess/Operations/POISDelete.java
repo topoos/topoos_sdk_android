@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class POISDelete.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class POISDelete extends APIOperation{
 

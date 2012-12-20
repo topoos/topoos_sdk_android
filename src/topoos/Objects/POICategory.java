@@ -4,7 +4,7 @@ package topoos.Objects;
 /**
  * Class that implements a category of a POI.
  *
- * @author MAJS
+ * @author topoos
  */
 public class POICategory {
 	

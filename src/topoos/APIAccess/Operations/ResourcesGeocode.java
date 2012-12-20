@@ -7,7 +7,7 @@ package topoos.APIAccess.Operations;
  * is normalized or get a normalized address from coordinates.
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class ResourcesGeocode extends APIOperation {

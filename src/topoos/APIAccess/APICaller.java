@@ -20,7 +20,7 @@ import android.util.Log;
 /**
  * Class that implements http call to topoos api
  * 
- * @author MAJS
+ * @author topoos
  * 
  */
 public class APICaller {

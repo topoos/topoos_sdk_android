@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class that implements a collection of the categories of a poi.
  *
- * @author MAJS
+ * @author topoos
  */
 public class POICategoryCollection {
 	

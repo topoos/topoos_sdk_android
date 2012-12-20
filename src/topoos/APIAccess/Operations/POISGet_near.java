@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class POISGet_near.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class POISGet_near extends APIOperation{
 

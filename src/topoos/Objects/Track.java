@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * The Class Track.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Track {
 

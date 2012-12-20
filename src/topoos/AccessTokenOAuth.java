@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 /**
  * Implements AccesToken
- * @author MAJS
+ * @author topoos
  *
  */
 public class AccessTokenOAuth {

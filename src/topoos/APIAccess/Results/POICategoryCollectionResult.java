@@ -15,7 +15,7 @@ import topoos.Objects.*;
  * The Class POICategoryCollectionResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class POICategoryCollectionResult extends APICallResult 
 {

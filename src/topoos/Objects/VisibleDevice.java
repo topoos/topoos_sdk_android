@@ -4,7 +4,7 @@ package topoos.Objects;
 /**
  * Class that implements a visible device.
  *
- * @author MAJS
+ * @author topoos
  */
 public class VisibleDevice {
 

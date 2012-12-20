@@ -7,7 +7,7 @@ import java.util.Date;
  * The Class PositionsAdd.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class PositionsAdd extends APIOperation{
 

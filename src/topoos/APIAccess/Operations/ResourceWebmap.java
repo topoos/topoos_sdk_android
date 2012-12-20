@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class ResourceWebmap.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class ResourceWebmap extends APIOperation {
 

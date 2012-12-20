@@ -16,7 +16,7 @@ import topoos.Objects.*;
  * The Class POICollectionResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class POICollectionResult extends APICallResult {
 

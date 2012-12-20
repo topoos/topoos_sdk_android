@@ -12,7 +12,7 @@ import topoos.Objects.*;
  * The Class RuleResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class RuleResult extends APICallResult{
 

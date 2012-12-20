@@ -6,7 +6,7 @@ package topoos.APIAccess.Operations;
  * belong to the application.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class POISWarningDelete extends APIOperation {
 

@@ -4,7 +4,7 @@ package topoos.APIAccess.Operations;
  * Get the information of a user. You can check the oauth_token.
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class UsersUSRShow extends APIOperation {

@@ -11,7 +11,7 @@ import java.util.Calendar;
 /**
  * Class that acting as interface to the native side of the application and vice versa.
  *
- * @author MAJS
+ * @author topoos
  */
 class WebInterface {
 	

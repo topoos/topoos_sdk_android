@@ -4,7 +4,7 @@ package topoos.Objects;
 /**
  * Class that implements a object address.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Address {
     

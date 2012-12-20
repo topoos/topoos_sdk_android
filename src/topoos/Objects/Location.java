@@ -4,7 +4,7 @@ package topoos.Objects;
 /**
  * Class that represents a location with a latitude and a longitude.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Location {
 

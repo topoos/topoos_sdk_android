@@ -7,7 +7,7 @@ import java.util.Date;
  * The Class PositionsGet_between.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class PositionsGet_between extends APIOperation{
 

@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class OAuthAuthtoken.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class OAuthAuthtoken extends APIOperation {
 

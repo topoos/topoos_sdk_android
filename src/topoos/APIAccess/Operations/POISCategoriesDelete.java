@@ -8,7 +8,7 @@ package topoos.APIAccess.Operations;
  * were associated previously. The category has to belong to the application
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class POISCategoriesDelete extends APIOperation {

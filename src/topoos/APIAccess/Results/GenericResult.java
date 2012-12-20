@@ -11,7 +11,7 @@ import topoos.Exception.TopoosException;
  * The Class GenericResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class GenericResult extends APICallResult {
 

@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class UsersUSRRemove_group.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class UsersUSRRemove_group  extends APIOperation{
 	

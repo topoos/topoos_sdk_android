@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class POISGet.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class POISGet extends APIOperation {
 

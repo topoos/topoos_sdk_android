@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * Set the group to which the user belongs.
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class UsersUSRAdd_group extends APIOperation {

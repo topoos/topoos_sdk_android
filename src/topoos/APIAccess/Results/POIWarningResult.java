@@ -16,7 +16,7 @@ import topoos.Objects.*;
  * The Class POIWarningResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class POIWarningResult extends APICallResult {
 

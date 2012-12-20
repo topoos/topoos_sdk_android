@@ -7,7 +7,7 @@ import java.util.Date;
  * The Class CheckinAdd.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class CheckinAdd extends APIOperation{
 

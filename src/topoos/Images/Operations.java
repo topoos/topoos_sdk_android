@@ -8,7 +8,7 @@ import topoos.Objects.Image;
 import android.content.Context;
 /**
  * 
- * @author MAJS
+ * @author topoos
  * 
  * Operations related to pic image services.
  * 

@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Class that implements a poi warning.
  *
- * @author MAJS
+ * @author topoos
  */
 public class POIWarning {
 

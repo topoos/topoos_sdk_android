@@ -14,7 +14,7 @@ import topoos.Objects.*;
 /**
  * The Class Translator.
  *
- * @author MAJS
+ * @author topoos
  */
 class Translator {
 

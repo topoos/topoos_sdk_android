@@ -2,7 +2,7 @@ package topoos.APIAccess.Operations;
 
 /**
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class PositionsGet extends APIOperation {

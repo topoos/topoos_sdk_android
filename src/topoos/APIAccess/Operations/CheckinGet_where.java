@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * Get all CheckIns that have been realized in a POI.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class CheckinGet_where extends APIOperation {
 

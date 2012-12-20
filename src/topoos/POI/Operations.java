@@ -10,7 +10,7 @@ import android.content.Context;
 
 /**
  * 
- * @author MAJS
+ * @author topoos
  * 
  * Operations related to point of interest(POI) management
  * 

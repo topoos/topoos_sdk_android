@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * Get information of a CheckIn by its id.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class CheckinGet extends APIOperation {
 

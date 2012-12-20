@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class UsersGet_near.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class UsersGet_near extends APIOperation {
 

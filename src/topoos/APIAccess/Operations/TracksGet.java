@@ -7,7 +7,7 @@ import java.util.Date;
  * Get information of a Track.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 
 public class TracksGet extends APIOperation {

@@ -12,7 +12,7 @@ import topoos.Objects.*;
  * The Class CheckinResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class CheckinResult extends APICallResult {
 

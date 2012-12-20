@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Class that implements a object Checkin.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Checkin {
 

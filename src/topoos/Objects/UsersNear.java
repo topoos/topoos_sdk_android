@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class that implements a list of users that are near.
  *
- * @author MAJS
+ * @author topoos
  */
 public class UsersNear  {
 

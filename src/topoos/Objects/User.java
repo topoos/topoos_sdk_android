@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class that implements a user.
  *
- * @author MAJS
+ * @author topoos
  */
 public class User   {
 

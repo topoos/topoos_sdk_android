@@ -11,7 +11,7 @@ import android.content.Context;
 /**
  * Operations related to position management.
  *
- * @author MAJS
+ * @author topoos
  */
 public class Operations {
 

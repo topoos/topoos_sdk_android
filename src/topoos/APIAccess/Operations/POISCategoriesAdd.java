@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * 
  * Create a new category of POI.
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class POISCategoriesAdd extends APIOperation {

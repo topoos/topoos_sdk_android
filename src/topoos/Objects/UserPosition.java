@@ -4,7 +4,7 @@ package topoos.Objects;
 /**
  * Class that implements a user position.
  *
- * @author MAJS
+ * @author topoos
  */
 public class UserPosition {
 	

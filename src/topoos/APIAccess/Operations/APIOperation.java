@@ -8,7 +8,7 @@ import topoos.APIAccess.mime.MultipartEntity;
 /**
  * Class that implements the api operations.
  *
- * @author MAJS
+ * @author topoos
  */
 public abstract class APIOperation {
 

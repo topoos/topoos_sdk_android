@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class that implements a poi data warning.
  *
- * @author MAJS
+ * @author topoos
  */
 public class POIDataWarning {
 	

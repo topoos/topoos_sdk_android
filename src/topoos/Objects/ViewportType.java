@@ -4,7 +4,7 @@ package topoos.Objects;
 /**
  * Class that implements a view of the type of port.
  *
- * @author MAJS
+ * @author topoos
  */
 public class ViewportType {
 	

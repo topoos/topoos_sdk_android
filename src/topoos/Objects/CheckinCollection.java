@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class that implements a checkingcollection where are saves all check ins.
  *
- * @author MAJS
+ * @author topoos
  */
 public class CheckinCollection {
 

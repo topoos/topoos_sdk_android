@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class OAuthAccesstoken_Resfresh.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class OAuthAccesstoken_Resfresh extends APIOperation {
 

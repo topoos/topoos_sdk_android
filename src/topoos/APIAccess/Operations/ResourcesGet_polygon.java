@@ -7,7 +7,7 @@ package topoos.APIAccess.Operations;
  * layers.
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class ResourcesGet_polygon extends APIOperation {

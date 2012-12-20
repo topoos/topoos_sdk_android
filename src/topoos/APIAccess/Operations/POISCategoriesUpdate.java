@@ -8,7 +8,7 @@ package topoos.APIAccess.Operations;
  * application
  * 
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  * 
  */
 public class POISCategoriesUpdate extends APIOperation {

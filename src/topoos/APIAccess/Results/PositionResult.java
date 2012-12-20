@@ -14,7 +14,7 @@ import topoos.Objects.*;
  * The Class PositionResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class PositionResult extends APICallResult {
 

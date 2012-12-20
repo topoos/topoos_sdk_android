@@ -5,7 +5,7 @@ package topoos.APIAccess.Operations;
  * The Class ResourceTypeId.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class ResourceTypeId extends APIOperation{
 

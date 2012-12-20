@@ -17,7 +17,7 @@ import org.xml.sax.SAXException;
  * The Class PositionKML.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class PositionKML extends APICallResult {
 

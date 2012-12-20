@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -12,21 +13,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
 /**
  * Implements the login activity
- * @author MAJS
- *
+ * 
+ * @author topoos
+ * 
  */
 @SuppressLint("SetJavaScriptEnabled")
 public class LoginActivity extends Activity {
-	
-	public static final int RESULT_OK=Activity.RESULT_OK;
-	public static final int RESULT_CANCELED=Activity.RESULT_CANCELED;
-	public static final int RESULT_FIRST_USER=Activity.RESULT_FIRST_USER;
-	public static final int RESULT_TOPOOSERROR=2;
-	
+
+	public static final int RESULT_OK = Activity.RESULT_OK;
+	public static final int RESULT_CANCELED = Activity.RESULT_CANCELED;
+	public static final int RESULT_FIRST_USER = Activity.RESULT_FIRST_USER;
+	public static final int RESULT_TOPOOSERROR = 2;
+
 	public static final String CLIENT_ID = "client_id";
 	public static final String REDIRECT_URI = "redirect_uri";
 	private String url_login = Constants.TOPOOSURILOGIN + "/oauth/authtoken";
@@ -55,6 +60,7 @@ public class LoginActivity extends Activity {
 			}
 			WebView webview = new WebView(this);
 			setContentView(webview);
+			webview.setWebChromeClient(new LoginViewChromeClient());
 			webview.setWebViewClient(new LoginViewClient());
 			webview.getSettings().setJavaScriptEnabled(true);
 			webview.clearCache(true);
@@ -81,13 +87,18 @@ public class LoginActivity extends Activity {
 		} else {
 			setResult(RESULT_CANCELED);
 			this.finish();
-			
+
 		}
 
 	}
-
+	
+	@Override
+	public void onBackPressed() {
+		setResult(RESULT_CANCELED);
+		super.onBackPressed();
+	}
+	
 	private class LoginViewClient extends WebViewClient {
-
 		@Override
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
 			// TODO Auto-generated method stub
@@ -103,11 +114,20 @@ public class LoginActivity extends Activity {
 			}
 		}
 	}
-	
-	@Override
-	public void onBackPressed(){
-		setResult(RESULT_CANCELED);
-		super.onBackPressed();
+
+	private class LoginViewChromeClient extends WebChromeClient {
+		@Override
+		public boolean onJsAlert(WebView view, String url, String message,
+				JsResult result) {
+			if (Constants.DEBUG)
+				Log.i(Constants.TAG, "JsAlert: " + message);
+			new AlertDialog.Builder(view.getContext()).setMessage(message).setTitle("Alert")
+					.setCancelable(true).show();
+			result.confirm();
+			return true;
+		}
 	}
+
+
 
 }

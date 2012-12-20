@@ -7,7 +7,7 @@ import java.util.Date;
  * Make a track public that´s belong to an user and application.
  *
  * @see APIOperation
- * @author MAJS
+ * @author topoos
  */
 public class ExportLayerTrack extends APIOperation {
 

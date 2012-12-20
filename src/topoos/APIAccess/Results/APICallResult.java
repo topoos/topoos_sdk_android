@@ -7,7 +7,7 @@ import topoos.Exception.TopoosException;
  * Class that implements the api caller result.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public abstract class APICallResult {
 

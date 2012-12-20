@@ -7,7 +7,7 @@ import topoos.Exception.TopoosException;
  * The Class WebMapURIResult.
  *
  * @see APICallResult
- * @author MAJS
+ * @author topoos
  */
 public class WebMapURIResult extends APICallResult{
 
