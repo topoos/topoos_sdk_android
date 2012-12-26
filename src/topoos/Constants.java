@@ -1,7 +1,7 @@
 package topoos;
 
 public class Constants {
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 	public static boolean DEBUGURL = true;
 	
 //	public static final String TOPOOSURIPIC="https://pic.topoos.com";

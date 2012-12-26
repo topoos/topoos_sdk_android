@@ -1,12 +1,19 @@
 package topoos.Objects;
 
+import java.io.Serializable;
+
 // TODO: Auto-generated Javadoc
 /**
  * Class that implements a user id position.
  *
  * @author topoos
  */
-public class UserIdPosition {
+public class UserIdPosition implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The userid. */
 	private String userid = null;

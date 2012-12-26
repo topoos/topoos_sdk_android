@@ -12,7 +12,7 @@ import topoos.Objects.*;
 // TODO: Auto-generated Javadoc
 /**
  * The Class UserResult.
- *
+ * 
  * @see APICallResult
  * @author topoos
  */
@@ -31,9 +31,11 @@ public class UserResult extends APICallResult {
 
 	/**
 	 * Instantiates a new user result.
-	 *
-	 * @param error the error
-	 * @param result the result
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
 	 */
 	public UserResult(String error, String result) {
 		super(error, result);
@@ -42,17 +44,22 @@ public class UserResult extends APICallResult {
 
 	/**
 	 * Instantiates a new user result.
-	 *
-	 * @param error the error
-	 * @param result the result
-	 * @param user the user
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
+	 * @param user
+	 *            the user
 	 */
 	public UserResult(String error, String result, User user) {
 		super(error, result);
 		this.user = user;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
 	 */
 	@Override
@@ -68,35 +75,40 @@ public class UserResult extends APICallResult {
 			JSONObject jObject = (JSONObject) new JSONTokener(Result)
 					.nextValue();
 			// Extracting content
-			Id = APIUtils.getStringorNull(jObject,"id");
-			Name = APIUtils.getStringorNull(jObject,"name");
-			if (jObject.optJSONObject("profile") != null) {
-				Profile = new Profile(APIUtils.toDateString(jObject
-						.getJSONObject("profile").getString("birthday")),
-						APIUtils.getStringorNull(jObject.getJSONObject("profile"),"gender"));
-			} else
-				Profile = null;
-			Email = APIUtils.getStringorNull(jObject,"email");
-			JSONArray jarray = jObject.getJSONArray("ugroup");
-			if (Ugroup == null)
-				Ugroup = new ArrayList<Integer>();
-			for (int i = 0; i < jarray.length(); i++) {
-				Ugroup.add(jarray.getInt(i));
+			Id = APIUtils.getStringorNull(jObject, "id");
+			if (Id != null) {
+				Name = APIUtils.getStringorNull(jObject, "name");
+				if (jObject.optJSONObject("profile") != null) {
+					Profile = new Profile(APIUtils.toDateString(jObject
+							.getJSONObject("profile").getString("birthday")),
+							APIUtils.getStringorNull(
+									jObject.getJSONObject("profile"), "gender"));
+				} else
+					Profile = null;
+				Email = APIUtils.getStringorNull(jObject, "email");
+				JSONArray jarray = jObject.getJSONArray("ugroup");
+				if (Ugroup == null)
+					Ugroup = new ArrayList<Integer>();
+				for (int i = 0; i < jarray.length(); i++) {
+					Ugroup.add(jarray.getInt(i));
+				}
+				ArrayList<VisibleDevice> arrayV = new ArrayList<VisibleDevice>();
+				JSONArray jarray2 = jObject.getJSONObject("accreditation")
+						.getJSONArray("visibledevices");
+				for (int i = 0; i < jarray2.length(); i++) {
+					arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
+							.getString("id"), APIUtils.getStringorNull(
+							jarray2.getJSONObject(i), "name"), jarray2
+							.getJSONObject(i).getInt("model"), jarray2
+							.getJSONObject(i).getBoolean("islogical")));
+				}
+				Acreditation = new Acreditation(APIUtils.getStringorNull(
+						jObject.getJSONObject("accreditation"),
+						"expirationtime"), jObject.getJSONObject(
+						"accreditation").getString("client_id"), arrayV);
+				this.user = new User(Id, Name, Email, Profile, Ugroup,
+						Acreditation);
 			}
-			ArrayList<VisibleDevice> arrayV = new ArrayList<VisibleDevice>();
-			JSONArray jarray2 = jObject.getJSONObject("accreditation")
-					.getJSONArray("visibledevices");
-			for (int i = 0; i < jarray2.length(); i++) {
-				arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
-						.getString("id"), APIUtils.getStringorNull(jarray2.getJSONObject(i),
-						"name"), jarray2.getJSONObject(i).getInt("model"),
-						jarray2.getJSONObject(i).getBoolean("islogical")));
-			}
-			Acreditation = new Acreditation(APIUtils.getStringorNull(jObject.getJSONObject(
-					"accreditation"),"expirationtime"), jObject
-					.getJSONObject("accreditation").getString("client_id"),
-					arrayV);
-			this.user = new User(Id, Name, Email, Profile, Ugroup, Acreditation);
 		} catch (Exception e) {
 			if (Constants.DEBUG) {
 				e.printStackTrace();
@@ -108,7 +120,7 @@ public class UserResult extends APICallResult {
 
 	/**
 	 * Gets the user.
-	 *
+	 * 
 	 * @return the user
 	 */
 	public User getUser() {
@@ -117,8 +129,9 @@ public class UserResult extends APICallResult {
 
 	/**
 	 * Sets the user.
-	 *
-	 * @param user the user to set
+	 * 
+	 * @param user
+	 *            the user to set
 	 */
 	public void setUser(User user) {
 		this.user = user;

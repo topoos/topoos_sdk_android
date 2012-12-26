@@ -1,5 +1,6 @@
 package topoos.Objects;
 
+import java.io.Serializable;
 import java.util.Date;
 // TODO: Auto-generated Javadoc
 
@@ -8,7 +9,12 @@ import java.util.Date;
  *
  * @author topoos
  */
-public class Profile {
+public class Profile implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The Birthday. */
 	private Date Birthday = null;

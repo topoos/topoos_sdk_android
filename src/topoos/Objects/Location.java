@@ -1,4 +1,6 @@
 package topoos.Objects;
+
+import java.io.Serializable;
 // TODO: Auto-generated Javadoc
 
 /**
@@ -6,7 +8,12 @@ package topoos.Objects;
  *
  * @author topoos
  */
-public class Location {
+public class Location implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The latitude. */
 	Double latitude=null;

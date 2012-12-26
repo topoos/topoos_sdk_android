@@ -1,5 +1,6 @@
 package topoos.Objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,7 +10,12 @@ import java.util.Date;
  *
  * @author topoos
  */
-public class POI {
+public class POI implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The id. */
 	private Integer id = null;

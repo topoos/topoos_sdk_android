@@ -1,10 +1,17 @@
 package topoos.Objects;
 
+import java.io.Serializable;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class GeoData.
  */
-public class GeoData {
+public class GeoData implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The id. */
 	private Integer id = null;

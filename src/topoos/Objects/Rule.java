@@ -1,12 +1,19 @@
 package topoos.Objects;
 
+import java.io.Serializable;
+
 // TODO: Auto-generated Javadoc
 /**
  * Class that implements a rule.
  *
  * @author topoos
  */
-public class Rule {
+public class Rule implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	/** The id. */
 	private Integer id = null;

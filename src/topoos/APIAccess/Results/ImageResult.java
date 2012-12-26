@@ -65,7 +65,7 @@ public class ImageResult extends APICallResult {
 					APIUtils.getStringorNull(jObject,"filename_unique"),
 					APIUtils.getStringorNull(jObject,"file_ext"), APIUtils.getStringorNull(jObject,"uri"),
 					APIUtils.toDateString(APIUtils.getStringorNull(jObject,"register_date")),
-					new GeoData(jObject.getJSONObject("geo_data").optInt("id"),
+					jObject.isNull("geo_data")?null: new GeoData(jObject.getJSONObject("geo_data").optInt("id"),
 							jObject.getJSONObject("geo_data").optInt(
 									"position_id"), jObject.getJSONObject(
 									"geo_data").optInt("poi_id")));

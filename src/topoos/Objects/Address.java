@@ -1,13 +1,20 @@
 package topoos.Objects;
 
+import java.io.Serializable;
+
 // TODO: Auto-generated Javadoc
 /**
  * Class that implements a object address.
  *
  * @author topoos
  */
-public class Address {
-    
+public class Address implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
+	
     /** The address. */
     public String address =null;
     

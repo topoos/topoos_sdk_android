@@ -1,5 +1,6 @@
 package topoos.Objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 // TODO: Auto-generated Javadoc
 
@@ -8,7 +9,12 @@ import java.util.ArrayList;
  *
  * @author topoos
  */
-public class UsersNear  {
+public class UsersNear  implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** The userid positions. */
 	private ArrayList<UserIdPosition> useridPositions=null;

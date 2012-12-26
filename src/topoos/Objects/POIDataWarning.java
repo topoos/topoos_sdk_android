@@ -1,5 +1,6 @@
 package topoos.Objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 // TODO: Auto-generated Javadoc
 
@@ -8,7 +9,12 @@ import java.util.ArrayList;
  *
  * @author topoos
  */
-public class POIDataWarning {
+public class POIDataWarning implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	/** The poi. */
 	private POI poi=null;

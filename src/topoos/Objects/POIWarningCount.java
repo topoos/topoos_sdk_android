@@ -1,10 +1,17 @@
 package topoos.Objects;
 
+import java.io.Serializable;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class POIWarningCount.
  */
-public class POIWarningCount{
+public class POIWarningCount implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	/** The closed. */
 	Integer closed=null;

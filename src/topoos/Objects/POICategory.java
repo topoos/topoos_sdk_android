@@ -1,12 +1,19 @@
 package topoos.Objects;
 
+import java.io.Serializable;
+
 // TODO: Auto-generated Javadoc
 /**
  * Class that implements a category of a POI.
  *
  * @author topoos
  */
-public class POICategory {
+public class POICategory implements Serializable{
+	
+	/**
+	 * V0
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	/** The id. */
 	private Integer id = null;
