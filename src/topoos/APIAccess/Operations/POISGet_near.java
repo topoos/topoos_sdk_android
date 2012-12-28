@@ -24,6 +24,9 @@ public class POISGet_near extends APIOperation{
 	/** The categories. */
 	private String  categories=null; // (obligatorio) identificadores de las categorías de filtrado, los POI obtenidos pertenecerán a todas las especificadas, separadas por comas
 
+	/** The total. */
+	private Integer  total=null; // (opcional) obtiene un número determinado de pois
+	
 	/**
 	 * Instantiates a new pOIS get_near.
 	 *
@@ -39,13 +42,14 @@ public class POISGet_near extends APIOperation{
 	 */
 	public POISGet_near(String operationName, String method, String format,
 			Integer version, String oauth_token, Double lat, Double lng,
-			Integer radius, String categories) {
+			Integer radius, String categories, Integer total){
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.lat = lat;
 		this.lng = lng;
 		this.radius = radius;
 		this.categories = categories;
+		this.total = total;
 	}
 
 	
@@ -61,6 +65,7 @@ public class POISGet_near extends APIOperation{
 		validate = validate && isValid(APIUtils.toStringInteger(radius));
 		validate = validate && isValid(categories);
 		validate = validate && isValid(oauth_token);
+		validate = validate && isValidorNull(APIUtils.toStringInteger(total));
 		return validate;
 	}
 
@@ -77,6 +82,7 @@ public class POISGet_near extends APIOperation{
 					+ "&lng="+APIUtils.toStringDouble(lng)
 					+ "&radius="+APIUtils.toStringInteger(radius)
 					+ "&categories="+APIUtils.toStringUrlEncoded(categories)
+					+(total == null? "" : "&total="+APIUtils.toStringInteger(total))
 					;
 		}
 		return params;

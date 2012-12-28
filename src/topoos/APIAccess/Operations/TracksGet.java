@@ -5,7 +5,7 @@ import java.util.Date;
 // TODO: Auto-generated Javadoc
 /**
  * Get information of a Track.
- *
+ * 
  * @see APIOperation
  * @author topoos
  */
@@ -14,10 +14,10 @@ public class TracksGet extends APIOperation {
 
 	/** The Constant LAYER_DEFAULT. */
 	public static final String LAYER_DEFAULT = "default";
-	
+
 	/** The Constant LAYER_BEARING. */
 	public static final String LAYER_BEARING = "bearing";
-	
+
 	/** The Constant LAYER_TRACKLINE. */
 	public static final String LAYER_TRACKLINE = "trackline";
 
@@ -25,15 +25,15 @@ public class TracksGet extends APIOperation {
 	protected String oauth_token = null; // (obligatorio) access_token a los
 											// recursos del usuario
 	/** The track. */
-											protected Integer track = null; // (obligatorio) identificador del Track
-									// solicitado
+	protected Integer track = null; // (obligatorio) identificador del Track
+	// solicitado
 	/** The total. */
-									protected Integer total = null; // (opcional) si se especifica un valor N,
+	protected Integer total = null; // (opcional) si se especifica un valor N,
 									// se obtendrán las últimas N posiciones del
 									// Track
 	/** The initdate. */
-									protected Date initdate = null;
-	
+	protected Date initdate = null;
+
 	/** The endate. */
 	protected Date endate = null;
 	// : (opcional) fechas en formato UTC que permiten filtrar posiciones
@@ -48,20 +48,30 @@ public class TracksGet extends APIOperation {
 	// trackline línea de trayectoria
 
 	/**
-										 * Instantiates a new tracks get.
-										 *
-										 * @param operationName the operation name
-										 * @param method the method
-										 * @param format the format
-										 * @param version the version
-										 * @param oauth_token the oauth_token
-										 * @param track the track
-										 * @param total the total
-										 * @param initdate the initdate
-										 * @param endate the endate
-										 * @param layer the layer
-										 */
-										public TracksGet(String operationName, String method, String format,
+	 * Instantiates a new tracks get.
+	 * 
+	 * @param operationName
+	 *            the operation name
+	 * @param method
+	 *            the method
+	 * @param format
+	 *            the format
+	 * @param version
+	 *            the version
+	 * @param oauth_token
+	 *            the oauth_token
+	 * @param track
+	 *            the track
+	 * @param total
+	 *            the total
+	 * @param initdate
+	 *            the initdate
+	 * @param endate
+	 *            the endate
+	 * @param layer
+	 *            the layer
+	 */
+	public TracksGet(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer track, Integer total,
 			Date initdate, Date endate, String[] layer) {
 		super(operationName, method, format, version);
@@ -73,7 +83,9 @@ public class TracksGet extends APIOperation {
 		this.layer = layer;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
 	 */
 	@Override
@@ -90,7 +102,9 @@ public class TracksGet extends APIOperation {
 		return validate;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
 	 */
 	@Override

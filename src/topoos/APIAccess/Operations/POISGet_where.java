@@ -29,6 +29,8 @@ public class POISGet_where extends APIOperation{
 	
 	/** The q. */
 	private String  q=null; // (opcional) obtiene los POI cuyo nombre o descripción coincida con el patrón
+	/** The total. */
+	private Integer  total=null; // (opcional) obtiene un número determinado de pois
 
 	/**
 	 * Instantiates a new pOIS get_where.
@@ -44,11 +46,12 @@ public class POISGet_where extends APIOperation{
 	 * @param country the country
 	 * @param postal_code the postal_code
 	 * @param q the q
+	 * @param total the total pois
 	 */
 	public POISGet_where(String operationName, String method, String format,
 			Integer version, String oauth_token, String pois,
 			String categories, String city, String country, String postal_code,
-			String q) {
+			String q, Integer total) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.pois = pois;
@@ -57,7 +60,9 @@ public class POISGet_where extends APIOperation{
 		this.country = country;
 		this.postal_code = postal_code;
 		this.q = q;
+		this.total = total;
 	}
+
 
 	
 	/* (non-Javadoc)
@@ -73,9 +78,11 @@ public class POISGet_where extends APIOperation{
 		validate = validate && isValidorNull(country);
 		validate = validate && isValidorNull(postal_code);
 		validate = validate && isValidorNull(q);
+		validate = validate && isValidorNull(APIUtils.toStringInteger(total));
 		validate = validate && isValid(oauth_token);
 		return validate;
 	}
+
 
 	/* (non-Javadoc)
 	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
@@ -92,6 +99,7 @@ public class POISGet_where extends APIOperation{
 					+(country == null? "" : "&country="+APIUtils.toStringUrlEncoded(country))
 					+(postal_code == null? "" : "&postal_code="+APIUtils.toStringUrlEncoded(postal_code))
 					+(q == null? "" : "&q="+APIUtils.toStringUrlEncoded(q))
+					+(total == null? "" : "&total="+APIUtils.toStringInteger(total))
 					;
 		}
 		return params;

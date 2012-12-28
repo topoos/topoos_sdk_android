@@ -68,7 +68,7 @@ class Translator {
 	}
 
 	public static List<POI> GetNear(Double lat, Double lng, Integer radius,
-			Integer[] categories, AccessTokenOAuth accessTokenPregenerated)
+			Integer[] categories,Integer total, AccessTokenOAuth accessTokenPregenerated)
 			throws IOException, TopoosException {
 		List<POI> poilist = null;
 		if (accessTokenPregenerated.isValid()) {
@@ -85,7 +85,7 @@ class Translator {
 			POISGet_near pOISGet_near = new POISGet_near("GetNear", method,
 					format, version, accessTokenPregenerated.getAccessToken(),
 					lat, lng, radius, !strcategories.equals("") ? strcategories
-							: null);
+							: null, total);
 			POICollectionResult pOICollectionResult = new POICollectionResult();
 			APICaller.ExecuteOperation(pOISGet_near, pOICollectionResult);
 			poilist = pOICollectionResult.getPoicollection().getPoiList();
@@ -96,7 +96,7 @@ class Translator {
 	}
 
 	public static List<POI> GetWhere(Integer[] categories, Integer[] POIS,
-			String city, String country, String postal_code, String q,
+			String city, String country, String postal_code, String q,Integer total,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
 		List<POI> poilist = null;
@@ -125,7 +125,7 @@ class Translator {
 					format, version, accessTokenPregenerated.getAccessToken(),
 					!strpois.equals("") ? strpois : null,
 					!strcategories.equals("") ? strcategories : null, city,
-					country, postal_code, q);
+					country, postal_code, q, total);
 			POICollectionResult pOICollectionResult = new POICollectionResult();
 			APICaller.ExecuteOperation(pOISGet_where, pOICollectionResult);
 			poilist = pOICollectionResult.getPoicollection().getPoiList();
@@ -197,16 +197,16 @@ class Translator {
 	}
 
 	public static List<POI> GetNear(Context context, Double lat, Double lng,
-			Integer radius, Integer[] categories) throws IOException,
+			Integer radius, Integer[] categories, Integer total) throws IOException,
 			TopoosException {
-		return GetNear(lat, lng, radius, categories, AccessTokenOAuth.GetAccessToken(context));
+		return GetNear(lat, lng, radius, categories,total, AccessTokenOAuth.GetAccessToken(context));
 
 	}
 
 	public static List<POI> GetWhere(Context context, Integer[] categories,
 			Integer[] POIS, String city, String country, String postal_code,
-			String q) throws IOException, TopoosException {
-		return GetWhere(categories, POIS, city, country, postal_code, q,
+			String q, Integer total) throws IOException, TopoosException {
+		return GetWhere(categories, POIS, city, country, postal_code, q, total,
 				AccessTokenOAuth.GetAccessToken(context));
 	}
 

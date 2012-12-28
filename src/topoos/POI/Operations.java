@@ -90,6 +90,8 @@ public class Operations {
 	/**
 	 * Gets a collection of points of interest near a location
 	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
 	 * @param lat
 	 *            (required) latitude of the new position
 	 * @param lng
@@ -99,22 +101,25 @@ public class Operations {
 	 * @param categories
 	 *            (required) identifiers for the categories to which the POI
 	 *            belongs
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
+	 * @param total (optional) number of pois
+	 * 
 	 * @return List<POI>
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
 	public static List<POI> GetNear(AccessTokenOAuth accessTokenPregenerated,
-			Double lat, Double lng, Integer radius, Integer[] categories)
+			Double lat, Double lng, Integer radius, Integer[] categories, Integer total)
 			throws IOException, TopoosException {
-		return Translator.GetNear(lat, lng, radius, categories,
+		return Translator.GetNear(lat, lng, radius, categories,total,
 				accessTokenPregenerated);
 	}
 
 	/**
 	 * Gets a collection of collection of points filtering by various criteria
 	 * 
+	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
 	 * @param categories
 	 *            (required) identifiers for the categories to which the POI
 	 *            belongs
@@ -130,8 +135,7 @@ public class Operations {
 	 * @param q
 	 *            (optional) gets the POI whose name or description matched the
 	 *            pattern
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
+	 * @param total (optional) number of pois
 	 * 
 	 * @return List<POI>
 	 * @throws IOException
@@ -139,9 +143,9 @@ public class Operations {
 	 */
 	public static List<POI> GetWhere(AccessTokenOAuth accessTokenPregenerated,
 			Integer[] categories, Integer[] POIS, String city, String country,
-			String postal_code, String q) throws IOException, TopoosException {
+			String postal_code, String q, Integer total) throws IOException, TopoosException {
 		return Translator.GetWhere(categories, POIS, city, country,
-				postal_code, q, accessTokenPregenerated);
+				postal_code, q,total, accessTokenPregenerated);
 	}
 
 	/**
@@ -300,15 +304,17 @@ public class Operations {
 	 *            (required) search radius in meters
 	 * @param categories
 	 *            (required) identifiers for the categories to which the POI
-	 *            belongs
+	 *            belongs.
+	 * @param total (optional) number of pois
+	 * 
 	 * @return List<POI>
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
 	public static List<POI> GetNear(Context context, Double lat, Double lng,
-			Integer radius, Integer[] categories) throws IOException,
+			Integer radius, Integer[] categories, Integer total) throws IOException,
 			TopoosException {
-		return Translator.GetNear(context, lat, lng, radius, categories);
+		return Translator.GetNear(context, lat, lng, radius, categories,total);
 
 	}
 
@@ -333,15 +339,16 @@ public class Operations {
 	 * @param q
 	 *            (optional) gets the POI whose name or description matched the
 	 *            pattern
+	 * @param total (optional) number of pois
 	 * @return List<Poi>
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
 	public static List<POI> GetWhere(Context context, Integer[] categories,
 			Integer[] POIS, String city, String country, String postal_code,
-			String q) throws IOException, TopoosException {
+			String q, Integer total) throws IOException, TopoosException {
 		return Translator.GetWhere(context, categories, POIS, city, country,
-				postal_code, q);
+				postal_code, q, total);
 	}
 
 	/**
