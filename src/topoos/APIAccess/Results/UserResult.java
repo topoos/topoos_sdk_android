@@ -5,7 +5,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
@@ -71,49 +74,57 @@ public class UserResult extends APICallResult {
 		ArrayList<Integer> Ugroup = null;
 		Acreditation Acreditation = null;
 		// Processing result
-		try {
-			JSONObject jObject = (JSONObject) new JSONTokener(Result)
-					.nextValue();
-			// Extracting content
-			Id = APIUtils.getStringorNull(jObject, "id");
-			if (Id != null) {
-				Name = APIUtils.getStringorNull(jObject, "name");
-				if (jObject.optJSONObject("profile") != null) {
-					Profile = new Profile(APIUtils.toDateString(jObject
-							.getJSONObject("profile").getString("birthday")),
-							APIUtils.getStringorNull(
-									jObject.getJSONObject("profile"), "gender"));
-				} else
-					Profile = null;
-				Email = APIUtils.getStringorNull(jObject, "email");
-				JSONArray jarray = jObject.getJSONArray("ugroup");
-				if (Ugroup == null)
-					Ugroup = new ArrayList<Integer>();
-				for (int i = 0; i < jarray.length(); i++) {
-					Ugroup.add(jarray.getInt(i));
+		if (APIUtils.getcorrectJSONstring(Result) != null) {
+			try {
+				JSONObject jObject = (JSONObject) new JSONTokener(
+						APIUtils.getcorrectJSONstring(Result)).nextValue();
+				// Extracting content
+				Id = APIUtils.getStringorNull(jObject, "id");
+				if (Id != null) {
+					Name = APIUtils.getStringorNull(jObject, "name");
+					if (jObject.optJSONObject("profile") != null) {
+						Profile = new Profile(
+								APIUtils.toDateString(jObject.getJSONObject(
+										"profile").getString("birthday")),
+								APIUtils.getStringorNull(
+										jObject.getJSONObject("profile"),
+										"gender"));
+					} else
+						Profile = null;
+					Email = APIUtils.getStringorNull(jObject, "email");
+					JSONArray jarray = jObject.getJSONArray("ugroup");
+					if (Ugroup == null)
+						Ugroup = new ArrayList<Integer>();
+					for (int i = 0; i < jarray.length(); i++) {
+						Ugroup.add(jarray.getInt(i));
+					}
+					ArrayList<VisibleDevice> arrayV = new ArrayList<VisibleDevice>();
+					JSONArray jarray2 = jObject.getJSONObject("accreditation")
+							.getJSONArray("visibledevices");
+					for (int i = 0; i < jarray2.length(); i++) {
+						arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
+								.getString("id"), APIUtils.getStringorNull(
+								jarray2.getJSONObject(i), "name"), jarray2
+								.getJSONObject(i).getInt("model"), jarray2
+								.getJSONObject(i).getBoolean("islogical")));
+					}
+					Acreditation = new Acreditation(APIUtils.getStringorNull(
+							jObject.getJSONObject("accreditation"),
+							"expirationtime"), jObject.getJSONObject(
+							"accreditation").getString("client_id"), arrayV);
+					this.user = new User(Id, Name, Email, Profile, Ugroup,
+							Acreditation);
 				}
-				ArrayList<VisibleDevice> arrayV = new ArrayList<VisibleDevice>();
-				JSONArray jarray2 = jObject.getJSONObject("accreditation")
-						.getJSONArray("visibledevices");
-				for (int i = 0; i < jarray2.length(); i++) {
-					arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
-							.getString("id"), APIUtils.getStringorNull(
-							jarray2.getJSONObject(i), "name"), jarray2
-							.getJSONObject(i).getInt("model"), jarray2
-							.getJSONObject(i).getBoolean("islogical")));
+			} catch (Exception e) {
+				if (Constants.DEBUG) {
+					e.printStackTrace();
 				}
-				Acreditation = new Acreditation(APIUtils.getStringorNull(
-						jObject.getJSONObject("accreditation"),
-						"expirationtime"), jObject.getJSONObject(
-						"accreditation").getString("client_id"), arrayV);
-				this.user = new User(Id, Name, Email, Profile, Ugroup,
-						Acreditation);
+				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
-		} catch (Exception e) {
+		} else {
 			if (Constants.DEBUG) {
-				e.printStackTrace();
+				Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
 			}
-			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 
 	}

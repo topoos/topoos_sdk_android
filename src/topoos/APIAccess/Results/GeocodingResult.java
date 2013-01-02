@@ -6,7 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 /**
@@ -55,8 +58,9 @@ public class GeocodingResult extends APICallResult{
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
+		if (APIUtils.getcorrectJSONARRAYstring(Result) != null) {
 		try {
-			JSONArray jArray = (JSONArray) new JSONTokener(Result)
+			JSONArray jArray = (JSONArray) new JSONTokener(APIUtils.getcorrectJSONARRAYstring(Result))
 					.nextValue();
 			// Extracting content
 			this.geocoding=new ArrayList<GeocodingData>();
@@ -95,6 +99,11 @@ public class GeocodingResult extends APICallResult{
 			}
 			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
+	} else {
+		if (Constants.DEBUG) {
+			Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
+		}
+	}
 	}
 
 

@@ -7,14 +7,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+
 // TODO: Auto-generated Javadoc
 
 /**
  * The Class POICollectionResult.
- *
+ * 
  * @see APICallResult
  * @author topoos
  */
@@ -33,9 +37,11 @@ public class POICollectionResult extends APICallResult {
 
 	/**
 	 * Instantiates a new pOI collection result.
-	 *
-	 * @param error the error
-	 * @param result the result
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
 	 */
 	public POICollectionResult(String error, String result) {
 		super(error, result);
@@ -44,10 +50,13 @@ public class POICollectionResult extends APICallResult {
 
 	/**
 	 * Instantiates a new pOI collection result.
-	 *
-	 * @param error the error
-	 * @param result the result
-	 * @param poicollection the poicollection
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
+	 * @param poicollection
+	 *            the poicollection
 	 */
 	public POICollectionResult(String error, String result,
 			POICollection poicollection) {
@@ -55,7 +64,9 @@ public class POICollectionResult extends APICallResult {
 		this.poicollection = poicollection;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
 	 */
 	@Override
@@ -81,23 +92,22 @@ public class POICollectionResult extends APICallResult {
 		String twitter = null;
 		Date lastUpdate = null;
 		POIWarningCount warningcount = null;
-		
+		if (APIUtils.getcorrectJSONARRAYstring(Result) != null) {
 		try {
-			
-			JSONArray jArray = (JSONArray) new JSONTokener(Result).nextValue();
+			JSONArray jArray = (JSONArray) new JSONTokener(APIUtils.getcorrectJSONARRAYstring(Result)).nextValue();
 			ArrayList<POI> poicollec=new ArrayList<POI>();
 			for (int i = 0; i < jArray.length(); i++) {
 				// Extracting content
 				JSONObject jObject = jArray.getJSONObject(i);
 				POI poi = null;
-				id = jObject.getInt("id");
+				id = APIUtils.getIntegerorNull(jObject,"id");
 				name = APIUtils.getStringorNull(jObject,"name");
 				description = APIUtils.getStringorNull(jObject,"description");
-				latitude = jObject.getDouble("latitude");
-				longitude = jObject.getDouble("longitude");
-				elevation = jObject.getDouble("elevation");
-				accuracy = jObject.getDouble("accuracy");
-				vaccuracy = jObject.getDouble("vaccuracy");
+				latitude = APIUtils.getDoubleorNull(jObject,"latitude");
+				longitude = APIUtils.getDoubleorNull(jObject,"longitude");
+				elevation = APIUtils.getDoubleorNull(jObject,"elevation");
+				accuracy = APIUtils.getDoubleorNull(jObject,"accuracy");
+				vaccuracy = APIUtils.getDoubleorNull(jObject,"vaccuracy");
 				address = APIUtils.getStringorNull(jObject,"address");
 				crossStreet = APIUtils.getStringorNull(jObject,"cross_street");
 				city = APIUtils.getStringorNull(jObject,"city");
@@ -117,10 +127,10 @@ public class POICollectionResult extends APICallResult {
 							.getBoolean("is_system_category")));
 				}
 				JSONObject jObj = jObject.getJSONObject("warnings");
-				warningcount = new POIWarningCount(jObj.getInt("closed"),
-						jObj.getInt("duplicated"),
-						jObj.getInt("wrong_indicator"),
-						jObj.getInt("wrong_info"));
+				warningcount = new POIWarningCount(APIUtils.getIntegerorNull(jObj,"closed"),
+						APIUtils.getIntegerorNull(jObj,"duplicated"),
+						APIUtils.getIntegerorNull(jObj,"wrong_indicator"),
+						APIUtils.getIntegerorNull(jObj,"wrong_info"));
 				poi = new POI(id, name, description, latitude, longitude,
 						elevation, accuracy, vaccuracy, registertime,
 						categories, address, crossStreet, city, country,
@@ -134,11 +144,16 @@ public class POICollectionResult extends APICallResult {
 			}
 			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
+	} else {
+		if (Constants.DEBUG) {
+			Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
+		}
+	}
 	}
 
 	/**
 	 * Gets the poicollection.
-	 *
+	 * 
 	 * @return the poicollection
 	 */
 	public POICollection getPoicollection() {
@@ -147,8 +162,9 @@ public class POICollectionResult extends APICallResult {
 
 	/**
 	 * Sets the poicollection.
-	 *
-	 * @param poicollection the poicollection to set
+	 * 
+	 * @param poicollection
+	 *            the poicollection to set
 	 */
 	public void setPoicollection(POICollection poicollection) {
 		this.poicollection = poicollection;

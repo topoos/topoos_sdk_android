@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class UsersNearResult.
- *
+ * 
  * @see APICallResult
  * @author topoos
  */
@@ -21,7 +24,6 @@ public class UsersNearResult extends APICallResult {
 	/** The usersnear. */
 	private UsersNear usersnear = null;
 
-	
 	/**
 	 * Instantiates a new users near result.
 	 */
@@ -32,9 +34,11 @@ public class UsersNearResult extends APICallResult {
 
 	/**
 	 * Instantiates a new users near result.
-	 *
-	 * @param error the error
-	 * @param result the result
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
 	 */
 	public UsersNearResult(String error, String result) {
 		super(error, result);
@@ -43,51 +47,67 @@ public class UsersNearResult extends APICallResult {
 
 	/**
 	 * Instantiates a new users near result.
-	 *
-	 * @param error the error
-	 * @param result the result
-	 * @param usersnear the usersnear
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
+	 * @param usersnear
+	 *            the usersnear
 	 */
 	public UsersNearResult(String error, String result, UsersNear usersnear) {
 		super(error, result);
 		this.usersnear = usersnear;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
 	 */
 	@Override
 	public void setParameters() throws TopoosException {
-		ArrayList<UserIdPosition> userPositions = null;
-		// Processing result
-		try {
-			JSONArray jArray = (JSONArray) new JSONTokener(Result).nextValue();
-			userPositions = new ArrayList<UserIdPosition>();
-			for (int i = 0; i < jArray.length(); i++) {
-				String user_id = APIUtils.getStringorNull(jArray.getJSONObject(i),"user_id");
-				Double latitude = jArray.getJSONObject(i)
-						.getJSONObject("position").getDouble("latitude");
-				Double logitude = jArray.getJSONObject(i)
-						.getJSONObject("position").getDouble("longitude");
-				Double accuracy = jArray.getJSONObject(i)
-						.getJSONObject("position").getDouble("accuracy");
+		if (APIUtils.getcorrectJSONARRAYstring(Result) != null) {
+			ArrayList<UserIdPosition> userPositions = null;
+			// Processing result
+			try {
+				JSONArray jArray = (JSONArray) new JSONTokener(
+						APIUtils.getcorrectJSONARRAYstring(Result)).nextValue();
+				userPositions = new ArrayList<UserIdPosition>();
+				for (int i = 0; i < jArray.length(); i++) {
+					String user_id = APIUtils.getStringorNull(
+							jArray.getJSONObject(i), "user_id");
+					Double latitude = APIUtils.getDoubleorNull(jArray
+							.getJSONObject(i).getJSONObject("position"),
+							"latitude");
+					Double logitude = APIUtils.getDoubleorNull(jArray
+							.getJSONObject(i).getJSONObject("position"),
+							"longitude");
+					Double accuracy = APIUtils.getDoubleorNull(jArray
+							.getJSONObject(i).getJSONObject("position"),
+							"accuracy");
 
-				UserPosition position = new UserPosition(latitude, logitude,
-						accuracy);
-				userPositions.add(new UserIdPosition(user_id, position));
+					UserPosition position = new UserPosition(latitude,
+							logitude, accuracy);
+					userPositions.add(new UserIdPosition(user_id, position));
+				}
+				this.usersnear = new UsersNear(userPositions);
+			} catch (Exception e) {
+				if (Constants.DEBUG) {
+					e.printStackTrace();
+				}
+				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
-			this.usersnear= new UsersNear(userPositions);
-		} catch (Exception e) {
-			if (Constants.DEBUG){
-				e.printStackTrace();
+		} else {
+			if (Constants.DEBUG) {
+				Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
 			}
-			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 
 	/**
 	 * Gets the usersnear.
-	 *
+	 * 
 	 * @return the usersnear
 	 */
 	public UsersNear getUsersnear() {
@@ -96,8 +116,9 @@ public class UsersNearResult extends APICallResult {
 
 	/**
 	 * Sets the usersnear.
-	 *
-	 * @param usersnear the usersnear to set
+	 * 
+	 * @param usersnear
+	 *            the usersnear to set
 	 */
 	public void setUsersnear(UsersNear usersnear) {
 		this.usersnear = usersnear;

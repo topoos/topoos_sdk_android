@@ -6,7 +6,10 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.Location;
 
@@ -59,15 +62,15 @@ public class PolygonResult extends APICallResult{
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
-		
+		if (APIUtils.getcorrectJSONARRAYstring(Result) != null) {
 		ArrayList<Location> polygon=null;
 		try {
-			JSONArray jArray = (JSONArray) new JSONTokener(this.Result)
+			JSONArray jArray = (JSONArray) new JSONTokener(APIUtils.getcorrectJSONARRAYstring(Result))
 					.nextValue();
 			polygon = new ArrayList<Location>();
 			// Extracting content
 			for (int i = 0; i < jArray.length(); i++) {
-				polygon.add(new Location(jArray.getJSONObject(i).getDouble("latitude"),jArray.getJSONObject(i).getDouble("longitude")));
+				polygon.add(new Location(APIUtils.getDoubleorNull(jArray.getJSONObject(i),"latitude"),APIUtils.getDoubleorNull(jArray.getJSONObject(i),"longitude")));
 			}
 			//this.checkinCollection=new CheckinCollection(array);
 		} catch (Exception e) {
@@ -78,7 +81,11 @@ public class PolygonResult extends APICallResult{
 		}
 		this.polygon=polygon;
 		
-		
+	} else {
+		if (Constants.DEBUG) {
+			Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
+		}
+	}
 		/* Get a SAXParser from the SAXPArserFactory. */
 		/*if (this.Result != null) {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

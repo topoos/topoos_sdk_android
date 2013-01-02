@@ -7,14 +7,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+
 // TODO: Auto-generated Javadoc
 
 /**
  * The Class POIResult.
- *
+ * 
  * @see APICallResult
  * @author topoos
  */
@@ -33,9 +37,11 @@ public class POIResult extends APICallResult {
 
 	/**
 	 * Instantiates a new pOI result.
-	 *
-	 * @param error the error
-	 * @param result the result
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
 	 */
 	public POIResult(String error, String result) {
 		super(error, result);
@@ -44,17 +50,22 @@ public class POIResult extends APICallResult {
 
 	/**
 	 * Instantiates a new pOI result.
-	 *
-	 * @param error the error
-	 * @param result the result
-	 * @param poi the poi
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
+	 * @param poi
+	 *            the poi
 	 */
 	public POIResult(String error, String result, POI poi) {
 		super(error, result);
 		this.poi = poi;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
 	 */
 	@Override
@@ -79,61 +90,64 @@ public class POIResult extends APICallResult {
 		String twitter = null;
 		Date lastUpdate = null;
 		POIWarningCount warningcount = null;
-
-		try {
-			JSONObject jObject = (JSONObject) new JSONTokener(Result)
-					.nextValue();
-			// Extracting content
-			id = jObject.getInt("id");
-			name = APIUtils.getStringorNull(jObject,"name");
-			description = APIUtils.getStringorNull(jObject,"description");
-			latitude = jObject.getDouble("latitude");
-			longitude = jObject.getDouble("longitude");
-			elevation = jObject.getDouble("elevation");
-			accuracy = jObject.getDouble("accuracy");
-			vaccuracy = jObject.getDouble("vaccuracy");
-			address = APIUtils.getStringorNull(jObject,"address");
-			crossStreet = APIUtils.getStringorNull(jObject,"cross_street");
-			city = APIUtils.getStringorNull(jObject,"city");
-			country = APIUtils.getStringorNull(jObject,"country");
-			registertime = APIUtils.toDateString(jObject
-					.getString("registertime"));
-			lastUpdate = APIUtils
-					.toDateString(jObject
-							.getString("last_update"));
-			postalCode = APIUtils.getStringorNull(jObject,"postal_code");
-			phone = APIUtils.getStringorNull(jObject,"phone");
-			twitter = APIUtils.getStringorNull(jObject,"twitter");
-			categories = new ArrayList<POICategory>();
-			JSONArray jArray = jObject.getJSONArray("categories");
-			for (int i = 0; i < jArray.length(); i++) {
-				JSONObject job = jArray.getJSONObject(i);
-				categories.add(new POICategory(job.getInt("Id"), job
-						.getString("Description"), job
-						.getBoolean("is_system_category")));
+		if (APIUtils.getcorrectJSONstring(Result) != null) {
+			try {
+				JSONObject jObject = (JSONObject) new JSONTokener(
+						APIUtils.getcorrectJSONstring(Result)).nextValue();
+				// Extracting content
+				id = APIUtils.getIntegerorNull(jObject, "id");
+				name = APIUtils.getStringorNull(jObject, "name");
+				description = APIUtils.getStringorNull(jObject, "description");
+				latitude = APIUtils.getDoubleorNull(jObject, "latitude");
+				longitude = APIUtils.getDoubleorNull(jObject, "longitude");
+				elevation = APIUtils.getDoubleorNull(jObject, "elevation");
+				accuracy = APIUtils.getDoubleorNull(jObject, "accuracy");
+				vaccuracy = APIUtils.getDoubleorNull(jObject, "vaccuracy");
+				address = APIUtils.getStringorNull(jObject, "address");
+				crossStreet = APIUtils.getStringorNull(jObject, "cross_street");
+				city = APIUtils.getStringorNull(jObject, "city");
+				country = APIUtils.getStringorNull(jObject, "country");
+				registertime = APIUtils.toDateString(jObject
+						.getString("registertime"));
+				lastUpdate = APIUtils.toDateString(jObject
+						.getString("last_update"));
+				postalCode = APIUtils.getStringorNull(jObject, "postal_code");
+				phone = APIUtils.getStringorNull(jObject, "phone");
+				twitter = APIUtils.getStringorNull(jObject, "twitter");
+				categories = new ArrayList<POICategory>();
+				JSONArray jArray = jObject.getJSONArray("categories");
+				for (int i = 0; i < jArray.length(); i++) {
+					JSONObject job = jArray.getJSONObject(i);
+					categories.add(new POICategory(APIUtils.getIntegerorNull(
+							job, "Id"), job.getString("Description"), job
+							.getBoolean("is_system_category")));
+				}
+				JSONObject jObj = jObject.getJSONObject("warnings");
+				warningcount = new POIWarningCount(APIUtils.getIntegerorNull(
+						jObj, "closed"), APIUtils.getIntegerorNull(jObj,
+						"duplicated"), APIUtils.getIntegerorNull(jObj,
+						"wrong_indicator"), APIUtils.getIntegerorNull(jObj,
+						"wrong_info"));
+				this.poi = new POI(id, name, description, latitude, longitude,
+						elevation, accuracy, vaccuracy, registertime,
+						categories, address, crossStreet, city, country,
+						postalCode, phone, twitter, lastUpdate, warningcount);
+			} catch (Exception e) {
+				if (Constants.DEBUG) {
+					e.printStackTrace();
+				}
+				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
-			JSONObject jObj = jObject.getJSONObject("warnings");
-			warningcount = new POIWarningCount(jObj.getInt("closed"),
-					jObj.getInt("duplicated"), jObj.getInt("wrong_indicator"),
-					jObj.getInt("wrong_info"));
-			this.poi=new POI(id, name,
-					description, latitude, longitude,
-					elevation, accuracy, vaccuracy,
-					registertime, categories,
-					address, crossStreet, city, country,
-					postalCode, phone, twitter, lastUpdate,
-					warningcount);
-		} catch (Exception e) {
-			if (Constants.DEBUG){
-				e.printStackTrace();
+		} else {
+			if (Constants.DEBUG) {
+				Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
 			}
-			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 
 	/**
 	 * Gets the poi.
-	 *
+	 * 
 	 * @return the poi
 	 */
 	public POI getPoi() {
@@ -142,8 +156,9 @@ public class POIResult extends APICallResult {
 
 	/**
 	 * Sets the poi.
-	 *
-	 * @param poi the poi to set
+	 * 
+	 * @param poi
+	 *            the poi to set
 	 */
 	public void setPoi(POI poi) {
 		this.poi = poi;

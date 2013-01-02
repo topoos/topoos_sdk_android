@@ -8,7 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
 // TODO: Auto-generated Javadoc
@@ -86,15 +89,15 @@ public class PositionCollectionResult extends APICallResult {
 		try {
 			JSONObject jObject = job;
 			// Extracting content
-			id = jObject.getInt("id");
+			id = APIUtils.getIntegerorNull(jObject,"id");
 			device = APIUtils.getStringorNull(jObject,"device");
-			latitude = jObject.getDouble("latitude");
-			longitude = jObject.getDouble("longitude");
-			elevation = jObject.getDouble("elevation");
-			accuracy = jObject.getDouble("accuracy");
-			vaccuracy = jObject.getDouble("vaccuracy");
-			bearing = jObject.getDouble("bearing");
-			velocity = jObject.getDouble("velocity");
+			latitude = APIUtils.getDoubleorNull(jObject,"latitude");
+			longitude = APIUtils.getDoubleorNull(jObject,"longitude");
+			elevation = APIUtils.getDoubleorNull(jObject,"elevation");
+			accuracy = APIUtils.getDoubleorNull(jObject,"accuracy");
+			vaccuracy = APIUtils.getDoubleorNull(jObject,"vaccuracy");
+			bearing = APIUtils.getDoubleorNull(jObject,"bearing");
+			velocity = APIUtils.getDoubleorNull(jObject,"velocity");
 			track_id = APIUtils.getStringorNull(jObject,"track_id");
 			timestamp = APIUtils.toDateString(jObject
 					.getString("timestamp"));
@@ -126,9 +129,10 @@ public class PositionCollectionResult extends APICallResult {
 	@Override
 	public void setParameters() throws TopoosException {
 		// TODO Auto-generated method stub
+		if (APIUtils.getcorrectJSONARRAYstring(Result) != null) {
 		ArrayList<Position> array=null;
 		try {
-			JSONArray jArray = (JSONArray) new JSONTokener(this.Result)
+			JSONArray jArray = (JSONArray) new JSONTokener(APIUtils.getcorrectJSONARRAYstring(Result))
 					.nextValue();
 			array = new ArrayList<Position>();
 			// Extracting content
@@ -143,6 +147,11 @@ public class PositionCollectionResult extends APICallResult {
 			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 		this.positions=array;
+	} else {
+		if (Constants.DEBUG) {
+			Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
+		}
+	}
 	}
 
 

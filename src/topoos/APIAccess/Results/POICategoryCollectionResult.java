@@ -6,20 +6,23 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+
 // TODO: Auto-generated Javadoc
 
 /**
  * The Class POICategoryCollectionResult.
- *
+ * 
  * @see APICallResult
  * @author topoos
  */
-public class POICategoryCollectionResult extends APICallResult 
-{
-	
+public class POICategoryCollectionResult extends APICallResult {
+
 	/** The poi category collection. */
 	private POICategoryCollection poiCategoryCollection = null;
 
@@ -33,9 +36,11 @@ public class POICategoryCollectionResult extends APICallResult
 
 	/**
 	 * Instantiates a new pOI category collection result.
-	 *
-	 * @param error the error
-	 * @param result the result
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
 	 */
 	public POICategoryCollectionResult(String error, String result) {
 		super(error, result);
@@ -44,10 +49,13 @@ public class POICategoryCollectionResult extends APICallResult
 
 	/**
 	 * Instantiates a new pOI category collection result.
-	 *
-	 * @param error the error
-	 * @param result the result
-	 * @param poiCategoryCollection the poi category collection
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
+	 * @param poiCategoryCollection
+	 *            the poi category collection
 	 */
 	public POICategoryCollectionResult(String error, String result,
 			POICategoryCollection poiCategoryCollection) {
@@ -55,7 +63,9 @@ public class POICategoryCollectionResult extends APICallResult
 		this.poiCategoryCollection = poiCategoryCollection;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
 	 */
 	@Override
@@ -64,32 +74,41 @@ public class POICategoryCollectionResult extends APICallResult
 		Integer id = null;
 		String description = null;
 		Boolean isSystem = null;
-		POICategory poiCategory= null;
-		JSONObject jObject=null;
-		ArrayList<POICategory> arraylist=new ArrayList<POICategory>();
-		try {
-			JSONArray jArray = (JSONArray) new JSONTokener(Result).nextValue();
-			for(int i=0;i<jArray.length();i++){
-				jObject = jArray.getJSONObject(i);
-				// Extracting content
-				id = jObject.getInt("Id");
-				description = APIUtils.getStringorNull(jObject,"Description");
-				isSystem = jObject.getBoolean("is_system_category");
-				poiCategory=new POICategory(id,description,isSystem);
-				arraylist.add(poiCategory);
+		POICategory poiCategory = null;
+		JSONObject jObject = null;
+		if (APIUtils.getcorrectJSONARRAYstring(Result) != null) {
+			ArrayList<POICategory> arraylist = new ArrayList<POICategory>();
+			try {
+				JSONArray jArray = (JSONArray) new JSONTokener(
+						APIUtils.getcorrectJSONARRAYstring(Result)).nextValue();
+				for (int i = 0; i < jArray.length(); i++) {
+					jObject = jArray.getJSONObject(i);
+					// Extracting content
+					id = APIUtils.getIntegerorNull(jObject, "Id");
+					description = APIUtils.getStringorNull(jObject,
+							"Description");
+					isSystem = jObject.getBoolean("is_system_category");
+					poiCategory = new POICategory(id, description, isSystem);
+					arraylist.add(poiCategory);
+				}
+				this.poiCategoryCollection = new POICategoryCollection(
+						arraylist);
+			} catch (Exception e) {
+				if (Constants.DEBUG) {
+					e.printStackTrace();
+				}
+				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
-			this.poiCategoryCollection=new POICategoryCollection(arraylist);
-		} catch (Exception e) {
-			if (Constants.DEBUG){
-				e.printStackTrace();
+		} else {
+			if (Constants.DEBUG) {
+				Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
 			}
-			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 
 	/**
 	 * Gets the poi category collection.
-	 *
+	 * 
 	 * @return the poiCategoryCollection
 	 */
 	public POICategoryCollection getPoiCategoryCollection() {
@@ -98,10 +117,12 @@ public class POICategoryCollectionResult extends APICallResult
 
 	/**
 	 * Sets the poi category collection.
-	 *
-	 * @param poiCategoryCollection the poiCategoryCollection to set
+	 * 
+	 * @param poiCategoryCollection
+	 *            the poiCategoryCollection to set
 	 */
-	public void setPoiCategoryCollection(POICategoryCollection poiCategoryCollection) {
+	public void setPoiCategoryCollection(
+			POICategoryCollection poiCategoryCollection) {
 		this.poiCategoryCollection = poiCategoryCollection;
 	}
 

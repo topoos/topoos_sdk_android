@@ -7,14 +7,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 import topoos.Objects.*;
+
 // TODO: Auto-generated Javadoc
 
 /**
  * The Class POIWarningResult.
- *
+ * 
  * @see APICallResult
  * @author topoos
  */
@@ -33,9 +37,11 @@ public class POIWarningResult extends APICallResult {
 
 	/**
 	 * Instantiates a new pOI warning result.
-	 *
-	 * @param error the error
-	 * @param result the result
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
 	 */
 	public POIWarningResult(String error, String result) {
 		super(error, result);
@@ -44,17 +50,22 @@ public class POIWarningResult extends APICallResult {
 
 	/**
 	 * Instantiates a new pOI warning result.
-	 *
-	 * @param error the error
-	 * @param result the result
-	 * @param poiWarning the poi warning
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
+	 * @param poiWarning
+	 *            the poi warning
 	 */
 	public POIWarningResult(String error, String result, POIWarning poiWarning) {
 		super(error, result);
 		this.poiWarning = poiWarning;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
 	 */
 	@Override
@@ -83,61 +94,70 @@ public class POIWarningResult extends APICallResult {
 		String twitter = null;
 		String description = null;
 		ArrayList<POICategory> categories = null;
-
-		try {
-			JSONObject jObject = (JSONObject) new JSONTokener(Result)
-					.nextValue();
-			// Extracting content
-			id = jObject.getInt("id");
-			poi_id = jObject.getInt("poi_id");
-			type = APIUtils.getStringorNull(jObject,"type");
-			user_id = APIUtils.getStringorNull(jObject,"user_id");
-			timestamp = APIUtils.toDateString(APIUtils.getStringorNull(jObject,"timestamp"));
-			JSONObject jObjectData = jObject.optJSONObject("data");
-			if (jObjectData != null) {
-				id_warningdata = jObjectData.getInt("id");
-				latitude = jObjectData.optDouble("latitude");
-				longitude = jObjectData.optDouble("longitude");
-				elevation = jObjectData.optDouble("elevation");
-				name = jObjectData.optString("name");
-				accuracy = jObjectData.optDouble("accuracy");
-				vaccuracy = jObjectData.optDouble("vaccuracy");
-				address = jObjectData.optString("address");
-				cross_street = jObjectData.optString("cross_street");
-				city = jObjectData.optString("city");
-				country = jObjectData.optString("country");
-				postal_code = jObjectData.optString("postal_code");
-				phone = jObjectData.optString("phone");
-				twitter = jObjectData.optString("twitter");
-				description = jObjectData.optString("description");
-				categories = new ArrayList<POICategory>();
-				JSONArray jArray = jObjectData.optJSONArray("categories");
-				if (jArray != null) {
-					for (int i = 0; i < jArray.length(); i++) {
-						JSONObject job = jArray.getJSONObject(i);
-						categories.add(new POICategory(job.getInt("Id"), APIUtils.getStringorNull(job
-								,"Description"), job
-								.getBoolean("is_system_category")));
+		if (APIUtils.getcorrectJSONstring(Result) != null) {
+			try {
+				JSONObject jObject = (JSONObject) new JSONTokener(
+						APIUtils.getcorrectJSONstring(Result)).nextValue();
+				// Extracting content
+				id = jObject.getInt("id");
+				poi_id = jObject.getInt("poi_id");
+				type = APIUtils.getStringorNull(jObject, "type");
+				user_id = APIUtils.getStringorNull(jObject, "user_id");
+				timestamp = APIUtils.toDateString(APIUtils.getStringorNull(
+						jObject, "timestamp"));
+				JSONObject jObjectData = jObject.optJSONObject("data");
+				if (jObjectData != null) {
+					id_warningdata = jObjectData.getInt("id");
+					latitude = jObjectData.optDouble("latitude");
+					longitude = jObjectData.optDouble("longitude");
+					elevation = jObjectData.optDouble("elevation");
+					name = jObjectData.optString("name");
+					accuracy = jObjectData.optDouble("accuracy");
+					vaccuracy = jObjectData.optDouble("vaccuracy");
+					address = jObjectData.optString("address");
+					cross_street = jObjectData.optString("cross_street");
+					city = jObjectData.optString("city");
+					country = jObjectData.optString("country");
+					postal_code = jObjectData.optString("postal_code");
+					phone = jObjectData.optString("phone");
+					twitter = jObjectData.optString("twitter");
+					description = jObjectData.optString("description");
+					categories = new ArrayList<POICategory>();
+					JSONArray jArray = jObjectData.optJSONArray("categories");
+					if (jArray != null) {
+						for (int i = 0; i < jArray.length(); i++) {
+							JSONObject job = jArray.getJSONObject(i);
+							categories
+									.add(new POICategory(
+											job.getInt("Id"),
+											APIUtils.getStringorNull(job,
+													"Description"),
+											job.getBoolean("is_system_category")));
+						}
 					}
+					data = new POIWarningData(id_warningdata, latitude,
+							longitude, accuracy, vaccuracy, elevation, name,
+							address, cross_street, city, country, postal_code,
+							phone, twitter, description, categories);
 				}
-				data = new POIWarningData(id_warningdata, latitude, longitude,
-						accuracy, vaccuracy, elevation, name, address,
-						cross_street, city, country, postal_code, phone,
-						twitter, description, categories);
+				this.poiWarning = new POIWarning(id, poi_id, type, user_id,
+						timestamp, data);
+			} catch (Exception e) {
+				if (Constants.DEBUG) {
+					e.printStackTrace();
+				}
+				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
-			this.poiWarning = new POIWarning(id, poi_id, type, user_id,
-					timestamp, data);
-		} catch (Exception e) {
+		} else {
 			if (Constants.DEBUG) {
-				e.printStackTrace();
+				Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
 			}
-			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
 	}
 
 	/**
 	 * Gets the poi warning.
-	 *
+	 * 
 	 * @return the poiWarning
 	 */
 	public POIWarning getPoiWarning() {
@@ -146,8 +166,9 @@ public class POIWarningResult extends APICallResult {
 
 	/**
 	 * Sets the poi warning.
-	 *
-	 * @param poiWarning the poiWarning to set
+	 * 
+	 * @param poiWarning
+	 *            the poiWarning to set
 	 */
 	public void setPoiWarning(POIWarning poiWarning) {
 		this.poiWarning = poiWarning;

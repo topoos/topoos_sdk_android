@@ -3,23 +3,26 @@ package topoos.APIAccess.Results;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 import topoos.Constants;
+import topoos.Messages;
 import topoos.Exception.TopoosException;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class GenericResult.
- *
+ * 
  * @see APICallResult
  * @author topoos
  */
 public class GenericResult extends APICallResult {
 
 	/** The code. */
-	private Integer code=null;
-	
+	private Integer code = null;
+
 	/** The description. */
-	private String description=null;
+	private String description = null;
 
 	/**
 	 * Instantiates a new generic result.
@@ -30,9 +33,11 @@ public class GenericResult extends APICallResult {
 
 	/**
 	 * Instantiates a new generic result.
-	 *
-	 * @param error the error
-	 * @param result the result
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
 	 */
 	public GenericResult(String error, String result) {
 		super(error, result);
@@ -40,11 +45,15 @@ public class GenericResult extends APICallResult {
 
 	/**
 	 * Instantiates a new generic result.
-	 *
-	 * @param error the error
-	 * @param result the result
-	 * @param code the code
-	 * @param description the description
+	 * 
+	 * @param error
+	 *            the error
+	 * @param result
+	 *            the result
+	 * @param code
+	 *            the code
+	 * @param description
+	 *            the description
 	 */
 	public GenericResult(String error, String result, Integer code,
 			String description) {
@@ -53,28 +62,37 @@ public class GenericResult extends APICallResult {
 		this.description = description;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Results.APICallResult#setParameters()
 	 */
 	@Override
 	public void setParameters() throws TopoosException {
 		// Processing result
-				try {
-					JSONObject jObject = (JSONObject) new JSONTokener(this.Result)
-							.nextValue();
-					this.code=jObject.getInt("code");
-					this.description=APIUtils.getStringorNull(jObject,"description");
-				}catch (Exception e) {
-					if (Constants.DEBUG){
-						e.printStackTrace();
-					}
-					throw new TopoosException(TopoosException.ERROR_PARSE);
+		if (APIUtils.getcorrectJSONstring(Result) != null) {
+			try {
+				JSONObject jObject = (JSONObject) new JSONTokener(
+						APIUtils.getcorrectJSONstring(Result)).nextValue();
+				this.code = APIUtils.getIntegerorNull(jObject, "code");
+				this.description = APIUtils.getStringorNull(jObject,
+						"description");
+			} catch (Exception e) {
+				if (Constants.DEBUG) {
+					e.printStackTrace();
 				}
+				throw new TopoosException(TopoosException.ERROR_PARSE);
+			}
+		} else {
+			if (Constants.DEBUG) {
+				Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
+			}
+		}
 	}
 
 	/**
 	 * Gets the code.
-	 *
+	 * 
 	 * @return the code
 	 */
 	public Integer getCode() {
@@ -83,8 +101,9 @@ public class GenericResult extends APICallResult {
 
 	/**
 	 * Sets the code.
-	 *
-	 * @param code the code to set
+	 * 
+	 * @param code
+	 *            the code to set
 	 */
 	public void setCode(Integer code) {
 		this.code = code;
@@ -92,7 +111,7 @@ public class GenericResult extends APICallResult {
 
 	/**
 	 * Gets the description.
-	 *
+	 * 
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -101,12 +120,12 @@ public class GenericResult extends APICallResult {
 
 	/**
 	 * Sets the description.
-	 *
-	 * @param description the description to set
+	 * 
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
 }
