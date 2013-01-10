@@ -46,19 +46,31 @@ public class POIWarningCollectionResult extends APICallResult {
 					JSONArray jArrayCategories = jPOI
 							.getJSONArray("categories");
 					for (int j = 0; j < jArrayCategories.length(); j++) {
-						categories.add(new POICategory(jArrayCategories
-								.getJSONObject(j).getInt("Id"),
-								jArrayCategories.getJSONObject(j).getString(
-										"Description"), jArrayCategories
-										.getJSONObject(j).getBoolean(
+						categories
+								.add(new POICategory(
+										APIUtils.getIntegerorNull(
+												jArrayCategories
+														.getJSONObject(j), "Id"),
+										APIUtils.getStringorNull(
+												jArrayCategories
+														.getJSONObject(j),
+												"Description"),
+										APIUtils.getBooleanorNull(
+												jArrayCategories
+														.getJSONObject(j),
 												"is_system_category")));
 					}
-					POIWarningCount warningcount = new POIWarningCount(jPOI
-							.getJSONObject("warnings").getInt("closed"), jPOI
-							.getJSONObject("warnings").getInt("duplicated"),
-							jPOI.getJSONObject("warnings").getInt(
-									"wrongIndicator"), jPOI.getJSONObject(
-									"warnings").getInt("wrongInfo"));
+					POIWarningCount warningcount = new POIWarningCount(
+							APIUtils.getIntegerorNull(
+									jPOI.getJSONObject("warnings"), "closed"),
+							APIUtils.getIntegerorNull(
+									jPOI.getJSONObject("warnings"),
+									"duplicated"),
+							APIUtils.getIntegerorNull(
+									jPOI.getJSONObject("warnings"),
+									"wrongIndicator"),
+							APIUtils.getIntegerorNull(
+									jPOI.getJSONObject("warnings"), "wrongInfo"));
 					// POI
 					POI poi = new POI(
 							jPOI.getInt("id"),
@@ -79,7 +91,7 @@ public class POIWarningCollectionResult extends APICallResult {
 							APIUtils.getStringorNull(jPOI, "postalCode"),
 							APIUtils.getStringorNull(jPOI, "phone"),
 							APIUtils.getStringorNull(jPOI, "twitter"),
-							APIUtils.toDateString(jPOI.getString("lastUpdate")),
+							APIUtils.toDateString(APIUtils.getStringorNull(jPOI,"lastUpdate")),
 							warningcount);
 					JSONArray jArrayWarnings = jArray.getJSONObject(i)
 							.getJSONArray("warnings");
@@ -95,29 +107,36 @@ public class POIWarningCollectionResult extends APICallResult {
 											"categories");
 							ArrayList<POICategory> arrayCategories = new ArrayList<POICategory>();
 							for (int z = 0; z < jPOIwarningCategories.length(); z++) {
-								arrayCategories.add(new POICategory(
-										jPOIwarningCategories.getJSONObject(z)
-												.getInt("Id"),
+								arrayCategories.add(new POICategory(APIUtils
+										.getIntegerorNull(jPOIwarningCategories
+												.getJSONObject(z), "Id"),
 										APIUtils.getStringorNull(
 												jPOIwarningCategories
 														.getJSONObject(z),
 												"Description"),
-										jPOIwarningCategories.getJSONObject(z)
-												.getBoolean(
-														"is_system_category")));
+										APIUtils.getBooleanorNull(
+												jPOIwarningCategories
+														.getJSONObject(z),
+												"is_system_category")));
 							}
-							poiWarningData = new POIWarningData(jPOIwarning
-									.optJSONObject("data").getInt("id"),
-									jPOIwarning.optJSONObject("data")
-											.getDouble("latitude"), jPOIwarning
-											.optJSONObject("data").getDouble(
-													"longitude"), jPOIwarning
-											.optJSONObject("data").getDouble(
-													"accuracy"), jPOIwarning
-											.optJSONObject("data").getDouble(
-													"vaccuracy"), jPOIwarning
-											.optJSONObject("data").getDouble(
-													"elevation"),
+							poiWarningData = new POIWarningData(
+									APIUtils.getIntegerorNull(
+											jPOIwarning.optJSONObject("data"),
+											"id"), APIUtils.getDoubleorNull(
+											jPOIwarning.optJSONObject("data"),
+											"latitude"),
+									APIUtils.getDoubleorNull(
+											jPOIwarning.optJSONObject("data"),
+											"longitude"),
+									APIUtils.getDoubleorNull(
+											jPOIwarning.optJSONObject("data"),
+											"accuracy"),
+									APIUtils.getDoubleorNull(
+											jPOIwarning.optJSONObject("data"),
+											"vaccuracy"),
+									APIUtils.getDoubleorNull(
+											jPOIwarning.optJSONObject("data"),
+											"elevation"),
 									APIUtils.getStringorNull(
 											jPOIwarning.optJSONObject("data"),
 											"name"), APIUtils.getStringorNull(
@@ -145,8 +164,8 @@ public class POIWarningCollectionResult extends APICallResult {
 						}
 
 						POIWarning poiwarning = new POIWarning(
-								jPOIwarning.getInt("id"),
-								jPOIwarning.getInt("poi_id"),
+								APIUtils.getIntegerorNull(jPOIwarning, "id"),
+								APIUtils.getIntegerorNull(jPOIwarning, "poi_id"),
 								APIUtils.getStringorNull(jPOIwarning, "type"),
 								APIUtils.getStringorNull(jPOIwarning, "user_id"),
 								APIUtils.toDateString(jPOIwarning

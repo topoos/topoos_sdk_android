@@ -104,9 +104,10 @@ public class UserResult extends APICallResult {
 					for (int i = 0; i < jarray2.length(); i++) {
 						arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
 								.getString("id"), APIUtils.getStringorNull(
-								jarray2.getJSONObject(i), "name"), jarray2
-								.getJSONObject(i).getInt("model"), jarray2
-								.getJSONObject(i).getBoolean("islogical")));
+								jarray2.getJSONObject(i), "name"), APIUtils
+								.getIntegerorNull(jarray2.getJSONObject(i),
+										"model"), APIUtils.getBooleanorNull(
+								jarray2.getJSONObject(i), "islogical")));
 					}
 					Acreditation = new Acreditation(APIUtils.getStringorNull(
 							jObject.getJSONObject("accreditation"),

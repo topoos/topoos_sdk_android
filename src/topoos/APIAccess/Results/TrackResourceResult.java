@@ -76,7 +76,7 @@ public class TrackResourceResult extends APICallResult {
 				Integer id = null;
 				String type = null;
 				String format = null;
-				id = jObject.getInt("id");
+				id = APIUtils.getIntegerorNull(jObject,"id");
 				type = APIUtils.getStringorNull(jObject, "type");
 				format = APIUtils.getStringorNull(jObject, "format");
 				this.trackResource = new TrackResource(id, type, format);

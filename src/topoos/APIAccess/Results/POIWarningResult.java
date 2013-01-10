@@ -99,29 +99,38 @@ public class POIWarningResult extends APICallResult {
 				JSONObject jObject = (JSONObject) new JSONTokener(
 						APIUtils.getcorrectJSONstring(Result)).nextValue();
 				// Extracting content
-				id = jObject.getInt("id");
-				poi_id = jObject.getInt("poi_id");
+				id = APIUtils.getIntegerorNull(jObject, "id");
+				poi_id = APIUtils.getIntegerorNull(jObject, "poi_id");
 				type = APIUtils.getStringorNull(jObject, "type");
 				user_id = APIUtils.getStringorNull(jObject, "user_id");
 				timestamp = APIUtils.toDateString(APIUtils.getStringorNull(
 						jObject, "timestamp"));
 				JSONObject jObjectData = jObject.optJSONObject("data");
 				if (jObjectData != null) {
-					id_warningdata = jObjectData.getInt("id");
-					latitude = jObjectData.optDouble("latitude");
-					longitude = jObjectData.optDouble("longitude");
-					elevation = jObjectData.optDouble("elevation");
-					name = jObjectData.optString("name");
-					accuracy = jObjectData.optDouble("accuracy");
-					vaccuracy = jObjectData.optDouble("vaccuracy");
-					address = jObjectData.optString("address");
-					cross_street = jObjectData.optString("cross_street");
-					city = jObjectData.optString("city");
-					country = jObjectData.optString("country");
-					postal_code = jObjectData.optString("postal_code");
-					phone = jObjectData.optString("phone");
-					twitter = jObjectData.optString("twitter");
-					description = jObjectData.optString("description");
+					id_warningdata = APIUtils.getIntegerorNull(jObjectData,
+							"id");
+					latitude = APIUtils
+							.getDoubleorNull(jObjectData, "latitude");
+					longitude = APIUtils.getDoubleorNull(jObjectData,
+							"longitude");
+					elevation = APIUtils.getDoubleorNull(jObjectData,
+							"elevation");
+					name = APIUtils.getStringorNull(jObjectData, "name");
+					accuracy = APIUtils
+							.getDoubleorNull(jObjectData, "accuracy");
+					vaccuracy = APIUtils.getDoubleorNull(jObjectData,
+							"vaccuracy");
+					address = APIUtils.getStringorNull(jObjectData, "address");
+					cross_street = APIUtils.getStringorNull(jObjectData,
+							"cross_street");
+					city = APIUtils.getStringorNull(jObjectData, "city");
+					country = APIUtils.getStringorNull(jObjectData, "country");
+					postal_code = APIUtils.getStringorNull(jObjectData,
+							"postal_code");
+					phone = APIUtils.getStringorNull(jObjectData, "phone");
+					twitter = APIUtils.getStringorNull(jObjectData, "twitter");
+					description = APIUtils.getStringorNull(jObjectData,
+							"description");
 					categories = new ArrayList<POICategory>();
 					JSONArray jArray = jObjectData.optJSONArray("categories");
 					if (jArray != null) {
@@ -129,10 +138,12 @@ public class POIWarningResult extends APICallResult {
 							JSONObject job = jArray.getJSONObject(i);
 							categories
 									.add(new POICategory(
-											job.getInt("Id"),
+											APIUtils
+											.getIntegerorNull(job,"Id"),
 											APIUtils.getStringorNull(job,
 													"Description"),
-											job.getBoolean("is_system_category")));
+													APIUtils
+													.getBooleanorNull(job,"is_system_category")));
 						}
 					}
 					data = new POIWarningData(id_warningdata, latitude,

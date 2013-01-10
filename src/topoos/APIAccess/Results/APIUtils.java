@@ -52,6 +52,22 @@ class APIUtils {
 	}
 	
 	/**
+	 * Gets the Boolean or null.
+	 *
+	 * @param jsonob the jsonob
+	 * @param key the key
+	 * @return the Boolean or null
+	 * @throws JSONException the jSON exception
+	 */
+	public static Boolean getBooleanorNull(JSONObject jsonob, String key) throws JSONException{
+		Boolean value=null;
+		if(!jsonob.isNull(key)){
+			value=jsonob.getBoolean(key);
+		}
+		return value;
+	}
+	
+	/**
 	 * Gets the Integer or null.
 	 *
 	 * @param jsonob the jsonob
@@ -66,7 +82,6 @@ class APIUtils {
 		}
 		return value;
 	}
-	
 	/**
 	 * Gets the Double or null.
 	 *

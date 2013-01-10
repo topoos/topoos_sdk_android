@@ -93,62 +93,71 @@ public class POICollectionResult extends APICallResult {
 		Date lastUpdate = null;
 		POIWarningCount warningcount = null;
 		if (APIUtils.getcorrectJSONARRAYstring(Result) != null) {
-		try {
-			JSONArray jArray = (JSONArray) new JSONTokener(APIUtils.getcorrectJSONARRAYstring(Result)).nextValue();
-			ArrayList<POI> poicollec=new ArrayList<POI>();
-			for (int i = 0; i < jArray.length(); i++) {
-				// Extracting content
-				JSONObject jObject = jArray.getJSONObject(i);
-				POI poi = null;
-				id = APIUtils.getIntegerorNull(jObject,"id");
-				name = APIUtils.getStringorNull(jObject,"name");
-				description = APIUtils.getStringorNull(jObject,"description");
-				latitude = APIUtils.getDoubleorNull(jObject,"latitude");
-				longitude = APIUtils.getDoubleorNull(jObject,"longitude");
-				elevation = APIUtils.getDoubleorNull(jObject,"elevation");
-				accuracy = APIUtils.getDoubleorNull(jObject,"accuracy");
-				vaccuracy = APIUtils.getDoubleorNull(jObject,"vaccuracy");
-				address = APIUtils.getStringorNull(jObject,"address");
-				crossStreet = APIUtils.getStringorNull(jObject,"cross_street");
-				city = APIUtils.getStringorNull(jObject,"city");
-				country = APIUtils.getStringorNull(jObject,"country");
-				registertime = APIUtils.toDateString(jObject
-						.getString("registertime"));
-				lastUpdate = APIUtils.toDateString(jObject
-						.getString("last_update"));
-				postalCode = APIUtils.getStringorNull(jObject,"postal_code");
-				phone = APIUtils.getStringorNull(jObject,"phone");
-				twitter = APIUtils.getStringorNull(jObject,"twitter");
-				categories = new ArrayList<POICategory>();
-				JSONArray jArrayCategories = jObject.getJSONArray("categories");
-				for (int j = 0; j < jArrayCategories.length(); j++) {
-					JSONObject job = jArrayCategories.getJSONObject(j);
-					categories.add(new POICategory(job.getInt("Id"),APIUtils.getStringorNull(job,"Description"), job
-							.getBoolean("is_system_category")));
+			try {
+				JSONArray jArray = (JSONArray) new JSONTokener(
+						APIUtils.getcorrectJSONARRAYstring(Result)).nextValue();
+				ArrayList<POI> poicollec = new ArrayList<POI>();
+				for (int i = 0; i < jArray.length(); i++) {
+					// Extracting content
+					JSONObject jObject = jArray.getJSONObject(i);
+					POI poi = null;
+					id = APIUtils.getIntegerorNull(jObject, "id");
+					name = APIUtils.getStringorNull(jObject, "name");
+					description = APIUtils.getStringorNull(jObject,
+							"description");
+					latitude = APIUtils.getDoubleorNull(jObject, "latitude");
+					longitude = APIUtils.getDoubleorNull(jObject, "longitude");
+					elevation = APIUtils.getDoubleorNull(jObject, "elevation");
+					accuracy = APIUtils.getDoubleorNull(jObject, "accuracy");
+					vaccuracy = APIUtils.getDoubleorNull(jObject, "vaccuracy");
+					address = APIUtils.getStringorNull(jObject, "address");
+					crossStreet = APIUtils.getStringorNull(jObject,
+							"cross_street");
+					city = APIUtils.getStringorNull(jObject, "city");
+					country = APIUtils.getStringorNull(jObject, "country");
+					registertime = APIUtils.toDateString(jObject
+							.getString("registertime"));
+					lastUpdate = APIUtils.toDateString(jObject
+							.getString("last_update"));
+					postalCode = APIUtils.getStringorNull(jObject,
+							"postal_code");
+					phone = APIUtils.getStringorNull(jObject, "phone");
+					twitter = APIUtils.getStringorNull(jObject, "twitter");
+					categories = new ArrayList<POICategory>();
+					JSONArray jArrayCategories = jObject
+							.getJSONArray("categories");
+					for (int j = 0; j < jArrayCategories.length(); j++) {
+						JSONObject job = jArrayCategories.getJSONObject(j);
+						categories.add(new POICategory(APIUtils
+								.getIntegerorNull(job, "Id"), APIUtils
+								.getStringorNull(job, "Description"), APIUtils
+								.getBooleanorNull(job, "is_system_category")));
+					}
+					JSONObject jObj = jObject.getJSONObject("warnings");
+					warningcount = new POIWarningCount(
+							APIUtils.getIntegerorNull(jObj, "closed"),
+							APIUtils.getIntegerorNull(jObj, "duplicated"),
+							APIUtils.getIntegerorNull(jObj, "wrong_indicator"),
+							APIUtils.getIntegerorNull(jObj, "wrong_info"));
+					poi = new POI(id, name, description, latitude, longitude,
+							elevation, accuracy, vaccuracy, registertime,
+							categories, address, crossStreet, city, country,
+							postalCode, phone, twitter, lastUpdate,
+							warningcount);
+					poicollec.add(poi);
 				}
-				JSONObject jObj = jObject.getJSONObject("warnings");
-				warningcount = new POIWarningCount(APIUtils.getIntegerorNull(jObj,"closed"),
-						APIUtils.getIntegerorNull(jObj,"duplicated"),
-						APIUtils.getIntegerorNull(jObj,"wrong_indicator"),
-						APIUtils.getIntegerorNull(jObj,"wrong_info"));
-				poi = new POI(id, name, description, latitude, longitude,
-						elevation, accuracy, vaccuracy, registertime,
-						categories, address, crossStreet, city, country,
-						postalCode, phone, twitter, lastUpdate, warningcount);
-				poicollec.add(poi);
+				this.poicollection = new POICollection(poicollec);
+			} catch (Exception e) {
+				if (Constants.DEBUG) {
+					e.printStackTrace();
+				}
+				throw new TopoosException(TopoosException.ERROR_PARSE);
 			}
-			this.poicollection=new POICollection(poicollec);
-		} catch (Exception e) {
-			if (Constants.DEBUG){
-				e.printStackTrace();
+		} else {
+			if (Constants.DEBUG) {
+				Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
 			}
-			throw new TopoosException(TopoosException.ERROR_PARSE);
 		}
-	} else {
-		if (Constants.DEBUG) {
-			Log.i(Constants.TAG, Messages.TOPOOS_NORESULT);
-		}
-	}
 	}
 
 	/**

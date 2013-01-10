@@ -14,7 +14,7 @@ public class Constants {
 	
 	public static final String TAG="SDK_TOPOOS";
 	public static final int HTTP_WAITING_MILISECONDS = 5000;
-	public static final String SDKVERSION = "1.0.0.4";
+	public static final String SDKVERSION = "1.0.0.5";
 	public static final Integer APIVERSION = 1;
 	
 }
