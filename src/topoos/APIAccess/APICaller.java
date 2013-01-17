@@ -1,5 +1,8 @@
 package topoos.APIAccess;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
@@ -15,6 +18,7 @@ import topoos.Constants;
 import topoos.APIAccess.Operations.APIOperation;
 import topoos.APIAccess.Results.APICallResult;
 import topoos.Exception.TopoosException;
+import android.os.Environment;
 import android.util.Log;
 
 /**
@@ -75,6 +79,7 @@ public class APICaller {
 		String OpURI = Constants.TOPOOSURIAPI + operation.ConcatParams();
 		if (Constants.DEBUGURL) {
 			Log.d(Constants.TAG, OpURI);
+			appendLog(OpURI);
 		}
 		HttpPost post = new HttpPost(OpURI);
 		// POST
@@ -91,6 +96,7 @@ public class APICaller {
 			result.setResult(EntityUtils.toString(rp.getEntity()));
 			if (Constants.DEBUGURL) {
 				Log.d(Constants.TAG, result.getResult());
+				appendLog(result.getResult());
 			}
 			result.setError(null);
 			result.setParameters();
@@ -138,6 +144,7 @@ public class APICaller {
 		}
 		if (Constants.DEBUGURL) {
 			Log.d(Constants.TAG, OpURI);
+			appendLog(OpURI);
 		}
 		HttpPost post = new HttpPost(OpURI);
 		// POST
@@ -154,6 +161,7 @@ public class APICaller {
 			result.setResult(EntityUtils.toString(rp.getEntity()));
 			if (Constants.DEBUGURL) {
 				Log.d(Constants.TAG, result.getResult());
+				appendLog(result.getResult());
 			}
 			result.setError(null);
 			result.setParameters();
@@ -168,6 +176,24 @@ public class APICaller {
 						+ rp.getStatusLine().getStatusCode() + "");
 			}
 
+		}
+	}
+
+	private static void appendLog(String text) {
+		try {
+			File logFile = new File(Environment.getExternalStorageDirectory(),
+					"logoperations.txt");
+			if (!logFile.exists()) {
+				logFile.createNewFile();
+			}
+
+			BufferedWriter buf = new BufferedWriter(new FileWriter(logFile,
+					true));
+			buf.append(text);
+			buf.newLine();
+			buf.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

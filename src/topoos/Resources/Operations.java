@@ -2,11 +2,11 @@ package topoos.Resources;
 
 import java.io.IOException;
 import java.util.List;
+
 import topoos.AccessTokenOAuth;
 import topoos.Exception.TopoosException;
 import topoos.Objects.GeocodingData;
 import topoos.Objects.Location;
-import topoos.Objects.Track;
 import android.content.Context;
 
 /**
@@ -59,25 +59,14 @@ public class Operations {
 	 * @param format
 	 * @param apiKey 
 	 * @return Track
+	 * @throws TopoosException 
+	 * @throws IOException 
 	 */
-	public static Track GetTrackExported(Integer resourceID, String type,
-			String format, String apiKey) {
+	public static String GetTrackExported(Integer resourceID, String type,
+			String format, String apiKey) throws IOException, TopoosException {
 		return Translator.GetTrackExported(resourceID, type, format, apiKey);
 	}
 
-	/**
-	 * 
-	 * @param resourceID
-	 * @param type
-	 * @param apiKey
-	 * @return String
-	 * @throws IOException 
-	 * @throws TopoosException 
-	 */
-	public static String GetTrackExportedWebMapURI(String resourceID,
-			String type, String apiKey) throws IOException, TopoosException {
-		return Translator.GetTrackExportedWebMapURI(resourceID, type, apiKey);
-	}
 
 	/**
 	 * 

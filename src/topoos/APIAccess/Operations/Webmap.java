@@ -7,7 +7,7 @@ package topoos.APIAccess.Operations;
  * @see APIOperation
  * @author topoos
  */
-public class ResourceWebmap extends APIOperation {
+public class Webmap extends APIOperation {
 
 	/** The Constant TYPE_LAYER. */
 	public static final String TYPE_LAYER = "layer";
@@ -39,7 +39,7 @@ public class ResourceWebmap extends APIOperation {
 								 * @param type the type
 								 * @param id the id
 								 */
-	public ResourceWebmap(String operationName, String method, String format,
+	public Webmap(String operationName, String method, String format,
 			Integer version, String api_key, String type, String id) {
 		super(operationName, method, format, version);
 		this.api_key = api_key;
@@ -66,8 +66,8 @@ public class ResourceWebmap extends APIOperation {
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/resources/webmap" + "?api_key="
-					+ api_key + "&type=" + type + "&id=" + id;
+			params = "/" + this.Version + "/webmap" + "?" + type+"="+ id + "&api_key="
+					+ api_key ;
 		}
 		return params;
 	}

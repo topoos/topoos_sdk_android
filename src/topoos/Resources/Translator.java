@@ -48,23 +48,16 @@ class Translator {
 		return Geocoding;
 	}
 	
-	public static Track GetTrackExported (Integer resourceID,String type, String format,String apiKey){
-		Track track=null;
-		return track;
-	}
-	
-	
-	public static String GetTrackExportedWebMapURI (String resourceID,String type,String apiKey) throws IOException, TopoosException{
-		String GetTrackExportedWebMapURI = null;
-		if (apiKey!=null) {
-			ResourceWebmap resourceWebmap = new ResourceWebmap("GetTrackExportedWebMapURI", method, format,
-					version, apiKey, type,
-					resourceID);
-			WebMapURIResult webMapURIResult = new WebMapURIResult();
-			APICaller.ExecuteOperation(resourceWebmap, webMapURIResult);
-			GetTrackExportedWebMapURI = webMapURIResult.getWebmapuri();
-		}
-		return GetTrackExportedWebMapURI;
+	public static String GetTrackExported(Integer resourceID, String type,
+			String format, String apiKey) throws IOException, TopoosException{
+
+		
+		Resource resourceTrack=new Resource("GetTrackExported", method, format,
+				version, type, apiKey, resourceID);
+		TrackResourceExportedResult trackResourceExportedResult =new TrackResourceExportedResult();
+		APICaller.ExecuteOperation(resourceTrack, trackResourceExportedResult);
+
+		return trackResourceExportedResult.getTrackresource();
 	}
 	
 	
