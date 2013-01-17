@@ -5,7 +5,7 @@ import java.util.Date;
 // TODO: Auto-generated Javadoc
 /**
  * Make a track public that´s belong to an user and application.
- *
+ * 
  * @see APIOperation
  * @author topoos
  */
@@ -13,45 +13,48 @@ public class ExportLayerTrack extends APIOperation {
 
 	/** The Constant DATA_TRACK. */
 	public static final String DATA_TRACK = "Track";
-	
+
 	/** The Constant TYPE_LAYER. */
 	public static final String TYPE_LAYER = "layer";
-	
-	/** The Constant EXPORT_FORMAT. */
-	public static final String EXPORT_FORMAT = "kml";
+
+	/** The Constant EXPORT_FORMAT_KML. */
+	public static final String EXPORT_FORMAT_KML = "kml";
+
+	/** The Constant EXPORT_FORMAT_JSON. */
+	public static final String EXPORT_FORMAT_JSON = "json";
 
 	/** The oauth_token. */
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
 	/** The type. */
-										private String type = null; // (obligatorio) este fragmento determina el
-								// tipo de recurso que se desea generar. Por
-								// ejemplo para generar un recurso de tipo capa
-								// KML, su valor es layer. Valores permitidos:
-								// layer.
+	private String type = null; // (obligatorio) este fragmento determina el
+	// tipo de recurso que se desea generar. Por
+	// ejemplo para generar un recurso de tipo capa
+	// KML, su valor es layer. Valores permitidos:
+	// layer.
 	/** The data. */
-								private String data = null; // (obligatorio) este fragmento especifica los
-								// datos que se almacenarán en el recurso
-								// exportado. Por ejemplo, es posible almacenar
-								// un Track. Valores permitidos: Track.
+	private String data = null; // (obligatorio) este fragmento especifica los
+	// datos que se almacenarán en el recurso
+	// exportado. Por ejemplo, es posible almacenar
+	// un Track. Valores permitidos: Track.
 
 	// Parametros de TracksGet
 
 	/** The export_format. */
-								private String export_format; // (obligatorio) este fragmento establece el
-									// formato de la respuesta de esta operación
-									// (no el formato del recurso). Valores
-									// disponibles: json.
+	private String export_format; // (obligatorio) este fragmento establece el
+	// formato de la respuesta de esta operación
+	// (no el formato del recurso). Valores
+	// disponibles: json.
 	/** The track. */
-									protected Integer track = null; // (obligatorio) identificador del Track
-									// solicitado
+	protected Integer track = null; // (obligatorio) identificador del Track
+	// solicitado
 	/** The total. */
-									protected Integer total = null; // (opcional) si se especifica un valor N,
-									// se obtendrán las últimas N posiciones del
-									// Track
+	protected Integer total = null; // (opcional) si se especifica un valor N,
+	// se obtendrán las últimas N posiciones del
+	// Track
 	/** The initdate. */
-									protected Date initdate = null;
-	
+	protected Date initdate = null;
+
 	/** The enddate. */
 	protected Date enddate = null;
 
@@ -61,19 +64,31 @@ public class ExportLayerTrack extends APIOperation {
 
 	/**
 	 * Instantiates a new export layer track.
-	 *
-	 * @param operationName the operation name
-	 * @param method the method
-	 * @param format the format
-	 * @param version the version
-	 * @param oauth_token the oauth_token
-	 * @param type the type
-	 * @param data the data
-	 * @param export_format the export_format
-	 * @param track the track
-	 * @param total the total
-	 * @param initdate the initdate
-	 * @param endate the endate
+	 * 
+	 * @param operationName
+	 *            the operation name
+	 * @param method
+	 *            the method
+	 * @param format
+	 *            the format
+	 * @param version
+	 *            the version
+	 * @param oauth_token
+	 *            the oauth_token
+	 * @param type
+	 *            the type
+	 * @param data
+	 *            the data
+	 * @param export_format
+	 *            the export_format
+	 * @param track
+	 *            the track
+	 * @param total
+	 *            the total
+	 * @param initdate
+	 *            the initdate
+	 * @param endate
+	 *            the endate
 	 */
 	public ExportLayerTrack(String operationName, String method, String format,
 			Integer version, String oauth_token, String type, String data,
@@ -90,7 +105,9 @@ public class ExportLayerTrack extends APIOperation {
 		this.enddate = endate;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
 	 */
 	@Override
@@ -107,7 +124,9 @@ public class ExportLayerTrack extends APIOperation {
 		return validate;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
 	 */
 	@Override

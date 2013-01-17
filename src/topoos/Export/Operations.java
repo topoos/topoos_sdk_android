@@ -23,8 +23,10 @@ public class Operations {
 	public static final String TYPE_LAYER= topoos.APIAccess.Operations.ExportLayerTrack.TYPE_LAYER;
 	
 	/** The Constant EXPORT_FORMAT. */
-	public static final String EXPORT_FORMAT=topoos.APIAccess.Operations.ExportLayerTrack.EXPORT_FORMAT;
+	public static final String EXPORT_FORMAT_KML=topoos.APIAccess.Operations.ExportLayerTrack.EXPORT_FORMAT_KML;
 	
+	/** The Constant EXPORT_FORMAT. */
+	public static final String EXPORT_FORMAT_JSON=topoos.APIAccess.Operations.ExportLayerTrack.EXPORT_FORMAT_JSON;	
 	/**
 	 * Export track.
 	 *

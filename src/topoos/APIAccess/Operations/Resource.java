@@ -60,8 +60,8 @@ public class Resource extends APIOperation {
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/resource/"+id+"."
-						+ this.Format+"?api_key"+api_key;
+			params = "/" + this.Version + "/resource/"+type+"/"+id+"."
+						+ this.Format+"?api_key="+api_key;
 		}
 		return params;
 	}
