@@ -2,7 +2,7 @@ package topoos;
 
 public class Constants {
 	public static boolean DEBUG = false;
-	public static boolean DEBUGURL = true;
+	public static boolean DEBUGURL = false;
 	
 	public static final String TOPOOSURIPIC="https://pic.topoos.com";
 	public static final String TOPOOSURIAPI="https://api.topoos.com";
@@ -14,7 +14,7 @@ public class Constants {
 	
 	public static final String TAG="SDK_TOPOOS";
 	public static final int HTTP_WAITING_MILISECONDS = 5000;
-	public static final String SDKVERSION = "1.0.0.6";
+	public static final String SDKVERSION = "1.0.0.7";
 	public static final Integer APIVERSION = 1;
 	
 }

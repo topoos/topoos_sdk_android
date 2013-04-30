@@ -73,7 +73,7 @@ public class CheckinResult extends APICallResult {
 						APIUtils.getcorrectJSONstring(Result)).nextValue();
 				// Extracting content
 				this.checkin = new Checkin(APIUtils.getIntegerorNull(jObject,
-						"id"), APIUtils.getIntegerorNull(jObject, "device_id"),
+						"id"),APIUtils.getStringorNull(jObject, "user_id"), APIUtils.getIntegerorNull(jObject, "device_id"),
 						APIUtils.getIntegerorNull(jObject, "poi_id"),
 						APIUtils.toDateString(jObject
 								.getString("register_time")),

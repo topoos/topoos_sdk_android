@@ -27,6 +27,9 @@ public class POISUpdate extends APIOperation{
 	/** The lng. */
 	private Double 	lng=null; // (No puede ser null) longitud de la nueva posición. Obligatorio si se especifica lat. Decimal.
 	
+	/** The geocode*/
+	private Boolean geocode = null; //(Optional) Try to geocode the specified lat and lng, to fill unspecified attributes.
+	
 	/** The accuracy. */
 	private Double 	accuracy=null; // (opcional) precisión de la posición (latitud, longitud). Decimal.
 	
@@ -74,6 +77,7 @@ public class POISUpdate extends APIOperation{
 	 * @param desc the desc
 	 * @param lat the lat
 	 * @param lng the lng
+	 * @param geocode the geocode
 	 * @param accuracy the accuracy
 	 * @param vaccuracy the vaccuracy
 	 * @param elevation the elevation
@@ -88,7 +92,7 @@ public class POISUpdate extends APIOperation{
 	 */
 	public POISUpdate(String operationName, String method, String format,
 			Integer version, String oauth_token, Integer poi, String name,
-			String desc, Double lat, Double lng, Double accuracy,
+			String desc, Double lat, Double lng, Boolean geocode, Double accuracy,
 			Double vaccuracy, Double elevation, String categories,
 			String address, String cross_street, String city, String country,
 			String postal_code, String phone, String twitter) {
@@ -99,6 +103,7 @@ public class POISUpdate extends APIOperation{
 		this.desc = desc;
 		this.lat = lat;
 		this.lng = lng;
+		this.geocode = geocode;
 		this.accuracy = accuracy;
 		this.vaccuracy = vaccuracy;
 		this.elevation = elevation;
@@ -123,6 +128,7 @@ public class POISUpdate extends APIOperation{
 		validate = validate && isValid(APIUtils.toStringInteger(poi));
 		validate = validate && isValid(APIUtils.toStringDouble(lat));
 		validate = validate && isValid(APIUtils.toStringDouble(lng));
+		validate = validate && isValidorNull(APIUtils.toStringBoolean(geocode));
 		validate = validate && isValidorNull(APIUtils.toStringDouble(accuracy));
 		validate = validate && isValidorNull(APIUtils.toStringDouble(vaccuracy));
 		validate = validate && isValidorNull(APIUtils.toStringDouble(elevation));
@@ -151,6 +157,8 @@ public class POISUpdate extends APIOperation{
 					+ "&poi="+APIUtils.toStringInteger(poi)
 					+ "&lat="+APIUtils.toStringDouble(lat)
 					+ "&lng="+APIUtils.toStringDouble(lng)
+					+ (geocode == null ? "" : "&geocode="
+							+ APIUtils.toStringBoolean(geocode))	
 					+(accuracy == null? "" : "&accuracy="+APIUtils.toStringDouble(accuracy))
 					+(vaccuracy == null? "" : "&vaccuracy="+APIUtils.toStringDouble(vaccuracy))
 					+(elevation == null? "" :  "&elevation="+APIUtils.toStringDouble(elevation))

@@ -1,5 +1,7 @@
 package topoos.APIAccess.Operations;
 
+import java.util.Date;
+
 // TODO: Auto-generated Javadoc
 /**
  * Get all CheckIns that have been realized in a POI.
@@ -13,8 +15,20 @@ public class CheckinGet_where extends APIOperation {
 	private String oauth_token = null; // (obligatorio) access_token a los
 										// recursos del usuario
 	/** The poi. */
-										private Integer poi = null; // (obligatorio)identificador del POI
-
+	private Integer poi = null; // (obligatorio)identificador del POI
+	
+	/**
+	 * The initdate
+	 */
+	private Date initdate = null;  //(opcional)
+	
+	/**
+	 * The enddate
+	 */
+	private Date enddate = null; //(opcional)
+	
+	
+	
 	/**
 	 * Instantiates a new checkin get_where.
 	 *
@@ -24,12 +38,16 @@ public class CheckinGet_where extends APIOperation {
 	 * @param version the version
 	 * @param oauth_token the oauth_token
 	 * @param poi the poi
+	 * @param initdate
+	 * @param enddate
 	 */
 	public CheckinGet_where(String operationName, String method, String format,
-			Integer version, String oauth_token, Integer poi) {
+			Integer version, String oauth_token, Integer poi, Date initdate, Date enddate) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.poi = poi;
+		this.enddate=enddate;
+		this.initdate=initdate;
 	}
 
 	/* (non-Javadoc)
@@ -40,6 +58,8 @@ public class CheckinGet_where extends APIOperation {
 		boolean validate = true;
 		validate = validate && isValid(APIUtils.toStringInteger(poi));
 		validate = validate && isValid(oauth_token);
+		validate = validate && isValidorNull(APIUtils.toStringDate(initdate));
+		validate = validate && isValidorNull(APIUtils.toStringDate(enddate));
 		return validate;
 	}
 
@@ -52,7 +72,9 @@ public class CheckinGet_where extends APIOperation {
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/checkin/get_where." + this.Format
 					+ "?oauth_token=" + this.oauth_token + "&poi="
-					+ APIUtils.toStringInteger(this.poi);
+					+ APIUtils.toStringInteger(this.poi)
+					+ (initdate!=null? "&initdate="+APIUtils.toStringDate(initdate) : "") 
+					+ (enddate!=null? "&enddate="+APIUtils.toStringDate(enddate) : "");
 
 		}
 		return params;

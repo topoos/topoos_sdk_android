@@ -79,7 +79,7 @@ public class CheckinCollectionResult extends APICallResult {
 				// Extracting content
 				for (int i = 0; i < jArray.length(); i++) {
 					array.add(new Checkin(APIUtils.getIntegerorNull(
-							jArray.getJSONObject(i), "id"), APIUtils
+							jArray.getJSONObject(i), "id"), APIUtils.getStringorNull(jArray.getJSONObject(i), "user_id"), APIUtils
 							.getIntegerorNull(jArray.getJSONObject(i),
 									"device_id"), APIUtils.getIntegerorNull(
 							jArray.getJSONObject(i), "poi_id"), APIUtils

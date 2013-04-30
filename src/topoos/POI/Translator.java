@@ -17,7 +17,7 @@ class Translator {
 	private static String format = "json";
 	private static Integer version = topoos.Constants.APIVERSION;
 
-	public static POI Add(String name, Double lat, Double lng,
+	public static POI Add(String name, Double lat, Double lng, Boolean geocode,
 			Integer[] categories, Double accuracy, Double vaccuracy,
 			Double elevation, String desc, String address, String cross_street,
 			String city, String country, String postal_code, String phone,
@@ -37,7 +37,7 @@ class Translator {
 				}
 			}
 			POISAdd pOISAdd = new POISAdd("Add", method, format, version,
-					accessTokenPregenerated.getAccessToken(), lat, lng,
+					accessTokenPregenerated.getAccessToken(), lat, lng,geocode,
 					accuracy, vaccuracy, elevation,
 					!strcategories.equals("") ? strcategories : null, name,
 					desc, address, cross_street, city, country, postal_code,
@@ -136,7 +136,7 @@ class Translator {
 	}
 
 	public static POI Update(Integer POIID, String name, Double lat,
-			Double lng, Integer[] categories, Double accuracy,
+			Double lng, Boolean geocode, Integer[] categories, Double accuracy,
 			Double vaccuracy, Double elevation, String desc, String address,
 			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter,
@@ -155,7 +155,7 @@ class Translator {
 				}
 			}
 			POISUpdate pOISUpdate= new POISUpdate("Update", method, format,
-					version, accessTokenPregenerated.getAccessToken(), POIID, name, desc, lat, lng, accuracy, vaccuracy, elevation, !strcategories.equals("") ? strcategories : null, address, cross_street, city, country, postal_code, phone, twitter);
+					version, accessTokenPregenerated.getAccessToken(), POIID, name, desc, lat, lng, geocode, accuracy, vaccuracy, elevation, !strcategories.equals("") ? strcategories : null, address, cross_street, city, country, postal_code, phone, twitter);
 			POIResult poiResult = new POIResult();
 			APICaller.ExecuteOperation(pOISUpdate, poiResult);
 			poi = poiResult.getPoi();
@@ -182,11 +182,11 @@ class Translator {
 	}
 
 	public static POI Add(Context context, String name, Double lat, Double lng,
-			Integer[] categories, Double accuracy, Double vaccuracy,
+			Boolean geocode, Integer[] categories, Double accuracy, Double vaccuracy,
 			Double elevation, String desc, String address, String cross_street,
 			String city, String country, String postal_code, String phone,
 			String twitter) throws IOException, TopoosException {
-		return Add(name, lat, lng, categories, accuracy, vaccuracy, elevation,
+		return Add(name, lat, lng, geocode, categories, accuracy, vaccuracy, elevation,
 				desc, address, cross_street, city, country, postal_code, phone,
 				twitter, AccessTokenOAuth.GetAccessToken(context));
 	}
@@ -211,12 +211,12 @@ class Translator {
 	}
 
 	public static POI Update(Context context, Integer POIID, String name,
-			Double lat, Double lng, Integer[] categories, Double accuracy,
+			Double lat, Double lng, Boolean geocode, Integer[] categories, Double accuracy,
 			Double vaccuracy, Double elevation, String desc, String address,
 			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter)
 			throws IOException, TopoosException {
-		return Update(POIID, name, lat, lng, categories, accuracy, vaccuracy,
+		return Update(POIID, name, lat, lng, geocode, categories, accuracy, vaccuracy,
 				elevation, desc, address, cross_street, city, country,
 				postal_code, phone, twitter, AccessTokenOAuth.GetAccessToken(context));
 	}

@@ -86,7 +86,8 @@ public class GeocodingResult extends APICallResult{
 									APIUtils.getStringorNull(jObjectAddress,"postal_code")):null, jObjectLocation!=null?
 							new Location(jObjectLocation.optDouble("latitude"),
 									jObjectLocation.optDouble("longitude")):null, jObjectBounds==null? null:(
-											jObjectNortheast!=null&&jObjectSouthwest!=null?new ViewportType(new Location(jObjectSouthwest.optDouble("latitude"),
+											jObjectNortheast!=null&&jObjectSouthwest!=null?
+							new ViewportType(new Location(jObjectSouthwest.optDouble("latitude"),
 									jObjectSouthwest.optDouble("longitude")),new Location(jObjectNortheast.optDouble("latitude"),
 											jObjectNortheast.optDouble("longitude"))):null)));
 				}

@@ -72,9 +72,26 @@ public class Operations {
 	public static List<Checkin> GetPOI(
 			AccessTokenOAuth accessTokenPregenerated, Integer POIID)
 			throws IOException, TopoosException {
-		return Translator.GetPOI(POIID, accessTokenPregenerated);
+		return Translator.GetPOI(POIID,null,null, accessTokenPregenerated);
 	}
 
+	/**
+	 * Gets the poi with init and end date.
+	 *
+	 * @param accessTokenPregenerated the access token pregenerated
+	 * @param POIID the poiid
+	 * @param initdate 
+	 * @param enddate
+	 * @return List<Checkin>
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
+	public static List<Checkin> GetPOI(
+			AccessTokenOAuth accessTokenPregenerated, Integer POIID,Date initdate, Date enddate)
+			throws IOException, TopoosException {
+		return Translator.GetPOI(POIID,initdate,enddate, accessTokenPregenerated);
+	}
+	
 	/**
 	 * Adds the.
 	 *
@@ -129,6 +146,22 @@ public class Operations {
 	 */
 	public static List<Checkin> GetPOI(Context context, Integer POIID)
 			throws IOException, TopoosException {
-		return Translator.GetPOI(context, POIID);
+		return Translator.GetPOI(context, POIID,null,null);
+	}
+	
+	/**
+	 * Gets the poi.
+	 *
+	 * @param context the context
+	 * @param POIID the poiid
+	 * @param initdate
+	 * @param enddate
+	 * @return List<Checkin>
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TopoosException the topoos exception
+	 */
+	public static List<Checkin> GetPOI(Context context, Integer POIID,Date initdate,Date enddate)
+			throws IOException, TopoosException {
+		return Translator.GetPOI(context, POIID,initdate,enddate);
 	}
 }

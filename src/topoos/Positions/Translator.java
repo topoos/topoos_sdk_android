@@ -18,9 +18,9 @@ class Translator {
 	private static Integer version = topoos.Constants.APIVERSION;
 
 	private static Position AddPrivate(Integer Type, Double lat, Double lng,
-			Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity,
-			Integer bearing, AccessTokenOAuth accessTokenPregenerated)
+			Integer trackID, Double accuracy, Double vaccuracy,
+			Double elevation, Date timestamp, Double velocity,
+			Double bearing, AccessTokenOAuth accessTokenPregenerated)
 			throws IOException, TopoosException {
 		Position position = null;
 		if (accessTokenPregenerated.isValid()) {
@@ -38,8 +38,8 @@ class Translator {
 	}
 
 	public static Position Add(Double lat, Double lng, Integer trackID,
-			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
+			Double accuracy, Double vaccuracy, Double elevation,
+			Date timestamp, Double velocity, Double bearing,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
 		return AddPrivate(PositionsAdd.POS, lat, lng, trackID, accuracy,
@@ -48,8 +48,8 @@ class Translator {
 	}
 
 	public static Position AddAlarmEnd(Double lat, Double lng, Integer trackID,
-			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
+			Double accuracy, Double vaccuracy, Double elevation,
+			Date timestamp, Double velocity, Double bearing,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
 		return AddPrivate(PositionsAdd.ALARM_END, lat, lng, trackID, accuracy,
@@ -58,9 +58,9 @@ class Translator {
 	}
 
 	public static Position AddAlarmInit(Double lat, Double lng,
-			Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity,
-			Integer bearing, AccessTokenOAuth accessTokenPregenerated)
+			Integer trackID, Double accuracy, Double vaccuracy,
+			Double elevation, Date timestamp, Double velocity,
+			Double bearing, AccessTokenOAuth accessTokenPregenerated)
 			throws IOException, TopoosException {
 		return AddPrivate(PositionsAdd.ALARM_INIT, lat, lng, trackID, accuracy,
 				vaccuracy, elevation, timestamp, velocity, bearing,
@@ -68,8 +68,8 @@ class Translator {
 	}
 
 	public static Position AddGPSNo(Double lat, Double lng, Integer trackID,
-			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
+			Double accuracy, Double vaccuracy, Double elevation,
+			Date timestamp, Double velocity, Double bearing,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
 		return AddPrivate(PositionsAdd.GPS_NO, lat, lng, trackID, accuracy,
@@ -78,8 +78,8 @@ class Translator {
 	}
 
 	public static Position AddGPSOk(Double lat, Double lng, Integer trackID,
-			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
+			Double accuracy, Double vaccuracy, Double elevation,
+			Date timestamp, Double velocity, Double bearing,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
 		return AddPrivate(PositionsAdd.GPS_OK, lat, lng, trackID, accuracy,
@@ -88,8 +88,8 @@ class Translator {
 	}
 
 	public static Position AddTrackEnd(Double lat, Double lng, Integer trackID,
-			Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer bearing,
+			Double accuracy, Double vaccuracy, Double elevation,
+			Date timestamp, Double velocity, Double bearing,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException,
 			TopoosException {
 		return AddPrivate(PositionsAdd.TRACK_END, lat, lng, trackID, accuracy,
@@ -152,48 +152,48 @@ class Translator {
 	}
 
 	public static Position Add(Context context, Double lat, Double lng,
-			Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			Integer trackID, Double accuracy, Double vaccuracy,
+			Double elevation, Date timestamp, Double velocity, Double bearing)
 			throws IOException, TopoosException {
 		return Add(lat, lng, trackID, accuracy, vaccuracy, elevation,
 				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddAlarmEnd(Context context, Double lat, Double lng,
-			Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			Integer trackID, Double accuracy, Double vaccuracy,
+			Double elevation, Date timestamp, Double velocity, Double bearing)
 			throws IOException, TopoosException {
 		return AddAlarmEnd(lat, lng, trackID, accuracy, vaccuracy, elevation,
 				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddAlarmInit(Context context, Double lat,
-			Double lng, Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			Double lng, Integer trackID, Double accuracy, Double vaccuracy,
+			Double elevation, Date timestamp, Double velocity, Double bearing)
 			throws IOException, TopoosException {
 		return AddAlarmInit(lat, lng, trackID, accuracy, vaccuracy, elevation,
 				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddGPSNo(Context context, Double lat, Double lng,
-			Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			Integer trackID, Double accuracy, Double vaccuracy,
+			Double elevation, Date timestamp, Double velocity, Double bearing)
 			throws IOException, TopoosException {
 		return AddGPSNo(lat, lng, trackID, accuracy, vaccuracy, elevation,
 				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddGPSOk(Context context, Double lat, Double lng,
-			Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			Integer trackID, Double accuracy, Double vaccuracy,
+			Double elevation, Date timestamp, Double velocity, Double bearing)
 			throws IOException, TopoosException {
 		return AddGPSOk(lat, lng, trackID, accuracy, vaccuracy, elevation,
 				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));
 	}
 
 	public static Position AddTrackEnd(Context context, Double lat, Double lng,
-			Integer trackID, Integer accuracy, Integer vaccuracy,
-			Integer elevation, Date timestamp, Integer velocity, Integer bearing)
+			Integer trackID, Double accuracy, Double vaccuracy,
+			Double elevation, Date timestamp, Double velocity, Double bearing)
 			throws IOException, TopoosException {
 		return AddTrackEnd(lat, lng, trackID, accuracy, vaccuracy, elevation,
 				timestamp, velocity, bearing, AccessTokenOAuth.GetAccessToken(context));

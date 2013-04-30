@@ -49,10 +49,10 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static boolean GroupSet(AccessTokenOAuth accessTokenPregenerated, String userID, Integer groupID) throws IOException,
+	/*public static boolean GroupSet(AccessTokenOAuth accessTokenPregenerated, String userID, Integer groupID) throws IOException,
 			TopoosException {
 		return Translator.GroupSet(userID, groupID, accessTokenPregenerated);
-	}
+	}*/
 
 	/**
 	 * Remove user from group
@@ -69,10 +69,10 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static boolean GroupRemove(AccessTokenOAuth accessTokenPregenerated, String userID, Integer groupID) throws IOException,
+	/*public static boolean GroupRemove(AccessTokenOAuth accessTokenPregenerated, String userID, Integer groupID) throws IOException,
 			TopoosException {
 		return Translator.GroupRemove(userID, groupID, accessTokenPregenerated);
-	}
+	}*/
 
 	/**
 	 * Get users near of POI
@@ -176,10 +176,10 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static boolean GroupSet(Context context, String userID,
+	/*public static boolean GroupSet(Context context, String userID,
 			Integer groupID) throws IOException, TopoosException {
 		return Translator.GroupSet(context, userID, groupID);
-	}
+	}*/
 
 	/**
 	 * Remove user from group
@@ -197,10 +197,10 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static boolean GroupRemove(Context context, String userID,
+	/*public static boolean GroupRemove(Context context, String userID,
 			Integer groupID) throws IOException, TopoosException {
 		return Translator.GroupRemove(context, userID, groupID);
-	}
+	}*/
 
 	/**
 	 * Get users near of POI

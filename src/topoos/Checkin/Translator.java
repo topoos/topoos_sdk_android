@@ -105,13 +105,13 @@ class Translator {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws TopoosException the topoos exception
 	 */
-	public static List<Checkin> GetPOI(Integer POIID,
+	public static List<Checkin> GetPOI(Integer POIID,Date initdate, Date enddate,
 			AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException {
 		List<Checkin> checkin = null;
 		if (accessTokenPregenerated.isValid()) {
 			CheckinGet_where checkinGet_where = new CheckinGet_where("GetPOI",
 					method, format, version,
-					accessTokenPregenerated.getAccessToken(), POIID);
+					accessTokenPregenerated.getAccessToken(), POIID,initdate,enddate);
 			CheckinCollectionResult checkinResult = new CheckinCollectionResult();
 			APICaller.ExecuteOperation(checkinGet_where, checkinResult);
 			checkin = checkinResult.getCheckinCollection().getCheckIns();
@@ -168,7 +168,7 @@ class Translator {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws TopoosException the topoos exception
 	 */
-	public static List<Checkin> GetPOI(Context context, Integer POIID) throws IOException, TopoosException {
-		return GetPOI(POIID, AccessTokenOAuth.GetAccessToken(context));
+	public static List<Checkin> GetPOI(Context context, Integer POIID,Date initdate,Date enddate) throws IOException, TopoosException {
+		return GetPOI(POIID,initdate,enddate, AccessTokenOAuth.GetAccessToken(context));
 	}
 }

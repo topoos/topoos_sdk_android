@@ -19,6 +19,9 @@ public class Checkin implements Serializable{
 	/** The id. */
 	private Integer id=null;
 	
+	/** The User */
+	private String user_id=null;
+	
 	/** The device_id. */
 	private Integer device_id=null;
 	
@@ -35,15 +38,17 @@ public class Checkin implements Serializable{
 	 * Instantiates a new checkin.
 	 *
 	 * @param id the id
+	 * @param user_id the user
 	 * @param device_id the device_id
 	 * @param poi_id the poi_id
 	 * @param register_time the register_time
 	 * @param timestamp the timestamp
 	 */
-	public Checkin(Integer id, Integer device_id, Integer poi_id,
+	public Checkin(Integer id, String user_id, Integer device_id, Integer poi_id,
 			Date register_time, Date timestamp) {
 		super();
 		this.id = id;
+		this.setUser_id(user_id);
 		this.device_id = device_id;
 		this.poi_id = poi_id;
 		this.register_time = register_time;
@@ -68,6 +73,25 @@ public class Checkin implements Serializable{
 		this.id = id;
 	}
 	
+	/**
+	 * get the user_id.
+	 *
+	 * @return the user_id
+	 */
+	public String getUser_id() {
+		return user_id;
+	}
+	
+	
+	/**
+	 * Sets the user_id.
+	 *
+	 * @param user_id the user_id to set
+	 */
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
 	/**
 	 * get the device id.
 	 *

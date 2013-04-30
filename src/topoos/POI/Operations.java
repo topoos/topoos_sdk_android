@@ -60,12 +60,12 @@ public class Operations {
 	 * @throws TopoosException
 	 */
 	public static POI Add(AccessTokenOAuth accessTokenPregenerated,
-			String name, Double lat, Double lng, Integer[] categories,
+			String name, Double lat, Double lng, Boolean geocode, Integer[] categories,
 			Double accuracy, Double vaccuracy, Double elevation, String desc,
 			String address, String cross_street, String city, String country,
 			String postal_code, String phone, String twitter)
 			throws IOException, TopoosException {
-		return Translator.Add(name, lat, lng, categories, accuracy, vaccuracy,
+		return Translator.Add(name, lat, lng, geocode, categories, accuracy, vaccuracy,
 				elevation, desc, address, cross_street, city, country,
 				postal_code, phone, twitter, accessTokenPregenerated);
 	}
@@ -193,12 +193,12 @@ public class Operations {
 	 * @throws TopoosException
 	 */
 	public static POI Update(AccessTokenOAuth accessTokenPregenerated,
-			Integer POIID, String name, Double lat, Double lng,
+			Integer POIID, String name, Double lat, Double lng, Boolean geocode,
 			Integer[] categories, Double accuracy, Double vaccuracy,
 			Double elevation, String desc, String address, String cross_street,
 			String city, String country, String postal_code, String phone,
 			String twitter) throws IOException, TopoosException {
-		return Translator.Update(POIID, name, lat, lng, categories, accuracy,
+		return Translator.Update(POIID, name, lat, lng, geocode, categories, accuracy,
 				vaccuracy, elevation, desc, address, cross_street, city,
 				country, postal_code, phone, twitter, accessTokenPregenerated);
 	}
@@ -264,11 +264,11 @@ public class Operations {
 	 * @throws TopoosException
 	 */
 	public static POI Add(Context context, String name, Double lat, Double lng,
-			Integer[] categories, Double accuracy, Double vaccuracy,
+			Boolean geocode, Integer[] categories, Double accuracy, Double vaccuracy,
 			Double elevation, String desc, String address, String cross_street,
 			String city, String country, String postal_code, String phone,
 			String twitter) throws IOException, TopoosException {
-		return Translator.Add(context, name, lat, lng, categories, accuracy,
+		return Translator.Add(context, name, lat, lng, geocode, categories, accuracy,
 				vaccuracy, elevation, desc, address, cross_street, city,
 				country, postal_code, phone, twitter);
 	}
@@ -397,12 +397,12 @@ public class Operations {
 	 * @throws TopoosException
 	 */
 	public static POI Update(Context context, Integer POIID, String name,
-			Double lat, Double lng, Integer[] categories, Double accuracy,
+			Double lat, Double lng, Boolean geocode, Integer[] categories, Double accuracy,
 			Double vaccuracy, Double elevation, String desc, String address,
 			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter)
 			throws IOException, TopoosException {
-		return Translator.Update(context, POIID, name, lat, lng, categories,
+		return Translator.Update(context, POIID, name, lat, lng, geocode, categories,
 				accuracy, vaccuracy, elevation, desc, address, cross_street,
 				city, country, postal_code, phone, twitter);
 	}

@@ -44,26 +44,26 @@ public class PositionsAdd extends APIOperation{
 	private Double	lng=null; // (obligatorio) longitud en grados decimales de la nueva posición
 	
 	/** The accuracy. */
-	private Integer	accuracy=null; // (opcional) precisión de la posición (latitud, longitud)
+	private Double	accuracy=null; // (opcional) precisión de la posición (latitud, longitud)
 	
 	/** The vaccuracy. */
-	private Integer	vaccuracy=null; // (opcional) precisión de la elevación
+	private Double	vaccuracy=null; // (opcional) precisión de la elevación
 	
 	/** The elevation. */
-	private Integer	elevation=null; // (opcional) elevación respecto al nivel del mar
+	private Double	elevation=null; // (opcional) elevación respecto al nivel del mar
 	
 	/** The timestamp. */
 	private Date	timestamp=null; // (opcional) hora local con offset de conversión UTC de captura de la posición, según el estándar ISO 8601.
 	 //(AAAA-MM-DDThh:mm:sszzzzzz) en UTC
 	 //ejemplo: 1997-07-16T10:30:15.342+03:00
 	/** The velocity. */
- 	private Integer	velocity=null; // (opcional) velocidad de movimiento en el instante en que se capturó la posición, en metros por segundo
+ 	private Double	velocity=null; // (opcional) velocidad de movimiento en el instante en que se capturó la posición, en metros por segundo
 	
 	/** The postype. */
 	private Integer	postype=null; //(opcional) tipo de posición a registrar
 	
 	/** The bearing. */
-	private Integer	bearing=null; // (opcional) rumbo de movimiento (valor entre 0 y 360)
+	private Double	bearing=null; // (opcional) rumbo de movimiento (valor entre 0 y 360)
 	
 	/** The track. */
 	private Integer	track=null; // (opcional) identificador del Track al que pertenece la posición (excepto cuando es TRACK_INIT)
@@ -90,8 +90,8 @@ public class PositionsAdd extends APIOperation{
 	 */
 	public PositionsAdd(String operationName, String method, String format,
 			Integer version, String oauth_token, String device, Double lat,
-			Double lng, Integer accuracy, Integer vaccuracy, Integer elevation,
-			Date timestamp, Integer velocity, Integer postype, Integer bearing,
+			Double lng, Double accuracy, Double vaccuracy, Double elevation,
+			Date timestamp, Double velocity, Integer postype, Double bearing,
 			Integer track) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
@@ -119,13 +119,13 @@ public class PositionsAdd extends APIOperation{
 		validate = validate && isValid(APIUtils.toStringDouble(lng));
 		validate = validate && isValid(oauth_token);
 		validate = validate && isValidorNull(device);
-		validate = validate && isValidorNull(APIUtils.toStringInteger(accuracy));
-		validate = validate && isValidorNull(APIUtils.toStringInteger(vaccuracy));
-		validate = validate && isValidorNull(APIUtils.toStringInteger(elevation));
+		validate = validate && isValidorNull(APIUtils.toStringDouble(accuracy));
+		validate = validate && isValidorNull(APIUtils.toStringDouble(vaccuracy));
+		validate = validate && isValidorNull(APIUtils.toStringDouble(elevation));
 		validate = validate && isValidorNull(APIUtils.toStringDate(timestamp));
-		validate = validate && isValidorNull(APIUtils.toStringInteger(velocity));
+		validate = validate && isValidorNull(APIUtils.toStringDouble(velocity));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(postype));
-		validate = validate && isValidorNull(APIUtils.toStringInteger(bearing));
+		validate = validate && isValidorNull(APIUtils.toStringDouble(bearing));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(track));
 		return validate;
 	}
@@ -143,13 +143,13 @@ public class PositionsAdd extends APIOperation{
 					+ "&lat="+APIUtils.toStringDouble(lat)
 					+ "&lng="+APIUtils.toStringDouble(lng)
 					+(device == null? "" : "&device="+device)
-					+(accuracy == null? "" : "&accuracy="+APIUtils.toStringInteger(accuracy))
-					+(vaccuracy == null? "" : "&vaccuracy="+APIUtils.toStringInteger(vaccuracy))
-					+(elevation == null? "" : "&elevation="+APIUtils.toStringInteger(elevation))
+					+(accuracy == null? "" : "&accuracy="+APIUtils.toStringDouble(accuracy))
+					+(vaccuracy == null? "" : "&vaccuracy="+APIUtils.toStringDouble(vaccuracy))
+					+(elevation == null? "" : "&elevation="+APIUtils.toStringDouble(elevation))
 					+(timestamp == null? "" : "&timestamp="+APIUtils.toStringDate(timestamp))
-					+(velocity == null? "" : "&velocity="+APIUtils.toStringInteger(velocity))
+					+(velocity == null? "" : "&velocity="+APIUtils.toStringDouble(velocity))
 					+(postype == null? "" : "&postype="+APIUtils.toStringInteger(postype))
-					+(bearing == null? "" : "&bearing="+APIUtils.toStringInteger(bearing))
+					+(bearing == null? "" : "&bearing="+APIUtils.toStringDouble(bearing))
 					+(track == null? "" : "&track="+APIUtils.toStringInteger(track))
 					;
 		}
