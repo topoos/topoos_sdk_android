@@ -31,15 +31,23 @@ public class LoginActivity extends Activity {
 	public static final int RESULT_CANCELED = Activity.RESULT_CANCELED;
 	public static final int RESULT_FIRST_USER = Activity.RESULT_FIRST_USER;
 	public static final int RESULT_TOPOOSERROR = 2;
+	public static final String SCOPE_OFFLINE_ACCESS="offline_access";
+	public static final String SCOPE_EMAIL="email";
+	public static final String SCOPE_PROFILE="profile";
+	
 
 	public static final String CLIENT_ID = "client_id";
 	public static final String REDIRECT_URI = "redirect_uri";
+	public static final String SCOPE= "scope";
+	
 	private String url_login = Constants.TOPOOSURILOGIN + "/oauth/authtoken";
 	private String param_redirect_uri = "redirect_uri";
 	private String value_redirect_uri = Constants.TOPOOSURILOGIN
 			+ "/oauth/dummy";
 	private String param_response_type = "response_type";
 	private String value_response_type = "token";
+	private String param_scope = "scope";
+	private String value_scope = "";
 	private String param_client_id = "client_id";
 	private String value_client_id = "";
 	private String param_agent = "agent";
@@ -57,6 +65,9 @@ public class LoginActivity extends Activity {
 			value_client_id = extras.getString("client_id");
 			if (extras.containsKey("redirect_uri")) {
 				value_redirect_uri = extras.getString("redirect_uri");
+			}
+			if (extras.containsKey("scope")){
+				value_scope=extras.getString("scope");
 			}
 			WebView webview = new WebView(this);
 			setContentView(webview);
@@ -79,11 +90,17 @@ public class LoginActivity extends Activity {
 							"Mozilla/5.0 (Linux; U; Android 2.0; "
 									+ language
 									+ " ; Droid Build/ESD20) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17");
+			String scope="";
+			if(!value_scope.equals("")){
+				scope="&"+param_scope+"="+URLEncoder.encode(value_scope);
+			}
 			webview.loadUrl(url_login + "?" + param_response_type + "="
 					+ value_response_type + "&" + param_client_id + "="
 					+ value_client_id + "&" + param_redirect_uri + "="
 					+ URLEncoder.encode(value_redirect_uri) + "&" + param_agent
-					+ "=" + value_agent);
+					+ "=" + value_agent
+					+scope
+					);
 		} else {
 			setResult(RESULT_CANCELED);
 			this.finish();
