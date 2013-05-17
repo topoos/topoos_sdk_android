@@ -106,7 +106,7 @@ public class AccessTokenOAuth {
 	 * load the Token that recieved as parameter
 	 * @param context
 	 */
-	private synchronized void load_Token(Context context){
+	public synchronized void load_Token(Context context){
 		SharedPreferences settings = context.getSharedPreferences(
 				"PREFER", Context.MODE_PRIVATE);
 		this.AccessToken=settings.getString(KEY_ACCESS_TOKEN,"");
@@ -120,11 +120,8 @@ public class AccessTokenOAuth {
 	 * delete the token that has been saved previously
 	 * @param context
 	 */
-	private synchronized void delete_Token(Context context){
-		SharedPreferences settings = context.getSharedPreferences(
-				"PREFER", Context.MODE_PRIVATE);
-		this.AccessToken=settings.getString(KEY_ACCESS_TOKEN,"");
-		this.ExpiresIn=settings.getLong(KEY_EXPIREIN,-1);
+	public synchronized void delete_Token(Context context){
+		this.AccessToken="";
 		if(Constants.DEBUG){
 			//Log.i(Constants.TAG, this.toStringToken());
 		}		
@@ -166,7 +163,7 @@ public class AccessTokenOAuth {
 	 */
 	public static void DeleteAccessToken(Context context){
 		AccessTokenOAuth access=new AccessTokenOAuth();
-		access.delete_Token(context);
+		access.save_Token(context);
 		if(Constants.DEBUG){
 			//Log.i(Constants.TAG, access.toStringToken());
 		}		
