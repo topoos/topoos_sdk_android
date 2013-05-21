@@ -26,7 +26,8 @@ public class AccessTokenOAuth {
 	 */
 	public AccessTokenOAuth() {
 		super();
-		// TODO Auto-generated constructor stub
+		AccessToken="";
+		ExpiresIn=(long) 0;
 	}
 	
 	/**
