@@ -38,7 +38,6 @@ public class LoginActivity extends Activity {
 
 	public static final String CLIENT_ID = "client_id";
 	public static final String REDIRECT_URI = "redirect_uri";
-	public static final String SCOPE= "scope";
 	
 	private String url_login = Constants.TOPOOSURILOGIN + "/oauth/authtoken";
 	private String param_redirect_uri = "redirect_uri";
@@ -66,9 +65,24 @@ public class LoginActivity extends Activity {
 			if (extras.containsKey("redirect_uri")) {
 				value_redirect_uri = extras.getString("redirect_uri");
 			}
-			if (extras.containsKey("scope")){
-				value_scope=extras.getString("scope");
+			value_scope=null;
+			if (extras.getBoolean(SCOPE_OFFLINE_ACCESS)){
+				value_scope=SCOPE_OFFLINE_ACCESS;
 			}
+			if (extras.getBoolean(SCOPE_EMAIL)){
+				if(value_scope==null)
+					value_scope=SCOPE_EMAIL;
+				else
+					value_scope=value_scope+","+SCOPE_EMAIL;
+			}
+			if (extras.getBoolean(SCOPE_PROFILE)){
+				if(value_scope==null)
+					value_scope=SCOPE_PROFILE;
+				else
+					value_scope=value_scope+","+SCOPE_PROFILE;
+			}
+			if(value_scope==null)
+				value_scope="";
 			WebView webview = new WebView(this);
 			setContentView(webview);
 			webview.setWebChromeClient(new LoginViewChromeClient());
