@@ -3,6 +3,8 @@ package topoos;
 import java.net.URLDecoder;
 import java.util.Calendar;
 
+import android.util.Log;
+
 // TODO: Auto-generated Javadoc
 /*
  * Clase que actua como interfaz a la parte nativa de la aplicaci�n, y viceversa
@@ -43,7 +45,17 @@ class WebInterface {
 			// String AuxRefreshToken= "";
 
 			String[] urlFragment = url.split("#");
-
+			if (url.contains("error")) {
+				try {
+					String[] urlFragmenterror = url.replace("?", "#").split("#");
+					if (urlFragmenterror.length > 1)
+						Log.e(Constants.TAG, urlFragmenterror[1].replace("&", " "));
+				} catch (Exception e) {
+					if (Constants.DEBUG) {
+						e.printStackTrace();
+					}
+				}
+			}
 			if (urlFragment.length > 1) // #key1=value1&key2=value2...
 			{
 				String[] Params = urlFragment[1].split("&"); // key1=value1
