@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
-    <jar path="/Users/majs/Desktop/topoos_android_sdk.jar"/>
+    <jar path="C:/Users/majs/Desktop/topoos_android_sdk.jar"/>
     <options buildIfNeeded="true" compress="true" descriptionLocation="/SDKTopoos/description.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>

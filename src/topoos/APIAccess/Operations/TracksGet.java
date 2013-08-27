@@ -96,8 +96,10 @@ public class TracksGet extends APIOperation {
 		validate = validate && isValidorNull(APIUtils.toStringDate(initdate));
 		validate = validate && isValidorNull(APIUtils.toStringDate(endate));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(total));
-		for (int i = 0; i < layer.length; i++) {
-			validate = validate && isValidorNull(layer[i]);
+		if (layer != null) {
+			for (int i = 0; i < layer.length; i++) {
+				validate = validate && isValidorNull(layer[i]);
+			}
 		}
 		return validate;
 	}

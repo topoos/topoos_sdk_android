@@ -11,6 +11,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.ConsoleMessage;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.JsResult;
@@ -98,10 +99,9 @@ public class LoginActivity extends Activity {
 				language = language + "-ES";
 			else
 				language = language + "-GB";
-
 			webview.getSettings()
 					.setUserAgentString(
-							"Mozilla/5.0 (Linux; U; Android 2.0; "
+							"Mozilla/5.0 (Linux; U; Android 4.2; "
 									+ language
 									+ " ; Droid Build/ESD20) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17");
 			String scope="";
@@ -157,6 +157,11 @@ public class LoginActivity extends Activity {
 			result.confirm();
 			return true;
 		}
+		   @Override
+		   public boolean onConsoleMessage(ConsoleMessage cm) {
+		      Log.d("Tag",cm.message() + " at " + cm.sourceId() +":" + cm.lineNumber());
+		      return true;
+		   }
 	}
 
 
