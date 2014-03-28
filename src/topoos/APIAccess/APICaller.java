@@ -44,6 +44,7 @@ public class APICaller {
 	public static final int SERVICE_API = 0;
 	public static final int SERVICE_LOGIN = 1;
 	public static final int SERVICE_PIC = 2;
+	public static final int SERVICE_SOCIAL = 3;
 
 	/**
 	 * Returns the url for the object operation.
@@ -71,6 +72,16 @@ public class APICaller {
 	 */
 	public static String GetURLPICAPItopoos() {
 		return Constants.TOPOOSURIPIC;
+	}
+	
+
+	/**
+	 * Returns the url for topoos social service
+	 * 
+	 * @return String
+	 */
+	public static String GetURLSOCIALAPItopoos() {
+		return Constants.TOPOOSURISOCIAL;
 	}
 
 	/**
@@ -149,6 +160,9 @@ public class APICaller {
 			break;
 		case SERVICE_PIC:
 			OpURI = GetURLPICAPItopoos() + operation.ConcatParams();
+			break;
+		case SERVICE_SOCIAL:
+			OpURI = GetURLSOCIALAPItopoos() + operation.ConcatParams();
 			break;
 		default:
 			OpURI = GetURLAPItopoos() + operation.ConcatParams();
