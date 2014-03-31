@@ -47,6 +47,7 @@ public class Operations {
 	 * @param categories
 	 *            (required) identifiers for the categories to which the POI
 	 *            belongs
+	 * @param geocode Try to geocode the specified lat and lng, to fill unspecified attributes. Default value: false
 	 * @param accuracy
 	 *            (optional) accuracy of the position (latitude, longitude)
 	 * @param vaccuracy

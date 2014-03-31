@@ -16,8 +16,6 @@
 
 package topoos.APIAccess.Results;
 
-import java.util.ArrayList;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -35,15 +33,15 @@ import topoos.Objects.*;
  * @see APICallResult
  * @author topoos
  */
-public class SocialRelationshipResult extends APICallResult {
+public class SocialRelationshipCounterResult extends APICallResult {
 
-	/** The Relationship. */
-	private Relationship relationship = null;
+	/** The Relationship counter. */
+	private RelationshipCounter counters = null;
 
 	/**
 	 * Instantiates a new Relationship result.
 	 */
-	public SocialRelationshipResult() {
+	public SocialRelationshipCounterResult() {
 		super();
 	}
 
@@ -55,7 +53,7 @@ public class SocialRelationshipResult extends APICallResult {
 	 * @param result
 	 *            the result
 	 */
-	public SocialRelationshipResult(String error, String result) {
+	public SocialRelationshipCounterResult(String error, String result) {
 		super(error, result);
 	}
 
@@ -66,12 +64,12 @@ public class SocialRelationshipResult extends APICallResult {
 	 *            the error
 	 * @param result
 	 *            the result
-	 * @param relationship
-	 *            the relationship
+	 * @param counter
+	 *            the counters
 	 */
-	public SocialRelationshipResult(String error, String result, Relationship relationship) {
+	public SocialRelationshipCounterResult(String error, String result, RelationshipCounter counters) {
 		super(error, result);
-		this.relationship = relationship;
+		this.counters = counters;
 	}
 
 	/*
@@ -82,25 +80,22 @@ public class SocialRelationshipResult extends APICallResult {
 	@Override
 	public void setParameters() throws TopoosException {
 		String user_id = null;
-		String name = null;
-		ArrayList<RelationshipConnectionType> connections = new ArrayList<RelationshipConnectionType>();
+		Integer following = 0;
+		Integer followedBy = 0;
 		
 		if (APIUtils.getcorrectJSONstring(Result) != null) {
 			try {
 				JSONObject jObject = (JSONObject) new JSONTokener(
 						APIUtils.getcorrectJSONstring(Result)).nextValue();
 				
-				JSONObject jRel = jObject.getJSONObject("relationship");
+				JSONObject jCounter = jObject.getJSONObject("counters");
 				
 				// Extracting content
-				user_id = APIUtils.getStringorNull(jRel, "user_id");
-				name = APIUtils.getStringorNull(jRel, "name");
-				JSONArray jArray = jRel.getJSONArray("connections");
-				for (int i = 0; i < jArray.length(); i++) {
-					String job = jArray.getString(i);
-					connections.add(new RelationshipConnectionType(job, job));
-				}
-				this.relationship = new Relationship(user_id, name, connections);
+				user_id = APIUtils.getStringorNull(jCounter, "user_id");
+				following = APIUtils.getIntegerorNull(jCounter, "following");
+				followedBy = APIUtils.getIntegerorNull(jCounter, "followed_by");
+				
+				this.counters = new RelationshipCounter(user_id, following, followedBy);
 				
 			} catch (Exception e) {
 				if (Constants.DEBUG) {
@@ -116,22 +111,22 @@ public class SocialRelationshipResult extends APICallResult {
 	}
 
 	/**
-	 * Gets the Relationship.
+	 * Gets the Relationship counter.
 	 * 
-	 * @return the Relationship
+	 * @return the Relationship counter
 	 */
-	public Relationship getRelationship() {
-		return relationship;
+	public RelationshipCounter getRelationshipCounters() {
+		return counters;
 	}
 
 	/**
-	 * Sets the Relationship.
+	 * Sets the Relationship counter.
 	 * 
-	 * @param Relationship
-	 *            the Relationship to set
+	 * @param counters
+	 *            the Relationship counter to set
 	 */
-	public void setRelationship(Relationship relationship) {
-		this.relationship = relationship;
+	public void setRelationshipCounters(RelationshipCounter counters) {
+		this.counters = counters;
 	}
 
 }

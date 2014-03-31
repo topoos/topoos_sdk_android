@@ -20,17 +20,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Class that implements a topoos social relationship between users.
+ * Class that implements a topoos social friend recommended for this user.
  *
  * @author topoos
  */
-public class Relationship implements Serializable{
+public class FriendRecommendation implements Serializable{
 	
 	/**
 	 * V0
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/** the connections count */
+	private Integer count = 0;
+	
 	/** The user id. */
 	private String user_id = null;
 	
@@ -45,11 +48,13 @@ public class Relationship implements Serializable{
 	 *
 	 * @param user_id the user id
 	 * @param name the user name
+	 * @param count the connection count
 	 * @param connections the connections with the specified user
 	 */
-	public Relationship(String user_id, String name, ArrayList<RelationshipConnectionType> connections) {
+	public FriendRecommendation(String user_id, String name, Integer count, ArrayList<RelationshipConnectionType> connections) {
 		this.user_id = user_id;
 		this.name = name;
+		this.count = count;
 		this.connections = connections;
 	}
 
@@ -63,6 +68,25 @@ public class Relationship implements Serializable{
 	}
 
 	/**
+	 * Sets the relations counter.
+	 *
+	 * @param id the relations counter.
+	 */
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	
+
+	/**
+	 * Get the relations counter.
+	 *
+	 * @return the relations counter.
+	 */
+	public Integer getCount() {
+		return count;
+	}
+
+	/**
 	 * Sets the user id.
 	 *
 	 * @param id the id to set
@@ -70,6 +94,7 @@ public class Relationship implements Serializable{
 	public void setUserId(String user_id) {
 		this.user_id = user_id;
 	}
+
 
 	/**
 	 * get the name.

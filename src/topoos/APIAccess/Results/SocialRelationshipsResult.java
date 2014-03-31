@@ -30,20 +30,20 @@ import topoos.Objects.*;
 
 
 /**
- * The Class SocialRelationshipResult.
+ * The Class SocialRelationshipsResult.
  * 
  * @see APICallResult
  * @author topoos
  */
-public class SocialRelationshipResult extends APICallResult {
+public class SocialRelationshipsResult extends APICallResult {
 
-	/** The Relationship. */
-	private Relationship relationship = null;
+	/** The Relationships. */
+	private Relationships relationships = null;
 
 	/**
 	 * Instantiates a new Relationship result.
 	 */
-	public SocialRelationshipResult() {
+	public SocialRelationshipsResult() {
 		super();
 	}
 
@@ -55,7 +55,7 @@ public class SocialRelationshipResult extends APICallResult {
 	 * @param result
 	 *            the result
 	 */
-	public SocialRelationshipResult(String error, String result) {
+	public SocialRelationshipsResult(String error, String result) {
 		super(error, result);
 	}
 
@@ -66,12 +66,12 @@ public class SocialRelationshipResult extends APICallResult {
 	 *            the error
 	 * @param result
 	 *            the result
-	 * @param relationship
-	 *            the relationship
+	 * @param Relationships
+	 *            the relationships
 	 */
-	public SocialRelationshipResult(String error, String result, Relationship relationship) {
+	public SocialRelationshipsResult(String error, String result, Relationships relationships) {
 		super(error, result);
-		this.relationship = relationship;
+		this.relationships = relationships;
 	}
 
 	/*
@@ -81,26 +81,43 @@ public class SocialRelationshipResult extends APICallResult {
 	 */
 	@Override
 	public void setParameters() throws TopoosException {
+		
+		Integer cursor_prev = -1;
+		Integer cursor_next = -1;
 		String user_id = null;
 		String name = null;
-		ArrayList<RelationshipConnectionType> connections = new ArrayList<RelationshipConnectionType>();
+		ArrayList<Relationship> relationships = new ArrayList<Relationship>();
+		ArrayList<RelationshipConnectionType> connections;
 		
 		if (APIUtils.getcorrectJSONstring(Result) != null) {
 			try {
 				JSONObject jObject = (JSONObject) new JSONTokener(
 						APIUtils.getcorrectJSONstring(Result)).nextValue();
+						
+				cursor_prev = jObject.getInt("cursor_prev");
+				cursor_next = jObject.getInt("cursor_next");
 				
-				JSONObject jRel = jObject.getJSONObject("relationship");
+				JSONArray jRels = jObject.getJSONArray("relationship");
 				
-				// Extracting content
-				user_id = APIUtils.getStringorNull(jRel, "user_id");
-				name = APIUtils.getStringorNull(jRel, "name");
-				JSONArray jArray = jRel.getJSONArray("connections");
-				for (int i = 0; i < jArray.length(); i++) {
-					String job = jArray.getString(i);
-					connections.add(new RelationshipConnectionType(job, job));
+				if (jRels != null){
+					
+					for (int j = 0; j < jRels.length(); j++)
+					{
+						JSONObject jRel = jRels.getJSONObject(j);
+						// Extracting content
+						user_id = APIUtils.getStringorNull(jRel, "user_id");
+						name = APIUtils.getStringorNull(jRel, "name");
+						JSONArray jArray = jRel.getJSONArray("connections");
+						connections = new ArrayList<RelationshipConnectionType>();
+						for (int i = 0; i < jArray.length(); i++) {
+							String job = jArray.getString(i);
+							connections.add(new RelationshipConnectionType(job, job));
+						}
+						relationships.add(new Relationship(user_id, name, connections));
+					}
 				}
-				this.relationship = new Relationship(user_id, name, connections);
+				
+				this.relationships = new Relationships(relationships, cursor_prev, cursor_next);
 				
 			} catch (Exception e) {
 				if (Constants.DEBUG) {
@@ -116,22 +133,22 @@ public class SocialRelationshipResult extends APICallResult {
 	}
 
 	/**
-	 * Gets the Relationship.
+	 * Gets the Relationship collection.
 	 * 
-	 * @return the Relationship
+	 * @return the Relationships collection
 	 */
-	public Relationship getRelationship() {
-		return relationship;
+	public Relationships getRelationships() {
+		return relationships;
 	}
 
 	/**
-	 * Sets the Relationship.
+	 * Sets the Relationships.
 	 * 
-	 * @param Relationship
-	 *            the Relationship to set
+	 * @param Relationships
+	 *            the Relationships to set
 	 */
-	public void setRelationship(Relationship relationship) {
-		this.relationship = relationship;
+	public void setRelationship(Relationships relationships) {
+		this.relationships = relationships;
 	}
 
 }

@@ -17,9 +17,6 @@
 package topoos.Social;
 
 import java.io.IOException;
-import java.util.List;
-
-import android.content.Context;
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.*;
@@ -63,136 +60,85 @@ class Translator {
 		return rel;
 	}
 	
-	/*
-	
-	
-	
-	
-	
-	
-	
-	public static POI GetFriendship(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
-		POI poi = null;
-		if (accessTokenPregenerated.isValid()) {
-			POISGet pOISGet = new POISGet("Get", method, format, version,
-					accessTokenPregenerated.getAccessToken(), POIID);
-			POIResult poiResult = new POIResult();
-			APICaller.ExecuteOperation(pOISGet, poiResult);
-			poi = poiResult.getPoi();
-		} else {
-			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
-		}
-		return poi;
-	}
 
-	public static List<POI> GetFollowed(Double lat, Double lng, Integer radius,
-			Integer[] categories,Integer total, AccessTokenOAuth accessTokenPregenerated)
+	public static Relationship GetFriendship(String usr, String targetUserId, AccessTokenOAuth accessTokenPregenerated)
 			throws IOException, TopoosException {
-		List<POI> poilist = null;
+		Relationship rel = null;
 		if (accessTokenPregenerated.isValid()) {
-			String strcategories = "";
-			if (categories != null) {
-				for (int i = 0; i < categories.length; i++) {
-					if (i < categories.length - 1) {
-						strcategories = strcategories + categories[i] + ",";
-					} else {
-						strcategories = strcategories + categories[i];
-					}
-				}
-			}
-			POISGet_near pOISGet_near = new POISGet_near("GetNear", method,
-					format, version, accessTokenPregenerated.getAccessToken(),
-					lat, lng, radius, !strcategories.equals("") ? strcategories
-							: null, total);
-			POICollectionResult pOICollectionResult = new POICollectionResult();
-			APICaller.ExecuteOperation(pOISGet_near, pOICollectionResult);
-			poilist = pOICollectionResult.getPoicollection().getPoiList();
+			SocialGetFriendship relFriendship = new SocialGetFriendship("GetFriendship", method, format, version,
+					accessTokenPregenerated.getAccessToken(), usr, targetUserId);
+			SocialRelationshipResult relResult = new SocialRelationshipResult();
+			APICaller.ExecuteOperation(relFriendship, relResult, APICaller.SERVICE_SOCIAL);
+			rel = relResult.getRelationship();
 		} else {
 			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
-		return poilist;
+		return rel;
 	}
+	
 
-	public static List<POI> GetFollowers(Integer[] categories, Integer[] POIS,
-			String city, String country, String postal_code, String q,Integer total,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
-		List<POI> poilist = null;
+	public static Relationships GetFollowed(String usr, Integer cursor, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
+		Relationships rel = null;
 		if (accessTokenPregenerated.isValid()) {
-			String strcategories = "";
-			if (categories != null) {
-				for (int i = 0; i < categories.length; i++) {
-					if (i < categories.length - 1) {
-						strcategories = strcategories + categories[i] + ",";
-					} else {
-						strcategories = strcategories + categories[i];
-					}
-				}
-			}
-			String strpois = "";
-			if (POIS != null) {
-				for (int i = 0; i < POIS.length; i++) {
-					if (i < POIS.length - 1) {
-						strpois = strpois + POIS[i] + ",";
-					} else {
-						strpois = strpois + POIS[i];
-					}
-				}
-			}
-			POISGet_where pOISGet_where = new POISGet_where("GetWhere", method,
-					format, version, accessTokenPregenerated.getAccessToken(),
-					!strpois.equals("") ? strpois : null,
-					!strcategories.equals("") ? strcategories : null, city,
-					country, postal_code, q, total);
-			POICollectionResult pOICollectionResult = new POICollectionResult();
-			APICaller.ExecuteOperation(pOISGet_where, pOICollectionResult);
-			poilist = pOICollectionResult.getPoicollection().getPoiList();
+			SocialGetFollowed relFollowed = new SocialGetFollowed("GetFollowed", method, format, version,
+					accessTokenPregenerated.getAccessToken(), usr, cursor);
+			SocialRelationshipsResult relResult = new SocialRelationshipsResult();
+			APICaller.ExecuteOperation(relFollowed, relResult, APICaller.SERVICE_SOCIAL);
+			rel = relResult.getRelationships();
 		} else {
 			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
-		return poilist;
+		return rel;
 	}
+	
 
-
-	public static Boolean DeleteFollow(Integer POIID,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
-		boolean delete = false;
+	public static Relationships GetFollowers(String usr, Integer cursor, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
+		Relationships rel = null;
 		if (accessTokenPregenerated.isValid()) {
-			POISDelete pOISDelete = new POISDelete("Delete", method, format,
-					version, accessTokenPregenerated.getAccessToken(), POIID);
-			GenericResult genericResult = new GenericResult();
-			APICaller.ExecuteOperation(pOISDelete, genericResult);
-			delete = genericResult.getCode() == 200;
+			SocialGetFollowers relFollowed = new SocialGetFollowers("GetFollowers", method, format, version,
+					accessTokenPregenerated.getAccessToken(), usr, cursor);
+			SocialRelationshipsResult relResult = new SocialRelationshipsResult();
+			APICaller.ExecuteOperation(relFollowed, relResult, APICaller.SERVICE_SOCIAL);
+			rel = relResult.getRelationships();
 		} else {
 			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
-		return delete;
+		return rel;
 	}
+	
 
-	public static POI Add(Context context, String name, Double lat, Double lng,
-			Boolean geocode, Integer[] categories, Double accuracy, Double vaccuracy,
-			Double elevation, String desc, String address, String cross_street,
-			String city, String country, String postal_code, String phone,
-			String twitter) throws IOException, TopoosException {
-		return Add(name, lat, lng, geocode, categories, accuracy, vaccuracy, elevation,
-				desc, address, cross_street, city, country, postal_code, phone,
-				twitter, AccessTokenOAuth.GetAccessToken(context));
+	public static RelationshipCounter GetCounters(String usr, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
+		RelationshipCounter rel = null;
+		if (accessTokenPregenerated.isValid()) {
+			SocialGetRelationshipCounter relCounters = new SocialGetRelationshipCounter("GetCounters", method, format, version,
+					accessTokenPregenerated.getAccessToken(), usr);
+			SocialRelationshipCounterResult relResult = new SocialRelationshipCounterResult();
+			APICaller.ExecuteOperation(relCounters, relResult, APICaller.SERVICE_SOCIAL);
+			rel = relResult.getRelationshipCounters();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		return rel;
 	}
+	
 
-	public static POI GetCounters(Context context, Integer POIID) throws IOException,
-			TopoosException {
-		return Get(POIID, AccessTokenOAuth.GetAccessToken(context));
+	public static FriendRecommendations GetFriendsRecommendation(String usr, AccessTokenOAuth accessTokenPregenerated)
+			throws IOException, TopoosException {
+		FriendRecommendations rel = null;
+		if (accessTokenPregenerated.isValid()) {
+			SocialGetFriendRecommendations relRecommendations = new SocialGetFriendRecommendations("GetFriendsRecommendation", method, format, version,
+					accessTokenPregenerated.getAccessToken(), usr);
+			SocialFriendRecommendationsResult relResult = new SocialFriendRecommendationsResult();
+			APICaller.ExecuteOperation(relRecommendations, relResult, APICaller.SERVICE_SOCIAL);
+			rel = relResult.getRelationships();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		return rel;
 	}
-
-	public static List<POI> GetFriendsRecommendation(Context context, Double lat, Double lng,
-			Integer radius, Integer[] categories, Integer total) throws IOException,
-			TopoosException {
-		return GetNear(lat, lng, radius, categories,total, AccessTokenOAuth.GetAccessToken(context));
-
-	}
-*/
+	
 
 }
