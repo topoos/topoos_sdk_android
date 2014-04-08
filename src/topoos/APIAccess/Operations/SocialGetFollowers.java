@@ -31,7 +31,7 @@ public class SocialGetFollowers extends APIOperation {
 	private String USR = null; // (obligatorio) origin user identifier
 
 	/** The page cursor. */
-	private Integer cursor = -1; // (obligatorio) integer value that identifies the result page.
+	private Integer cursor = null; // (optional) integer value that identifies the result page.
 	
 
 	/**
@@ -70,7 +70,7 @@ public class SocialGetFollowers extends APIOperation {
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(oauth_token);
 		validate = validate && isValid(USR);
-		validate = validate && isValid(Integer.toString(cursor));
+		validate = validate && isValidorNull(APIUtils.toStringInteger(cursor));
 		return validate;
 	}
 
@@ -89,8 +89,8 @@ public class SocialGetFollowers extends APIOperation {
 					+ this.Format
 					+ "?access_token="
 					+ this.oauth_token
-					+ "&cursor="
-					+ Integer.toString(this.cursor);
+					+ (this.cursor == null ? "" : "&cursor="
+							+ APIUtils.toStringInteger(this.cursor));
 		}
 		return params;
 	}
