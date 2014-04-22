@@ -281,6 +281,20 @@ public class Operations {
 		return Translator.GetImageURIThumb(filename_unique, size);
 	}
 	
+	/**
+	 * Delete image from PIC service permanently.
+	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
+	 * @param filename_unique Unique image ID
+	 * @return Boolean    
+	 * @throws TopoosException 
+	 * @throws IOException 
+	 *  */
+	public static Boolean Delete (AccessTokenOAuth accessTokenPregenerated, String fileName) throws IOException, TopoosException{
+		return Translator.Delete (accessTokenPregenerated, fileName);
+		
+	}
 	
 	
 }

@@ -23,7 +23,9 @@ import android.content.Context;
 
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
+import topoos.APIAccess.Operations.ImageDelete;
 import topoos.APIAccess.Operations.ImageUpload;
+import topoos.APIAccess.Results.GenericResult;
 import topoos.APIAccess.Results.ImageResult;
 import topoos.Exception.TopoosException;
 import topoos.Objects.Image;
@@ -59,6 +61,9 @@ class Translator {
 
 	/** The method_post. */
 	private static String method_post = "POST";
+	
+	/** The method_get. */
+	private static String method_get = "GET";
 	
 	/** The format. */
 	private static String format = "json";
@@ -355,6 +360,31 @@ class Translator {
 		String uri = APICaller.GetURLPICAPItopoos() + "/thumb/"
 				+ URLEncoder.encode(filename_unique) + "?size=" + URLEncoder.encode(strsize);
 		return uri;
+	}
+
+	/**
+	 * Delete image from PIC service permanently.
+	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
+	 * @param filename_unique Unique image ID
+	 * @return Boolean    
+	 * @throws TopoosException 
+	 * @throws IOException 
+	 *  */
+	public static Boolean Delete(AccessTokenOAuth accessTokenPregenerated,
+			String fileName) throws IOException, TopoosException {
+		boolean delete = false;
+		if (accessTokenPregenerated.isValid()) {
+			ImageDelete imDel = new ImageDelete ("Delete",method_get, format, version,
+					accessTokenPregenerated.getAccessToken(), fileName);
+			GenericResult genericResult = new GenericResult();
+			APICaller.ExecuteOperation(imDel, genericResult);
+			delete = genericResult.getCode() == 200;
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		return delete;
 	}
 
 }
