@@ -31,10 +31,10 @@ public class ImageUpload extends APIOperation {
 
 	/** The Constant TYPE_POI. */
 	public static final Integer TYPE_POI = 0;
-	
+
 	/** The Constant TYPE_POS. */
 	public static final Integer TYPE_POS = 1;
-	
+
 	/** The Constant TYPE_NONE. */
 	public static final Integer TYPE_NONE = -1;
 
@@ -45,74 +45,87 @@ public class ImageUpload extends APIOperation {
 	private byte[] file = null; // (obligatorio) Imagen serializada y codificada
 								// en Base64.
 	/** The filename. */
-								private String filename = null;
-	
+	private String filename = null;
+
+	/** The privacy. */
+	private String privacy = null;
+
 	/** The pos_id. */
 	private Integer pos_id = null;
-	
+
 	/** The poi_id. */
 	private Integer poi_id = null;
-	
+
 	/** The lat. */
 	private Double lat = null; // latitud de la posición en grados decimales.
-	
+
 	/** The lng. */
 	private Double lng = null; // longitud de la posición en grados decimales.
-	
+
 	/** The name. */
 	private String name = null; // (obligatorio): nombre del punto de interés.
-	
+
 	/** The description. */
 	private String description = null; // (opcional): descripción del punto de
 										// interés.
 	/** The elevation. */
-										private Integer elevation = null; // (opcional): elevación de la posición
-										// respecto al nivel del mar, en metros.
+	private Integer elevation = null; // (opcional): elevación de la posición
+	// respecto al nivel del mar, en metros.
 	/** The accuracy. */
-										private Integer accuracy = null; // (opcional): precisión de la latitud y
+	private Integer accuracy = null; // (opcional): precisión de la latitud y
 										// lontigud en metros.
 	/** The vaccuracy. */
-										private Integer vaccuracy = null; // (opcional): precisión de la elevación
+	private Integer vaccuracy = null; // (opcional): precisión de la elevación
 										// en metros.
 	/** The address. */
-										private String address = null; // (opcional): dirección del punto de interés
-	
+	private String address = null; // (opcional): dirección del punto de interés
+
 	/** The cross_street. */
 	private String cross_street = null; // (opcional): transversal a la
 										// dirección del punto de interés.
 	/** The city. */
-										private String city = null; // (opcional): ciudad del punto de interés
-	
+	private String city = null; // (opcional): ciudad del punto de interés
+
 	/** The country. */
 	private String country = null; // (opcional): estado al que pertenece la
 									// ciudad
 	/** The postal_code. */
-									private String postal_code = null; // (opcional): código postal
-	
+	private String postal_code = null; // (opcional): código postal
+
 	/** The phone. */
 	private String phone = null; // (opcional): número de teléfono
-	
+
 	/** The twitter. */
 	private String twitter = null; // (opcional): identificador de usuario en
 									// twitter o hashtag
 	/** The categories. */
-									private String categories = null; // (obligatorio): identificadores de
-										// categorías a las que pertenece el
-										// punto de interés, separadas por comas
+	private String categories = null; // (obligatorio): identificadores de
+
+	// categorías a las que pertenece el
+	// punto de interés, separadas por comas
 
 	/**
-										 * Instantiates a new image upload.
-										 *
-										 * @param operationName the operation name
-										 * @param method the method
-										 * @param format the format
-										 * @param version the version
-										 * @param oauth_token the oauth_token
-										 * @param file the file
-										 * @param filename the filename
-										 * @param id the id
-										 * @param type_id the type_id
-										 */
+	 * Instantiates a new image upload.
+	 * 
+	 * @param operationName
+	 *            the operation name
+	 * @param method
+	 *            the method
+	 * @param format
+	 *            the format
+	 * @param version
+	 *            the version
+	 * @param oauth_token
+	 *            the oauth_token
+	 * @param file
+	 *            the file
+	 * @param filename
+	 *            the filename
+	 * @param id
+	 *            the id
+	 * @param type_id
+	 *            the type_id
+	 */
 	public ImageUpload(String operationName, String method, String format,
 			Integer version, String oauth_token, byte[] file, String filename,
 			Integer id, Integer type_id) {
@@ -128,17 +141,24 @@ public class ImageUpload extends APIOperation {
 			this.pos_id = this.poi_id = null;
 		}
 	}
-	
+
 	/**
 	 * Instantiates a new image upload.
-	 *
-	 * @param operationName the operation name
-	 * @param method the method
-	 * @param format the format
-	 * @param version the version
-	 * @param oauth_token the oauth_token
-	 * @param file the file
-	 * @param filename the filename
+	 * 
+	 * @param operationName
+	 *            the operation name
+	 * @param method
+	 *            the method
+	 * @param format
+	 *            the format
+	 * @param version
+	 *            the version
+	 * @param oauth_token
+	 *            the oauth_token
+	 * @param file
+	 *            the file
+	 * @param filename
+	 *            the filename
 	 */
 	public ImageUpload(String operationName, String method, String format,
 			Integer version, String oauth_token, byte[] file, String filename) {
@@ -150,29 +170,51 @@ public class ImageUpload extends APIOperation {
 
 	/**
 	 * Instantiates a new image upload.
-	 *
-	 * @param operationName the operation name
-	 * @param method the method
-	 * @param format the format
-	 * @param version the version
-	 * @param oauth_token the oauth_token
-	 * @param file the file
-	 * @param filename the filename
-	 * @param lat the lat
-	 * @param lng the lng
-	 * @param name the name
-	 * @param description the description
-	 * @param elevation the elevation
-	 * @param accuracy the accuracy
-	 * @param vaccuracy the vaccuracy
-	 * @param address the address
-	 * @param cross_street the cross_street
-	 * @param city the city
-	 * @param country the country
-	 * @param postal_code the postal_code
-	 * @param phone the phone
-	 * @param twitter the twitter
-	 * @param categories the categories
+	 * 
+	 * @param operationName
+	 *            the operation name
+	 * @param method
+	 *            the method
+	 * @param format
+	 *            the format
+	 * @param version
+	 *            the version
+	 * @param oauth_token
+	 *            the oauth_token
+	 * @param file
+	 *            the file
+	 * @param filename
+	 *            the filename
+	 * @param lat
+	 *            the lat
+	 * @param lng
+	 *            the lng
+	 * @param name
+	 *            the name
+	 * @param description
+	 *            the description
+	 * @param elevation
+	 *            the elevation
+	 * @param accuracy
+	 *            the accuracy
+	 * @param vaccuracy
+	 *            the vaccuracy
+	 * @param address
+	 *            the address
+	 * @param cross_street
+	 *            the cross_street
+	 * @param city
+	 *            the city
+	 * @param country
+	 *            the country
+	 * @param postal_code
+	 *            the postal_code
+	 * @param phone
+	 *            the phone
+	 * @param twitter
+	 *            the twitter
+	 * @param categories
+	 *            the categories
 	 */
 	public ImageUpload(String operationName, String method, String format,
 			Integer version, String oauth_token, byte[] file, String filename,
@@ -201,12 +243,39 @@ public class ImageUpload extends APIOperation {
 		this.categories = categories;
 	}
 
+	/**
+	 * Instantiates a new image upload.
+	 * 
+	 * @param operationName
+	 *            the operation name
+	 * @param method
+	 *            the method
+	 * @param format
+	 *            the format
+	 * @param version
+	 *            the version
+	 * @param oauth_token
+	 *            the oauth_token
+	 * @param file
+	 *            the file
+	 * @param filename
+	 *            the filename
+	 * 
+	 */
+	public ImageUpload(String operationName, String method, String format,
+			Integer version, String oauth_token, byte[] file, String filename,
+			String privacy) {
+		super(operationName, method, format, version);
+		this.oauth_token = oauth_token;
+		this.file = file;
+		this.filename = filename;
+		this.privacy = privacy;
 
-
+	}
 
 	/**
 	 * validate the params.
-	 *
+	 * 
 	 * @return Boolean
 	 */
 	@Override
@@ -214,6 +283,7 @@ public class ImageUpload extends APIOperation {
 		boolean validate = super.ValidateParams();
 		validate = validate && file != null;
 		validate = validate && isValid(filename);
+		validate = validate && isValidorNull(privacy);
 		validate = validate && isValidorNull(APIUtils.toStringInteger(pos_id));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(poi_id));
 		validate = validate && isValidorNull(APIUtils.toStringDouble(lat));
@@ -237,7 +307,9 @@ public class ImageUpload extends APIOperation {
 		return validate;
 	};
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Operations.APIOperation#BodyParams()
 	 */
 	@Override
@@ -249,15 +321,18 @@ public class ImageUpload extends APIOperation {
 			ByteArrayBody bab = new ByteArrayBody(file, filename);
 			if (bab != null)
 				multipart.addPart("File", bab);
-			multipart.addPart("Oauth_token",
-					new StringBody(oauth_token));
-			if(pos_id!=null){
+			multipart.addPart("Oauth_token", new StringBody(oauth_token));
+			if (pos_id != null) {
 				multipart.addPart("pos_id",
 						new StringBody(APIUtils.toStringInteger(pos_id)));
-			}else if(poi_id!=null){
+			} else if (privacy != null) {
+				multipart.addPart("privacy",
+						new StringBody(APIUtils.toStringUrlEncoded(privacy)));
+
+			} else if (poi_id != null) {
 				multipart.addPart("poi_id",
 						new StringBody(APIUtils.toStringInteger(poi_id)));
-			}else if(lat!=null && lng!=null){
+			} else if (lat != null && lng != null) {
 				multipart.addPart(
 						"Lat",
 						new StringBody(URLEncoder.encode(Double.toString(lat)
@@ -268,8 +343,11 @@ public class ImageUpload extends APIOperation {
 								.replace(',', '.'))));
 				multipart.addPart("Name",
 						new StringBody(APIUtils.toStringUrlEncoded(name)));
-				multipart.addPart("Description",
-						new StringBody(APIUtils.toStringUrlEncoded(description)));
+				multipart
+						.addPart(
+								"Description",
+								new StringBody(APIUtils
+										.toStringUrlEncoded(description)));
 				multipart.addPart("Elevation",
 						new StringBody(APIUtils.toStringInteger(elevation)));
 				multipart.addPart("Accuracy",
@@ -278,26 +356,36 @@ public class ImageUpload extends APIOperation {
 						new StringBody(APIUtils.toStringInteger(vaccuracy)));
 				multipart.addPart("Address",
 						new StringBody(APIUtils.toStringUrlEncoded(address)));
-				multipart.addPart("Cross_street",
-						new StringBody(APIUtils.toStringUrlEncoded(cross_street)));
+				multipart.addPart(
+						"Cross_street",
+						new StringBody(APIUtils
+								.toStringUrlEncoded(cross_street)));
 				multipart.addPart("City",
 						new StringBody(APIUtils.toStringUrlEncoded(city)));
 				multipart.addPart("Country",
 						new StringBody(APIUtils.toStringUrlEncoded(country)));
-				multipart.addPart("Postal_code",
-						new StringBody(APIUtils.toStringUrlEncoded(postal_code)));
+				multipart
+						.addPart(
+								"Postal_code",
+								new StringBody(APIUtils
+										.toStringUrlEncoded(postal_code)));
 				multipart.addPart("phone",
 						new StringBody(APIUtils.toStringUrlEncoded(phone)));
 				multipart.addPart("twitter",
 						new StringBody(APIUtils.toStringUrlEncoded(twitter)));
-				multipart.addPart("categories",
-						new StringBody(APIUtils.toStringUrlEncoded(categories)));
+				multipart
+						.addPart(
+								"categories",
+								new StringBody(APIUtils
+										.toStringUrlEncoded(categories)));
 			}
 		}
 		return multipart;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
 	 */
 	@Override
