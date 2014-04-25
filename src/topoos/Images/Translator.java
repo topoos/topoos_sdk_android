@@ -518,7 +518,7 @@ class Translator {
 			ImageDelete imDel = new ImageDelete ("Delete",method_get, format, version,
 					accessTokenPregenerated.getAccessToken(), fileName);
 			GenericResult genericResult = new GenericResult();
-			APICaller.ExecuteOperation(imDel, genericResult);
+			APICaller.ExecuteOperation(imDel, genericResult, APICaller.SERVICE_PIC);
 			delete = genericResult.getCode() == 200;
 		} else {
 			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
