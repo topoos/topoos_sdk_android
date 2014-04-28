@@ -25,6 +25,7 @@ import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.ImageDelete;
 import topoos.APIAccess.Operations.ImageUpload;
+import topoos.APIAccess.Operations.ImageUpdate;
 import topoos.APIAccess.Results.GenericResult;
 import topoos.APIAccess.Results.ImageResult;
 import topoos.Exception.TopoosException;
@@ -525,7 +526,72 @@ class Translator {
 		}
 		return delete;
 	}
+	
+	
 
+	/**
+	 * Update privacy, and keywords.
+	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
+	 * @param filename_unique Unique image ID
+	 * @param keywords for the image
+	 * @param privacy for the image
+	 * @return Boolean    
+	 * @throws TopoosException 
+	 * @throws IOException 
+	 *  */
+	public static Boolean ImageUpdate(String filename_unique,
+				AccessTokenOAuth accessTokenPregenerated, String[] kewywords,
+				int privacy) throws TopoosException, IOException {
+		Boolean update = false;
+		if (accessTokenPregenerated.isValid()) {
+			String privacystr = "public";
+			switch (privacy) {
+			case PRIVACY_PUBLIC:
+				privacystr = "public";
+				break;
+			case PRIVACY_CLIENT:
+				privacystr = "client";
+				break;
+			case PRIVACY_USER:
+				privacystr = "user";
+				break;
+			default:
+				break;
+			}
+			String string_keywords = getKeyWords (kewywords);
+			GenericResult genericResult = new GenericResult();
+			ImageUpdate imUpd = new ImageUpdate ("ImageUpdate",method_get, format, version,
+					accessTokenPregenerated.getAccessToken(),filename_unique,string_keywords,privacystr);
+			APICaller.ExecuteOperation(imUpd, genericResult, APICaller.SERVICE_PIC);
+			update = genericResult.getCode() == 200;
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		
+		return update;
+	}
+
+
+	/**
+	 * Build a string of keywords (String) list
+	 * */
+	private static String getKeyWords (String [] kwrs){
+		String string_keywords=  "";
+		if (kwrs !=null){
+			if (kwrs.length >0){
+				for (int i =0; i < kwrs.length ; i++){
+					string_keywords += kwrs[i];
+					if (i+1 <kwrs.length){
+						string_keywords +=",";
+					}
+				}
+			}
+		}
+		return string_keywords;
+	}
+	
 	/**
 	 * Gets the image uri with privacy
 	 * 

@@ -14,62 +14,66 @@
  * limitations under the License.
  */
 
-
 package topoos.APIAccess.Operations;
 
-
 /**
- * The Class ImageDelete.
- * @see APIOperation
- * @author topoos
+ * The Class ImageUpdate.
  */
-public class ImageDelete extends APIOperation {
-	
+public class ImageUpdate extends APIOperation{
 	/** The oauth_token. */
-	private String oauth_token=null; // (obligatorio) access_token a los recursos del usuario
+	private String oauth_token;
 	/** The id unique image */
-	private String ID_Image = null; // (Obligatorio) nombre de la imagen necesario para borrar la foto
-	
+	private String id_uniq_filename;
+	/** The keywords of image */
+	private String keywords;
+	/** The privacy of image */
+	private String privacy;
 	
 	/**
 	 * Instantiates a new image delete.
 	 * 
 	 * @param accessTokenPregenerated (required) access_token to user resources
-	 * @param filename_unique Unique image ID
+	 * @param id_uniq_filename Unique image ID
+	 * @param keywords of image
+	 * @param privacy of image
 	 * 
 	 */
-	public ImageDelete (String operationName, String method, String format,
-			Integer version,String accessTokenPregenerated,
-			String fileName){
+	public ImageUpdate(String operationName, String method, String format,
+			Integer version,String oauth_token, String id_uniq_filename, String keywords,
+			String privacy) {
 		super(operationName, method, format, version);
-		this.oauth_token = accessTokenPregenerated;
-		this.ID_Image = fileName;
+		this.oauth_token = oauth_token;
+		this.id_uniq_filename = id_uniq_filename;
+		this.keywords = keywords;
+		this.privacy = privacy;
 	}
-
+	
+	
 	/* (non-Javadoc)
 	 * @see topoos.APIAccess.Operations.APIOperation#ValidateParams()
 	 */
 	@Override
 	public boolean ValidateParams() {
+		// TODO Auto-generated method stub
 		boolean validate = super.ValidateParams();
-		validate = validate && isValid(ID_Image);
+		validate = validate && isValid(id_uniq_filename);
 		validate = validate && isValid(oauth_token);
+		validate = validate && (isValid (keywords) || isValid (privacy));
 		return validate;
 	}
 
-	/**
-	 * Build params for URI.
-	 * 
-	 * @return String
-	 */
 	@Override
 	public String ConcatParams() {
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/image/delete/"+ID_Image+"."+this.Format 
-					+ "?oauth_token=" + this.oauth_token;
+			params = "/" + this.Version + "/image/update/"+this.id_uniq_filename+"."+this.Format 
+					+ "?oauth_token=" + this.oauth_token +"&privacy="+this.privacy+"&keywords="+this.keywords;
 		}
 		return params;
 	}
+	
+	
 
+	
 }
+

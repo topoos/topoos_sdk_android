@@ -386,4 +386,21 @@ public class Operations {
 		return Translator.Delete (accessTokenPregenerated, fileName);
 		
 	}
+	
+	/**
+	 * Update privacy, and keywords.
+	 * 
+	 * @param accessTokenPregenerated
+	 *            (required) access_token to user resources
+	 * @param filename_unique Unique image ID
+	 * @param keywords for the image
+	 * @param privacy for the image
+	 * @return Boolean    
+	 * @throws TopoosException 
+	 * @throws IOException 
+	 *  */
+	public static Boolean ImageUpdate(AccessTokenOAuth accessTokenPregenerated,String filename_unique,
+			 String[] keywords,int privacy) throws TopoosException, IOException {
+		return Translator.ImageUpdate(filename_unique, accessTokenPregenerated, keywords, privacy);
+	}
 }
