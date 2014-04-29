@@ -324,20 +324,6 @@ public class Operations {
 	public static String GetImageURI(String filename_unique) {
 		return Translator.GetImageURI(filename_unique);
 	}
-
-	/**
-	 * Get uri of image with a specific size
-	 * 
-	 * @param filename_unique
-	 *            Unique image ID
-	 * @param size
-	 *            Image size
-	 * @return String
-	 */
-	public static String GetImageURIThumb(String filename_unique, int size) {
-		return Translator.GetImageURIThumb(filename_unique, size);
-	}
-	
 	
 
 	/**
@@ -355,6 +341,7 @@ public class Operations {
 		return Translator.GetImageURI(filename_unique, accessTokenPregenerated);
 	}
 
+	
 	/**
 	 * Get uri of image with a specific size
 	 * 
@@ -362,8 +349,22 @@ public class Operations {
 	 *            Unique image ID
 	 * @param size
 	 *            Image size
-	 * @param privacy
-	 *            the privacy
+	 * @return String
+	 */
+	public static String GetImageURIThumb(String filename_unique, int size) {
+		return Translator.GetImageURIThumb(filename_unique, size);
+	}
+	
+	
+	/**
+	 * Get uri of image with a specific size
+	 * 
+	 * @param filename_unique
+	 *            Unique image ID
+	 * @param size
+	 *            Image size
+	 * @param accessTokenPregenerated
+	 *            (for the privacy)
 	 * @return String
 	 */
 	public static String GetImageURIThumb(String filename_unique, int size,
@@ -372,6 +373,8 @@ public class Operations {
 		return Translator.GetImageURIThumb(filename_unique, size,
 				accessTokenPregenerated);
 	}
+	
+	
 
 	/**
 	 * Delete image from PIC service permanently.

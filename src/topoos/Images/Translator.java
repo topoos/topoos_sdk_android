@@ -459,51 +459,7 @@ class Translator {
 		return uri;
 	}
 
-	/**
-	 * Gets the image uri thumb.
-	 * 
-	 * @param filename_unique
-	 *            the filename_unique
-	 * @param size
-	 *            the size
-	 * 
-	 * @return the string
-	 */
-	public static String GetImageURIThumb(String filename_unique, int size) {
-		String strsize = "small";
-		switch (size) {
-		case SIZE_LARGE:
-			strsize = "large";
-			break;
-		case SIZE_SMALL:
-			strsize = "small";
-			break;
-		case SIZE_XLARGE:
-			strsize = "x-large";
-			break;
-		case SIZE_XSMALL:
-			strsize = "x-small";
-			break;
-		case SIZE_XXLARGE:
-			strsize = "xx-large";
-			break;
-		case SIZE_XXSMALL:
-			strsize = "xx-small";
-			break;
-		case SIZE_XXXLARGE:
-			strsize = "xxx-large";
-			break;
-		case SIZE_XXXSMALL:
-			strsize = "xxx-small";
-			break;
-		default:
-			break;
-		}
-		String uri = APICaller.GetURLPICAPItopoos() + "/thumb/"
-				+ URLEncoder.encode(filename_unique) + "?size="
-				+ URLEncoder.encode(strsize);
-		return uri;
-	}
+	
 
 	/**
 	 * Delete image from PIC service permanently.
@@ -644,6 +600,52 @@ class Translator {
 		}
 		return uri;
 	}
+	
+	/**
+	 * Gets the image uri thumb.
+	 * 
+	 * @param filename_unique
+	 *            the filename_unique
+	 * @param size
+	 *            the size
+	 * 
+	 * @return the string
+	 */
+	public static String GetImageURIThumb(String filename_unique, int size) {
+		String strsize = "small";
+		switch (size) {
+		case SIZE_LARGE:
+			strsize = "large";
+			break;
+		case SIZE_SMALL:
+			strsize = "small";
+			break;
+		case SIZE_XLARGE:
+			strsize = "x-large";
+			break;
+		case SIZE_XSMALL:
+			strsize = "x-small";
+			break;
+		case SIZE_XXLARGE:
+			strsize = "xx-large";
+			break;
+		case SIZE_XXSMALL:
+			strsize = "xx-small";
+			break;
+		case SIZE_XXXLARGE:
+			strsize = "xxx-large";
+			break;
+		case SIZE_XXXSMALL:
+			strsize = "xxx-small";
+			break;
+		default:
+			break;
+		}
+		String uri = APICaller.GetURLPICAPItopoos() + "/thumb/"
+				+ URLEncoder.encode(filename_unique) + "?size="
+				+ URLEncoder.encode(strsize);
+		return uri;
+	}
 
 	/**
 	 * Gets the image uri thumb with privacy.
@@ -652,8 +654,8 @@ class Translator {
 	 *            the filename_unique
 	 * @param size
 	 *            the size
-	 * @param privacy
-	 *            the privacy
+	 * @param accessTokenPregenerated
+	 *            (for the privacy)
 	 * @return the string
 	 */
 	public static String GetImageURIThumb(String filename_unique, int size,
