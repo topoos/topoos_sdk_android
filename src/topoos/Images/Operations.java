@@ -17,6 +17,7 @@
 package topoos.Images;
 
 import java.io.IOException;
+import java.util.List;
 
 import topoos.AccessTokenOAuth;
 import topoos.Exception.TopoosException;
@@ -402,5 +403,19 @@ public class Operations {
 	public static Boolean ImageUpdate(AccessTokenOAuth accessTokenPregenerated,String filename_unique,
 			 String[] keywords,int privacy) throws TopoosException, IOException {
 		return Translator.ImageUpdate(filename_unique, accessTokenPregenerated, keywords, privacy);
+	}
+	
+	/**
+	 * Search images
+	 * 
+	 * @param accessTokenPregenerated 
+	 * 			(required) access_token to user resources
+	 * @param filename_unique unique identifier image
+	 * @param keywords keywords id of image
+	 * @param count max number of items that will be returned
+	 * @param page result page number. First page is 0. Default 0
+	 * @return List <Image> */
+	public static List <Image> SearchImage(AccessTokenOAuth accessTokenPregenerated,String filename_unique, String [] keywords, Integer count, Integer page) throws TopoosException, IOException {
+		return Translator.SearchImage(accessTokenPregenerated, filename_unique, keywords, count, page);
 	}
 }

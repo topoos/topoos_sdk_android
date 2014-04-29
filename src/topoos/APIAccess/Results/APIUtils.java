@@ -25,6 +25,8 @@ import java.util.TimeZone;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import topoos.Objects.GeoData;
+
 /**
  * The Class APIUtils.
  */
@@ -49,6 +51,7 @@ class APIUtils {
 		}
 		return null;
 	}
+	
 	
 	/**
 	 * Gets the stringor null.

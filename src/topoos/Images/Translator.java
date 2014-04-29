@@ -18,15 +18,18 @@ package topoos.Images;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import android.content.Context;
 
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.ImageDelete;
+import topoos.APIAccess.Operations.ImageSearch;
 import topoos.APIAccess.Operations.ImageUpload;
 import topoos.APIAccess.Operations.ImageUpdate;
 import topoos.APIAccess.Results.GenericResult;
+import topoos.APIAccess.Results.ImageCollectionResult;
 import topoos.APIAccess.Results.ImageResult;
 import topoos.Exception.TopoosException;
 import topoos.Objects.Image;
@@ -590,6 +593,30 @@ class Translator {
 			}
 		}
 		return string_keywords;
+	}
+	
+	/**
+	 * Search images
+	 * 
+	 * @param accessTokenPregenerated 
+	 * 			(required) access_token to user resources
+	 * @param filename_unique unique identifier image
+	 * @param keywords keywords id of image
+	 * @param count max number of items that will be returned
+	 * @param page result page number. First page is 0. Default 0
+	 * @return List <Image> */
+	public static List <Image> SearchImage (AccessTokenOAuth accessTokenPregenerated,String filename_unique, String [] keywords, Integer count, Integer page) throws TopoosException, IOException{
+		List <Image> imagesFound= null;
+		if (accessTokenPregenerated.isValid()) {
+			String strctKeywords= getKeyWords (keywords);
+			ImageSearch imSearch = new ImageSearch ("ImageSearch", method_get, format, version, accessTokenPregenerated.getAccessToken(),filename_unique, strctKeywords, count, page );
+			ImageCollectionResult imColRes= new ImageCollectionResult ();
+			APICaller.ExecuteOperation(imSearch, imColRes, APICaller.SERVICE_PIC);
+			imagesFound = imColRes.getImageCollection().getImageList();
+		}else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		return imagesFound;
 	}
 	
 	/**
