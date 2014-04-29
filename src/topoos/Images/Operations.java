@@ -343,38 +343,37 @@ public class Operations {
 
 	
 	/**
-	 * Get uri of image with a specific size
+	 * Gets the image uri thumb by size.
 	 * 
+	 * AccessTokenOAuth can be null
+	 * 
+	 * @param accessTokenPregenerated for the privacy
 	 * @param filename_unique
-	 *            Unique image ID
-	 * @param size
-	 *            Image size
-	 * @return String
+	 *            the filename_unique
+	 * @param size the size 
+	 * @return the URI
+	 * 
 	 */
-	public static String GetImageURIThumb(String filename_unique, int size) {
-		return Translator.GetImageURIThumb(filename_unique, size);
+	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, int size, int dpi, int mode) throws TopoosException {
+		return Translator.GetImageURIThumb(accessTokenPregenerated, filename_unique, size, dpi, mode);
 	}
-	
 	
 	/**
-	 * Get uri of image with a specific size
+	 * Gets the image uri thumb by width and high.
 	 * 
+	 * AccessTokenOAuth can be null
+	 * 
+	 * @param accessTokenPregenerated for the privacy
 	 * @param filename_unique
-	 *            Unique image ID
-	 * @param size
-	 *            Image size
-	 * @param accessTokenPregenerated
-	 *            (for the privacy)
-	 * @return String
+	 *            the filename_unique
+	 * @param width the width
+	 * @param high the high
+	 * @return the URI
+	 * 
 	 */
-	public static String GetImageURIThumb(String filename_unique, int size,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
-		return Translator.GetImageURIThumb(filename_unique, size,
-				accessTokenPregenerated);
+	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, Integer width, Integer high, int dpi, int mode) throws TopoosException {
+		return Translator.GetImageURIThumb(accessTokenPregenerated, filename_unique, width, high, dpi, mode);
 	}
-	
-	
 
 	/**
 	 * Delete image from PIC service permanently.

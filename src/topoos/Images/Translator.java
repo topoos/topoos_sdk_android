@@ -31,6 +31,7 @@ import topoos.APIAccess.Operations.ImageUpdate;
 import topoos.APIAccess.Results.GenericResult;
 import topoos.APIAccess.Results.ImageCollectionResult;
 import topoos.APIAccess.Results.ImageResult;
+import topoos.APIAccess.Results.ImageURIThumb;
 import topoos.Exception.TopoosException;
 import topoos.Objects.Image;
 
@@ -62,6 +63,12 @@ class Translator {
 
 	/** The Constant SIZE_XXXLARGE. */
 	public static final int SIZE_XXXLARGE = 7;
+	
+	/** The Constant MODE_MAINTAIN*/
+	public static final int MODE_MAINTAIN =0;
+	
+	/** The Constant MODE_FIT*/
+	public static final int MODE_FIT =1;
 
 	/** The Constant PRIVACY_PUBLIC. */
 	public static final int PRIVACY_PUBLIC = 0;
@@ -602,17 +609,28 @@ class Translator {
 	}
 	
 	/**
-	 * Gets the image uri thumb.
+	 * Gets the image uri thumb by size.
 	 * 
+	 * @param accessTokenPregenerated for the privacy
 	 * @param filename_unique
 	 *            the filename_unique
 	 * @param size
 	 *            the size
 	 * 
-	 * @return the string
+	 * @return the URI
+	 * 
 	 */
-	public static String GetImageURIThumb(String filename_unique, int size) {
+	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, int size, int dpi, int mode) throws TopoosException {
 		String strsize = "small";
+		String strmode = "maintain";
+		if (filename_unique == null || size <0){
+			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
+		}
+		if (accessTokenPregenerated != null){
+			if (!accessTokenPregenerated.isValid()){
+				throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+			}
+		}
 		switch (size) {
 		case SIZE_LARGE:
 			strsize = "large";
@@ -641,71 +659,61 @@ class Translator {
 		default:
 			break;
 		}
-		String uri = APICaller.GetURLPICAPItopoos() + "/thumb/"
-				+ URLEncoder.encode(filename_unique) + "?size="
-				+ URLEncoder.encode(strsize);
-		return uri;
+		switch (mode){
+			case MODE_MAINTAIN:
+				strmode = "maintain";
+				break;
+			case MODE_FIT:
+				strmode = "fit";
+				break;
+			default:
+				break;
+		}
+		
+		ImageURIThumb imURIThumb = new ImageURIThumb (accessTokenPregenerated.getAccessToken(),filename_unique, strsize, Integer.toString(dpi), strmode);
+		imURIThumb.setParameters();
+		return imURIThumb.getUriThumb();
 	}
 
 	/**
-	 * Gets the image uri thumb with privacy.
+	 * Gets the image uri thumb by width and high.
 	 * 
+	 * @param accessTokenPregenerated for the privacy
 	 * @param filename_unique
 	 *            the filename_unique
-	 * @param size
-	 *            the size
-	 * @param accessTokenPregenerated
-	 *            (for the privacy)
-	 * @return the string
+	 * @param width the width
+	 * @param high the high
+	 * @return the URI
+	 * 
 	 */
-	public static String GetImageURIThumb(String filename_unique, int size,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
-
-		String strsize = "small";
-		String uri = null;
-		switch (size) {
-		case SIZE_LARGE:
-			strsize = "large";
-			break;
-		case SIZE_SMALL:
-			strsize = "small";
-			break;
-		case SIZE_XLARGE:
-			strsize = "x-large";
-			break;
-		case SIZE_XSMALL:
-			strsize = "x-small";
-			break;
-		case SIZE_XXLARGE:
-			strsize = "xx-large";
-			break;
-		case SIZE_XXSMALL:
-			strsize = "xx-small";
-			break;
-		case SIZE_XXXLARGE:
-			strsize = "xxx-large";
-			break;
-		case SIZE_XXXSMALL:
-			strsize = "xxx-small";
-			break;
-		default:
-			break;
+	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, Integer width, Integer high, int dpi, int mode) throws TopoosException {
+		String strmode = "maintain";
+		if (filename_unique == null || (width == null && high == null)){
+			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
+		}else if (width!= null){
+			if (width <0) throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
+		}else if (high != null){
+			if (high <0)throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
 		}
-
-		if (accessTokenPregenerated.isValid()) {
-
-			uri = APICaller.GetURLPICAPItopoos()
-					+ "/thumb/"
-					+ URLEncoder.encode(filename_unique)
-					+ "?size="
-					+ URLEncoder.encode(strsize)
-					+ "&access_token="
-					+ URLEncoder.encode(accessTokenPregenerated
-							.getAccessToken());
-		} else {
-			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		if (accessTokenPregenerated != null){
+			if (!accessTokenPregenerated.isValid()){
+				throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+			}
 		}
-		return uri;
+		switch (mode){
+			case MODE_MAINTAIN:
+				strmode = "maintain";
+				break;
+			case MODE_FIT:
+				strmode = "fit";
+				break;
+			default:
+				break;
+		}
+		ImageURIThumb imURIThumb = new ImageURIThumb (accessTokenPregenerated.getAccessToken(),filename_unique, Integer.toString(width),Integer.toString(high), Integer.toString(dpi), strmode);
+		imURIThumb.setParameters();
+		return imURIThumb.getUriThumb();
 	}
+	
+	
 }
