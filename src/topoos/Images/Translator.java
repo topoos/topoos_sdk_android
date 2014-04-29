@@ -89,62 +89,30 @@ class Translator {
 	/** The version. */
 	private static Integer version = topoos.Constants.APIVERSION;
 
+
 	/**
 	 * Image upload.
 	 * 
+	 * @param accessTokenPregenerated
+	 *            the access token pregenerated
 	 * @param file
 	 *            the file
 	 * @param filename
-	 *            the filename
-	 * @param accessTokenPregenerated
-	 *            the access token pregenerated
+	 *            the filename          
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy
 	 * @return the image
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @throws TopoosException
 	 *             the topoos exception
 	 */
-	public static Image ImageUpload(byte[] file, String filename,
-			AccessTokenOAuth accessTokenPregenerated) throws IOException,
-			TopoosException {
+	public static Image ImageUpload(AccessTokenOAuth accessTokenPregenerated, byte[] file, 
+			String filename, String fileformat, String [] keywords, int privacy) throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
-			ImageUpload imageUpload = new ImageUpload("ImageUpload",
-					method_post, format, version,
-					accessTokenPregenerated.getAccessToken(), file, filename);
-			ImageResult imageResult = new ImageResult();
-			APICaller.ExecuteOperation(imageUpload, imageResult,
-					APICaller.SERVICE_PIC);
-			image = imageResult.getImage();
-		} else {
-			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
-		}
-		return image;
-	}
-
-	/**
-	 * CVR Image upload.
-	 * 
-	 * @param file
-	 *            the file
-	 * @param filename
-	 *            the filename
-	 * @param String
-	 *            (required) privacy
-	 * @param accessTokenPregenerated
-	 *            the access token pregenerated
-	 * @return the image
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws TopoosException
-	 *             the topoos exception
-	 */
-	public static Image ImageUpload(byte[] file, String filename,
-			AccessTokenOAuth accessTokenPregenerated, int privacy)
-			throws IOException, TopoosException {
-		Image image = null;
-		if (accessTokenPregenerated.isValid()) {
-
+			String strkeywords = getKeyWords(keywords);
 			String privacystr = "public";
 			switch (privacy) {
 
@@ -163,8 +131,8 @@ class Translator {
 
 			ImageUpload imageUpload = new ImageUpload("ImageUpload",
 					method_post, format, version,
-					accessTokenPregenerated.getAccessToken(), file, filename,
-					privacystr);
+					accessTokenPregenerated.getAccessToken(), file, filename,fileformat,
+					strkeywords,privacystr);
 			ImageResult imageResult = new ImageResult();
 			APICaller.ExecuteOperation(imageUpload, imageResult,
 					APICaller.SERVICE_PIC);
@@ -327,26 +295,7 @@ class Translator {
 		return image;
 	}
 
-	/**
-	 * Image upload.
-	 * 
-	 * @param context
-	 *            the context
-	 * @param file
-	 *            the file
-	 * @param filename
-	 *            the filename
-	 * @return the image
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws TopoosException
-	 *             the topoos exception
-	 */
-	public static Image ImageUpload(Context context, byte[] file,
-			String filename) throws IOException, TopoosException {
-		return ImageUpload(file, filename,
-				AccessTokenOAuth.GetAccessToken(context));
-	}
+
 
 	/**
 	 * Image upload position.

@@ -47,44 +47,49 @@ public class Operations {
 	public static final int PRIVACY_USER = Translator.PRIVACY_USER;
 
 	/**
-	 * Uploading an image to topoos pic services
+	 * Image upload.
 	 * 
 	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
+	 *            the access token pregenerated
 	 * @param file
-	 *            (required) image
+	 *            the file
 	 * @param filename
-	 *            (required) image name
-	 * @return Image
+	 *            the filename          
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy
+	 * @return the image
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 * @throws TopoosException
+	 *             the topoos exception
 	 */
 	public static Image ImageUpload(AccessTokenOAuth accessTokenPregenerated,
-			byte[] file, String filename) throws IOException, TopoosException {
-		return Translator.ImageUpload(file, filename, accessTokenPregenerated);
+			byte[] file, String filename, String fileformat, String [] keywords, int privacy) throws IOException, TopoosException {
+		return Translator.ImageUpload( accessTokenPregenerated, file, filename, fileformat, keywords, privacy);
 
 	}
-
+	
 	/**
-	 * CVR Uploading an image to topoos pic services with privacy services
+	 * Image upload.
 	 * 
-	 * @param accessTokenPregenerated
-	 *            (required) access_token to user resources
+	 * @param Context the context
 	 * @param file
-	 *            (required) image
+	 *            the file
 	 * @param filename
-	 *            (required) image name
-	 * @param String
-	 *            (required) privacy
-	 * @return Image
+	 *            the filename          
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy
+	 * @return the image
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 * @throws TopoosException
+	 *             the topoos exception
 	 */
-	public static Image ImageUpload(AccessTokenOAuth accessTokenPregenerated,
-			byte[] file, String filename, int privacy) throws IOException,
-			TopoosException {
-		return Translator.ImageUpload(file, filename, accessTokenPregenerated,
-				privacy);
+	public static Image ImageUpload(Context context,
+			byte[] file, String filename, String fileformat, String [] keywords, int privacy) throws IOException, TopoosException {
+		return Translator.ImageUpload( AccessTokenOAuth.GetAccessToken(context), file, filename, fileformat, keywords, privacy);
 
 	}
 
@@ -192,25 +197,7 @@ public class Operations {
 				categories, accessTokenPregenerated);
 	}
 
-	/**
-	 * Uploading an image to topoos pic services
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param file
-	 *            (required) image
-	 * @param filename
-	 *            (required) image name
-	 * @return Image
-	 * @throws IOException
-	 * @throws TopoosException
-	 */
-	public static Image ImageUpload(Context context, byte[] file,
-			String filename) throws IOException, TopoosException {
-		return Translator.ImageUpload(context, file, filename);
-
-	}
+	
 
 	/**
 	 * Uploading an image to topoos pic services

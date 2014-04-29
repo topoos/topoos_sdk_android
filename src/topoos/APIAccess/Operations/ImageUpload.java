@@ -46,6 +46,12 @@ public class ImageUpload extends APIOperation {
 								// en Base64.
 	/** The filename. */
 	private String filename = null;
+	
+	/** The file_format. */
+	private String file_format = null;
+	
+	/** The keywords*/
+	private String keywords = null;
 
 	/** The privacy. */
 	private String privacy = null;
@@ -142,31 +148,6 @@ public class ImageUpload extends APIOperation {
 		}
 	}
 
-	/**
-	 * Instantiates a new image upload.
-	 * 
-	 * @param operationName
-	 *            the operation name
-	 * @param method
-	 *            the method
-	 * @param format
-	 *            the format
-	 * @param version
-	 *            the version
-	 * @param oauth_token
-	 *            the oauth_token
-	 * @param file
-	 *            the file
-	 * @param filename
-	 *            the filename
-	 */
-	public ImageUpload(String operationName, String method, String format,
-			Integer version, String oauth_token, byte[] file, String filename) {
-		super(operationName, method, format, version);
-		this.oauth_token = oauth_token;
-		this.file = file;
-		this.filename = filename;
-	}
 
 	/**
 	 * Instantiates a new image upload.
@@ -260,15 +241,22 @@ public class ImageUpload extends APIOperation {
 	 *            the file
 	 * @param filename
 	 *            the filename
+	 *            
+	 * @param file_format the fileformat
+	 * 
+	 * @param keywords the keywords
+	 * 
+	 * @param privacy the privacy
 	 * 
 	 */
 	public ImageUpload(String operationName, String method, String format,
-			Integer version, String oauth_token, byte[] file, String filename,
-			String privacy) {
+			Integer version,String oauth_token,byte[] file, String filename, String file_format, String keywords, String privacy) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.file = file;
 		this.filename = filename;
+		this.file_format = file_format;
+		this.keywords = keywords;
 		this.privacy = privacy;
 
 	}
@@ -284,6 +272,8 @@ public class ImageUpload extends APIOperation {
 		validate = validate && file != null;
 		validate = validate && isValid(filename);
 		validate = validate && isValidorNull(privacy);
+		validate = validate && isValidorNull(keywords);
+		validate = validate && isValidorNull(file_format);
 		validate = validate && isValidorNull(APIUtils.toStringInteger(pos_id));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(poi_id));
 		validate = validate && isValidorNull(APIUtils.toStringDouble(lat));
