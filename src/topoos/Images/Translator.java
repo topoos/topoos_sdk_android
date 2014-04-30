@@ -112,7 +112,6 @@ class Translator {
 			String filename, String fileformat, String [] keywords, int privacy) throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
-			String strkeywords = getKeyWords(keywords);
 			String privacystr = "public";
 			switch (privacy) {
 
@@ -132,7 +131,7 @@ class Translator {
 			ImageUpload imageUpload = new ImageUpload("ImageUpload",
 					method_post, format, version,
 					accessTokenPregenerated.getAccessToken(), file, filename,fileformat,
-					strkeywords,privacystr);
+					keywords,privacystr);
 			ImageResult imageResult = new ImageResult();
 			APICaller.ExecuteOperation(imageUpload, imageResult,
 					APICaller.SERVICE_PIC);
@@ -173,7 +172,6 @@ class Translator {
 			throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
-			String strkeywords = getKeyWords(keywords);
 			String privacystr = "public";
 			switch (privacy) {
 
@@ -192,7 +190,7 @@ class Translator {
 			ImageUpload imageUpload = new ImageUpload("ImageUploadPosition",
 					method_post, format, version,
 					accessTokenPregenerated.getAccessToken(), file, filename,
-					file_format, strkeywords,privacystr,
+					file_format, keywords,privacystr,
 					pos_id, ImageUpload.TYPE_POS);
 			
 			ImageResult imageResult = new ImageResult();
@@ -235,7 +233,6 @@ class Translator {
 			throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
-			String strkeywords = getKeyWords(keywords);
 			String privacystr = "public";
 			switch (privacy) {
 
@@ -254,7 +251,7 @@ class Translator {
 			ImageUpload imageUpload = new ImageUpload("ImageUploadPOI",
 					method_post, format, version,
 					accessTokenPregenerated.getAccessToken(), file, filename,
-					file_format, strkeywords, privacystr, poi_id, ImageUpload.TYPE_POI);
+					file_format, keywords, privacystr, poi_id, ImageUpload.TYPE_POI);
 			
 			ImageResult imageResult = new ImageResult();
 			APICaller.ExecuteOperation(imageUpload, imageResult,
@@ -328,8 +325,6 @@ class Translator {
 			throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
-			String strcategories = "";
-			String strkeywords = getKeyWords(keywords);
 			String privacystr = "public";
 			switch (privacy) {
 
@@ -345,23 +340,15 @@ class Translator {
 			default:
 				break;
 			}
-			if (categories != null) {
-				for (int i = 0; i < categories.length; i++) {
-					if (i < categories.length - 1) {
-						strcategories = strcategories + categories[i] + ",";
-					} else {
-						strcategories = strcategories + categories[i];
-					}
-				}
-			}
+			
 
 			ImageUpload imageUpload = new ImageUpload("ImageUploadNewPOI",
 			method_post, format, version,
 			accessTokenPregenerated.getAccessToken(), file, filename,
-			file_format, strkeywords, privacystr,
+			file_format, keywords, privacystr,
 			lat, lng, name, description, elevation, accuracy,
 			vaccuracy, address, cross_street, city, country,
-			postal_code, phone, twitter, strcategories);
+			postal_code, phone, twitter, categories);
 			
 			ImageResult imageResult = new ImageResult();
 			APICaller.ExecuteOperation(imageUpload, imageResult,
@@ -431,7 +418,7 @@ class Translator {
 	 * @throws IOException 
 	 *  */
 	public static Boolean ImageUpdate(String filename_unique,
-				AccessTokenOAuth accessTokenPregenerated, String[] kewywords,
+				AccessTokenOAuth accessTokenPregenerated, String[] keywords,
 				int privacy) throws TopoosException, IOException {
 		Boolean update = false;
 		if (accessTokenPregenerated.isValid()) {
@@ -449,10 +436,9 @@ class Translator {
 			default:
 				break;
 			}
-			String string_keywords = getKeyWords (kewywords);
 			GenericResult genericResult = new GenericResult();
 			ImageUpdate imUpd = new ImageUpdate ("ImageUpdate",method_get, format, version,
-					accessTokenPregenerated.getAccessToken(),filename_unique,string_keywords,privacystr);
+					accessTokenPregenerated.getAccessToken(),filename_unique,keywords,privacystr);
 			APICaller.ExecuteOperation(imUpd, genericResult, APICaller.SERVICE_PIC);
 			update = genericResult.getCode() == 200;
 		} else {
@@ -466,20 +452,7 @@ class Translator {
 	/**
 	 * Build a string of keywords (String) list
 	 * */
-	private static String getKeyWords (String [] kwrs){
-		String string_keywords=  "";
-		if (kwrs !=null){
-			if (kwrs.length >0){
-				for (int i =0; i < kwrs.length ; i++){
-					string_keywords += kwrs[i];
-					if (i+1 <kwrs.length){
-						string_keywords +=",";
-					}
-				}
-			}
-		}
-		return string_keywords;
-	}
+	
 	
 	/**
 	 * Search images
@@ -494,8 +467,7 @@ class Translator {
 	public static List <Image> SearchImage (AccessTokenOAuth accessTokenPregenerated,String filename_unique, String [] keywords, Integer count, Integer page) throws TopoosException, IOException{
 		List <Image> imagesFound= null;
 		if (accessTokenPregenerated.isValid()) {
-			String strctKeywords= getKeyWords (keywords);
-			ImageSearch imSearch = new ImageSearch ("ImageSearch", method_get, format, version, accessTokenPregenerated.getAccessToken(),filename_unique, strctKeywords, count, page );
+			ImageSearch imSearch = new ImageSearch ("ImageSearch", method_get, format, version, accessTokenPregenerated.getAccessToken(),filename_unique, keywords, count, page );
 			ImageCollectionResult imColRes= new ImageCollectionResult ();
 			APICaller.ExecuteOperation(imSearch, imColRes, APICaller.SERVICE_PIC);
 			imagesFound = imColRes.getImageCollection().getImageList();

@@ -27,7 +27,7 @@ public class ImageSearch extends APIOperation{
 	/**Unique identifier image*/
 	private String idImage;
 	/**keyworks for search*/
-	private String keywords;
+	private String [] keywords;
 	/**number of files returned*/
 	private Integer count;
 	/**result page number*/
@@ -48,7 +48,7 @@ public class ImageSearch extends APIOperation{
 	 * @param page result page number
 	 */
 	public ImageSearch(String operationName, String method, String format,
-			Integer version, String token, String idImage, String keywords,
+			Integer version, String token, String idImage, String [] keywords,
 			Integer count, Integer page) {
 		super(operationName, method, format, version);
 		this.token = token;
@@ -66,7 +66,7 @@ public class ImageSearch extends APIOperation{
 		// TODO Auto-generated method stub
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(token);
-		validate = validate && isValidorNull (keywords);
+		validate = validate && isValidorNull (APIUtils.toStringStringArray(keywords));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(count));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(page));
 		return validate;
@@ -82,7 +82,7 @@ public class ImageSearch extends APIOperation{
 			params = "/" + this.Version + "/search." + this.Format 
 					+ "?oauth_token=" + this.token
 					+ "&id="+this.idImage
-					+ "&keywords="+this.keywords
+					+ "&keywords="+APIUtils.toStringStringArray(this.keywords)
 					+ "&count="+APIUtils.toStringInteger(this.count)
 					+ "&page="+APIUtils.toStringInteger(this.page)
 					;

@@ -51,7 +51,7 @@ public class ImageUpload extends APIOperation {
 	private String file_format = null;
 	
 	/** The keywords*/
-	private String keywords = null;
+	private String [] keywords = null;
 
 	/** The privacy. */
 	private String privacy = null;
@@ -105,10 +105,10 @@ public class ImageUpload extends APIOperation {
 	private String twitter = null; // (opcional): identificador de usuario en
 									// twitter o hashtag
 	/** The categories. */
-	private String categories = null; // (obligatorio): identificadores de
+	private Integer []categories = null; // (obligatorio): identificadores de
 
 	// categorías a las que pertenece el
-	// punto de interés, separadas por comas
+	// punto de interés
 
 	/**
 	 * Instantiates a new image upload.
@@ -134,7 +134,7 @@ public class ImageUpload extends APIOperation {
 	 */
 	public ImageUpload(String operationName, String method, String format,
 			Integer version, String oauth_token, byte[] file, String filename,
-			String file_format, String keywords,String privacy,
+			String file_format, String [] keywords,String privacy,
 			Integer id, Integer type_id) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
@@ -203,11 +203,11 @@ public class ImageUpload extends APIOperation {
 	 */
 	public ImageUpload(String operationName, String method, String format,
 			Integer version, String oauth_token, byte[] file, String filename,
-			String file_format, String keywords,String privacy,
+			String file_format, String [] keywords,String privacy,
 			Double lat, Double lng, String name, String description,
 			Integer elevation, Integer accuracy, Integer vaccuracy,
 			String address, String cross_street, String city, String country,
-			String postal_code, String phone, String twitter, String categories) {
+			String postal_code, String phone, String twitter, Integer []categories) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.file = file;
@@ -258,7 +258,7 @@ public class ImageUpload extends APIOperation {
 	 * 
 	 */
 	public ImageUpload(String operationName, String method, String format,
-			Integer version,String oauth_token,byte[] file, String filename, String file_format, String keywords, String privacy) {
+			Integer version,String oauth_token,byte[] file, String filename, String file_format, String [] keywords, String privacy) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.file = file;
@@ -281,7 +281,7 @@ public class ImageUpload extends APIOperation {
 		validate = validate && isValid(oauth_token);
 		validate = validate && isValid(filename);
 		validate = validate && isValidorNull(privacy);
-		validate = validate && isValidorNull(keywords);
+		validate = validate && isValidorNull(APIUtils.toStringStringArray(keywords));
 		validate = validate && isValidorNull(file_format);
 		validate = validate && isValidorNull(APIUtils.toStringInteger(pos_id));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(poi_id));
@@ -302,7 +302,7 @@ public class ImageUpload extends APIOperation {
 		validate = validate && isValidorNull(postal_code);
 		validate = validate && isValidorNull(phone);
 		validate = validate && isValidorNull(twitter);
-		validate = validate && isValidorNull(categories);
+		validate = validate && isValidorNull(APIUtils.toStringIntegerArray(categories));
 		return validate;
 	};
 
@@ -326,7 +326,7 @@ public class ImageUpload extends APIOperation {
 						new StringBody(APIUtils.toStringUrlEncoded(file_format)));
 			if (keywords != null)
 				multipart.addPart("keywords", 
-						new StringBody(APIUtils.toStringUrlEncoded(keywords)));
+						new StringBody(APIUtils.toStringUrlEncoded(APIUtils.toStringStringArray(keywords))));
 			if (privacy != null) 
 				multipart.addPart("privacy",
 						new StringBody(APIUtils.toStringUrlEncoded(privacy)));
@@ -381,11 +381,12 @@ public class ImageUpload extends APIOperation {
 						.addPart(
 								"categories",
 								new StringBody(APIUtils
-										.toStringUrlEncoded(categories)));
+										.toStringUrlEncoded(APIUtils.toStringIntegerArray(categories))));
 			}
 		}
 		return multipart;
 	}
+	
 
 	/*
 	 * (non-Javadoc)

@@ -25,7 +25,7 @@ public class ImageUpdate extends APIOperation{
 	/** The id unique image */
 	private String id_uniq_filename;
 	/** The keywords of image */
-	private String keywords;
+	private String [] keywords;
 	/** The privacy of image */
 	private String privacy;
 	
@@ -39,7 +39,7 @@ public class ImageUpdate extends APIOperation{
 	 * 
 	 */
 	public ImageUpdate(String operationName, String method, String format,
-			Integer version,String oauth_token, String id_uniq_filename, String keywords,
+			Integer version,String oauth_token, String id_uniq_filename, String [] keywords,
 			String privacy) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
@@ -58,7 +58,7 @@ public class ImageUpdate extends APIOperation{
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(id_uniq_filename);
 		validate = validate && isValid(oauth_token);
-		validate = validate && (isValid (keywords) || isValid (privacy));
+		validate = validate && (isValid (APIUtils.toStringStringArray(keywords)) || isValid (privacy));
 		return validate;
 	}
 
@@ -67,7 +67,7 @@ public class ImageUpdate extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/image/update/"+this.id_uniq_filename+"."+this.Format 
-					+ "?oauth_token=" + this.oauth_token +"&privacy="+this.privacy+"&keywords="+this.keywords;
+					+ "?oauth_token=" + this.oauth_token +"&privacy="+this.privacy+"&keywords="+APIUtils.toStringStringArray(this.keywords);
 		}
 		return params;
 	}
