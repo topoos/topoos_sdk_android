@@ -109,10 +109,11 @@ class Translator {
 	 *             the topoos exception
 	 */
 	public static Image ImageUpload(AccessTokenOAuth accessTokenPregenerated, byte[] file, 
-			String filename, String fileformat, String [] keywords, int privacy) throws IOException, TopoosException {
+			String filename, String fileformat, String [] keywords, Integer privacy) throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
 			String privacystr = "public";
+			if (privacy!=null)
 			switch (privacy) {
 
 			case PRIVACY_PUBLIC:
@@ -173,6 +174,7 @@ class Translator {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
 			String privacystr = "public";
+			if (privacy!=null)
 			switch (privacy) {
 
 			case PRIVACY_PUBLIC:
@@ -234,6 +236,7 @@ class Translator {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
 			String privacystr = "public";
+			if (privacy!=null)
 			switch (privacy) {
 
 			case PRIVACY_PUBLIC:
@@ -326,6 +329,7 @@ class Translator {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
 			String privacystr = "public";
+			if (privacy!=null)
 			switch (privacy) {
 
 			case PRIVACY_PUBLIC:
@@ -419,23 +423,24 @@ class Translator {
 	 *  */
 	public static Boolean ImageUpdate(String filename_unique,
 				AccessTokenOAuth accessTokenPregenerated, String[] keywords,
-				int privacy) throws TopoosException, IOException {
+				Integer privacy) throws TopoosException, IOException {
 		Boolean update = false;
 		if (accessTokenPregenerated.isValid()) {
 			String privacystr = "public";
-			switch (privacy) {
-			case PRIVACY_PUBLIC:
-				privacystr = "public";
-				break;
-			case PRIVACY_CLIENT:
-				privacystr = "client";
-				break;
-			case PRIVACY_USER:
-				privacystr = "user";
-				break;
-			default:
-				break;
-			}
+			if (privacy!=null)
+				switch (privacy) {
+				case PRIVACY_PUBLIC:
+					privacystr = "public";
+					break;
+				case PRIVACY_CLIENT:
+					privacystr = "client";
+					break;
+				case PRIVACY_USER:
+					privacystr = "user";
+					break;
+				default:
+					break;
+				}
 			GenericResult genericResult = new GenericResult();
 			ImageUpdate imUpd = new ImageUpdate ("ImageUpdate",method_get, format, version,
 					accessTokenPregenerated.getAccessToken(),filename_unique,keywords,privacystr);

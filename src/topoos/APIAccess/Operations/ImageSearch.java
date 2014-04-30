@@ -66,7 +66,7 @@ public class ImageSearch extends APIOperation{
 		// TODO Auto-generated method stub
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(token);
-		validate = validate && isValidorNull (APIUtils.toStringStringArray(keywords));
+		validate = validate && !(keywords!= null && keywords.length ==0);
 		validate = validate && isValidorNull(APIUtils.toStringInteger(count));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(page));
 		return validate;
