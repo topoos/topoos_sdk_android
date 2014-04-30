@@ -134,11 +134,15 @@ public class ImageUpload extends APIOperation {
 	 */
 	public ImageUpload(String operationName, String method, String format,
 			Integer version, String oauth_token, byte[] file, String filename,
+			String file_format, String keywords,String privacy,
 			Integer id, Integer type_id) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.file = file;
 		this.filename = filename;
+		this.file_format = file_format;
+		this.keywords = keywords;
+		this.privacy = privacy;
 		if (type_id == TYPE_POI) {
 			this.poi_id = id;
 		} else if (type_id == TYPE_POS) {
@@ -199,6 +203,7 @@ public class ImageUpload extends APIOperation {
 	 */
 	public ImageUpload(String operationName, String method, String format,
 			Integer version, String oauth_token, byte[] file, String filename,
+			String file_format, String keywords,String privacy,
 			Double lat, Double lng, String name, String description,
 			Integer elevation, Integer accuracy, Integer vaccuracy,
 			String address, String cross_street, String city, String country,
@@ -207,6 +212,9 @@ public class ImageUpload extends APIOperation {
 		this.oauth_token = oauth_token;
 		this.file = file;
 		this.filename = filename;
+		this.file_format = file_format;
+		this.keywords = keywords;
+		this.privacy = privacy;
 		this.lat = lat;
 		this.lng = lng;
 		this.name = name;
@@ -270,6 +278,7 @@ public class ImageUpload extends APIOperation {
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
 		validate = validate && file != null;
+		validate = validate && isValid(oauth_token);
 		validate = validate && isValid(filename);
 		validate = validate && isValidorNull(privacy);
 		validate = validate && isValidorNull(keywords);
@@ -312,13 +321,18 @@ public class ImageUpload extends APIOperation {
 			if (bab != null)
 				multipart.addPart("File", bab);
 			multipart.addPart("Oauth_token", new StringBody(oauth_token));
+			if (file_format != null)
+				multipart.addPart("fileformat",
+						new StringBody(APIUtils.toStringUrlEncoded(file_format)));
+			if (keywords != null)
+				multipart.addPart("keywords", 
+						new StringBody(APIUtils.toStringUrlEncoded(keywords)));
+			if (privacy != null) 
+				multipart.addPart("privacy",
+						new StringBody(APIUtils.toStringUrlEncoded(privacy)));
 			if (pos_id != null) {
 				multipart.addPart("pos_id",
 						new StringBody(APIUtils.toStringInteger(pos_id)));
-			} else if (privacy != null) {
-				multipart.addPart("privacy",
-						new StringBody(APIUtils.toStringUrlEncoded(privacy)));
-
 			} else if (poi_id != null) {
 				multipart.addPart("poi_id",
 						new StringBody(APIUtils.toStringInteger(poi_id)));

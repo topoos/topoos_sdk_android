@@ -65,7 +65,7 @@ public class Operations {
 	 *             the topoos exception
 	 */
 	public static Image ImageUpload(AccessTokenOAuth accessTokenPregenerated,
-			byte[] file, String filename, String fileformat, String [] keywords, int privacy) throws IOException, TopoosException {
+			byte[] file, String filename, String fileformat, String [] keywords, Integer privacy) throws IOException, TopoosException {
 		return Translator.ImageUpload( accessTokenPregenerated, file, filename, fileformat, keywords, privacy);
 
 	}
@@ -88,7 +88,7 @@ public class Operations {
 	 *             the topoos exception
 	 */
 	public static Image ImageUpload(Context context,
-			byte[] file, String filename, String fileformat, String [] keywords, int privacy) throws IOException, TopoosException {
+			byte[] file, String filename, String fileformat, String [] keywords, Integer privacy) throws IOException, TopoosException {
 		return Translator.ImageUpload( AccessTokenOAuth.GetAccessToken(context), file, filename, fileformat, keywords, privacy);
 
 	}
@@ -102,6 +102,9 @@ public class Operations {
 	 *            (required) image
 	 * @param filename
 	 *            (required) image name
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy
 	 * @param pos_id
 	 *            (required) position identifier
 	 * @return Image
@@ -109,11 +112,37 @@ public class Operations {
 	 * @throws TopoosException
 	 */
 	public static Image ImageUploadPosition(
-			AccessTokenOAuth accessTokenPregenerated, byte[] file,
-			String filename, Integer pos_id) throws IOException,
+			AccessTokenOAuth accessTokenPregenerated,
+			byte[] file, String filename, String fileformat, String [] keywords, Integer privacy, Integer pos_id) throws IOException,
 			TopoosException {
-		return Translator.ImageUploadPosition(file, filename, pos_id,
-				accessTokenPregenerated);
+		return Translator.ImageUploadPosition(accessTokenPregenerated,file, filename, fileformat, keywords, privacy, pos_id
+				);
+	}
+	
+	/**
+	 * Uploading an image to topoos pic services
+	 * 
+	 * @param context
+	 *            (required) access_token to user resources
+	 * @param file
+	 *            (required) image
+	 * @param filename
+	 *            (required) image name
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy
+	 * @param pos_id
+	 *            (required) position identifier
+	 * @return Image
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Image ImageUploadPosition(
+			Context context,
+			byte[] file, String filename, String fileformat, String [] keywords, Integer privacy, Integer pos_id) throws IOException,
+			TopoosException {
+		return Translator.ImageUploadPosition(AccessTokenOAuth.GetAccessToken(context),file, filename, fileformat, keywords, privacy, pos_id
+				);
 	}
 
 	/**
@@ -125,6 +154,10 @@ public class Operations {
 	 *            (required) image
 	 * @param filename
 	 *            (required) image name
+	 * 
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy
 	 * @param poi_id
 	 *            (required) point of interest identifier
 	 * @return Image
@@ -133,10 +166,37 @@ public class Operations {
 	 */
 	public static Image ImageUploadPOI(
 			AccessTokenOAuth accessTokenPregenerated, byte[] file,
-			String filename, Integer poi_id) throws IOException,
+			String filename, String fileformat, String [] keywords, Integer privacy, Integer poi_id) throws IOException,
 			TopoosException {
-		return Translator.ImageUploadPOI(file, filename, poi_id,
-				accessTokenPregenerated);
+		return Translator.ImageUploadPOI(accessTokenPregenerated,file, filename, fileformat, keywords,privacy, poi_id
+				);
+	}
+	
+	/**
+	 * Uploading an image to topoos pic services
+	 * 
+	 * @param context
+	 *            (required) access_token to user resources
+	 * @param file
+	 *            (required) image
+	 * @param filename
+	 *            (required) image name
+	 * 
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy
+	 * @param poi_id
+	 *            (required) point of interest identifier
+	 * @return Image
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Image ImageUploadPOI(
+			Context context, byte[] file,
+			String filename, String fileformat, String [] keywords, Integer privacy, Integer poi_id) throws IOException,
+			TopoosException {
+		return Translator.ImageUploadPOI(AccessTokenOAuth.GetAccessToken(context),file, filename, fileformat, keywords,privacy, poi_id
+				);
 	}
 
 	/**
@@ -148,8 +208,13 @@ public class Operations {
 	 *            (required) image
 	 * @param filename
 	 *            (required) image name
+	 *            
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy           
 	 * @param name
 	 *            (required) access_token to user resources
+	 *            
 	 * @param lat
 	 *            (required) latitude of the new position
 	 * @param lng
@@ -185,16 +250,18 @@ public class Operations {
 	 */
 	public static Image ImageUploadNewPOI(
 			AccessTokenOAuth accessTokenPregenerated, byte[] file,
-			String filename, Integer pos_id, Double lat, Double lng,
+			String filename, String fileformat, String [] keywords, Integer privacy,
+			Integer pos_id, Double lat, Double lng,
 			String name, String description, Integer elevation,
 			Integer accuracy, Integer vaccuracy, String address,
 			String cross_street, String city, String country,
 			String postal_code, String phone, String twitter,
 			Integer[] categories) throws IOException, TopoosException {
-		return Translator.ImageUploadNewPOI(file, filename, lat, lng, name,
+		return Translator.ImageUploadNewPOI(accessTokenPregenerated, file, filename,fileformat,keywords,
+				privacy, lat, lng, name,
 				description, elevation, accuracy, vaccuracy, address,
 				cross_street, city, country, postal_code, phone, twitter,
-				categories, accessTokenPregenerated);
+				categories );
 	}
 
 	
@@ -203,58 +270,18 @@ public class Operations {
 	 * Uploading an image to topoos pic services
 	 * 
 	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
+	 *            (required) access_token to user resources
 	 * @param file
 	 *            (required) image
 	 * @param filename
 	 *            (required) image name
-	 * @param pos_id
-	 *            (required) position identifier
-	 * @return Image
-	 * @throws IOException
-	 * @throws TopoosException
-	 */
-	public static Image ImageUploadPosition(Context context, byte[] file,
-			String filename, Integer pos_id) throws IOException,
-			TopoosException {
-		return Translator.ImageUploadPosition(context, file, filename, pos_id);
-	}
-
-	/**
-	 * Uploading an image to topoos pic services
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param file
-	 *            (required) image
-	 * @param filename
-	 *            (required) image name
-	 * @param poi_id
-	 *            (required) point of interest identifier
-	 * @return Image
-	 * @throws IOException
-	 * @throws TopoosException
-	 */
-	public static Image ImageUploadPOI(Context context, byte[] file,
-			String filename, Integer poi_id) throws IOException,
-			TopoosException {
-		return Translator.ImageUploadPOI(context, file, filename, poi_id);
-	}
-
-	/**
-	 * Uploading an image to topoos pic services
-	 * 
-	 * @param context
-	 *            (required) Interface to global information about an
-	 *            application environment
-	 * @param file
-	 *            (required) image
-	 * @param filename
-	 *            (required) image name
+	 *            
+	 * @param fileformat         
+	 * @param keywords
+	 * @param privacy the privacy           
 	 * @param name
 	 *            (required) access_token to user resources
+	 *            
 	 * @param lat
 	 *            (required) latitude of the new position
 	 * @param lng
@@ -288,17 +315,20 @@ public class Operations {
 	 * @throws IOException
 	 * @throws TopoosException
 	 */
-	public static Image ImageUploadNewPOI(Context context, byte[] file,
-			String filename, Double lat, Double lng, String name,
-			String description, Integer elevation, Integer accuracy,
-			Integer vaccuracy, String address, String cross_street,
-			String city, String country, String postal_code, String phone,
-			String twitter, Integer[] categories) throws IOException,
-			TopoosException {
-		return Translator.ImageUploadNewPOI(context, file, filename, lat, lng,
-				name, description, elevation, accuracy, vaccuracy, address,
+	public static Image ImageUploadNewPOI(
+			Context context, byte[] file,
+			String filename, String fileformat, String [] keywords, Integer privacy,
+			Integer pos_id, Double lat, Double lng,
+			String name, String description, Integer elevation,
+			Integer accuracy, Integer vaccuracy, String address,
+			String cross_street, String city, String country,
+			String postal_code, String phone, String twitter,
+			Integer[] categories) throws IOException, TopoosException {
+		return Translator.ImageUploadNewPOI(AccessTokenOAuth.GetAccessToken(context), file, filename,fileformat,keywords,
+				privacy, lat, lng, name,
+				description, elevation, accuracy, vaccuracy, address,
 				cross_street, city, country, postal_code, phone, twitter,
-				categories);
+				categories );
 	}
 
 	/**

@@ -146,29 +146,55 @@ class Translator {
 	/**
 	 * Image upload position.
 	 * 
+	 * @param accessTokenPregenerated
+	 *            the access token pregenerated
 	 * @param file
 	 *            the file
 	 * @param filename
 	 *            the filename
+	 *            
+	 * @param file_format
+	 * 
+	 * @param keywords
+	 * 
+	 * @param privacy
+	 *            
 	 * @param pos_id
 	 *            the pos_id
-	 * @param accessTokenPregenerated
-	 *            the access token pregenerated
+	 * 
 	 * @return the image
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @throws TopoosException
 	 *             the topoos exception
 	 */
-	public static Image ImageUploadPosition(byte[] file, String filename,
-			Integer pos_id, AccessTokenOAuth accessTokenPregenerated)
+	public static Image ImageUploadPosition(AccessTokenOAuth accessTokenPregenerated,byte[] file, String filename,
+			String file_format, String [] keywords, Integer privacy, Integer pos_id )
 			throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
+			String strkeywords = getKeyWords(keywords);
+			String privacystr = "public";
+			switch (privacy) {
+
+			case PRIVACY_PUBLIC:
+				privacystr = "public";
+				break;
+			case PRIVACY_CLIENT:
+				privacystr = "client";
+				break;
+			case PRIVACY_USER:
+				privacystr = "user";
+				break;
+			default:
+				break;
+			}
 			ImageUpload imageUpload = new ImageUpload("ImageUploadPosition",
 					method_post, format, version,
 					accessTokenPregenerated.getAccessToken(), file, filename,
+					file_format, strkeywords,privacystr,
 					pos_id, ImageUpload.TYPE_POS);
+			
 			ImageResult imageResult = new ImageResult();
 			APICaller.ExecuteOperation(imageUpload, imageResult,
 					APICaller.SERVICE_PIC);
@@ -182,29 +208,54 @@ class Translator {
 	/**
 	 * Image upload poi.
 	 * 
+	 * @param accessTokenPregenerated
+	 *            the access token pregenerated
 	 * @param file
 	 *            the file
 	 * @param filename
 	 *            the filename
+	 *            
+	 * @param file_format
+	 * 
+	 * @param keywords
+	 * 
+	 * @param privacy
+	 * 
 	 * @param poi_id
 	 *            the poi_id
-	 * @param accessTokenPregenerated
-	 *            the access token pregenerated
+	 *
 	 * @return the image
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @throws TopoosException
 	 *             the topoos exception
 	 */
-	public static Image ImageUploadPOI(byte[] file, String filename,
-			Integer poi_id, AccessTokenOAuth accessTokenPregenerated)
+	public static Image ImageUploadPOI(AccessTokenOAuth accessTokenPregenerated,byte[] file, String filename,
+			String file_format, String [] keywords, Integer privacy,Integer poi_id )
 			throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
+			String strkeywords = getKeyWords(keywords);
+			String privacystr = "public";
+			switch (privacy) {
+
+			case PRIVACY_PUBLIC:
+				privacystr = "public";
+				break;
+			case PRIVACY_CLIENT:
+				privacystr = "client";
+				break;
+			case PRIVACY_USER:
+				privacystr = "user";
+				break;
+			default:
+				break;
+			}
 			ImageUpload imageUpload = new ImageUpload("ImageUploadPOI",
 					method_post, format, version,
 					accessTokenPregenerated.getAccessToken(), file, filename,
-					poi_id, ImageUpload.TYPE_POI);
+					file_format, strkeywords, privacystr, poi_id, ImageUpload.TYPE_POI);
+			
 			ImageResult imageResult = new ImageResult();
 			APICaller.ExecuteOperation(imageUpload, imageResult,
 					APICaller.SERVICE_PIC);
@@ -218,10 +269,18 @@ class Translator {
 	/**
 	 * Image upload new poi.
 	 * 
+	 *@param accessTokenPregenerated
+	 *            the access token pregenerated
 	 * @param file
 	 *            the file
 	 * @param filename
 	 *            the filename
+	 * @param file_format
+	 * 
+	 * @param keywords
+	 * 
+	 * @param privacy
+	 * 
 	 * @param lat
 	 *            the lat
 	 * @param lng
@@ -252,24 +311,40 @@ class Translator {
 	 *            the twitter
 	 * @param categories
 	 *            the categories
-	 * @param accessTokenPregenerated
-	 *            the access token pregenerated
+	 
 	 * @return the image
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @throws TopoosException
 	 *             the topoos exception
 	 */
-	public static Image ImageUploadNewPOI(byte[] file, String filename,
+	public static Image ImageUploadNewPOI(AccessTokenOAuth accessTokenPregenerated, byte[] file, String filename,
+			String file_format, String [] keywords, Integer privacy,
 			Double lat, Double lng, String name, String description,
 			Integer elevation, Integer accuracy, Integer vaccuracy,
 			String address, String cross_street, String city, String country,
 			String postal_code, String phone, String twitter,
-			Integer[] categories, AccessTokenOAuth accessTokenPregenerated)
+			Integer[] categories)
 			throws IOException, TopoosException {
 		Image image = null;
 		if (accessTokenPregenerated.isValid()) {
 			String strcategories = "";
+			String strkeywords = getKeyWords(keywords);
+			String privacystr = "public";
+			switch (privacy) {
+
+			case PRIVACY_PUBLIC:
+				privacystr = "public";
+				break;
+			case PRIVACY_CLIENT:
+				privacystr = "client";
+				break;
+			case PRIVACY_USER:
+				privacystr = "user";
+				break;
+			default:
+				break;
+			}
 			if (categories != null) {
 				for (int i = 0; i < categories.length; i++) {
 					if (i < categories.length - 1) {
@@ -279,12 +354,15 @@ class Translator {
 					}
 				}
 			}
+
 			ImageUpload imageUpload = new ImageUpload("ImageUploadNewPOI",
-					method_post, format, version,
-					accessTokenPregenerated.getAccessToken(), file, filename,
-					lat, lng, name, description, elevation, accuracy,
-					vaccuracy, address, cross_street, city, country,
-					postal_code, phone, twitter, strcategories);
+			method_post, format, version,
+			accessTokenPregenerated.getAccessToken(), file, filename,
+			file_format, strkeywords, privacystr,
+			lat, lng, name, description, elevation, accuracy,
+			vaccuracy, address, cross_street, city, country,
+			postal_code, phone, twitter, strcategories);
+			
 			ImageResult imageResult = new ImageResult();
 			APICaller.ExecuteOperation(imageUpload, imageResult,
 					APICaller.SERVICE_PIC);
@@ -297,110 +375,6 @@ class Translator {
 
 
 
-	/**
-	 * Image upload position.
-	 * 
-	 * @param context
-	 *            the context
-	 * @param file
-	 *            the file
-	 * @param filename
-	 *            the filename
-	 * @param pos_id
-	 *            the pos_id
-	 * @return the image
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws TopoosException
-	 *             the topoos exception
-	 */
-	public static Image ImageUploadPosition(Context context, byte[] file,
-			String filename, Integer pos_id) throws IOException,
-			TopoosException {
-		return ImageUploadPosition(file, filename, pos_id,
-				AccessTokenOAuth.GetAccessToken(context));
-	}
-
-	/**
-	 * Image upload poi.
-	 * 
-	 * @param context
-	 *            the context
-	 * @param file
-	 *            the file
-	 * @param filename
-	 *            the filename
-	 * @param poi_id
-	 *            the poi_id
-	 * @return the image
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws TopoosException
-	 *             the topoos exception
-	 */
-	public static Image ImageUploadPOI(Context context, byte[] file,
-			String filename, Integer poi_id) throws IOException,
-			TopoosException {
-		return ImageUploadPOI(context, file, filename, poi_id);
-	}
-
-	/**
-	 * Image upload new poi.
-	 * 
-	 * @param context
-	 *            the context
-	 * @param file
-	 *            the file
-	 * @param filename
-	 *            the filename
-	 * @param lat
-	 *            the lat
-	 * @param lng
-	 *            the lng
-	 * @param name
-	 *            the name
-	 * @param description
-	 *            the description
-	 * @param elevation
-	 *            the elevation
-	 * @param accuracy
-	 *            the accuracy
-	 * @param vaccuracy
-	 *            the vaccuracy
-	 * @param address
-	 *            the address
-	 * @param cross_street
-	 *            the cross_street
-	 * @param city
-	 *            the city
-	 * @param country
-	 *            the country
-	 * @param postal_code
-	 *            the postal_code
-	 * @param phone
-	 *            the phone
-	 * @param twitter
-	 *            the twitter
-	 * @param categories
-	 *            the categories
-	 * @return the image
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws TopoosException
-	 *             the topoos exception
-	 */
-	public static Image ImageUploadNewPOI(Context context, byte[] file,
-			String filename, Double lat, Double lng, String name,
-			String description, Integer elevation, Integer accuracy,
-			Integer vaccuracy, String address, String cross_street,
-			String city, String country, String postal_code, String phone,
-			String twitter, Integer[] categories) throws IOException,
-			TopoosException {
-		return ImageUploadNewPOI(file, filename, lat, lng, name, description,
-				elevation, accuracy, vaccuracy, address, cross_street, city,
-				country, postal_code, phone, twitter, categories,
-				AccessTokenOAuth.GetAccessToken(context));
-	}
 
 	/**
 	 * Gets the image uri.
