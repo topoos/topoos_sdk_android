@@ -58,7 +58,7 @@ public class ImageUpdate extends APIOperation{
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(id_uniq_filename);
 		validate = validate && isValid(oauth_token);
-		validate = validate && (isValid (APIUtils.toStringStringArray(keywords)) || isValid (privacy));
+		validate = validate && (! (keywords != null && keywords.length ==0) || isValid (privacy));
 		return validate;
 	}
 

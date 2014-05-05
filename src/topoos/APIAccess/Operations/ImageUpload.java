@@ -281,7 +281,7 @@ public class ImageUpload extends APIOperation {
 		validate = validate && isValid(oauth_token);
 		validate = validate && isValid(filename);
 		validate = validate && isValidorNull(privacy);
-		validate = validate && isValidorNull (APIUtils.toStringStringArray(keywords));
+		validate = validate && ! (keywords != null && keywords.length ==0);
 		validate = validate && isValidorNull(file_format);
 		validate = validate && isValidorNull(APIUtils.toStringInteger(pos_id));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(poi_id));
@@ -302,7 +302,7 @@ public class ImageUpload extends APIOperation {
 		validate = validate && isValidorNull(postal_code);
 		validate = validate && isValidorNull(phone); 
 		validate = validate && isValidorNull(twitter);
-		validate = validate && isValidorNull (APIUtils.toStringIntegerArray(categories));
+		validate = validate && ! (categories != null && categories.length ==0);
 		//if the user/developer, has specified some of these parameters
 		if (isValid (APIUtils.toStringDouble(lat))|| isValid (APIUtils.toStringDouble(lng)) || isValid (APIUtils.toStringIntegerArray(categories)) || isValid (name) ){
 			//the developer will want to include a new POI, therefore, everyone should be valid
