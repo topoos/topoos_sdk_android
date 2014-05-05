@@ -251,7 +251,7 @@ public class Operations {
 	public static Image ImageUploadNewPOI(
 			AccessTokenOAuth accessTokenPregenerated, byte[] file,
 			String filename, String fileformat, String [] keywords, Integer privacy,
-			Integer pos_id, Double lat, Double lng,
+			Double lat, Double lng,
 			String name, String description, Integer elevation,
 			Integer accuracy, Integer vaccuracy, String address,
 			String cross_street, String city, String country,

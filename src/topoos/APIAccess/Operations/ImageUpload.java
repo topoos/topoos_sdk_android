@@ -281,7 +281,7 @@ public class ImageUpload extends APIOperation {
 		validate = validate && isValid(oauth_token);
 		validate = validate && isValid(filename);
 		validate = validate && isValidorNull(privacy);
-		validate = validate && !(keywords!= null && keywords.length ==0);
+		validate = validate && isValidorNull (APIUtils.toStringStringArray(keywords));
 		validate = validate && isValidorNull(file_format);
 		validate = validate && isValidorNull(APIUtils.toStringInteger(pos_id));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(poi_id));
@@ -302,7 +302,12 @@ public class ImageUpload extends APIOperation {
 		validate = validate && isValidorNull(postal_code);
 		validate = validate && isValidorNull(phone); 
 		validate = validate && isValidorNull(twitter);
-		validate = validate && !(categories!= null && categories.length ==0);
+		validate = validate && isValidorNull (APIUtils.toStringIntegerArray(categories));
+		//if the user/developer, has specified some of these parameters
+		if (isValid (APIUtils.toStringDouble(lat))|| isValid (APIUtils.toStringDouble(lng)) || isValid (APIUtils.toStringIntegerArray(categories)) || isValid (name) ){
+			//the developer will want to include a new POI, therefore, everyone should be valid
+			validate = validate && isValid (APIUtils.toStringDouble(lat))&& isValid (APIUtils.toStringDouble(lng)) && isValid (APIUtils.toStringIntegerArray(categories)) && isValid (name);
+		}
 		return validate;
 	};
 
@@ -336,7 +341,7 @@ public class ImageUpload extends APIOperation {
 			} else if (poi_id != null) {
 				multipart.addPart("poi_id",
 						new StringBody(APIUtils.toStringInteger(poi_id)));
-			} else if (lat != null && lng != null) {
+			} else if (lat != null && lng != null && categories != null && name !=null) {
 				multipart.addPart(
 						"Lat",
 						new StringBody(URLEncoder.encode(Double.toString(lat)
@@ -345,38 +350,51 @@ public class ImageUpload extends APIOperation {
 						"Lng",
 						new StringBody(URLEncoder.encode(Double.toString(lng)
 								.replace(',', '.'))));
+				if (name != null)
 				multipart.addPart("Name",
 						new StringBody(APIUtils.toStringUrlEncoded(name)));
+				if (description != null)
 				multipart
 						.addPart(
 								"Description",
 								new StringBody(APIUtils
 										.toStringUrlEncoded(description)));
+				if (elevation != null)
 				multipart.addPart("Elevation",
 						new StringBody(APIUtils.toStringInteger(elevation)));
+				if (accuracy != null)
 				multipart.addPart("Accuracy",
 						new StringBody(APIUtils.toStringInteger(accuracy)));
+				if (vaccuracy != null)
 				multipart.addPart("Vaccuracy",
 						new StringBody(APIUtils.toStringInteger(vaccuracy)));
+				if (address != null)
 				multipart.addPart("Address",
 						new StringBody(APIUtils.toStringUrlEncoded(address)));
+				if (cross_street != null)
 				multipart.addPart(
 						"Cross_street",
 						new StringBody(APIUtils
 								.toStringUrlEncoded(cross_street)));
+				if (city != null)
 				multipart.addPart("City",
 						new StringBody(APIUtils.toStringUrlEncoded(city)));
+				if (country != null)
 				multipart.addPart("Country",
 						new StringBody(APIUtils.toStringUrlEncoded(country)));
+				if (postal_code != null)
 				multipart
 						.addPart(
 								"Postal_code",
 								new StringBody(APIUtils
 										.toStringUrlEncoded(postal_code)));
+				if (phone != null)
 				multipart.addPart("phone",
 						new StringBody(APIUtils.toStringUrlEncoded(phone)));
+				if (twitter !=null)
 				multipart.addPart("twitter",
 						new StringBody(APIUtils.toStringUrlEncoded(twitter)));
+				if (categories != null)
 				multipart
 						.addPart(
 								"categories",
