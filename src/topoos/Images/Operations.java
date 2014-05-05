@@ -420,7 +420,7 @@ public class Operations {
 	 * @throws IOException 
 	 *  */
 	public static Boolean ImageUpdate(AccessTokenOAuth accessTokenPregenerated,String filename_unique,
-			 String[] keywords,int privacy) throws TopoosException, IOException {
+			 String[] keywords,Integer privacy) throws TopoosException, IOException {
 		return Translator.ImageUpdate(filename_unique, accessTokenPregenerated, keywords, privacy);
 	}
 	

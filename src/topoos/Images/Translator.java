@@ -426,7 +426,7 @@ class Translator {
 				Integer privacy) throws TopoosException, IOException {
 		Boolean update = false;
 		if (accessTokenPregenerated.isValid()) {
-			String privacystr = "public";
+			String privacystr = "";
 			if (privacy!=null)
 				switch (privacy) {
 				case PRIVACY_PUBLIC:
@@ -439,6 +439,7 @@ class Translator {
 					privacystr = "user";
 					break;
 				default:
+					privacystr = "";
 					break;
 				}
 			GenericResult genericResult = new GenericResult();
