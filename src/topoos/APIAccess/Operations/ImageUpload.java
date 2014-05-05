@@ -105,7 +105,7 @@ public class ImageUpload extends APIOperation {
 	private String twitter = null; // (opcional): identificador de usuario en
 									// twitter o hashtag
 	/** The categories. */
-	private Integer []categories = null; // (obligatorio): identificadores de
+	private Integer []categories = null; // (obligatorio):  identificadores de
 
 	// categorías a las que pertenece el
 	// punto de interés
