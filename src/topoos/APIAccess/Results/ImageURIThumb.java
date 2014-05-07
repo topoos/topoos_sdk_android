@@ -17,6 +17,7 @@
 package topoos.APIAccess.Results;
 
 import topoos.APIAccess.APICaller;
+import topoos.Exception.TopoosException;
 
 /**
  * The Class ImageURIThumb.
@@ -37,11 +38,11 @@ public class ImageURIThumb extends APICallResult{
 	/**size desired maximum image size*/
 	private String size;
 	/**width desired output width for the thumbnail*/
-	private String width;
+	private Integer width;
 	/**height desired output height for the thumbnail*/
-	private String height;
+	private Integer height;
 	/**dpi desired output image density*/
-	private String dpi;
+	private Integer dpi;
 	/**mode resize mode*/
 	private String mode;
 	
@@ -50,7 +51,7 @@ public class ImageURIThumb extends APICallResult{
 	 * Instantiates a new ImageURIThumb result.
 	 */
 	public ImageURIThumb(String token,String filename_unique,
-			String size, String dpi, String mode) {
+			String size, Integer dpi, String mode) {
 		this.token = token;
 		this.filename_unique = filename_unique;
 		this.size = size;
@@ -63,7 +64,7 @@ public class ImageURIThumb extends APICallResult{
 	 * Instantiates a new ImageURIThumb result.
 	 */
 	public ImageURIThumb(String token,String filename_unique,
-			String width, String height, String dpi, String mode) {
+			Integer width, Integer height, Integer dpi, String mode) {
 		this.token = token;
 		this.filename_unique = filename_unique;
 		this.width = width;
@@ -75,13 +76,28 @@ public class ImageURIThumb extends APICallResult{
 
 
 	@Override
-	public void setParameters()  {
-		this.uriThumb = APICaller.GetURLPICAPItopoos() + "/thumb/"
-				+filename_unique+"?"+getParameter("token", token)+
-				getParameter ("size", size)+ getParameter ("width",width)+
-				getParameter ("height", height)+ getParameter ("dpi", dpi)+
-				getParameter ("mode", mode);
-		
+	public void setParameters() throws TopoosException  {
+		if (ValidateParams ()){
+			this.uriThumb = APICaller.GetURLPICAPItopoos() + "/thumb/"
+					+filename_unique+"?"+getParameter("token", token)+
+					getParameter ("size", size)+ getParameter ("width",width)+
+					getParameter ("height",height)+ getParameter ("dpi", dpi)+
+					getParameter ("mode", mode);
+		}else {
+			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
+		}
+	}
+	
+	public boolean ValidateParams() {
+		boolean validate = true;
+		if (filename_unique == null || filename_unique == ""){
+			validate = false;
+		}else if ((size == null || size =="") && width == null && height == null){
+			validate = false;
+		}else if ( (size != null && size !="") && (width != null || height != null)){
+			validate = false;
+		}
+		return validate;
 	}
 	
 	/**
@@ -97,6 +113,21 @@ public class ImageURIThumb extends APICallResult{
 			if (parameter!= ""){
 				param += "&"+nameParameter+"="+parameter;
 			}
+		}
+		return param; 
+	}
+	
+	/**
+	 * Get parameter
+	 * 
+	 * if parameter is valid, it will be built
+	 * @param nameParameter
+	 * @param parameter
+	 * @return parameter for the URI*/
+	private String getParameter (String nameParameter, Integer parameter){
+		String param = "";
+		if (parameter != null){
+			param += "&"+nameParameter+"="+parameter;
 		}
 		return param; 
 	}

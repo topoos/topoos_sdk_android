@@ -20,14 +20,12 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
-import android.content.Context;
-
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.ImageDelete;
 import topoos.APIAccess.Operations.ImageSearch;
-import topoos.APIAccess.Operations.ImageUpload;
 import topoos.APIAccess.Operations.ImageUpdate;
+import topoos.APIAccess.Operations.ImageUpload;
 import topoos.APIAccess.Results.GenericResult;
 import topoos.APIAccess.Results.ImageCollectionResult;
 import topoos.APIAccess.Results.ImageResult;
@@ -521,17 +519,18 @@ class Translator {
 	 * @return the URI
 	 * 
 	 */
-	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, int size, int dpi, int mode) throws TopoosException {
+	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, Integer size, Integer dpi, Integer mode) throws TopoosException {
 		String strsize = "small";
 		String strmode = "maintain";
-		if (filename_unique == null || size <0){
-			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
-		}
+		String token = null;
 		if (accessTokenPregenerated != null){
 			if (!accessTokenPregenerated.isValid()){
 				throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+			}else {
+				token = accessTokenPregenerated.getAccessToken();
 			}
 		}
+		if (size != null)
 		switch (size) {
 		case SIZE_LARGE:
 			strsize = "large";
@@ -560,18 +559,19 @@ class Translator {
 		default:
 			break;
 		}
-		switch (mode){
-			case MODE_MAINTAIN:
-				strmode = "maintain";
-				break;
-			case MODE_FIT:
-				strmode = "fit";
-				break;
-			default:
-				break;
-		}
+		if (mode != null)
+			switch (mode){
+				case MODE_MAINTAIN:
+					strmode = "maintain";
+					break;
+				case MODE_FIT:
+					strmode = "fit";
+					break;
+				default:
+					break;
+			}
 		
-		ImageURIThumb imURIThumb = new ImageURIThumb (accessTokenPregenerated.getAccessToken(),filename_unique, strsize, Integer.toString(dpi), strmode);
+		ImageURIThumb imURIThumb = new ImageURIThumb (token,filename_unique, strsize, dpi, strmode);
 		imURIThumb.setParameters();
 		return imURIThumb.getUriThumb();
 	}
@@ -587,20 +587,17 @@ class Translator {
 	 * @return the URI
 	 * 
 	 */
-	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, Integer width, Integer high, int dpi, int mode) throws TopoosException {
+	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, Integer width, Integer high, Integer dpi, Integer mode) throws TopoosException {
 		String strmode = "maintain";
-		if (filename_unique == null || (width == null && high == null)){
-			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
-		}else if (width!= null){
-			if (width <0) throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
-		}else if (high != null){
-			if (high <0)throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
-		}
+		String token = null;
 		if (accessTokenPregenerated != null){
 			if (!accessTokenPregenerated.isValid()){
 				throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+			}else {
+				token = accessTokenPregenerated.getAccessToken();
 			}
 		}
+		if (mode != null)
 		switch (mode){
 			case MODE_MAINTAIN:
 				strmode = "maintain";
@@ -611,7 +608,7 @@ class Translator {
 			default:
 				break;
 		}
-		ImageURIThumb imURIThumb = new ImageURIThumb (accessTokenPregenerated.getAccessToken(),filename_unique, Integer.toString(width),Integer.toString(high), Integer.toString(dpi), strmode);
+		ImageURIThumb imURIThumb = new ImageURIThumb (token,filename_unique, width,high, dpi, strmode);
 		imURIThumb.setParameters();
 		return imURIThumb.getUriThumb();
 	}

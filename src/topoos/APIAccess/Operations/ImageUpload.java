@@ -18,10 +18,10 @@ package topoos.APIAccess.Operations;
 
 import java.io.IOException;
 
-import topoos.APIAccess.mime.content.StringBody;
-import topoos.APIAccess.mime.content.ByteArrayBody;
 import topoos.APIAccess.mime.HttpMultipartMode;
 import topoos.APIAccess.mime.MultipartEntity;
+import topoos.APIAccess.mime.content.ByteArrayBody;
+import topoos.APIAccess.mime.content.StringBody;
 
 /**
  * The Class ImageUpload.

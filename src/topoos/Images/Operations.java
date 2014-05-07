@@ -371,7 +371,7 @@ public class Operations {
 	 * @return the URI
 	 * 
 	 */
-	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, int size, int dpi, int mode) throws TopoosException {
+	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, Integer size, Integer dpi, Integer mode) throws TopoosException {
 		return Translator.GetImageURIThumb(accessTokenPregenerated, filename_unique, size, dpi, mode);
 	}
 	
@@ -388,7 +388,7 @@ public class Operations {
 	 * @return the URI
 	 * 
 	 */
-	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, Integer width, Integer high, int dpi, int mode) throws TopoosException {
+	public static String GetImageURIThumb(AccessTokenOAuth accessTokenPregenerated,String filename_unique, Integer width, Integer high, Integer dpi, Integer mode) throws TopoosException {
 		return Translator.GetImageURIThumb(accessTokenPregenerated, filename_unique, width, high, dpi, mode);
 	}
 
