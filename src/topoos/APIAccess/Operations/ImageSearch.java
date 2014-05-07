@@ -16,6 +16,14 @@
 
 package topoos.APIAccess.Operations;
 
+import java.io.IOException;
+import java.net.URLEncoder;
+
+import topoos.APIAccess.mime.HttpMultipartMode;
+import topoos.APIAccess.mime.MultipartEntity;
+import topoos.APIAccess.mime.content.ByteArrayBody;
+import topoos.APIAccess.mime.content.StringBody;
+
 
 /**
  * The class ImageSearch
@@ -66,11 +74,15 @@ public class ImageSearch extends APIOperation{
 		// TODO Auto-generated method stub
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(token);
+		validate = validate && isValidorNull (idImage);
 		validate = validate && !(keywords!= null && keywords.length ==0);
 		validate = validate && isValidorNull(APIUtils.toStringInteger(count));
 		validate = validate && isValidorNull(APIUtils.toStringInteger(page));
 		return validate;
 	}
+	
+	
+
 
 	/* (non-Javadoc)
 	 * @see topoos.APIAccess.Operations.APIOperation#ConcatParams()
@@ -81,10 +93,10 @@ public class ImageSearch extends APIOperation{
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/search." + this.Format 
 					+ "?oauth_token=" + this.token
-					+ "&id="+this.idImage
-					+ "&keywords="+APIUtils.toStringStringArray(this.keywords)
-					+ "&count="+APIUtils.toStringInteger(this.count)
-					+ "&page="+APIUtils.toStringInteger(this.page)
+					+ (this.idImage == null? "" : "&id="+this.idImage)
+					+ (this.keywords == null? "":"&keywords="+APIUtils.toStringStringArray(this.keywords))
+					+ (this.count == null? "":"&count="+APIUtils.toStringInteger(this.count))
+					+ (this.page == null? "": "&page="+APIUtils.toStringInteger(this.page))
 					;
 		}
 		return params;

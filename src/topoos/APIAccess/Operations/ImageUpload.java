@@ -17,7 +17,6 @@
 package topoos.APIAccess.Operations;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 
 import topoos.APIAccess.mime.content.StringBody;
 import topoos.APIAccess.mime.content.ByteArrayBody;
@@ -328,13 +327,13 @@ public class ImageUpload extends APIOperation {
 			multipart.addPart("Oauth_token", new StringBody(oauth_token));
 			if (file_format != null)
 				multipart.addPart("fileformat",
-						new StringBody(APIUtils.toStringUrlEncoded(file_format)));
+						new StringBody(file_format));
 			if (keywords != null)
 				multipart.addPart("keywords", 
-						new StringBody(APIUtils.toStringUrlEncoded(APIUtils.toStringStringArray(keywords))));
+						new StringBody(APIUtils.toStringStringArray(keywords)));
 			if (privacy != null) 
 				multipart.addPart("privacy",
-						new StringBody(APIUtils.toStringUrlEncoded(privacy)));
+						new StringBody(privacy));
 			if (pos_id != null) {
 				multipart.addPart("pos_id",
 						new StringBody(APIUtils.toStringInteger(pos_id)));
@@ -344,21 +343,20 @@ public class ImageUpload extends APIOperation {
 			} else if (lat != null && lng != null && categories != null && name !=null) {
 				multipart.addPart(
 						"Lat",
-						new StringBody(URLEncoder.encode(Double.toString(lat)
-								.replace(',', '.'))));
+						new StringBody(Double.toString(lat)
+								.replace(',', '.')));
 				multipart.addPart(
 						"Lng",
-						new StringBody(URLEncoder.encode(Double.toString(lng)
-								.replace(',', '.'))));
+						new StringBody(Double.toString(lng)
+								.replace(',', '.')));
 				if (name != null)
 				multipart.addPart("Name",
-						new StringBody(APIUtils.toStringUrlEncoded(name)));
+						new StringBody(name));
 				if (description != null)
 				multipart
 						.addPart(
 								"Description",
-								new StringBody(APIUtils
-										.toStringUrlEncoded(description)));
+								new StringBody(description));
 				if (elevation != null)
 				multipart.addPart("Elevation",
 						new StringBody(APIUtils.toStringInteger(elevation)));
@@ -370,36 +368,33 @@ public class ImageUpload extends APIOperation {
 						new StringBody(APIUtils.toStringInteger(vaccuracy)));
 				if (address != null)
 				multipart.addPart("Address",
-						new StringBody(APIUtils.toStringUrlEncoded(address)));
+						new StringBody(address));
 				if (cross_street != null)
 				multipart.addPart(
 						"Cross_street",
-						new StringBody(APIUtils
-								.toStringUrlEncoded(cross_street)));
+						new StringBody(cross_street));
 				if (city != null)
 				multipart.addPart("City",
-						new StringBody(APIUtils.toStringUrlEncoded(city)));
+						new StringBody(city));
 				if (country != null)
 				multipart.addPart("Country",
-						new StringBody(APIUtils.toStringUrlEncoded(country)));
+						new StringBody(country));
 				if (postal_code != null)
 				multipart
 						.addPart(
 								"Postal_code",
-								new StringBody(APIUtils
-										.toStringUrlEncoded(postal_code)));
+								new StringBody(postal_code));
 				if (phone != null)
 				multipart.addPart("phone",
-						new StringBody(APIUtils.toStringUrlEncoded(phone)));
+						new StringBody(phone));
 				if (twitter !=null)
 				multipart.addPart("twitter",
-						new StringBody(APIUtils.toStringUrlEncoded(twitter)));
+						new StringBody(twitter));
 				if (categories != null)
 				multipart
 						.addPart(
 								"categories",
-								new StringBody(APIUtils
-										.toStringUrlEncoded(APIUtils.toStringIntegerArray(categories))));
+								new StringBody(APIUtils.toStringIntegerArray(categories)));
 			}
 		}
 		return multipart;

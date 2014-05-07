@@ -71,20 +71,7 @@ public class ImageCollectionResult  extends APICallResult  {
 
 	@Override
 	public void setParameters() throws TopoosException {
-		String id;
-		String client_id;
-		String user_id;
-		String filename;
-		String filename_unique;
-		String file_ext;
-		String uri;
-		Date register_date;
-		//Geodata BEGIN
-		Integer idGeoData;
-		Integer position_idGeoData;
-		Integer poi_idGeoData;
-		GeoData geo_data = null;
-		//GeoData END
+
 		if (APIUtils.getcorrectJSONARRAYstring(Result) != null) {
 			try {
 				JSONArray jArray = (JSONArray) new JSONTokener(
@@ -94,25 +81,20 @@ public class ImageCollectionResult  extends APICallResult  {
 					// Extracting content
 					JSONObject jObject = jArray.getJSONObject(i);
 					Image image;
-					id = APIUtils.getStringorNull(jObject, "id");
-					client_id = APIUtils.getStringorNull (jObject, "client_id");
-					user_id = APIUtils.getStringorNull (jObject, "user_id");
-					filename = APIUtils.getStringorNull (jObject, "filename");
-					filename_unique = APIUtils.getStringorNull (jObject, "filename_unique");
-					file_ext = APIUtils.getStringorNull (jObject, "file_ext"); 
-					uri = APIUtils.getStringorNull (jObject, "uri");  
-					register_date = APIUtils.toDateString(jObject
-							.getString("register_date"));
-					JSONObject jGeoData = jObject.getJSONObject("geo_data");
-					if (jGeoData != null)
-					{
-						idGeoData = APIUtils.getIntegerorNull(jGeoData, "id");
-						position_idGeoData = APIUtils.getIntegerorNull(jGeoData, "position_id");
-						poi_idGeoData = APIUtils.getIntegerorNull(jGeoData, "poi_id");
-						geo_data = new GeoData (idGeoData,poi_idGeoData,poi_idGeoData );
-					}
-					image = new Image (id, client_id, user_id, filename, filename_unique, file_ext, uri, register_date, geo_data);
-					
+					image = new Image(APIUtils.getStringorNull(jObject, "id"),
+							APIUtils.getStringorNull(jObject, "client_id"),
+							APIUtils.getStringorNull(jObject, "user_id"),
+							APIUtils.getStringorNull(jObject, "filename"),
+							APIUtils.getStringorNull(jObject, "filename_unique"),
+							APIUtils.getStringorNull(jObject, "file_ext"),
+							APIUtils.getStringorNull(jObject, "uri"),
+							APIUtils.toDateString(APIUtils.getStringorNull(jObject,
+									"register_date")),
+							jObject.isNull("geo_data") ? null : new GeoData(jObject
+									.getJSONObject("geo_data").optInt("id"),
+									jObject.getJSONObject("geo_data").optInt(
+											"position_id"), jObject.getJSONObject(
+											"geo_data").optInt("poi_id")));
 					imcollec.add(image);
 				}
 				this.imageCollection = new ImageCollection(imcollec);
