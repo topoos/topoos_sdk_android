@@ -103,4 +103,25 @@ class APIUtils {
 		}
 		return strarray;
 	}
+	
+	/**
+	 * Convert to String a String[] value that received as parameter.
+	 *
+	 * @param array of String
+	 * @return String
+	 */
+	public static String toStringStringArray (String [] array){
+		String strarray=  "";
+		if (array !=null){
+			if (array.length >0){
+				for (int i =0; i < array.length ; i++){
+					strarray += array[i];
+					if (i+1 <array.length){
+						strarray +=",";
+					}
+				}
+			}
+		}
+		return strarray;
+	}
 }

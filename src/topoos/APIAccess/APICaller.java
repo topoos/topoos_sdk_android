@@ -105,6 +105,7 @@ public class APICaller {
 //			appendLog(OpURI);
 		}
 		HttpPost post = new HttpPost(OpURI);
+		Log.i("URL API TOPOOS:", OpURI);
 		// POST
 		if (operation.getMethod().equals("POST")) {
 			post.setEntity(operation.BodyParams());
