@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.List;
 
 import topoos.AccessTokenOAuth;
+import topoos.APIAccess.APICaller;
+import topoos.APIAccess.Operations.UsersResetPass;
+import topoos.APIAccess.Results.GenericResult;
 import topoos.Exception.TopoosException;
 import topoos.Objects.User;
 import topoos.Objects.UserIdPosition;
@@ -285,6 +288,19 @@ public class Operations {
 			TopoosException {
 		return Translator.NearPositionGet(context, lat, lng, radius, groupID,
 				usersCount, activeTrack);
+	}
+	
+	
+	/***
+	 * 
+	 * @param api_key
+	 * @param username
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean ResetPass (String api_key , String username) throws IOException, TopoosException{
+		return Translator.ResetPass(api_key, username);
 	}
 
 }

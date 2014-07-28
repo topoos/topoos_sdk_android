@@ -268,5 +268,25 @@ class Translator {
 		return NearPositionGet(lat, lng, radius, groupID, usersCount,
 				activeTrack, AccessTokenOAuth.GetAccessToken(context));
 	}
+	
+	
+	/***
+	 * 
+	 * @param api_key
+	 * @param username
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean ResetPass (String api_key , String username) throws IOException, TopoosException{
+		boolean reset = false;
+		UsersResetPass resetPass = new UsersResetPass("Reset_pass", method, format,
+					version, api_key, username);
+			GenericResult genericResult = new GenericResult();
+			APICaller.ExecuteOperation(resetPass, genericResult);
+			reset = genericResult.getCode() == 200;
+		
+		return reset;
+	}
 
 }
