@@ -23,6 +23,7 @@ import java.util.List;
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.UsersGetMembership;
+import topoos.APIAccess.Operations.UsersLogOut;
 import topoos.APIAccess.Operations.UsersPutMembership;
 import topoos.APIAccess.Operations.UsersRegisterLogin;
 import topoos.APIAccess.Operations.UsersRegisterMembership;
@@ -371,5 +372,16 @@ public class Operations {
 	 */
 	public static User RegisterLogin (String api_key , String username, String pwd, Integer expiresIn) throws IOException, TopoosException{
 		return Translator.RegisterLogin(api_key, username, pwd, expiresIn);
+	}
+	
+	/**
+	 * 
+	 * @param accessTokenPregenerated
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean Logout (AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+		return Translator.Logout(accessTokenPregenerated);
 	}
 }

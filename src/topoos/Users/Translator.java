@@ -414,4 +414,25 @@ class Translator {
 		return user;
 	}
 
+	
+	/**
+	 * 
+	 * @param accessTokenPregenerated
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean Logout (AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+		boolean erase = false;
+		if (accessTokenPregenerated.isValid()) {
+			UsersLogOut logout = new UsersLogOut("Log out", VERB_DELETE, format,
+					version, accessTokenPregenerated.getAccessToken());
+			GenericResult genericResult = new GenericResult();
+			APICaller.ExecuteOperation(logout, genericResult);
+			erase = genericResult.getCode() == 200;
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		return erase;
+	}
 }
