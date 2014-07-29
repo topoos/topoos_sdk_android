@@ -393,5 +393,25 @@ class Translator {
 	}
 	
 	
+	/***
+	 * 
+	 * @param api_key
+	 * @param username
+	 * @param pwd
+	 * @param expiresIn
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static User RegisterLogin (String api_key , String username, String pwd, Integer expiresIn) throws IOException, TopoosException{
+		User user = null;
+		UsersRegisterLogin usersRegMem = new UsersRegisterLogin("Register login", VERB_POST, format,
+				version, api_key, username, pwd, expiresIn);
+		UserResult userResult = new UserResult();
+		APICaller.ExecuteOperation(usersRegMem, userResult);
+		user = userResult.getUser();
+		
+		return user;
+	}
 
 }
