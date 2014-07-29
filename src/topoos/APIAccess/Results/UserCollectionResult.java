@@ -135,7 +135,11 @@ public class UserCollectionResult extends APICallResult {
 							Acreditation = new Acreditation(APIUtils.getStringorNull(
 									jArray.getJSONObject(user_i).getJSONObject("accreditation"),
 									"expirationtime"), jArray.getJSONObject(user_i).getJSONObject(
-									"accreditation").getString("client_id"), arrayV);
+									"accreditation").getString("client_id"), APIUtils.getStringorNull(
+											jArray.getJSONObject(user_i).getJSONObject("accreditation"),
+											"access_token"), APIUtils.getStringorNull(
+													jArray.getJSONObject(user_i).getJSONObject("accreditation"),
+													"refresh_token"),arrayV);
 						}else 
 							Acreditation = null;
 						l_users.add(new User(Id, Name, Email, Profile, Ugroup,

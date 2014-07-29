@@ -37,6 +37,14 @@ public class Acreditation implements Serializable{
 	/** The client id. */
 	private String clientId = null;
 	
+	/** The access_token. */
+	private String access_token = null;
+	
+	/** The refresh_token. */
+	private String refresh_token = null;
+
+	
+	
 	/** The visibledevices. */
 	private ArrayList<VisibleDevice> visibledevices = null;
 
@@ -47,12 +55,14 @@ public class Acreditation implements Serializable{
 	 * @param clientId the client id
 	 * @param visibledevices the visibledevices
 	 */
-	public Acreditation(String expirationtime, String clientId,
+	public Acreditation(String expirationtime, String clientId, String access_token,String refresh_token,
 			ArrayList<VisibleDevice> visibledevices) {
 		super();
 		Expirationtime = expirationtime;
 		this.clientId = clientId;
 		this.visibledevices = visibledevices;
+		this.access_token = access_token;
+		this.refresh_token = refresh_token;
 	}
 
 	/**
@@ -109,4 +119,42 @@ public class Acreditation implements Serializable{
 		this.visibledevices = visibledevices;
 	}
 
+	/***
+	 * Get acces_token
+	 * 
+	 * @return acces_token
+	 */
+	public String getAccess_token() {
+		return access_token;
+	}
+
+	/***
+	 * Set acces_token
+	 * 
+	 * @param access_token
+	 */
+	public void setAccess_token(String access_token) {
+		this.access_token = access_token;
+	}
+
+	
+	/**
+	 * Get refresh_token
+	 * 
+	 * @return refresh_token
+	 */
+	public String getRefresh_token() {
+		return refresh_token;
+	}
+	
+	/***
+	 * Set Refresh_token
+	 * 
+	 * @param refresh_token
+	 */
+	public void setRefresh_token(String refresh_token) {
+		this.refresh_token = refresh_token;
+	}
+
+	
 }
