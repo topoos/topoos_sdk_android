@@ -21,8 +21,10 @@ import java.util.List;
 
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
+import topoos.APIAccess.Operations.UsersGetMembership;
 import topoos.APIAccess.Operations.UsersResetPass;
 import topoos.APIAccess.Results.GenericResult;
+import topoos.APIAccess.Results.UserCollectionResult;
 import topoos.Exception.TopoosException;
 import topoos.Objects.User;
 import topoos.Objects.UserIdPosition;
@@ -301,6 +303,20 @@ public class Operations {
 	 */
 	public static Boolean ResetPass (String api_key , String username) throws IOException, TopoosException{
 		return Translator.ResetPass(api_key, username);
+	}
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param count
+	 * @param page
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static List<User> GetMembership (AccessTokenOAuth accessTokenPregenerated, Integer count, Integer page)
+			throws IOException, TopoosException {
+		return Translator.GetMembership(accessTokenPregenerated, count, page);
 	}
 
 }

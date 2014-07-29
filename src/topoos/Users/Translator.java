@@ -34,7 +34,10 @@ import topoos.Objects.*;
  */
 class Translator {
 
-	private static String method = "GET";
+	private final static String VERB_GET = "GET";
+	private final static String VERB_POST = "POST";
+	private final static String VERB_DELETE = "DELETE";
+	
 	private static String format = "json";
 	private static Integer version = topoos.Constants.APIVERSION;
 
@@ -51,7 +54,7 @@ class Translator {
 			TopoosException {
 		User user = null;
 		if (accessTokenPregenerated.isValid()) {
-			UsersUSRShow usersUSRShow = new UsersUSRShow("Get", method, format,
+			UsersUSRShow usersUSRShow = new UsersUSRShow("Get", VERB_GET, format,
 					version, accessTokenPregenerated.getAccessToken(), userID);
 			UserResult userResult = new UserResult();
 			APICaller.ExecuteOperation(usersUSRShow, userResult);
@@ -77,7 +80,7 @@ class Translator {
 		boolean groupSet = false;
 		if (accessTokenPregenerated.isValid()) {
 			UsersUSRAdd_group usersUSRAdd_group = new UsersUSRAdd_group(
-					"GroupSet", method, format, version,
+					"GroupSet", VERB_GET, format, version,
 					accessTokenPregenerated.getAccessToken(), userID, groupID);
 			GenericResult genericResult = new GenericResult();
 			APICaller.ExecuteOperation(usersUSRAdd_group, genericResult);
@@ -104,7 +107,7 @@ class Translator {
 		boolean groupRemove = false;
 		if (accessTokenPregenerated.isValid()) {
 			UsersUSRRemove_group usersUSRRemove_group = new UsersUSRRemove_group(
-					"GroupRemove", method, format, version,
+					"GroupRemove", VERB_GET, format, version,
 					accessTokenPregenerated.getAccessToken(), userID, groupID);
 			GenericResult genericResult = new GenericResult();
 			APICaller.ExecuteOperation(usersUSRRemove_group, genericResult);
@@ -137,7 +140,7 @@ class Translator {
 		UsersNear usersNear = null;
 		if (accessTokenPregenerated.isValid()) {
 			UsersGet_near usersGet_near = new UsersGet_near("NearPOIGet",
-					method, format, version,
+					VERB_GET, format, version,
 					accessTokenPregenerated.getAccessToken(), POIID, radius,
 					activeTrack, groupID, usersCount);
 			UsersNearResult usersNearResult = new UsersNearResult();
@@ -173,7 +176,7 @@ class Translator {
 		UsersNear usersNear = null;
 		if (accessTokenPregenerated.isValid()) {
 			UsersGet_near usersGet_near = new UsersGet_near("NearPOIGet",
-					method, format, version,
+					VERB_GET, format, version,
 					accessTokenPregenerated.getAccessToken(), lat, lng, radius,
 					activeTrack, groupID, usersCount);
 			UsersNearResult usersNearResult = new UsersNearResult();
@@ -280,7 +283,7 @@ class Translator {
 	 */
 	public static Boolean ResetPass (String api_key , String username) throws IOException, TopoosException{
 		boolean reset = false;
-		UsersResetPass resetPass = new UsersResetPass("Reset_pass", method, format,
+		UsersResetPass resetPass = new UsersResetPass("Reset_pass", VERB_GET, format,
 					version, api_key, username);
 			GenericResult genericResult = new GenericResult();
 			APICaller.ExecuteOperation(resetPass, genericResult);
@@ -288,5 +291,32 @@ class Translator {
 		
 		return reset;
 	}
+	
+	 
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param count
+	 * @param page
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static List<User> GetMembership (AccessTokenOAuth accessTokenPregenerated, Integer count, Integer page)
+			throws IOException, TopoosException {
+		List<User> users = null;
+		if (accessTokenPregenerated.isValid()) {
+			UsersGetMembership usrsGetM = new UsersGetMembership ("Get_Membership", VERB_GET, format,
+					version,accessTokenPregenerated.getAccessToken(), count, page);
+			UserCollectionResult userCollectionResult = new UserCollectionResult();
+			APICaller.ExecuteOperation(usrsGetM, userCollectionResult);
+			users = userCollectionResult.getUsers().getUsers();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		return users;
+	}
+
+	
 
 }
