@@ -24,9 +24,11 @@ import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.UsersGetMembership;
 import topoos.APIAccess.Operations.UsersPutMembership;
+import topoos.APIAccess.Operations.UsersRegisterMembership;
 import topoos.APIAccess.Operations.UsersResetPass;
 import topoos.APIAccess.Results.GenericResult;
 import topoos.APIAccess.Results.UserCollectionResult;
+import topoos.APIAccess.Results.UserResult;
 import topoos.Exception.TopoosException;
 import topoos.Objects.User;
 import topoos.Objects.UserIdPosition;
@@ -337,4 +339,24 @@ public class Operations {
 	public static Boolean PutMembership (AccessTokenOAuth accessTokenPregenerated, String user_id, String new_pass, String old_pass,String gender, Date birthdate )throws IOException, TopoosException{
 		return Translator.PutMembership(accessTokenPregenerated, user_id, new_pass, old_pass, gender, birthdate);
 	}
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param api_key
+	 * @param user_name
+	 * @param pwd
+	 * @param email
+	 * @param gender
+	 * @param birthdate
+	 * @param expiresIn
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static User RegisterMembership (AccessTokenOAuth accessTokenPregenerated, String api_key, String user_name, String pwd, String email, String gender, Date birthdate, Integer expiresIn) throws IOException, TopoosException {
+		return Translator.RegisterMembership(accessTokenPregenerated, api_key, user_name, pwd, email, gender, birthdate, expiresIn);
+	}
+	
+	
 }

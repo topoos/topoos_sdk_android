@@ -363,5 +363,35 @@ class Translator {
 		}
 		return result;
 	}
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param api_key
+	 * @param user_name
+	 * @param pwd
+	 * @param email
+	 * @param gender
+	 * @param birthdate
+	 * @param expiresIn
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static User RegisterMembership (AccessTokenOAuth accessTokenPregenerated, String api_key, String user_name, String pwd, String email, String gender, Date birthdate, Integer expiresIn) throws IOException, TopoosException {
+		User user = null;
+		if (accessTokenPregenerated.isValid()) {
+			UsersRegisterMembership usersRegMem = new UsersRegisterMembership("Register Membership", VERB_POST, format,
+					version, accessTokenPregenerated.getAccessToken(), api_key, user_name, pwd, email, getGender(gender), birthdate, expiresIn);
+			UserResult userResult = new UserResult();
+			APICaller.ExecuteOperation(usersRegMem, userResult);
+			user = userResult.getUser();
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		return user;
+	}
+	
+	
 
 }
