@@ -17,6 +17,7 @@
 package topoos.Users;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -36,7 +37,11 @@ class Translator {
 
 	private final static String VERB_GET = "GET";
 	private final static String VERB_POST = "POST";
+	private final static String VERB_PUT = "PUT";
 	private final static String VERB_DELETE = "DELETE";
+	
+	private final static String GENDER_MALE = "male";
+	private final static String GENDER_FEMALE = "female";
 	
 	private static String format = "json";
 	private static Integer version = topoos.Constants.APIVERSION;
@@ -318,5 +323,45 @@ class Translator {
 	}
 
 	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param user_id
+	 * @param new_pass
+	 * @param old_pass
+	 * @param gender
+	 * @param birthdate
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean PutMembership (AccessTokenOAuth accessTokenPregenerated, String user_id, String new_pass, String old_pass,String gender, Date birthdate )throws IOException, TopoosException{
+		boolean reset = false;
+		if (accessTokenPregenerated.isValid()) {
+			
+			UsersPutMembership resetPass = new UsersPutMembership("Put_Membership", VERB_PUT, format,
+					version, accessTokenPregenerated.getAccessToken(), user_id,new_pass, old_pass, getGender (gender), birthdate );
+			GenericResult genericResult = new GenericResult();
+			APICaller.ExecuteOperation(resetPass, genericResult);
+			reset = genericResult.getCode() == 200;
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		
+		
+		return reset;
+	}
+	
+	private static String getGender (String gender){
+		String result =null;
+		if (gender != null){
+			if (gender.equals(GENDER_MALE)){
+				result = GENDER_MALE;
+			}else if (gender.equals(GENDER_FEMALE)){
+				result = GENDER_FEMALE;
+			}
+		}
+		return result;
+	}
 
 }

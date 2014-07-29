@@ -17,11 +17,13 @@
 package topoos.Users;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
 import topoos.APIAccess.Operations.UsersGetMembership;
+import topoos.APIAccess.Operations.UsersPutMembership;
 import topoos.APIAccess.Operations.UsersResetPass;
 import topoos.APIAccess.Results.GenericResult;
 import topoos.APIAccess.Results.UserCollectionResult;
@@ -319,4 +321,20 @@ public class Operations {
 		return Translator.GetMembership(accessTokenPregenerated, count, page);
 	}
 
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param user_id
+	 * @param new_pass
+	 * @param old_pass
+	 * @param gender
+	 * @param birthdate
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean PutMembership (AccessTokenOAuth accessTokenPregenerated, String user_id, String new_pass, String old_pass,String gender, Date birthdate )throws IOException, TopoosException{
+		return Translator.PutMembership(accessTokenPregenerated, user_id, new_pass, old_pass, gender, birthdate);
+	}
 }
