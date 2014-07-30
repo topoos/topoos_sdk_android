@@ -22,6 +22,7 @@ import java.util.List;
 
 import topoos.AccessTokenOAuth;
 import topoos.APIAccess.APICaller;
+import topoos.APIAccess.Operations.UsersDeleteMembership;
 import topoos.APIAccess.Operations.UsersGetMembership;
 import topoos.APIAccess.Operations.UsersLogOut;
 import topoos.APIAccess.Operations.UsersPutMembership;
@@ -383,5 +384,17 @@ public class Operations {
 	 */
 	public static Boolean Logout (AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
 		return Translator.Logout(accessTokenPregenerated);
+	}
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param user_id
+	 * @return
+	 * @throws TopoosException
+	 * @throws IOException
+	 */
+	public static Boolean DeleteMembership (AccessTokenOAuth accessTokenPregenerated, String user_id) throws TopoosException, IOException{
+		return Translator.DeleteMembership(accessTokenPregenerated, user_id);
 	}
 }

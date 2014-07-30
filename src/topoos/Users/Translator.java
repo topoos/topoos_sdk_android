@@ -423,16 +423,39 @@ class Translator {
 	 * @throws TopoosException
 	 */
 	public static Boolean Logout (AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
-		boolean erase = false;
+		boolean completed = false;
 		if (accessTokenPregenerated.isValid()) {
 			UsersLogOut logout = new UsersLogOut("Log out", VERB_DELETE, format,
 					version, accessTokenPregenerated.getAccessToken());
 			GenericResult genericResult = new GenericResult();
 			APICaller.ExecuteOperation(logout, genericResult);
-			erase = genericResult.getCode() == 200;
+			completed = genericResult.getCode() == 200;
 		} else {
 			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
 		}
-		return erase;
+		return completed;
+	}
+	
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param user_id
+	 * @return
+	 * @throws TopoosException
+	 * @throws IOException
+	 */
+	public static Boolean DeleteMembership (AccessTokenOAuth accessTokenPregenerated, String user_id) throws TopoosException, IOException{
+		boolean delete = false;
+		if (accessTokenPregenerated.isValid()) {
+			UsersDeleteMembership delMember = new UsersDeleteMembership ("Delete membership", VERB_DELETE, format,
+					version,accessTokenPregenerated.getAccessToken(), user_id);
+			GenericResult genericResult = new GenericResult();
+			APICaller.ExecuteOperation(delMember, genericResult);
+			delete = genericResult.getCode() == 200;
+		} else {
+			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		}
+		return delete;
 	}
 }
