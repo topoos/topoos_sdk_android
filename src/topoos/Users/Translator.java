@@ -310,7 +310,7 @@ class Translator {
 	public static List<User> GetMembership (AccessTokenOAuth accessTokenPregenerated, Integer count, Integer page)
 			throws IOException, TopoosException {
 		List<User> users = null;
-		if (accessTokenPregenerated.isValid()) {
+		if (accessTokenPregenerated != null && accessTokenPregenerated.isValid()) {
 			UsersGetMembership usrsGetM = new UsersGetMembership ("Get_Membership", VERB_GET, format,
 					version,accessTokenPregenerated.getAccessToken(), count, page);
 			UserCollectionResult userCollectionResult = new UserCollectionResult();
@@ -337,7 +337,7 @@ class Translator {
 	 */
 	public static Boolean PutMembership (AccessTokenOAuth accessTokenPregenerated, String user_id, String new_pass, String old_pass,String gender, Date birthdate )throws IOException, TopoosException{
 		boolean reset = false;
-		if (accessTokenPregenerated.isValid()) {
+		if (accessTokenPregenerated != null && accessTokenPregenerated.isValid()) {
 			
 			UsersPutMembership resetPass = new UsersPutMembership("Put_Membership", VERB_PUT, format,
 					version, accessTokenPregenerated.getAccessToken(), user_id,new_pass, old_pass, getGender (gender), birthdate );
@@ -380,15 +380,18 @@ class Translator {
 	 */
 	public static User RegisterMembership (AccessTokenOAuth accessTokenPregenerated, String api_key, String user_name, String pwd, String email, String gender, Date birthdate, Integer expiresIn) throws IOException, TopoosException {
 		User user = null;
-		if (accessTokenPregenerated.isValid()) {
-			UsersRegisterMembership usersRegMem = new UsersRegisterMembership("Register Membership", VERB_POST, format,
-					version, accessTokenPregenerated.getAccessToken(), api_key, user_name, pwd, email, getGender(gender), birthdate, expiresIn);
-			UserResult userResult = new UserResult();
-			APICaller.ExecuteOperation(usersRegMem, userResult);
-			user = userResult.getUser();
-		} else {
-			throw new TopoosException(TopoosException.NOT_VALID_TOKEN);
+		String token;
+		if (accessTokenPregenerated != null && accessTokenPregenerated.isValid() ) {
+			token = accessTokenPregenerated.getAccessToken();
+		}else {
+			token = null;
 		}
+		
+		UsersRegisterMembership usersRegMem = new UsersRegisterMembership("Register Membership", VERB_POST, format,
+				version, token, api_key, user_name, pwd, email, getGender(gender), birthdate, expiresIn);
+		UserResult userResult = new UserResult();
+		APICaller.ExecuteOperation(usersRegMem, userResult);
+		user = userResult.getUser();
 		return user;
 	}
 	
@@ -424,7 +427,7 @@ class Translator {
 	 */
 	public static Boolean Logout (AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
 		boolean completed = false;
-		if (accessTokenPregenerated.isValid()) {
+		if (accessTokenPregenerated != null && accessTokenPregenerated.isValid()) {
 			UsersLogOut logout = new UsersLogOut("Log out", VERB_DELETE, format,
 					version, accessTokenPregenerated.getAccessToken());
 			GenericResult genericResult = new GenericResult();
@@ -447,7 +450,7 @@ class Translator {
 	 */
 	public static Boolean DeleteMembership (AccessTokenOAuth accessTokenPregenerated, String user_id) throws TopoosException, IOException{
 		boolean delete = false;
-		if (accessTokenPregenerated.isValid()) {
+		if (accessTokenPregenerated != null && accessTokenPregenerated.isValid()) {
 			UsersDeleteMembership delMember = new UsersDeleteMembership ("Delete membership", VERB_DELETE, format,
 					version,accessTokenPregenerated.getAccessToken(), user_id);
 			GenericResult genericResult = new GenericResult();

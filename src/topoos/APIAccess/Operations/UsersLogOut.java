@@ -16,6 +16,7 @@
 
 package topoos.APIAccess.Operations;
 
+
 /**
  * Class that log out.
  * 
@@ -66,8 +67,9 @@ public class UsersLogOut extends APIOperation {
 
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/users/"+ "/login."
-					+ this.Format + "?oauth_token=" + this.oauth_token;
+			params = "/" + this.Version + "/users/login."
+					+ this.Format
+					+ "?access_token=" + this.oauth_token;
 
 		}
 		return params;

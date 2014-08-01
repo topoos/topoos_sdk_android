@@ -21,7 +21,10 @@ import java.io.IOException;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -45,6 +48,12 @@ public class APICaller {
 	public static final int SERVICE_LOGIN = 1;
 	public static final int SERVICE_PIC = 2;
 	public static final int SERVICE_SOCIAL = 3;
+	
+	public static final String METHOD_GET = "GET";
+	public static final String METHOD_POST = "POST";
+	public static final String METHOD_PUT = "PUT";
+	public static final String METHOD_DELTE = "DELETE";
+	
 
 	/**
 	 * Returns the url for the object operation.
@@ -97,6 +106,7 @@ public class APICaller {
 	public static void ExecuteOperation(APIOperation operation,
 			APICallResult result) throws IOException, TopoosException {
 		HttpClient hc = new DefaultHttpClient();
+		HttpResponse rp = null;
 		if (!operation.ValidateParams())
 			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
 		String OpURI = Constants.TOPOOSURIAPI + operation.ConcatParams();
@@ -104,37 +114,52 @@ public class APICaller {
 			Log.d(Constants.TAG, OpURI);
 //			appendLog(OpURI);
 		}
-		HttpPost post = new HttpPost(OpURI);
+		
 		Log.i("URL API TOPOOS:", OpURI);
-		// POST
-		if (operation.getMethod().equals("POST")) {
+		
+		
+		if (operation.getMethod().equals(METHOD_GET)) { // GET
+			HttpGet get = new HttpGet(OpURI); //Antes funcionaba el Get con HttpPost
+			rp = hc.execute(get);
+		}else if (operation.getMethod().equals(METHOD_POST)) { // POST
+			HttpPost post = new HttpPost(OpURI);
 			post.setEntity(operation.BodyParams());
-		}
-		HttpResponse rp = hc.execute(post);
+			rp = hc.execute(post);
+		}else if (operation.getMethod().equals(METHOD_PUT)) { // PUT
+			HttpPut put = new HttpPut(OpURI);
+			put.setEntity(operation.BodyParams());
+			rp = hc.execute(put);
+		}else if (operation.getMethod().equals(METHOD_DELTE)) { // DELETE
+			HttpDelete delete = new HttpDelete(OpURI);
+			rp = hc.execute(delete);
+		}		
+		
 		HttpParams httpParams = hc.getParams();
 		HttpConnectionParams.setConnectionTimeout(httpParams,
 				Constants.HTTP_WAITING_MILISECONDS);
 		HttpConnectionParams.setSoTimeout(httpParams,
 				Constants.HTTP_WAITING_MILISECONDS);
-		if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-			result.setResult(EntityUtils.toString(rp.getEntity()));
-			if (Constants.DEBUGURL) {
-				Log.d(Constants.TAG, result.getResult());
-//				appendLog(result.getResult());
+		if (rp != null){
+			if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				result.setResult(EntityUtils.toString(rp.getEntity()));
+				if (Constants.DEBUGURL) {
+					Log.d(Constants.TAG, result.getResult());
+	//				appendLog(result.getResult());
+				}
+				result.setError(null);
+				result.setParameters();
+			} else {
+				switch (rp.getStatusLine().getStatusCode()) {
+				case 400:
+					throw new TopoosException(TopoosException.ERROR400);
+				case 405:
+					throw new TopoosException(TopoosException.ERROR405);
+				default:
+					throw new TopoosException("Error: "
+							+ rp.getStatusLine().getStatusCode() + "");
+				}
+	
 			}
-			result.setError(null);
-			result.setParameters();
-		} else {
-			switch (rp.getStatusLine().getStatusCode()) {
-			case 400:
-				throw new TopoosException(TopoosException.ERROR400);
-			case 405:
-				throw new TopoosException(TopoosException.ERROR405);
-			default:
-				throw new TopoosException("Error: "
-						+ rp.getStatusLine().getStatusCode() + "");
-			}
-
 		}
 	}
 
@@ -152,6 +177,7 @@ public class APICaller {
 			APICallResult result, Integer service) throws IOException,
 			TopoosException {
 		HttpClient hc = new DefaultHttpClient();
+		HttpResponse rp = null;
 		if (!operation.ValidateParams())
 			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
 		String OpURI = "";
@@ -173,12 +199,23 @@ public class APICaller {
 			Log.d(Constants.TAG, OpURI);
 //			appendLog(OpURI);
 		}
-		HttpPost post = new HttpPost(OpURI);
-		// POST
-		if (operation.getMethod().equals("POST")) {
+		
+		if (operation.getMethod().equals(METHOD_GET)) { // GET
+			HttpGet get = new HttpGet(OpURI); //Antes funcionaba el Get con HttpPost
+			rp = hc.execute(get);
+		}else if (operation.getMethod().equals(METHOD_POST)) { // POST
+			HttpPost post = new HttpPost(OpURI);
 			post.setEntity(operation.BodyParams());
+			rp = hc.execute(post);
+		}else if (operation.getMethod().equals(METHOD_PUT)) { // PUT
+			HttpPut put = new HttpPut(OpURI);
+			put.setEntity(operation.BodyParams());
+			rp = hc.execute(put);
+		}else if (operation.getMethod().equals(METHOD_DELTE)) { // DELETE
+			HttpDelete delete = new HttpDelete(OpURI);
+			rp = hc.execute(delete);
 		}
-		HttpResponse rp = hc.execute(post);
+		
 		HttpParams httpParams = hc.getParams();
 		HttpConnectionParams.setConnectionTimeout(httpParams,
 				Constants.HTTP_WAITING_MILISECONDS);

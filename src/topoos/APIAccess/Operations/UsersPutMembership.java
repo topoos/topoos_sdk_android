@@ -16,7 +16,12 @@
 
 package topoos.APIAccess.Operations;
 
+import java.io.IOException;
 import java.util.Date;
+
+import topoos.APIAccess.mime.HttpMultipartMode;
+import topoos.APIAccess.mime.MultipartEntity;
+import topoos.APIAccess.mime.content.StringBody;
 
 /**
  * Class that put membership.
@@ -45,7 +50,7 @@ public class UsersPutMembership extends APIOperation {
 						// will be stored encrypted.
 
 	/** Oldpwd */
-	private String old_pwd; // (Required if pwd param is provided) current
+	private String oldpwd; // (Required if pwd param is provided) current
 							// password for the user.
 							// Must be provided if pwd parameter is provided.
 
@@ -82,7 +87,7 @@ public class UsersPutMembership extends APIOperation {
 		this.oauth_token = oauth_token;
 		this.usr = usr;
 		this.pwd = pwd;
-		this.old_pwd = old_pwd;
+		this.oldpwd = old_pwd;
 		this.gender = gender;
 		this.birthdate = birthdate;
 	}
@@ -99,12 +104,54 @@ public class UsersPutMembership extends APIOperation {
 		validate = validate && isValid(oauth_token);
 		validate = validate && isValid(usr);
 		if (isValid (pwd)){
-			validate = validate && isValid(old_pwd);
+			validate = validate && isValid(oldpwd);
 		}
 		validate = validate && isValidorNull(gender);
 		validate = validate && isValidorNull(APIUtils.toStringDate(birthdate));
 		
 		return validate;
+	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see topoos.APIAccess.Operations.APIOperation#BodyParams()
+	 */
+	@Override
+	public MultipartEntity BodyParams() throws IOException {
+		MultipartEntity multipart = null;
+		if (this.ValidateParams()) {
+			multipart = new MultipartEntity(
+					HttpMultipartMode.BROWSER_COMPATIBLE);// ,contentType,Charset.forName("UTF-8"));
+			
+				multipart.addPart("access_token", 
+						new StringBody(oauth_token));
+
+			if (pwd!= null && !pwd.equals("")){
+				multipart.addPart("pwd", 
+					new StringBody(pwd));
+			}
+			
+			if (oldpwd!= null && !pwd.equals("")){
+				multipart.addPart("oldpwd", 
+					new StringBody(oldpwd));
+			}
+			
+						
+			if (gender != null){
+				multipart.addPart("gender", 
+						new StringBody(gender));
+			}
+			
+			if (birthdate != null){
+				multipart.addPart("birthdate", 
+						new StringBody(APIUtils.toStringDate(birthdate)));
+			}
+			
+			
+		}
+		return multipart;
 	}
 
 	
@@ -117,23 +164,11 @@ public class UsersPutMembership extends APIOperation {
 	@Override
 	public String ConcatParams() {
 		// TODO Auto-generated method stub
-
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/users/"+usr+"."+this.Format+"?" + "access_token="+oauth_token
-					+ addPwds ()
-					+ (gender == null ? "" : "&gender="+gender)
-					+ (birthdate == null ? "" : "&birthdate="+APIUtils.toStringDate(birthdate));
-
+			params = "/" + this.Version + "/users/"+this.usr+"."+this.Format;
 		}
 		return params;
 	}
-	
-	private String addPwds (){
-		String result = "";
-		if (pwd != null && !pwd.equals("")){
-			result = "&pwd="+pwd+"&oldpwd="+old_pwd;
-		}
-		return result;
-	}
+
 }

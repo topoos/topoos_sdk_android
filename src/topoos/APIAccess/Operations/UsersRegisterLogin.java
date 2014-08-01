@@ -16,6 +16,12 @@
 
 package topoos.APIAccess.Operations;
 
+import java.io.IOException;
+
+import topoos.APIAccess.mime.HttpMultipartMode;
+import topoos.APIAccess.mime.MultipartEntity;
+import topoos.APIAccess.mime.content.StringBody;
+
 /**
  * Class that login user.
  * 
@@ -28,7 +34,7 @@ public class UsersRegisterLogin extends APIOperation {
 	private String api_key = null; // (Required) client id.
 		
 	/** The user_name. */
-	private String user_name = null; //  (Required) user username or email
+	private String username = null; //  (Required) user username or email
 
 	/** The pwd. */
 	private String pwd = null; // (Required) password this user
@@ -53,7 +59,7 @@ public class UsersRegisterLogin extends APIOperation {
 			String pwd, Integer expiresIn) {
 		super(operationName, method, format, version);
 		this.api_key = api_key;
-		this.user_name = user_name;
+		this.username = user_name;
 		this.pwd = pwd;
 		this.expiresIn = expiresIn;
 	}
@@ -68,10 +74,37 @@ public class UsersRegisterLogin extends APIOperation {
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(api_key);
-		validate = validate && isValid(user_name);
+		validate = validate && isValid(username);
 		validate = validate && isValid(pwd);
 		validate = validate && isValidorNull(APIUtils.toStringInteger(expiresIn));
 		return validate;
+	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see topoos.APIAccess.Operations.APIOperation#BodyParams()
+	 */
+	@Override
+	public MultipartEntity BodyParams() throws IOException {
+		MultipartEntity multipart = null;
+		if (this.ValidateParams()) {
+			multipart = new MultipartEntity(
+					HttpMultipartMode.BROWSER_COMPATIBLE);// ,contentType,Charset.forName("UTF-8"));
+			
+			multipart.addPart("api_key", 
+					new StringBody(api_key));
+			multipart.addPart("username", 
+					new StringBody(username));
+			multipart.addPart("pwd", 
+					new StringBody(pwd));
+			
+			if (expiresIn != null)
+				multipart.addPart("expiresIn", 
+						new StringBody(APIUtils.toStringInteger(expiresIn)));
+		}
+		return multipart;
 	}
 
 	/*
@@ -86,10 +119,7 @@ public class UsersRegisterLogin extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/users/login."
-					+ this.Format + "?api_key=" + this.api_key
-					+"&username="+this.user_name
-					+"&pwd="+this.pwd
-					+(expiresIn == null ? "" : "&expiresIn="+APIUtils.toStringInteger(expiresIn));
+					+ this.Format;
 
 		}
 		return params;

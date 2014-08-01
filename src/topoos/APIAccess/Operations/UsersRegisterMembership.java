@@ -16,7 +16,12 @@
 
 package topoos.APIAccess.Operations;
 
+import java.io.IOException;
 import java.util.Date;
+
+import topoos.APIAccess.mime.HttpMultipartMode;
+import topoos.APIAccess.mime.MultipartEntity;
+import topoos.APIAccess.mime.content.StringBody;
 
 /**
  * Class that register membership.
@@ -103,6 +108,52 @@ public class UsersRegisterMembership extends APIOperation {
 	}
 
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see topoos.APIAccess.Operations.APIOperation#BodyParams()
+	 */
+	@Override
+	public MultipartEntity BodyParams() throws IOException {
+		MultipartEntity multipart = null;
+		if (this.ValidateParams()) {
+			multipart = new MultipartEntity(
+					HttpMultipartMode.BROWSER_COMPATIBLE);// ,contentType,Charset.forName("UTF-8"));
+			
+			if (oauth_token != null && !oauth_token.equals("")){
+				multipart.addPart("access_token", 
+						new StringBody(oauth_token));
+			}
+			
+			if (api_key != null && !api_key.equals("")){
+				multipart.addPart("api_key", 
+						new StringBody(api_key));
+			} 
+			
+			multipart.addPart("username", 
+					new StringBody(username));
+			multipart.addPart("pwd", 
+					new StringBody(pwd));
+			
+			multipart.addPart("email", 
+					new StringBody(email));
+			
+			if (gender != null){
+				multipart.addPart("gender", 
+						new StringBody(gender));
+			}
+			
+			if (birthday != null){
+				multipart.addPart("birthday", 
+						new StringBody(APIUtils.toStringDate(birthday)));
+			}
+			
+			if (expiresIn != null)
+				multipart.addPart("expiresIn", 
+						new StringBody(APIUtils.toStringInteger(expiresIn)));
+		}
+		return multipart;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -115,16 +166,7 @@ public class UsersRegisterMembership extends APIOperation {
 
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/users."+this.Format+"?" 
-					+ (oauth_token == null ? "" : "access_token="+oauth_token)
-					+ (api_key == null ? "" : "&api_key="+api_key)
-					+ "&username="+username
-					+ "&pwd="+pwd
-					+ "&email="+email
-					+ (gender == null ? "" : "&gender="+gender)
-					+ (birthday == null ? "" : "&birthday="+birthday)
-					+ (expiresIn == null ? "" : "&expiresIn="+expiresIn);
-
+			params = "/" + this.Version + "/users."+this.Format;
 		}
 		return params;
 	}
