@@ -106,6 +106,11 @@ public class APICaller {
 	public static void ExecuteOperation(APIOperation operation,
 			APICallResult result) throws IOException, TopoosException {
 		HttpClient hc = new DefaultHttpClient();
+		HttpParams httpParams = hc.getParams();
+		HttpConnectionParams.setConnectionTimeout(httpParams,
+				Constants.HTTP_WAITING_MILISECONDS);
+		HttpConnectionParams.setSoTimeout(httpParams,
+				Constants.HTTP_WAITING_MILISECONDS);
 		HttpResponse rp = null;
 		if (!operation.ValidateParams())
 			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
@@ -134,11 +139,7 @@ public class APICaller {
 			rp = hc.execute(delete);
 		}		
 		
-		HttpParams httpParams = hc.getParams();
-		HttpConnectionParams.setConnectionTimeout(httpParams,
-				Constants.HTTP_WAITING_MILISECONDS);
-		HttpConnectionParams.setSoTimeout(httpParams,
-				Constants.HTTP_WAITING_MILISECONDS);
+		
 		if (rp != null){
 			if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				result.setResult(EntityUtils.toString(rp.getEntity()));
@@ -177,6 +178,11 @@ public class APICaller {
 			APICallResult result, Integer service) throws IOException,
 			TopoosException {
 		HttpClient hc = new DefaultHttpClient();
+		HttpParams httpParams = hc.getParams();
+		HttpConnectionParams.setConnectionTimeout(httpParams,
+				Constants.HTTP_WAITING_MILISECONDS);
+		HttpConnectionParams.setSoTimeout(httpParams,
+				Constants.HTTP_WAITING_MILISECONDS);
 		HttpResponse rp = null;
 		if (!operation.ValidateParams())
 			throw new TopoosException(TopoosException.NOT_VALID_PARAMS);
@@ -216,11 +222,7 @@ public class APICaller {
 			rp = hc.execute(delete);
 		}
 		
-		HttpParams httpParams = hc.getParams();
-		HttpConnectionParams.setConnectionTimeout(httpParams,
-				Constants.HTTP_WAITING_MILISECONDS);
-		HttpConnectionParams.setSoTimeout(httpParams,
-				Constants.HTTP_WAITING_MILISECONDS);
+		
 		if (rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 			result.setResult(EntityUtils.toString(rp.getEntity()));
 			if (Constants.DEBUGURL) {
