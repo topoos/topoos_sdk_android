@@ -17,7 +17,10 @@
 package topoos.APIAccess.Operations;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import topoos.APIAccess.mime.HttpMultipartMode;
 import topoos.APIAccess.mime.MultipartEntity;
@@ -146,7 +149,7 @@ public class UsersPutMembership extends APIOperation {
 			
 			if (birthdate != null){
 				multipart.addPart("birthdate", 
-						new StringBody(APIUtils.toStringDate(birthdate)));
+						new StringBody(toStringBirthday(birthdate)));
 			}
 			
 			
@@ -169,6 +172,14 @@ public class UsersPutMembership extends APIOperation {
 			params = "/" + this.Version + "/users/"+this.usr+"."+this.Format;
 		}
 		return params;
+	}
+	
+	
+	public static String toStringBirthday(Date date){
+		String formatoFecha = "yyyy-MM-dd";
+		SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha);
+		sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+		return date== null? null : URLEncoder.encode(sdf.format(date))+ "T00:00:00.00+00:00";
 	}
 
 }
