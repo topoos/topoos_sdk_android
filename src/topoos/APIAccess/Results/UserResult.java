@@ -113,21 +113,27 @@ public class UserResult extends APICallResult {
 					for (int i = 0; i < jarray.length(); i++) {
 						Ugroup.add(jarray.getInt(i));
 					}
-					ArrayList<VisibleDevice> arrayV = new ArrayList<VisibleDevice>();
-					JSONArray jarray2 = jObject.getJSONObject("accreditation")
-							.getJSONArray("visibledevices");
-					for (int i = 0; i < jarray2.length(); i++) {
-						arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
-								.getString("id"), APIUtils.getStringorNull(
-								jarray2.getJSONObject(i), "name"), APIUtils
-								.getIntegerorNull(jarray2.getJSONObject(i),
-										"model"), APIUtils.getBooleanorNull(
-								jarray2.getJSONObject(i), "islogical")));
-					}
-					Acreditation = new Acreditation(APIUtils.getStringorNull(
-							jObject.getJSONObject("accreditation"),
-							"expirationtime"), jObject.getJSONObject(
-							"accreditation").getString("client_id"), arrayV);
+					
+					if  (jObject.optJSONObject("accreditation") != null){
+						ArrayList<VisibleDevice> arrayV = new ArrayList<VisibleDevice>();
+						
+						JSONArray jarray2 = jObject.getJSONObject("accreditation")
+								.getJSONArray("visibledevices");
+						for (int i = 0; i < jarray2.length(); i++) {
+							arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
+									.getString("id"), APIUtils.getStringorNull(
+									jarray2.getJSONObject(i), "name"), APIUtils
+									.getIntegerorNull(jarray2.getJSONObject(i),
+											"model"), APIUtils.getBooleanorNull(
+									jarray2.getJSONObject(i), "islogical")));
+						}
+						Acreditation = new Acreditation(APIUtils.getStringorNull(
+								jObject.getJSONObject("accreditation"),
+								"expirationtime"), jObject.getJSONObject(
+								"accreditation").getString("client_id"), arrayV);
+					}else 
+						Acreditation = null;
+					
 					this.user = new User(Id, Name, Email, Profile, Ugroup,
 							Acreditation);
 				}
