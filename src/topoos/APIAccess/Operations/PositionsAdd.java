@@ -16,6 +16,7 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 /**
@@ -154,18 +155,18 @@ public class PositionsAdd extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/positions/add." + this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+ "&lat="+APIUtils.toStringDouble(lat)
-					+ "&lng="+APIUtils.toStringDouble(lng)
-					+(device == null? "" : "&device="+device)
-					+(accuracy == null? "" : "&accuracy="+APIUtils.toStringDouble(accuracy))
-					+(vaccuracy == null? "" : "&vaccuracy="+APIUtils.toStringDouble(vaccuracy))
-					+(elevation == null? "" : "&elevation="+APIUtils.toStringDouble(elevation))
-					+(timestamp == null? "" : "&timestamp="+APIUtils.toStringDate(timestamp))
-					+(velocity == null? "" : "&velocity="+APIUtils.toStringDouble(velocity))
-					+(postype == null? "" : "&postype="+APIUtils.toStringInteger(postype))
-					+(bearing == null? "" : "&bearing="+APIUtils.toStringDouble(bearing))
-					+(track == null? "" : "&track="+APIUtils.toStringInteger(track))
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ "&lat="+URLEncoder.encode(APIUtils.toStringDouble(lat))
+					+ "&lng="+URLEncoder.encode(APIUtils.toStringDouble(lng))
+					+(device == null? "" : "&device="+URLEncoder.encode(device))
+					+(accuracy == null? "" : "&accuracy="+URLEncoder.encode(APIUtils.toStringDouble(accuracy)))
+					+(vaccuracy == null? "" : "&vaccuracy="+URLEncoder.encode(APIUtils.toStringDouble(vaccuracy)))
+					+(elevation == null? "" : "&elevation="+URLEncoder.encode(APIUtils.toStringDouble(elevation)))
+					+(timestamp == null? "" : "&timestamp="+URLEncoder.encode(APIUtils.toStringDate(timestamp)))
+					+(velocity == null? "" : "&velocity="+URLEncoder.encode(APIUtils.toStringDouble(velocity)))
+					+(postype == null? "" : "&postype="+URLEncoder.encode(APIUtils.toStringInteger(postype)))
+					+(bearing == null? "" : "&bearing="+URLEncoder.encode(APIUtils.toStringDouble(bearing)))
+					+(track == null? "" : "&track="+URLEncoder.encode(APIUtils.toStringInteger(track)))
 					;
 		}
 		return params;

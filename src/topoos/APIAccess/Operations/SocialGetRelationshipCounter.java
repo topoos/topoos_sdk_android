@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that get user relationship counters.
  * 
@@ -81,7 +83,7 @@ public class SocialGetRelationshipCounter extends APIOperation {
 					+ "/" + this.USR + "/counters."
 					+ this.Format
 					+ "?access_token="
-					+ this.oauth_token;
+					+ URLEncoder.encode(this.oauth_token);
 		}
 		return params;
 	}

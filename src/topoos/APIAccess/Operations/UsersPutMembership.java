@@ -149,7 +149,7 @@ public class UsersPutMembership extends APIOperation {
 			
 			if (birthday != null){
 				multipart.addPart("birthday", 
-						new StringBody(toStringBirthday(birthday)));
+						new StringBody(APIUtils.toStringDate(birthday)));
 			}
 			
 			
@@ -169,17 +169,12 @@ public class UsersPutMembership extends APIOperation {
 		// TODO Auto-generated method stub
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/users/"+this.usr+"."+this.Format;
+			params = "/" + this.Version + "/users/"+URLEncoder.encode(this.usr)+"."+this.Format;
 		}
 		return params;
 	}
 	
 	
-	public static String toStringBirthday(Date date){
-		String formatoFecha = "yyyy-MM-dd";
-		SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha);
-		sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-		return date== null? null : URLEncoder.encode(sdf.format(date))+ "T00:00:00.00+00:00";
-	}
+	
 
 }

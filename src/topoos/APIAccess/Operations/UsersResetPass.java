@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that reset password.
  * 
@@ -73,7 +75,7 @@ public class UsersResetPass extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/users/" + this.user_name + "/reset-pass."
-					+ this.Format + "?api_key=" + this.api_key;
+					+ this.Format + "?api_key=" + URLEncoder.encode(this.api_key);
 
 		}
 		return params;

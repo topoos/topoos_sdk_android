@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * The Class POISWarning.
  *
@@ -95,9 +97,9 @@ public class POISWarning extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/warnings." + this.Format
-					+ "?oauth_token=" + this.oauth_token
-					+ (poi == null ? "" : "&poi=" + poi)
-					+ (type == null ? "" : "&type=" + type);
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ (poi == null ? "" : "&poi=" + URLEncoder.encode(poi))
+					+ (type == null ? "" : "&type=" + URLEncoder.encode(type));
 
 		}
 		return params;

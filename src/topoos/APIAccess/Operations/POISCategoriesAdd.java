@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * 
  * Create a new category of POI.
@@ -68,8 +70,8 @@ public class POISCategoriesAdd extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/categories/add." + this.Format
-					+ "?oauth_token=" + this.oauth_token + "&desc="
-					+ APIUtils.toStringUrlEncoded(desc);
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) + "&desc="
+					+ URLEncoder.encode(APIUtils.toStringUrlEncoded(desc));
 		}
 		return params;
 	}

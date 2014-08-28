@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * 
  * Delete a category of POI. The category will not appear as a result of a
@@ -84,8 +86,8 @@ public class POISCategoriesDelete extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/categories/delete."
-					+ this.Format + "?oauth_token=" + this.oauth_token
-					+ "&category=" + APIUtils.toStringInteger(category);
+					+ this.Format + "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ "&category=" + URLEncoder.encode(APIUtils.toStringInteger(category));
 		}
 		return params;
 	}

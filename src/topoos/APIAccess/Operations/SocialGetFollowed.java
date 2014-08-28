@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that get users followed by user.
  * 
@@ -88,9 +90,9 @@ public class SocialGetFollowed extends APIOperation {
 					+ "/" + this.USR + "/follows."
 					+ this.Format
 					+ "?access_token="
-					+ this.oauth_token
+					+ URLEncoder.encode(this.oauth_token)
 					+ (this.cursor == null ? "" : "&cursor="
-							+ APIUtils.toStringInteger(this.cursor));
+							+ URLEncoder.encode(APIUtils.toStringInteger(this.cursor)));
 		}
 		return params;
 	}

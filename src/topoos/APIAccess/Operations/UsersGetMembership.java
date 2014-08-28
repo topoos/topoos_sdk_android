@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that get membership.
  * 
@@ -83,9 +85,9 @@ public class UsersGetMembership extends APIOperation {
 
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/users."+this.Format+"?" + "access_token="+oauth_token
-					+ (count == null ? "" : "&count="+ APIUtils.toStringInteger(count))
-					+ (page == null ? "" : "&page="+ APIUtils.toStringInteger(page));
+			params = "/" + this.Version + "/users."+this.Format+"?" + "access_token="+URLEncoder.encode(oauth_token)
+					+ (count == null ? "" : "&count="+ URLEncoder.encode(APIUtils.toStringInteger(count)))
+					+ (page == null ? "" : "&page="+ URLEncoder.encode(APIUtils.toStringInteger(page)));
 		}
 		return params;
 	}

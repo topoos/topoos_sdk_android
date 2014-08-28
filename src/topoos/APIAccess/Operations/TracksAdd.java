@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * 
  * Create a new Track. A Track represent a sequence of registered positions.
@@ -84,10 +86,10 @@ public class TracksAdd extends APIOperation {
 					+ "/tracks/add."
 					+ this.Format
 					+ "?oauth_token="
-					+ this.oauth_token
+					+ URLEncoder.encode(this.oauth_token)
 					+ (name == null ? "" : "&name="
-							+ APIUtils.toStringUrlEncoded(name))
-					+ (device == null ? "" : "&device=" + device);
+							+ URLEncoder.encode(APIUtils.toStringUrlEncoded(name)))
+					+ (device == null ? "" : "&device=" + URLEncoder.encode(device));
 
 		}
 		return params;

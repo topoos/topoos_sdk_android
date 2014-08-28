@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 
 /**
  * Class that log out.
@@ -69,7 +71,7 @@ public class UsersLogOut extends APIOperation {
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/users/login."
 					+ this.Format
-					+ "?access_token=" + this.oauth_token;
+					+ "?access_token=" + URLEncoder.encode(this.oauth_token);
 
 		}
 		return params;

@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that get user friends recommended.
  * 
@@ -81,7 +83,7 @@ public class SocialGetFriendRecommendations extends APIOperation {
 					+ "/" + this.USR + "/recommendations."
 					+ this.Format
 					+ "?access_token="
-					+ this.oauth_token;
+					+ URLEncoder.encode(this.oauth_token);
 		}
 		return params;
 	}

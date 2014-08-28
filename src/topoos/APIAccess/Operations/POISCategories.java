@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that implements the categories of the POIS.
  * 
@@ -79,11 +81,11 @@ public class POISCategories extends APIOperation {
 					+ "/pois/categories."
 					+ this.Format
 					+ "?oauth_token="
-					+ this.oauth_token
+					+ URLEncoder.encode(this.oauth_token)
 					+ (include_system_categories == null ? "&include_system_categories=true"
 							: "&include_system_categories="
-									+ APIUtils
-											.toStringBoolean(include_system_categories));
+									+ URLEncoder.encode(APIUtils
+											.toStringBoolean(include_system_categories)));
 		}
 		return params;
 	}

@@ -16,6 +16,7 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 // TODO: Auto-generated Javadoc
@@ -158,17 +159,17 @@ public class ExportLayerTrack extends APIOperation {
 					+ "."
 					+ this.Format
 					+ "?oauth_token="
-					+ this.oauth_token
+					+ URLEncoder.encode(this.oauth_token)
 					+ (track == null ? "" : "&track="
-							+ APIUtils.toStringInteger(track))
+							+ URLEncoder.encode(APIUtils.toStringInteger(track)))
 					+ (export_format == null ? "" : "&format="
-							+ APIUtils.toStringUrlEncoded(export_format))
+							+ URLEncoder.encode(APIUtils.toStringUrlEncoded(export_format)))
 					+ (total == null ? "" : "&total="
-							+ APIUtils.toStringInteger(total))
+							+ URLEncoder.encode(APIUtils.toStringInteger(total)))
 					+ (initdate == null ? "" : "&initdate="
-							+ APIUtils.toStringDate(initdate))
+							+ URLEncoder.encode(APIUtils.toStringDate(initdate)))
 					+ (enddate == null ? "" : "&endate="
-							+ APIUtils.toStringDate(enddate));
+							+ URLEncoder.encode(APIUtils.toStringDate(enddate)));
 		}
 		return params;
 	}

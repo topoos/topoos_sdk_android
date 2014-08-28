@@ -16,6 +16,7 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 
@@ -86,10 +87,10 @@ public class CheckinAdd extends APIOperation{
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/checkin/add."
 					+ this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+"&poi="+APIUtils.toStringInteger(poi)
-					+(device == null? "" : "&device="+device)
-					+(timestamp == null? "" : "&timestamp="+APIUtils.toStringDate(timestamp))
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+"&poi="+URLEncoder.encode(APIUtils.toStringInteger(poi))
+					+(device == null? "" : "&device="+URLEncoder.encode(device))
+					+(timestamp == null? "" : "&timestamp="+URLEncoder.encode(APIUtils.toStringDate(timestamp)))
 					;
 
 		}

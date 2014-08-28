@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Get the information of a user. You can check the oauth_token.
  * 
@@ -51,7 +53,7 @@ public class UsersUSRShow extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/users/" + this.USR + "/show."
-					+ this.Format + "?oauth_token=" + this.OAuthToken;
+					+ this.Format + "?oauth_token=" + URLEncoder.encode(this.OAuthToken);
 
 		}
 		return params;

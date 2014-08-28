@@ -16,6 +16,7 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 /**
@@ -133,15 +134,15 @@ public class TracksGet extends APIOperation {
 					+ "/tracks/get."
 					+ this.Format
 					+ "?oauth_token="
-					+ this.oauth_token
+					+ URLEncoder.encode(this.oauth_token)
 					+ "&track="
-					+ APIUtils.toStringInteger(this.track)
+					+ URLEncoder.encode(APIUtils.toStringInteger(this.track))
 					+ (total == null ? "" : "&total="
-							+ APIUtils.toStringInteger(total))
+							+ URLEncoder.encode(APIUtils.toStringInteger(total)))
 					+ (initdate == null ? "" : "&initdate="
-							+ APIUtils.toStringDate(initdate))
+							+ URLEncoder.encode(APIUtils.toStringDate(initdate)))
 					+ (endate == null ? "" : "&endate="
-							+ APIUtils.toStringDate(endate));
+							+ URLEncoder.encode(APIUtils.toStringDate(endate)));
 			if (layer != null)
 				params = params + "&layer=";
 			for (int i = 0; i < layer.length; i++) {

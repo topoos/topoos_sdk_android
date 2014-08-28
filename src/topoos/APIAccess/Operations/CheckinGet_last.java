@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 
 /**
  * Get the information from last CheckIn that have been registered by a user
@@ -69,7 +71,7 @@ public class CheckinGet_last extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/checkin/get_last." + this.Format
-					+ "?oauth_token=" + this.oauth_token + "&usr=" + this.usr;
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) + "&usr=" + URLEncoder.encode(this.usr);
 
 		}
 		return params;

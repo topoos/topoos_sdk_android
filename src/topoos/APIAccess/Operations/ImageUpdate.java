@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * The Class ImageUpdate.
  */
@@ -67,7 +69,7 @@ public class ImageUpdate extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/image/update/"+this.id_uniq_filename+"."+this.Format 
-					+ "?oauth_token=" + this.oauth_token +"&privacy="+this.privacy+"&keywords="+APIUtils.toStringStringArray(this.keywords);
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) +"&privacy="+URLEncoder.encode(this.privacy)+"&keywords="+URLEncoder.encode(APIUtils.toStringStringArray(this.keywords));
 		}
 		return params;
 	}

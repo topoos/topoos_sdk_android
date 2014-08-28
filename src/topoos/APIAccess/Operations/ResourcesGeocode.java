@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * 
  * Geocodification service that allow to get the coordinates of an address that
@@ -100,13 +102,13 @@ public class ResourcesGeocode extends APIOperation {
 		if (this.ValidateParams()) {
 			if (Address != null) {
 				params = "/" + this.Version + "/resources/geocode."
-						+ this.Format + "?oauth_token=" + this.oauth_token
-						+ "&Address=" + this.Address;
+						+ this.Format + "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+						+ "&Address=" + URLEncoder.encode(this.Address);
 			} else {
 				params = "/" + this.Version + "/resources/geocode."
-						+ this.Format + "?oauth_token=" + this.oauth_token
-						+ "&lat=" + APIUtils.toStringDouble(lat) + "&lng="
-						+ APIUtils.toStringDouble(lng);
+						+ this.Format + "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+						+ "&lat=" + URLEncoder.encode(APIUtils.toStringDouble(lat)) + "&lng="
+						+ URLEncoder.encode(APIUtils.toStringDouble(lng));
 				;
 			}
 

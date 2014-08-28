@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that delete membership.
  * 
@@ -77,7 +79,7 @@ public class UsersDeleteMembership extends APIOperation {
 
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/users/"+usr+"."+this.Format+"?"+ "access_token="+this.oauth_token;
+			params = "/" + this.Version + "/users/"+usr+"."+URLEncoder.encode(this.Format)+"?"+ "access_token="+URLEncoder.encode(this.oauth_token);
 		}
 		return params;
 	}

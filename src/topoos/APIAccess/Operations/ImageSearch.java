@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 
 
 /**
@@ -85,11 +87,11 @@ public class ImageSearch extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/search." + this.Format 
-					+ "?oauth_token=" + this.token
-					+ (this.idImage == null? "" : "&id="+this.idImage)
-					+ (this.keywords == null? "":"&keywords="+APIUtils.toStringStringArray(this.keywords))
-					+ (this.count == null? "":"&count="+APIUtils.toStringInteger(this.count))
-					+ (this.page == null? "": "&page="+APIUtils.toStringInteger(this.page))
+					+ "?oauth_token=" + URLEncoder.encode(this.token)
+					+ (this.idImage == null? "" : "&id="+URLEncoder.encode(this.idImage))
+					+ (this.keywords == null? "":"&keywords="+URLEncoder.encode(APIUtils.toStringStringArray(this.keywords)))
+					+ (this.count == null? "":"&count="+URLEncoder.encode(APIUtils.toStringInteger(this.count)))
+					+ (this.page == null? "": "&page="+URLEncoder.encode(APIUtils.toStringInteger(this.page)))
 					;
 		}
 		return params;

@@ -40,7 +40,7 @@ class APIUtils {
 		String formatoFecha = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 		SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha);
 		sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-		return date== null? null : URLEncoder.encode(sdf.format(date));
+		return date== null? null : sdf.format(date);
 	}
 	
 	/**
@@ -50,8 +50,8 @@ class APIUtils {
 	 * @return String
 	 */
 	public static String toStringDouble(Double doub){
-		return doub==null? null:URLEncoder.encode(Double.toString(doub).replace(',',
-				'.'));
+		return doub==null? null:Double.toString(doub).replace(',',
+				'.');
 	}
 	
 	/**
@@ -61,7 +61,7 @@ class APIUtils {
 	 * @return String
 	 */
 	public static String toStringInteger(Integer inte){
-		return inte==null? null:URLEncoder.encode(Integer.toString(inte));
+		return inte==null? null:Integer.toString(inte);
 	}
 	
 	/**
@@ -71,7 +71,7 @@ class APIUtils {
 	 * @return String
 	 */
 	public static String toStringUrlEncoded(String str){
-		return str==null? null:URLEncoder.encode(str);
+		return str==null? null:str;
 	}
 	
 	/**
@@ -81,7 +81,7 @@ class APIUtils {
 	 * @return String
 	 */
 	public static String toStringBoolean(Boolean bool){
-		return bool==null? null:URLEncoder.encode(Boolean.toString(bool));
+		return bool==null? null:Boolean.toString(bool);
 	}
 	
 	/**

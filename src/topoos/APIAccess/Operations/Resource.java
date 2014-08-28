@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
 * 
 * Get resource previously exported.
@@ -76,7 +78,7 @@ public class Resource extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/resource/"+type+"/"+id+"."
-						+ this.Format+"?api_key="+api_key;
+						+ this.Format+"?api_key="+URLEncoder.encode(api_key);
 		}
 		return params;
 	}

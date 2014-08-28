@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 
 /**
  * Get information of a CheckIn by its id.
@@ -68,8 +70,8 @@ public class CheckinGet extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/checkin/get." + this.Format
-					+ "?oauth_token=" + this.oauth_token + "&checkin="
-					+ APIUtils.toStringInteger(checkin);
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) 
+					+ "&checkin=" + URLEncoder.encode(APIUtils.toStringInteger(checkin));
 
 		}
 		return params;

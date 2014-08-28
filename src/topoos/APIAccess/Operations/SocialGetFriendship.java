@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that get user friendship between users.
  * 
@@ -88,9 +90,9 @@ public class SocialGetFriendship extends APIOperation {
 					+ "/" + this.USR + "/friendship."
 					+ this.Format
 					+ "?access_token="
-					+ this.oauth_token
+					+ URLEncoder.encode(this.oauth_token)
 					+ "&usr_b="
-					+ this.usr_b;
+					+ URLEncoder.encode(this.usr_b);
 		}
 		return params;
 	}

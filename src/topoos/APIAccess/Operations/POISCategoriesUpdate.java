@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 
 /**
  * 
@@ -81,9 +83,9 @@ public class POISCategoriesUpdate extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/categories/update."
-					+ this.Format + "?oauth_token=" + this.oauth_token
-					+ "&desc=" + APIUtils.toStringUrlEncoded(desc)
-					+ "&category=" + APIUtils.toStringInteger(category);
+					+ this.Format + "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ "&desc=" + URLEncoder.encode(APIUtils.toStringUrlEncoded(desc))
+					+ "&category=" + URLEncoder.encode(APIUtils.toStringInteger(category));
 		}
 		return params;
 	}
