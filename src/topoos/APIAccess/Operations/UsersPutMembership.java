@@ -63,7 +63,7 @@ public class UsersPutMembership extends APIOperation {
 							// Default value is ‘Undefined’.
 
 	/** Birthdate */
-	private Date birthdate; // (Optional) birthday date for your new user.
+	private Date birthday; // (Optional) birthday date for your new user.
 								// according to the ISO 8601 standard.
 								// datetime (AAAA-MM-DDThh:mm:sszzzzzz) UTC
 								// example: 1997-07-16T10:30:15.342+03:00
@@ -81,18 +81,18 @@ public class UsersPutMembership extends APIOperation {
 	 * @param pwd
 	 * @param old_pwd
 	 * @param gender
-	 * @param birthdate
+	 * @param birthday
 	 */
 	public UsersPutMembership(String operationName, String method,
 			String format, Integer version, String oauth_token, String usr,
-			String pwd, String old_pwd, String gender, Date birthdate) {
+			String pwd, String old_pwd, String gender, Date birthday) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
 		this.usr = usr;
 		this.pwd = pwd;
 		this.oldpwd = old_pwd;
 		this.gender = gender;
-		this.birthdate = birthdate;
+		this.birthday = birthday;
 	}
 	
 
@@ -110,7 +110,7 @@ public class UsersPutMembership extends APIOperation {
 			validate = validate && isValid(oldpwd);
 		}
 		validate = validate && isValidorNull(gender);
-		validate = validate && isValidorNull(APIUtils.toStringDate(birthdate));
+		validate = validate && isValidorNull(APIUtils.toStringDate(birthday));
 		
 		return validate;
 	}
@@ -147,9 +147,9 @@ public class UsersPutMembership extends APIOperation {
 						new StringBody(gender));
 			}
 			
-			if (birthdate != null){
-				multipart.addPart("birthdate", 
-						new StringBody(toStringBirthday(birthdate)));
+			if (birthday != null){
+				multipart.addPart("birthday", 
+						new StringBody(toStringBirthday(birthday)));
 			}
 			
 			
