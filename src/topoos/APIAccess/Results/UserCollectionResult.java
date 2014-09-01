@@ -17,6 +17,8 @@
 package topoos.APIAccess.Results;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -97,15 +99,23 @@ public class UserCollectionResult extends APICallResult {
 				JSONArray jArray = (JSONArray) new JSONTokener(
 						APIUtils.getcorrectJSONARRAYstring(Result)).nextValue();
 				l_users = new ArrayList<User>();
+				JSONObject userAux = null;
 				for (int user_i = 0; user_i < jArray.length(); user_i++) {
 					// Extracting content
+					userAux = jArray.getJSONObject(user_i);
 					Id = APIUtils.getStringorNull(jArray.getJSONObject(user_i), "id");
 					if (Id != null) {
 						Name = APIUtils.getStringorNull(jArray.getJSONObject(user_i), "name");
 						if (jArray.getJSONObject(user_i).optJSONObject("profile") != null) {
+							String birthdayS = null;
+							Date birthday = null;
+							if (!userAux.getJSONObject("profile").isNull("birthday"))
+								birthdayS = userAux.getJSONObject("profile").getString("birthday");
+							if (birthdayS!=null){
+								birthday = APIUtils.toDateString (birthdayS);
+							}
 							Profile = new Profile(
-									APIUtils.toDateString(jArray.getJSONObject(user_i).getJSONObject(
-											"profile").getString("birthday")),
+									birthday,
 									APIUtils.getStringorNull(
 											jArray.getJSONObject(user_i).getJSONObject("profile"),
 											"gender"));
