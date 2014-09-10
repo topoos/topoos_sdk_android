@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * 
  * 
@@ -102,11 +104,11 @@ public class RulesAdd extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/rules/add." + this.Format
-					+ "?oauth_token=" + this.oauth_token + "&lat="
-					+ APIUtils.toStringDouble(lat) + "&lng="
-					+ APIUtils.toStringDouble(lng) + "&radius="
-					+ APIUtils.toStringInteger(radius) + "&track="
-					+ APIUtils.toStringInteger(track) + "&type=" + type;
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) + "&lat="
+					+ URLEncoder.encode(APIUtils.toStringDouble(lat)) + "&lng="
+					+ URLEncoder.encode(APIUtils.toStringDouble(lng)) + "&radius="
+					+ URLEncoder.encode(APIUtils.toStringInteger(radius)) + "&track="
+					+ URLEncoder.encode(APIUtils.toStringInteger(track)) + "&type=" + URLEncoder.encode(type);
 		}
 		return params;
 	}

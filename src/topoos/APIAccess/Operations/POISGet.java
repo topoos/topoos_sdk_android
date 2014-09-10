@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * The Class POISGet.
  *
@@ -70,8 +72,8 @@ public class POISGet extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/get." + this.Format
-					+ "?oauth_token=" + this.oauth_token + "&poi="
-					+ APIUtils.toStringInteger(poi);
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) + "&poi="
+					+ URLEncoder.encode(APIUtils.toStringInteger(poi));
 
 		}
 		return params;

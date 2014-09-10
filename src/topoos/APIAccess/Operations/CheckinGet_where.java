@@ -16,6 +16,7 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 
@@ -87,10 +88,10 @@ public class CheckinGet_where extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/checkin/get_where." + this.Format
-					+ "?oauth_token=" + this.oauth_token + "&poi="
-					+ APIUtils.toStringInteger(this.poi)
-					+ (initdate!=null? "&initdate="+APIUtils.toStringDate(initdate) : "") 
-					+ (enddate!=null? "&enddate="+APIUtils.toStringDate(enddate) : "");
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) 
+					+ "&poi=" + URLEncoder.encode(APIUtils.toStringInteger(this.poi))
+					+ (initdate!=null? "&initdate="+URLEncoder.encode(APIUtils.toStringDate(initdate)) : "") 
+					+ (enddate!=null? "&enddate="+URLEncoder.encode(APIUtils.toStringDate(enddate)) : "");
 
 		}
 		return params;

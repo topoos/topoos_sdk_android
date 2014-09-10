@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Delete all error warnings that are registered in a POI, the category has to
  * belong to the application.
@@ -97,9 +99,9 @@ public class POISWarningDelete extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/warnings/delete."
-					+ this.Format + "?oauth_token=" + this.oauth_token
-					+ "&poi=" + APIUtils.toStringUrlEncoded(poi) + "&type="
-					+ type;
+					+ this.Format + "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ "&poi=" + URLEncoder.encode(APIUtils.toStringUrlEncoded(poi)) + "&type="
+					+ URLEncoder.encode(type);
 		}
 		return params;
 	}

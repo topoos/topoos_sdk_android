@@ -17,9 +17,21 @@
 package topoos.Users;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import topoos.AccessTokenOAuth;
+import topoos.APIAccess.APICaller;
+import topoos.APIAccess.Operations.UsersDeleteMembership;
+import topoos.APIAccess.Operations.UsersGetMembership;
+import topoos.APIAccess.Operations.UsersLogOut;
+import topoos.APIAccess.Operations.UsersPutMembership;
+import topoos.APIAccess.Operations.UsersRegisterLogin;
+import topoos.APIAccess.Operations.UsersRegisterMembership;
+import topoos.APIAccess.Operations.UsersResetPass;
+import topoos.APIAccess.Results.GenericResult;
+import topoos.APIAccess.Results.UserCollectionResult;
+import topoos.APIAccess.Results.UserResult;
 import topoos.Exception.TopoosException;
 import topoos.Objects.User;
 import topoos.Objects.UserIdPosition;
@@ -286,5 +298,103 @@ public class Operations {
 		return Translator.NearPositionGet(context, lat, lng, radius, groupID,
 				usersCount, activeTrack);
 	}
+	
+	
+	/***
+	 * 
+	 * @param api_key
+	 * @param username
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean ResetPass (String api_key , String username) throws IOException, TopoosException{
+		return Translator.ResetPass(api_key, username);
+	}
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param count
+	 * @param page
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static List<User> GetMembership (AccessTokenOAuth accessTokenPregenerated, Integer count, Integer page)
+			throws IOException, TopoosException {
+		return Translator.GetMembership(accessTokenPregenerated, count, page);
+	}
 
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param user_id
+	 * @param new_pass
+	 * @param old_pass
+	 * @param gender
+	 * @param birthdate
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean PutMembership (AccessTokenOAuth accessTokenPregenerated, String user_id, String new_pass, String old_pass,String gender, Date birthdate )throws IOException, TopoosException{
+		return Translator.PutMembership(accessTokenPregenerated, user_id, new_pass, old_pass, gender, birthdate);
+	}
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param api_key
+	 * @param user_name
+	 * @param pwd
+	 * @param email
+	 * @param gender
+	 * @param birthdate
+	 * @param expiresIn
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static User RegisterMembership (AccessTokenOAuth accessTokenPregenerated, String api_key, String user_name, String pwd, String email, String gender, Date birthdate, Integer expiresIn) throws IOException, TopoosException {
+		return Translator.RegisterMembership(accessTokenPregenerated, api_key, user_name, pwd, email, gender, birthdate, expiresIn);
+	}
+	
+	/***
+	 * 
+	 * @param api_key
+	 * @param username
+	 * @param pwd
+	 * @param expiresIn
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static User RegisterLogin (String api_key , String username, String pwd, Integer expiresIn) throws IOException, TopoosException{
+		return Translator.RegisterLogin(api_key, username, pwd, expiresIn);
+	}
+	
+	/**
+	 * 
+	 * @param accessTokenPregenerated
+	 * @return
+	 * @throws IOException
+	 * @throws TopoosException
+	 */
+	public static Boolean Logout (AccessTokenOAuth accessTokenPregenerated) throws IOException, TopoosException{
+		return Translator.Logout(accessTokenPregenerated);
+	}
+	
+	/***
+	 * 
+	 * @param accessTokenPregenerated
+	 * @param user_id
+	 * @return
+	 * @throws TopoosException
+	 * @throws IOException
+	 */
+	public static Boolean DeleteMembership (AccessTokenOAuth accessTokenPregenerated, String user_id) throws TopoosException, IOException{
+		return Translator.DeleteMembership(accessTokenPregenerated, user_id);
+	}
 }

@@ -17,6 +17,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 
 /**
  * The Class ImageDelete.
@@ -67,7 +69,7 @@ public class ImageDelete extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/image/delete/"+ID_Image+"."+this.Format 
-					+ "?oauth_token=" + this.oauth_token;
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token);
 		}
 		return params;
 	}

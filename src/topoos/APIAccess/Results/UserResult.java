@@ -130,7 +130,11 @@ public class UserResult extends APICallResult {
 						Acreditation = new Acreditation(APIUtils.getStringorNull(
 								jObject.getJSONObject("accreditation"),
 								"expirationtime"), jObject.getJSONObject(
-								"accreditation").getString("client_id"), arrayV);
+								"accreditation").getString("client_id"), APIUtils.getStringorNull(
+										jObject.getJSONObject("accreditation"),
+										"access_token"), APIUtils.getStringorNull(
+												jObject.getJSONObject("accreditation"),
+												"refresh_token"),arrayV);
 					}else 
 						Acreditation = null;
 					

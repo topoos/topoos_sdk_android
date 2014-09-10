@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Class that add Follows.
  * 
@@ -81,9 +83,9 @@ public class SocialAddFollow extends APIOperation {
 					+ "/follows/add."
 					+ this.Format
 					+ "?access_token="
-					+ this.oauth_token
+					+ URLEncoder.encode(this.oauth_token)
 					+ "&usr_b="
-					+ this.usr_b;
+					+ URLEncoder.encode(this.usr_b);
 		}
 		return params;
 	}

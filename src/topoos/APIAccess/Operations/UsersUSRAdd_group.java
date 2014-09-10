@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * Set the group to which the user belongs.
  * 
@@ -76,8 +78,8 @@ public class UsersUSRAdd_group extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/users/" + this.USR + "/add_group."
-					+ this.Format + "?ugroup=" + ugroup + "&oauth_token="
-					+ this.oauth_token;
+					+ this.Format + "?ugroup=" +ugroup + "&oauth_token="
+					+ URLEncoder.encode(this.oauth_token);
 
 		}
 		return params;

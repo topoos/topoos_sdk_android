@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * The Class ResourceWebmap.
  *
@@ -82,7 +84,7 @@ public class Webmap extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/webmap" + "?" + type+"="+ id + "&api_key="
-					+ api_key ;
+					+ URLEncoder.encode(api_key) ;
 		}
 		return params;
 	}

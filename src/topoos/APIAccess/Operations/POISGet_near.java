@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 
 /**
  * The Class POISGet_near.
@@ -93,12 +95,12 @@ public class POISGet_near extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/get_near." + this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+ "&lat="+APIUtils.toStringDouble(lat)
-					+ "&lng="+APIUtils.toStringDouble(lng)
-					+ "&radius="+APIUtils.toStringInteger(radius)
-					+ "&categories="+APIUtils.toStringUrlEncoded(categories)
-					+(total == null? "" : "&total="+APIUtils.toStringInteger(total))
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ "&lat="+URLEncoder.encode(APIUtils.toStringDouble(lat))
+					+ "&lng="+URLEncoder.encode(APIUtils.toStringDouble(lng))
+					+ "&radius="+URLEncoder.encode(APIUtils.toStringInteger(radius))
+					+ "&categories="+URLEncoder.encode(APIUtils.toStringUrlEncoded(categories))
+					+(total == null? "" : "&total="+URLEncoder.encode(APIUtils.toStringInteger(total)))
 					;
 		}
 		return params;

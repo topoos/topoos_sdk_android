@@ -16,6 +16,7 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
 import java.util.Date;
 
 /**
@@ -83,10 +84,10 @@ public class PositionsGet_between extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/positions/get_between." + this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+"&initdate="+APIUtils.toStringDate(initdate)
-					+"&enddate="+APIUtils.toStringDate(enddate)
-					+(device == null? "" : "&device="+device);
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+"&initdate="+URLEncoder.encode(APIUtils.toStringDate(initdate))
+					+"&enddate="+URLEncoder.encode(APIUtils.toStringDate(enddate))
+					+(device == null? "" : "&device="+URLEncoder.encode(device));
 		}
 		return params;
 	}

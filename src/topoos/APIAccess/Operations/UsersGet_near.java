@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * The Class UsersGet_near.
  *
@@ -130,20 +132,20 @@ public class UsersGet_near extends APIOperation {
 		if (this.ValidateParams()) {
 			if(poi==null){
 				params = "/" + this.Version + "/users/get_near."
-						+ this.Format + "?lat="+APIUtils.toStringDouble(lat)+"&lng="+ APIUtils.toStringDouble(this.lng)
-						+(ugroup==null?"":"&ugroup=" + APIUtils.toStringInteger(this.ugroup))
-						+"&radius=" + APIUtils.toStringInteger(this.radius)
-						+(active == null? "" : "&active=" + APIUtils.toStringBoolean(this.active))
-						+(Count == null? "" : "&Count=" + APIUtils.toStringInteger(this.Count))
-						+"&oauth_token=" + this.oauth_token;
+						+ this.Format + "?lat="+URLEncoder.encode(APIUtils.toStringDouble(lat))+"&lng="+ URLEncoder.encode(APIUtils.toStringDouble(this.lng))
+						+(ugroup==null?"":"&ugroup=" + URLEncoder.encode(APIUtils.toStringInteger(this.ugroup)))
+						+"&radius=" + URLEncoder.encode(APIUtils.toStringInteger(this.radius))
+						+(active == null? "" : "&active=" + URLEncoder.encode(APIUtils.toStringBoolean(this.active)))
+						+(Count == null? "" : "&Count=" + URLEncoder.encode(APIUtils.toStringInteger(this.Count)))
+						+"&oauth_token=" + URLEncoder.encode(this.oauth_token);
 			}else{
 				params = "/" + this.Version + "/users/get_near."
-						+ this.Format + "?poi="+APIUtils.toStringInteger(this.poi)
-						+(ugroup == null?"":"&ugroup=" + APIUtils.toStringInteger(this.ugroup))
-						+"&radius=" + APIUtils.toStringInteger(this.radius)
-						+(active == null? "" : "&active=" + APIUtils.toStringBoolean(this.active))
-						+(Count == null? "" : "&Count=" + APIUtils.toStringInteger(this.Count))
-						+"&oauth_token=" + this.oauth_token;
+						+ this.Format + "?poi="+URLEncoder.encode(APIUtils.toStringInteger(this.poi))
+						+(ugroup == null?"":"&ugroup=" + URLEncoder.encode(APIUtils.toStringInteger(this.ugroup)))
+						+"&radius=" + URLEncoder.encode(APIUtils.toStringInteger(this.radius))
+						+(active == null? "" : "&active=" + URLEncoder.encode(APIUtils.toStringBoolean(this.active)))
+						+(Count == null? "" : "&Count=" + URLEncoder.encode(APIUtils.toStringInteger(this.Count)))
+						+"&oauth_token=" + URLEncoder.encode(this.oauth_token);
 			}
 
 		}

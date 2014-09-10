@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * 
  * Get a KML document that allow to represent a polygon in a map that accept KML
@@ -97,11 +99,11 @@ public class ResourcesGet_polygon extends APIOperation {
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/resources/get_polygon."
-					+ this.Format + "?oauth_token=" + this.oauth_token
-					+ "&lat=" + APIUtils.toStringDouble(lat) + "&lng="
-					+ APIUtils.toStringDouble(lng) + "&radius="
-					+ APIUtils.toStringDouble(radius) + "&resolution="
-					+ APIUtils.toStringInteger(resolution) + "&shape=" + shape;
+					+ this.Format + "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ "&lat=" + URLEncoder.encode(APIUtils.toStringDouble(lat)) + "&lng="
+					+ URLEncoder.encode(APIUtils.toStringDouble(lng)) + "&radius="
+					+ URLEncoder.encode(APIUtils.toStringDouble(radius)) + "&resolution="
+					+ URLEncoder.encode(APIUtils.toStringInteger(resolution)) + "&shape=" + URLEncoder.encode(shape);
 		}
 		return params;
 	}

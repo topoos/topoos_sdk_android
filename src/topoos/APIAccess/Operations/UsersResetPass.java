@@ -19,41 +19,35 @@ package topoos.APIAccess.Operations;
 import java.net.URLEncoder;
 
 /**
- * Class that get user relationship counters.
+ * Class that reset password.
  * 
  * @see APIOperation
  * @author topoos
  */
-public class SocialGetRelationshipCounter extends APIOperation {
-	
-	/** The oauth_token. */
-	private String oauth_token = null; // (obligatorio) access_token
+public class UsersResetPass extends APIOperation {
+
+	/** The api_key. */
+	private String api_key = null; // (Required) client id.
 		
-	/** The target origin user id. */
-	private String USR = null; // (obligatorio) origin user identifier
+	/** The user_name. */
+	private String user_name = null; //  (Required) username or email for the user that wants to reset his password.
+	
 
-
-	/**
-	 * Instantiates a new Social get relationship counters.
-	 * 
-	 * @param operationName
-	 *            the operation name
-	 * @param method
-	 *            the method
-	 * @param format
-	 *            the format
-	 * @param version
-	 *            the version
-	 * @param oauth_token
-	 *            the oauth_token
-	 * @param USR
-	 *            the USR
-	 */
-	public SocialGetRelationshipCounter(String operationName, String method, String format,
-			Integer version, String oauth_token, String USR) {
+	 /***
+	  * Instantiates a new Reset password.
+	  * 
+	  * @param operationName
+	  * @param method
+	  * @param format
+	  * @param version
+	  * @param api_key
+	  * @param user_name
+	  */
+	public UsersResetPass(String operationName, String method, String format,
+			Integer version, String api_key, String user_name) {
 		super(operationName, method, format, version);
-		this.oauth_token = oauth_token;
-		this.USR = USR;
+		this.api_key = api_key;
+		this.user_name = user_name;
 	}
 
 	/*
@@ -64,8 +58,8 @@ public class SocialGetRelationshipCounter extends APIOperation {
 	@Override
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
-		validate = validate && isValid(oauth_token);
-		validate = validate && isValid(USR);
+		validate = validate && isValid(api_key);
+		validate = validate && isValid(user_name);
 		return validate;
 	}
 
@@ -76,14 +70,13 @@ public class SocialGetRelationshipCounter extends APIOperation {
 	 */
 	@Override
 	public String ConcatParams() {
+		// TODO Auto-generated method stub
+
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/"
-					+ this.Version
-					+ "/" + this.USR + "/counters."
-					+ this.Format
-					+ "?access_token="
-					+ URLEncoder.encode(this.oauth_token);
+			params = "/" + this.Version + "/users/" + this.user_name + "/reset-pass."
+					+ this.Format + "?api_key=" + URLEncoder.encode(this.api_key);
+
 		}
 		return params;
 	}

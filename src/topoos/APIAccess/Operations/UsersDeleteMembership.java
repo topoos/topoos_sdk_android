@@ -19,47 +19,38 @@ package topoos.APIAccess.Operations;
 import java.net.URLEncoder;
 
 /**
- * Class that get user friendship between users.
+ * Class that delete membership.
+ * 
+ * It deletes permanently a membership register (client user) from the database. 
+ * This operation can not delete oauth users.
  * 
  * @see APIOperation
  * @author topoos
  */
-public class SocialGetFriendship extends APIOperation {
-	
+public class UsersDeleteMembership extends APIOperation {
+
 	/** The oauth_token. */
-	private String oauth_token = null; // (obligatorio) access_token
-		
-	/** The target origin user id. */
-	private String USR = null; // (obligatorio) origin user identifier
+	private String oauth_token; //(Required) administrator access_token.
 
-	/** The target target user id. */
-	private String usr_b = null; // (obligatorio) target user identifier
+	/** Count*/
+	private String usr; //(Required) user id to delete membership.
 	
-
-	/**
-	 * Instantiates a new Social get friendship.
+	
+	/***
+	 * //Instantiates a new Delete Membership.
 	 * 
 	 * @param operationName
-	 *            the operation name
 	 * @param method
-	 *            the method
 	 * @param format
-	 *            the format
 	 * @param version
-	 *            the version
 	 * @param oauth_token
-	 *            the oauth_token
-	 * @param USR
-	 *            the USR
-	 * @param userTargetId
-	 *            the target user id
+	 * @param usr
 	 */
-	public SocialGetFriendship(String operationName, String method, String format,
-			Integer version, String oauth_token, String USR, String userTargetId) {
+	public UsersDeleteMembership(String operationName, String method,
+			String format, Integer version, String oauth_token, String usr) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
-		this.USR = USR;
-		this.usr_b = userTargetId;
+		this.usr = usr;
 	}
 
 	/*
@@ -71,10 +62,11 @@ public class SocialGetFriendship extends APIOperation {
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(oauth_token);
-		validate = validate && isValid(USR);
-		validate = validate && isValid(usr_b);
+		validate = validate && isValid(usr);
 		return validate;
 	}
+
+	
 
 	/*
 	 * (non-Javadoc)
@@ -83,16 +75,11 @@ public class SocialGetFriendship extends APIOperation {
 	 */
 	@Override
 	public String ConcatParams() {
+		// TODO Auto-generated method stub
+
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/"
-					+ this.Version
-					+ "/" + this.USR + "/friendship."
-					+ this.Format
-					+ "?access_token="
-					+ URLEncoder.encode(this.oauth_token)
-					+ "&usr_b="
-					+ URLEncoder.encode(this.usr_b);
+			params = "/" + this.Version + "/users/"+usr+"."+URLEncoder.encode(this.Format)+"?"+ "access_token="+URLEncoder.encode(this.oauth_token);
 		}
 		return params;
 	}

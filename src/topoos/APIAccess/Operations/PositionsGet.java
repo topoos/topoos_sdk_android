@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * @see APIOperation
  * @author topoos
@@ -62,18 +64,18 @@ public class PositionsGet extends APIOperation {
 		if (this.ValidateParams()) {
 			if (isValid(APIUtils.toStringInteger(posid))) {
 				params = "/" + this.Version + "/positions/get." + this.Format
-						+ "?oauth_token=" + this.oauth_token + "&posid="
-						+ APIUtils.toStringInteger(posid);
+						+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) + "&posid="
+						+ URLEncoder.encode(APIUtils.toStringInteger(posid));
 			} else if (isValid(device)) {
 				params = "/" + this.Version + "/positions/get." + this.Format
-						+ "?oauth_token=" + this.oauth_token + "&device="
-						+ device;
+						+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) + "&device="
+						+ URLEncoder.encode(device);
 			}else if (isValid(usr)) {
 				params = "/" + this.Version + "/positions/get." + this.Format
-						+ "?oauth_token=" + this.oauth_token + "&usr=" + usr;
+						+ "?oauth_token=" + URLEncoder.encode(this.oauth_token) + "&usr=" + URLEncoder.encode(usr);
 			} else{
 				params = "/" + this.Version + "/positions/get." + this.Format
-						+ "?oauth_token=" + this.oauth_token;
+						+ "?oauth_token=" + URLEncoder.encode(this.oauth_token);
 			}
 		}
 		return params;

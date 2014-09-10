@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * 
  * Get a document that represents the last registered Track by a device.
@@ -105,10 +107,10 @@ public class TracksGet_last extends APIOperation {
 					+ "/tracks/get_last."
 					+ this.Format
 					+ "?oauth_token="
-					+ this.oauth_token
+					+ URLEncoder.encode(this.oauth_token)
 					+ (total == null ? "" : "&total="
-							+ APIUtils.toStringInteger(total))
-					+ (device == null ? "" : "&device=" + device);
+							+ URLEncoder.encode(APIUtils.toStringInteger(total)))
+					+ (device == null ? "" : "&device=" + URLEncoder.encode(device));
 			if (layer != null)
 				params = params + "&layer=";
 			for (int i = 0; i < layer.length; i++) {

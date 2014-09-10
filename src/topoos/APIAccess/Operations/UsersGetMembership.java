@@ -19,47 +19,45 @@ package topoos.APIAccess.Operations;
 import java.net.URLEncoder;
 
 /**
- * Class that get user friendship between users.
+ * Class that get membership.
+ * 
+ * Lists all users authorized in your app. Private info can be returned by using Administrator token. 
+ * Accreditation info is never returned.
  * 
  * @see APIOperation
  * @author topoos
  */
-public class SocialGetFriendship extends APIOperation {
-	
+public class UsersGetMembership extends APIOperation {
+
 	/** The oauth_token. */
-	private String oauth_token = null; // (obligatorio) access_token
-		
-	/** The target origin user id. */
-	private String USR = null; // (obligatorio) origin user identifier
+	private String oauth_token; //(Required) access_token. If Administrator token is provided, then emails and other private info is returned.
 
-	/** The target target user id. */
-	private String usr_b = null; // (obligatorio) target user identifier
+	/** Count*/
+	private Integer count; //(Optional) number of elements in the page. Default is 100 users.
+	
+	/** Page*/
+	private Integer page; //(Optional) page of results requested. Default value is page 0.
+	
 	
 
-	/**
-	 * Instantiates a new Social get friendship.
+	/***
+	 * Instantiates a new Reset password.
 	 * 
 	 * @param operationName
-	 *            the operation name
 	 * @param method
-	 *            the method
 	 * @param format
-	 *            the format
 	 * @param version
-	 *            the version
 	 * @param oauth_token
-	 *            the oauth_token
-	 * @param USR
-	 *            the USR
-	 * @param userTargetId
-	 *            the target user id
+	 * @param count
+	 * @param page
 	 */
-	public SocialGetFriendship(String operationName, String method, String format,
-			Integer version, String oauth_token, String USR, String userTargetId) {
+	public UsersGetMembership(String operationName, String method, String format,
+			Integer version, String oauth_token, Integer count, Integer page) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
-		this.USR = USR;
-		this.usr_b = userTargetId;
+		this.count = count;
+		this.page = page;
+				
 	}
 
 	/*
@@ -71,8 +69,8 @@ public class SocialGetFriendship extends APIOperation {
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(oauth_token);
-		validate = validate && isValid(USR);
-		validate = validate && isValid(usr_b);
+		validate = validate && isValidorNull(APIUtils.toStringInteger(count));
+		validate = validate && isValidorNull(APIUtils.toStringInteger(page));
 		return validate;
 	}
 
@@ -83,16 +81,13 @@ public class SocialGetFriendship extends APIOperation {
 	 */
 	@Override
 	public String ConcatParams() {
+		// TODO Auto-generated method stub
+
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/"
-					+ this.Version
-					+ "/" + this.USR + "/friendship."
-					+ this.Format
-					+ "?access_token="
-					+ URLEncoder.encode(this.oauth_token)
-					+ "&usr_b="
-					+ URLEncoder.encode(this.usr_b);
+			params = "/" + this.Version + "/users."+this.Format+"?" + "access_token="+URLEncoder.encode(oauth_token)
+					+ (count == null ? "" : "&count="+ URLEncoder.encode(APIUtils.toStringInteger(count)))
+					+ (page == null ? "" : "&page="+ URLEncoder.encode(APIUtils.toStringInteger(page)));
 		}
 		return params;
 	}

@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * The Class POISUpdate.
  *
@@ -168,25 +170,25 @@ public class POISUpdate extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/update." + this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+ "&poi="+APIUtils.toStringInteger(poi)
-					+ "&lat="+APIUtils.toStringDouble(lat)
-					+ "&lng="+APIUtils.toStringDouble(lng)
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ "&poi="+URLEncoder.encode(APIUtils.toStringInteger(poi))
+					+ "&lat="+URLEncoder.encode(APIUtils.toStringDouble(lat))
+					+ "&lng="+URLEncoder.encode(APIUtils.toStringDouble(lng))
 					+ (geocode == null ? "" : "&geocode="
-							+ APIUtils.toStringBoolean(geocode))	
-					+(accuracy == null? "" : "&accuracy="+APIUtils.toStringDouble(accuracy))
-					+(vaccuracy == null? "" : "&vaccuracy="+APIUtils.toStringDouble(vaccuracy))
-					+(elevation == null? "" :  "&elevation="+APIUtils.toStringDouble(elevation))
-					+(categories == null? "" :  "&categories="+APIUtils.toStringUrlEncoded(categories))
-					+(name == null? "" :  "&name="+APIUtils.toStringUrlEncoded(name))
-					+(desc == null? "" :  "&desc="+APIUtils.toStringUrlEncoded(desc))
-					+(address == null? "" :  "&address="+APIUtils.toStringUrlEncoded(address))
-					+(cross_street == null? "" :  "&cross_street="+APIUtils.toStringUrlEncoded(cross_street))
-					+(city == null? "" :  "&city="+APIUtils.toStringUrlEncoded(city))
-					+(country == null? "" :  "&country="+APIUtils.toStringUrlEncoded(country))
-					+(postal_code == null? "" :  "&postal_code="+APIUtils.toStringUrlEncoded(postal_code))
-					+(phone == null? "" :  "&phone="+APIUtils.toStringUrlEncoded(phone))
-					+(twitter == null? "" :  "&twitter="+APIUtils.toStringUrlEncoded(twitter))
+							+ URLEncoder.encode(APIUtils.toStringBoolean(geocode)))	
+					+(accuracy == null? "" : "&accuracy="+URLEncoder.encode(APIUtils.toStringDouble(accuracy)))
+					+(vaccuracy == null? "" : "&vaccuracy="+URLEncoder.encode(APIUtils.toStringDouble(vaccuracy)))
+					+(elevation == null? "" :  "&elevation="+URLEncoder.encode(APIUtils.toStringDouble(elevation)))
+					+(categories == null? "" :  "&categories="+URLEncoder.encode(APIUtils.toStringUrlEncoded(categories)))
+					+(name == null? "" :  "&name="+URLEncoder.encode(APIUtils.toStringUrlEncoded(name)))
+					+(desc == null? "" :  "&desc="+URLEncoder.encode(APIUtils.toStringUrlEncoded(desc)))
+					+(address == null? "" :  "&address="+URLEncoder.encode(APIUtils.toStringUrlEncoded(address)))
+					+(cross_street == null? "" :  "&cross_street="+URLEncoder.encode(APIUtils.toStringUrlEncoded(cross_street)))
+					+(city == null? "" :  "&city="+URLEncoder.encode(APIUtils.toStringUrlEncoded(city)))
+					+(country == null? "" :  "&country="+URLEncoder.encode(APIUtils.toStringUrlEncoded(country)))
+					+(postal_code == null? "" :  "&postal_code="+URLEncoder.encode(APIUtils.toStringUrlEncoded(postal_code)))
+					+(phone == null? "" :  "&phone="+URLEncoder.encode(APIUtils.toStringUrlEncoded(phone)))
+					+(twitter == null? "" :  "&twitter="+URLEncoder.encode(APIUtils.toStringUrlEncoded(twitter)))
 					;
 		}
 		return params;

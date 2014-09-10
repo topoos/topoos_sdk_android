@@ -18,48 +18,32 @@ package topoos.APIAccess.Operations;
 
 import java.net.URLEncoder;
 
+
 /**
- * Class that get user friendship between users.
+ * Class that log out.
  * 
  * @see APIOperation
  * @author topoos
  */
-public class SocialGetFriendship extends APIOperation {
-	
+public class UsersLogOut extends APIOperation {
+
 	/** The oauth_token. */
-	private String oauth_token = null; // (obligatorio) access_token
-		
-	/** The target origin user id. */
-	private String USR = null; // (obligatorio) origin user identifier
-
-	/** The target target user id. */
-	private String usr_b = null; // (obligatorio) target user identifier
+	private String oauth_token; //(Required) access_token that will be deleted.
 	
-
-	/**
-	 * Instantiates a new Social get friendship.
+	
+	/***
+	 * Instantiates a new UsersLogOut.
 	 * 
 	 * @param operationName
-	 *            the operation name
 	 * @param method
-	 *            the method
 	 * @param format
-	 *            the format
 	 * @param version
-	 *            the version
 	 * @param oauth_token
-	 *            the oauth_token
-	 * @param USR
-	 *            the USR
-	 * @param userTargetId
-	 *            the target user id
 	 */
-	public SocialGetFriendship(String operationName, String method, String format,
-			Integer version, String oauth_token, String USR, String userTargetId) {
+	public UsersLogOut(String operationName, String method, String format,
+			Integer version, String oauth_token) {
 		super(operationName, method, format, version);
 		this.oauth_token = oauth_token;
-		this.USR = USR;
-		this.usr_b = userTargetId;
 	}
 
 	/*
@@ -71,8 +55,6 @@ public class SocialGetFriendship extends APIOperation {
 	public boolean ValidateParams() {
 		boolean validate = super.ValidateParams();
 		validate = validate && isValid(oauth_token);
-		validate = validate && isValid(USR);
-		validate = validate && isValid(usr_b);
 		return validate;
 	}
 
@@ -83,16 +65,14 @@ public class SocialGetFriendship extends APIOperation {
 	 */
 	@Override
 	public String ConcatParams() {
+		// TODO Auto-generated method stub
+
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/"
-					+ this.Version
-					+ "/" + this.USR + "/friendship."
+			params = "/" + this.Version + "/users/login."
 					+ this.Format
-					+ "?access_token="
-					+ URLEncoder.encode(this.oauth_token)
-					+ "&usr_b="
-					+ URLEncoder.encode(this.usr_b);
+					+ "?access_token=" + URLEncoder.encode(this.oauth_token);
+
 		}
 		return params;
 	}

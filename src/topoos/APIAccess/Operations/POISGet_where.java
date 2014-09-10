@@ -16,6 +16,8 @@
 
 package topoos.APIAccess.Operations;
 
+import java.net.URLEncoder;
+
 /**
  * The Class POISGet_where.
  *
@@ -107,14 +109,14 @@ public class POISGet_where extends APIOperation{
 		String params = null;
 		if (this.ValidateParams()) {
 			params = "/" + this.Version + "/pois/get_where." + this.Format 
-					+ "?oauth_token=" + this.oauth_token
-					+ "&categories="+APIUtils.toStringUrlEncoded(categories)
-					+(pois == null? "" : "&pois="+APIUtils.toStringUrlEncoded(pois))
-					+(city == null? "" : "&city="+APIUtils.toStringUrlEncoded(city))
-					+(country == null? "" : "&country="+APIUtils.toStringUrlEncoded(country))
-					+(postal_code == null? "" : "&postal_code="+APIUtils.toStringUrlEncoded(postal_code))
-					+(q == null? "" : "&q="+APIUtils.toStringUrlEncoded(q))
-					+(total == null? "" : "&total="+APIUtils.toStringInteger(total))
+					+ "?oauth_token=" + URLEncoder.encode(this.oauth_token)
+					+ "&categories="+URLEncoder.encode(APIUtils.toStringUrlEncoded(categories))
+					+(pois == null? "" : "&pois="+URLEncoder.encode(APIUtils.toStringUrlEncoded(pois)))
+					+(city == null? "" : "&city="+URLEncoder.encode(APIUtils.toStringUrlEncoded(city)))
+					+(country == null? "" : "&country="+URLEncoder.encode(APIUtils.toStringUrlEncoded(country)))
+					+(postal_code == null? "" : "&postal_code="+URLEncoder.encode(APIUtils.toStringUrlEncoded(postal_code)))
+					+(q == null? "" : "&q="+URLEncoder.encode(APIUtils.toStringUrlEncoded(q)))
+					+(total == null? "" : "&total="+URLEncoder.encode(APIUtils.toStringInteger(total)))
 					;
 		}
 		return params;
