@@ -74,7 +74,7 @@ public class UsersResetPass extends APIOperation {
 
 		String params = null;
 		if (this.ValidateParams()) {
-			params = "/" + this.Version + "/users/" + this.user_name + "/reset-pass."
+			params = "/" + this.Version + "/users/" + URLEncoder.encode(this.user_name) + "/reset-pass."
 					+ this.Format + "?api_key=" + URLEncoder.encode(this.api_key);
 
 		}
