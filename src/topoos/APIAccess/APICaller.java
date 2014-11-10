@@ -162,6 +162,7 @@ public class APICaller {
 	
 			}
 		}
+		hc.getConnectionManager().shutdown();
 	}
 
 	/**
@@ -243,6 +244,7 @@ public class APICaller {
 			}
 
 		}
+		hc.getConnectionManager().shutdown();
 	}
 
 //	private static void appendLog(String text) {
