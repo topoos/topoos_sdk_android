@@ -17,6 +17,8 @@
 package topoos.APIAccess.Results;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -98,9 +100,15 @@ public class UserResult extends APICallResult {
 				if (Id != null) {
 					Name = APIUtils.getStringorNull(jObject, "name");
 					if (jObject.optJSONObject("profile") != null) {
-						Profile = new Profile(
-								APIUtils.toDateString(jObject.getJSONObject(
-										"profile").getString("birthday")),
+						Date birthday = null;
+						if (!jObject.getJSONObject("profile")
+								.isNull("birthday")) {
+							birthday = APIUtils.toDateString(jObject
+									.getJSONObject("profile").getString(
+											"birthday"));
+						}
+
+						Profile = new Profile(birthday,
 								APIUtils.getStringorNull(
 										jObject.getJSONObject("profile"),
 										"gender"));
@@ -113,31 +121,37 @@ public class UserResult extends APICallResult {
 					for (int i = 0; i < jarray.length(); i++) {
 						Ugroup.add(jarray.getInt(i));
 					}
-					
-					if  (jObject.optJSONObject("accreditation") != null){
+
+					if (jObject.optJSONObject("accreditation") != null) {
 						ArrayList<VisibleDevice> arrayV = new ArrayList<VisibleDevice>();
-						
-						JSONArray jarray2 = jObject.getJSONObject("accreditation")
-								.getJSONArray("visibledevices");
+
+						JSONArray jarray2 = jObject.getJSONObject(
+								"accreditation").getJSONArray("visibledevices");
 						for (int i = 0; i < jarray2.length(); i++) {
-							arrayV.add(new VisibleDevice(jarray2.getJSONObject(i)
-									.getString("id"), APIUtils.getStringorNull(
-									jarray2.getJSONObject(i), "name"), APIUtils
-									.getIntegerorNull(jarray2.getJSONObject(i),
-											"model"), APIUtils.getBooleanorNull(
-									jarray2.getJSONObject(i), "islogical")));
+							arrayV.add(new VisibleDevice(jarray2.getJSONObject(
+									i).getString("id"), APIUtils
+									.getStringorNull(jarray2.getJSONObject(i),
+											"name"), APIUtils.getIntegerorNull(
+									jarray2.getJSONObject(i), "model"),
+									APIUtils.getBooleanorNull(
+											jarray2.getJSONObject(i),
+											"islogical")));
 						}
-						Acreditation = new Acreditation(APIUtils.getStringorNull(
-								jObject.getJSONObject("accreditation"),
-								"expirationtime"), jObject.getJSONObject(
-								"accreditation").getString("client_id"), APIUtils.getStringorNull(
+						Acreditation = new Acreditation(
+								APIUtils.getStringorNull(
 										jObject.getJSONObject("accreditation"),
-										"access_token"), APIUtils.getStringorNull(
-												jObject.getJSONObject("accreditation"),
-												"refresh_token"),arrayV);
-					}else 
+										"expirationtime"), jObject
+										.getJSONObject("accreditation")
+										.getString("client_id"),
+								APIUtils.getStringorNull(
+										jObject.getJSONObject("accreditation"),
+										"access_token"),
+								APIUtils.getStringorNull(
+										jObject.getJSONObject("accreditation"),
+										"refresh_token"), arrayV);
+					} else
 						Acreditation = null;
-					
+
 					this.user = new User(Id, Name, Email, Profile, Ugroup,
 							Acreditation);
 				}
